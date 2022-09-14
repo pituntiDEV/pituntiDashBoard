@@ -5,7 +5,6 @@ import useFetchApi from '../../../hook/useFetchApi'
 import { CoinsIcon } from '../../icons/CoinsIcon';
 import { EditSquareIcon } from '../../icons/EditSquareIcon';
 import { CoinPlusIcon } from '../../icons/InputWithIcon/CoinPlusIcon';
-import { InputWithIcon } from '../../icons/InputWithIcon/InputWithIcon';
 import { ServerIcon } from '../../icons/ServerIcon';
 import { TrashIcon } from '../../icons/TrashIcon';
 import Modal from '../../modal/Modal';

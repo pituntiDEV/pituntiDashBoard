@@ -1,11 +1,11 @@
 import React from 'react'
 import "./NewResellerBar.scss";
 export const NewResellerBar = (props) => {
-  const {totalResellers}=props;
+  const {totalresellers}=props;
   return (
     <div className='new__reseller__bar'>
         <div className='new__reseller__counter'>
-            Total: {totalResellers} {totalResellers > 1 ? "Resellers":"Reseller"}
+            Total: {totalresellers} {totalresellers > 1 ? "Resellers":"Reseller"}
         </div>
         <div {...props} className='new__reseller__btn'>
         

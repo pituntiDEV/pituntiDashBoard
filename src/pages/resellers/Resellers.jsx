@@ -10,7 +10,7 @@ export const Resellers = () => {
   const [totalResellers, setTotalResellers] = useState("--");
   return (
     <div className='resellers container'>
-      <NewResellerBar totalResellers={totalResellers} onClick={() => setOpenModal(true)} />
+      <NewResellerBar totalresellers={totalResellers} onClick={() => setOpenModal(true)} />
       
       <div className='resellers-new__btn m-2'>
       

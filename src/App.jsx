@@ -7,7 +7,7 @@ import {
   Route,
 } from "react-router-dom";
 import { Register } from './pages/Regiter/Register';
-import { Accounts } from './components/accounts/Accounts';
+import { Accounts } from './pages/Accounts/Accounts';
 import { Server } from './pages/servers/Server';
 import { Resellers } from './pages/resellers/Resellers';
 import { Paquetes } from './pages/paquetes/Paquetes';
