@@ -1,0 +1,36 @@
+.register{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-color: #8597c9b1;
+    min-height: 100vh;
+
+    form{
+        background-color: rgb(58, 58, 58);
+        border-radius:1rem;
+        color:white;
+        margin-top: 3rem;
+        padding: 3rem 10rem;
+        .form-group{
+            display: flex;
+            flex-direction: column;
+            padding: .5rem ;
+            input{
+                padding: .5rem;
+                border-radius: .5rem;
+            }
+            .error{
+                color: rgb(237, 37, 37);
+                font-size: 1rem;
+                font-weight: bold;
+            }
+        }
+        .btn-register{
+            background-color: #4fc2ceb1;
+            color: rgb(77, 75, 75);
+            border:none;
+            box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.377);
+        }
+    }
+}

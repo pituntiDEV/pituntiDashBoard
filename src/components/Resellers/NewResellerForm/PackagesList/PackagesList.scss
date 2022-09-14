@@ -1,0 +1,26 @@
+.packages__list{
+    details{
+        .content{
+            margin-left: 3rem;
+            .package{
+                border-left: 1px solid;
+                cursor: pointer;
+                margin: .2rem 0;
+                font-weight: bold;
+                padding: .5rem 0;
+                &.active{
+                    background-color: rgb(36, 152, 84);
+                    color: white;
+                }
+                &:hover{
+                    // background-color: rgba(0,0,0,.05);
+                }
+                &::before{
+                    content: "__";
+                    color: black;
+                    padding-right:  .3rem;
+                }
+            }
+        }
+    }
+}

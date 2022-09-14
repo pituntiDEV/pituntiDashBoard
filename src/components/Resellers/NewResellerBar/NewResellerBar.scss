@@ -1,0 +1,21 @@
+.new__reseller__bar{
+    margin-top: 2rem;
+    background-color: var(--color-primary);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding:1rem 3rem;
+    border-radius: 0.5rem;
+    align-items: center;
+    .new__reseller__btn{
+        button{
+            background-color: rgb(46, 45, 45);
+            color: white;
+            padding: .5rem 2rem;
+            border-radius: .5rem;
+            box-shadow: -1px 1px 4px white;
+        }
+    }
+
+
+}

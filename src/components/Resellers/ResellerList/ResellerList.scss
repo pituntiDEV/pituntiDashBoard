@@ -1,0 +1,61 @@
+.resellers__list{
+    margin-top: 2rem;
+    .resellers{
+        display: grid;
+        grid-template-columns: repeat( auto-fill, minmax(290px, 1fr) );
+        gap: 2rem;
+        .reseller{
+            display: grid;
+            grid-template-columns: 85% 15%;
+            grid-template-areas: 
+            "info controls"
+            ;
+            padding: 2rem 1rem;
+            box-shadow: -4px 4px 6px rgba(0, 0, 0, 0.633);
+            border-radius: .5rem;
+            color: rgb(45, 43, 43);
+            background: rgb(255, 255, 255);
+            .info{
+                background-color: rgb(52, 52, 53);
+                border-radius: 1rem;
+                padding: 1rem;
+                color: white;
+                .name , .email{
+                    text-align: center;
+                    display: block;
+                }
+                .logo{
+                    position: relative;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin: 1rem 0;
+                    .circle1{
+                        width: 5rem;
+                        height: 5rem;
+                        display: block;
+                       
+                        border-radius: 50%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        background-color: rgb(73, 71, 71);
+                        border: .5rem solid rgb(201, 196, 196);
+                        
+                    }
+                   
+                }
+            }
+            .controls{
+                border-left: 3px solid rgba(252, 249, 249, 0.173);
+                grid-area: controls;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-evenly;
+                font-size: 2rem;
+                color:rgb(43, 41, 41);
+            }
+        }
+    }
+}

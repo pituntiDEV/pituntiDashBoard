@@ -1,0 +1,46 @@
+@import "../../mixins.scss";
+.new-user-bar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin:  2rem 0;
+    padding:  1rem;
+    background-color: var(--color-primary);
+    color: white;
+    border-radius: .5rem;
+    @include small-phone-only {
+        flex-direction: column;
+            
+    }
+    .num-users{
+        display: flex;
+        gap:.5rem;
+        font-weight: bold;
+
+        span{
+            background-color: rgb(44, 42, 42);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: .5rem;
+        }
+    }
+    .btn-add{
+        display: flex;
+        gap: .3rem;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--color-primary);
+        color: white;
+        border: none;
+        border-radius: .5rem;
+        padding: 1rem;
+        border-left: #ffffff2e solid 2px;
+        box-shadow: 0px 0px 5px rgba(143, 143, 143, 0.979);
+        font-weight: bold;
+
+       
+    }
+}

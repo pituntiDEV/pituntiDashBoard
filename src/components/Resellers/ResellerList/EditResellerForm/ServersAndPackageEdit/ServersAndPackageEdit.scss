@@ -1,0 +1,36 @@
+.servers__and__packages{
+    .servers_container{
+        .servers__list{
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+            .server{
+                background-color: rgb(207, 72, 72);
+                color: white;
+                text-align: center;
+                padding: 1rem;
+                border-radius: 1rem;
+                &.selected{
+                    background-color: green;
+                }
+            }
+        }
+    }
+    .packages__list{
+        margin-top: 1rem;
+        .packages__container{
+            margin-left: 1rem;
+            list-style: none;
+            .package{
+                border-left: 1px solid #000;
+                margin-top: .5rem;
+                cursor: pointer;
+                &.active{
+                    background-color: rgb(62, 155, 66);
+                    color: white;
+                }
+            }
+        }
+
+    }
+}

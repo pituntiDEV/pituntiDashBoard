@@ -1,0 +1,26 @@
+.filter{
+    margin-top: 1rem;
+   .title{
+    font-weight: bold;
+   }
+    .inputs{
+        display: flex;
+        gap:1rem;
+        .inputFilter{
+            display: flex;
+            flex-direction: column;
+            gap: .5rem;
+            small{
+                font-weight: 600;
+
+            }
+            select{
+                padding: .5rem;
+                border: none;
+                box-shadow: -2px 2px 5px rgba(40, 41, 41, 0.651);
+                outline: none;
+                border-radius: .5rem;
+            }
+        }
+    }
+}

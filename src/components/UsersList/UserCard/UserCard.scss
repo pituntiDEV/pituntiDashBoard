@@ -1,0 +1,47 @@
+.user__card {
+    border-radius: .5rem;
+    background-color: transparent;
+    box-shadow: inset 4px 4px 8px #918f8f67, -4px 10px 8px rgb(116, 129, 120);
+    padding: 1rem;
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+    animation: infinite pi 5s steps(100);
+    display: grid;
+ 
+    grid-template-areas: 
+    "header options"
+    "body options"
+    ;
+    grid-template-columns: 80% 20%;
+    .card__header{
+        grid-area: header;
+    }
+
+    .card__body {
+        grid-area: body;
+
+        .user__info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: .5rem;
+            .name {
+                font-weight: bold;
+            }
+
+            img {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                margin: 0 auto;
+                margin-bottom: 1rem;
+                box-shadow: -6px 3px 5px rgba(0, 0, 0, 0.725),6px 3px 15px rgba(72, 110, 66, 0.412);
+                
+            }
+           
+        }
+    }
+    .card__options{
+        grid-area: options;
+    }
+
+}

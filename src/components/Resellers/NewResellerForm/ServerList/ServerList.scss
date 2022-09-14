@@ -1,0 +1,34 @@
+.server__list {
+    max-width: 500px;
+    margin: auto;
+
+    .server__list-item {
+        margin: 1rem 0;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1rem;
+
+        .server {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            text-align: center;
+            box-shadow: -3px 3px 4px rgb(65, 67, 65);
+            border: 1px solid rgba(47, 47, 47, 0.174);
+            border-radius: 4px;
+            cursor: pointer;
+            background-color: #fff;
+            padding: 1rem 0 ;
+            &.active{
+                background-color: #386ac7;
+                color: #fff;
+            }
+            &:active {
+                
+                box-shadow: -1px 0px 1px rgba(0, 0, 0, 0.363);
+                transform: scale(.97);
+            }
+        }
+    }
+}

@@ -1,0 +1,7 @@
+.credits__edit{
+    .form__container{
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+    }
+}

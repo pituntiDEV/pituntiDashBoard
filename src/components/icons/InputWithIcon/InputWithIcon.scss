@@ -1,0 +1,30 @@
+.Input__with__icon{
+    display: grid;
+    grid-template-columns: 3.5rem 1fr;
+    align-items: stretch;
+    border-radius: .3rem;
+    
+    overflow: hidden;
+    :nth-child(1){
+        background-color: rgba(12, 12, 12, 0.882);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        border-radius: .5rem;
+        
+        
+       
+    }
+    :nth-child(2){
+        outline: none;
+        width: 100%;
+        display: block;
+        font-size: 1.5rem;
+        border: none;
+        background-color: white;
+        font-weight: bold;
+        height: 100%;
+    }
+
+}

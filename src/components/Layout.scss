@@ -1,0 +1,49 @@
+
+@import "../mixins.scss";
+.Layout{
+    display:grid;
+    min-height: 100vh;
+    position: relative;
+    grid-template-areas:
+
+        "sidebar header"
+        "sidebar main"
+        "sidebar footer";
+    grid-template-columns:minmax(200px, 100px) 1fr ;
+
+    grid-auto-rows: 80px auto max-content;
+
+    @include phone-only {
+        grid-template-areas:
+            "header"
+            "main"
+            "footer";
+        grid-template-columns: auto;
+        grid-auto-rows: max-content auto max-content;
+    }
+
+    header{
+        grid-area: header;
+        background-color: var(--color-primary) !important;
+        
+    }
+    aside{
+        grid-area: sidebar;
+        background-color: rgb(44, 43, 43);
+        @include phone-only {
+            display: none;
+            &.active{
+                display: block;
+            }
+        }
+    }
+    main{
+        grid-area: main;
+        background-color: rgb(222, 225, 225);
+    }
+    footer{
+        grid-area: footer;
+        background-color: rgb(113, 156, 185);
+    }
+
+}

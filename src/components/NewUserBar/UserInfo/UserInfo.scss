@@ -1,0 +1,15 @@
+.user__info__data{
+    max-width: 500px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+    gap:1rem;
+    margin-top: 2rem;
+    .form-group{
+        label{
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--color-secondary);
+        }
+    }
+}

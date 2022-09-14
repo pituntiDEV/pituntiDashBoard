@@ -1,0 +1,58 @@
+.find{
+    margin: 2rem auto;
+    max-width: 500px;
+    .search__reseller{
+        display: grid;
+        margin-bottom: 1rem;
+        grid-template-columns: 1fr 50px;
+        box-shadow: -2px 2px 3px rgba(0, 0, 0, 0.499);
+        border-radius: .2rem;
+        background-color: #fff;
+        overflow: hidden;
+        .input{
+            margin: 0 1rem;
+            input{
+                width: 100%;
+                border: none;
+                outline: none;
+                padding: .8rem 0;
+                
+            }
+        }
+        i{
+            background-color: rgb(41, 37, 37);
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+       
+       
+        
+    }
+    .resellers{
+        color: var(--color-secondary);
+        .resellers-container{
+            display: grid;
+            grid-template-columns: repeat(auto-fill,minmax(150px,1fr));
+            .reseller{
+                background-color: rgb(53, 55, 56);
+                padding: .5rem 0;
+                color: #fff;
+                border-radius: .5rem;
+                text-align: center;
+                cursor: pointer;
+                &:hover{
+                    background-color: rgb(52, 56, 59);
+                    transform: scale(1.05);
+                }
+                &.selected{
+                    background-color: rgb(44, 149, 114);
+                }
+            }
+    
+        }
+    }
+}

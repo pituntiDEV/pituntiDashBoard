@@ -1,0 +1,61 @@
+@import "../../mixins.scss";
+
+.selectLibs {
+    display: grid;
+
+    @include phone-only {
+        grid-template-areas:
+            "form form"
+            "libs libs"
+            "btn btn";
+        ;
+    }
+
+    grid-template-areas: "libs form"
+    "libs form"
+    "btn btn"
+    ;
+
+    .form {
+        grid-area: form;
+        padding: 1rem;
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+
+    .buttons {
+        grid-area: btn;
+    }
+    .libs{
+        width: auto;
+    }
+
+    .libs__container {
+        grid-area: libs;
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        height: 300px;
+        gap: .5rem;
+        padding: 1rem;
+        overflow-y: auto;
+        max-height: 500px;
+
+        .lib {
+            background-color: rgb(226, 71, 47);
+            border-radius: 1rem;
+            text-align: center;
+            color: rgb(255, 255, 255);
+            padding-bottom: .5rem;
+            cursor: pointer;
+
+            &.active {
+                background-color: rgb(43, 150, 73);
+            }
+
+        }
+    }
+}

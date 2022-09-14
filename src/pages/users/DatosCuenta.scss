@@ -1,0 +1,51 @@
+.DatosCuenta{
+  display: grid;
+  grid-template-areas: 
+    "pk info"
+    "pk info"
+    "btns btns";
+
+    .btns{
+        grid-area: btns;
+    }
+    .info{
+        grid-area: info;
+    }
+    .pk{
+        grid-area: pk;
+        margin: 0 2rem;
+        overflow-y: auto;
+        max-height: 300px;
+        padding: 0 2rem;
+        .pk__list{
+            position: relative;
+            cursor: pointer;
+            .fa-circle-check{
+                color: #2e7746;
+                position: absolute;
+                left: -1.2rem;
+    
+            }
+            
+        }
+    }
+
+    .credits{
+        label{
+            font-weight: bold;
+        }
+        .count{
+            display: flex;
+            align-items: center;
+            font-size: 5rem;
+            gap: 1rem;
+            color: rgb(88, 86, 86);
+            .simbol{
+                font-size: 3.5rem;
+                cursor: pointer;
+            }
+
+        }
+    }
+   
+}

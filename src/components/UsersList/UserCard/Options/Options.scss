@@ -1,0 +1,11 @@
+.user__options{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    gap: .5rem;
+    .delete{
+       color: rgb(235, 79, 79);
+    }
+
+}

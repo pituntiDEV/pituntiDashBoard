@@ -1,0 +1,31 @@
+.edit__reseller__form{
+    .edit__reseller__form__container{
+        display: grid;
+        grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
+        box-sizing: border-box;
+        gap: 1rem;
+        align-items: center;
+        .demos__time{
+            display: grid;
+            border-radius: .5rem;
+            overflow: hidden;
+        grid-template-columns: 15% 45% 40%;
+            background-color: white;
+            i{
+                background-color: var(--color-primary);
+                color: white;
+                padding: .5rem;
+                text-align: center;
+            }
+            input,select{
+                height: 100%;
+                display: block;
+            }
+        }
+
+    }
+
+    .buttons_edit{
+        margin-top: 1rem;
+    }
+}

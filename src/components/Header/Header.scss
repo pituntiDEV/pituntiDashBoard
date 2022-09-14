@@ -1,0 +1,42 @@
+@import "../../mixins.scss";
+
+.Header {
+    color: #fff;
+    margin: 2rem 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+
+    .brand {
+        .btn-menu {
+            display: none;
+
+            i {
+                font-size: 2rem;
+                color: #fff;
+                font-weight: bold;
+            }
+
+            @include phone-only {
+                display: block;
+            }
+        }
+
+
+        h1 {
+            background-color: #6c9dcf9a;
+
+            text-align: center;
+            border-radius: .5rem;
+        }
+
+    }
+
+    .notifications {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin: 0 2rem;
+    }
+
+}
