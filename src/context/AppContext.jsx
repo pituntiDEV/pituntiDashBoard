@@ -1,6 +1,7 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { io } from 'socket.io-client';
+import useFetchApi from '../hook/useFetchApi';
 
 export const appContext = React.createContext();
 const socket =  io("192.168.1.38:1992", {
@@ -9,6 +10,7 @@ const socket =  io("192.168.1.38:1992", {
   }
 });
 
+
 export const AppContext = ({ children }) => {
   //State
   const [state, setState] = useState({
@@ -16,8 +18,21 @@ export const AppContext = ({ children }) => {
     openEditModal: false,
     users:[],
     packages:[],
+    account_data:{}
     
   });
+  //Custom Hooks
+  const [getMyInfo,loadingGetMyInfo] = useFetchApi({
+    url:"/api/auth/my-info",
+    method:"GET",
+  })
+  
+  //Effects
+  useEffect(()=>{
+     getMyInfo().then(data=>{
+      setState({...state,account_data:data})
+     });
+  },[])
   
   const value={
     state,

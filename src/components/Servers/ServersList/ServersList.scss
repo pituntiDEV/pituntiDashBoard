@@ -1,0 +1,34 @@
+.server-list{
+    margin-top: 2rem;
+    h2{
+        font-weight: bold;
+    }
+    .servers{
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
+        gap: 1rem;
+        .server{
+            background-color: var(--color-primary);
+            border-radius: 1rem;
+            color: white;
+            padding: 1rem;
+            display: flex;
+            gap: 1rem;
+            flex-direction: column;
+            align-items: center;
+            .circle{
+                width: 4.5rem;
+                height: 4.5rem;
+                border: .33rem solid rgb(188, 65, 65);
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 2.5rem;
+                font-weight: bold;
+                background-color: white;
+                color: black;
+            }
+        }
+    }
+}

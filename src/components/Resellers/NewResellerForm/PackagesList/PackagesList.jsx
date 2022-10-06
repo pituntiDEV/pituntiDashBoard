@@ -9,10 +9,7 @@ import "./PackagesList.scss";
 export const PackagesList = ({ server ,state,setState}) => {
     //State
     const [packages, setPackages] = React.useState([]);
-    const [serversAndPackages ,setServersAndPackages] = useState({
-        server:server.server,
-        packages:[]
-    });
+
     
     const [getPackages, loading] = useFetchApi({
         url: `/api/package/plex/server/${server.server._id}`,
@@ -25,20 +22,16 @@ export const PackagesList = ({ server ,state,setState}) => {
     },[])
 
     //Functions
-    const selectedPackages=(pack)=>{  
-        const servers = state.servers;
-        const selectedServer = servers.find(s=>s.server._id == server.server._id);
-        let packages = selectedServer.packages;
+    const selectedPackages=(pack)=>{ 
+        let packages = server.packages;
         const existePack= packages.includes(pack._id);
         if(!existePack){
-            packages=[...packages,pack._id];
-            server.packages = packages
+            server.packages = [...server.packages,pack._id];
         }else{
-            packages = packages.filter(p=>p!=pack._id);
-            server.packages = packages;
+            server.packages = server.packages.filter(p=>p!=pack._id);
         }
-        setState({...state,servers});
-        
+       setState({...state,servers:state.servers})
+         console.log(state.servers)
     }
     return (
         <div className="packages__list">
@@ -49,7 +42,7 @@ export const PackagesList = ({ server ,state,setState}) => {
                         const selected = state.servers.find(s=>s.server._id == server.server._id).packages.includes(pack._id)
                         
                         return (
-                            <div onClick={()=>selectedPackages(pack)} key={pack._id} className={`package ${selected && "active"}`}>
+                            <div onClick={()=>selectedPackages(pack)} key={pack._id} className={`package ${""&& "active"}`}>
                                 {selected ? < CheckIcon/>:<CancelIcon className="text-danger" />} {pack.name} 
                                 <small>--({pack.libs.length} Libs)</small>
                             </div>

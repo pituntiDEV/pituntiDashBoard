@@ -5,31 +5,32 @@ import Modal from '../../components/modal/Modal';
 import { appContext } from '../../context/AppContext';
 import useGetAccountServers from '../../hook/useGetAccountServers';
 import useGetPlexLibs from '../../hook/useGetPlexLibs';
-import { MyPackages } from './MyPackages';
+import { PackagesList } from './PackagesList/PackagesList';
 import { SelectLibs } from './SelectLibs';
 import "./Paquetes.scss"
 export const Paquetes = () => {
+
+  //State
   const [openModal, setOpenModal ] = useState(false);
-  const [getAccountsServers, accountServers, loading] = useGetAccountServers()
   const [serverSelected, setServerSelected] = useState(null);
+  const [newPackageState, setNewPackageState] = useState(false);
+
+  //Custom hooks
+  const [getAccountsServers, accountServers, loading] = useGetAccountServers()
   const [getLibs, libs] = useGetPlexLibs()
 
   useEffect(() => {
     getAccountsServers()
   }, [])
 
-  const changeServer = (e) => {
-    const server =e.target.value;
-    setServerSelected(server);
 
-  }
   return (
     <div className="container">
       <div className="new__package__bar">
         <h1>Package</h1>
         <button onClick={()=>setOpenModal(true)}>New Package</button>
       </div>
-      <div className="servers__container">
+      {/* <div className="servers__container">
       <h2>By Server:</h2>
         <InputWithIcon>
            <ServerIcon/>
@@ -42,11 +43,11 @@ export const Paquetes = () => {
             })}
           </select>
         </InputWithIcon>
-      </div>
+      </div> */}
       {
 
         openModal && <Modal title="Crear un Nuevo paquete" setOpenModal={setOpenModal}>
-          <SelectLibs accountServers={accountServers} server={serverSelected} libs={libs} />
+          <SelectLibs setNewPackageState={setNewPackageState} setOpenModal={setOpenModal} accountServers={accountServers} server={serverSelected} libs={libs} />
 
         </Modal>
 
@@ -54,7 +55,7 @@ export const Paquetes = () => {
 
       <hr />
       <section>
-        <MyPackages server={serverSelected} />
+        <PackagesList newPackageState={newPackageState} server={serverSelected} />
       </section>
 
     </div>

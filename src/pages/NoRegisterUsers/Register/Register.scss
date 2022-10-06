@@ -1,0 +1,33 @@
+.register_user{
+    .form_data{
+        display: grid;
+        grid-template-columns: repeat(auto-fill,minmax(280px,1fr));
+        gap:1rem;
+        .form-group{
+            display: flex;
+            flex-direction: column;
+            border-radius: 1rem;
+            input,select{
+                border-radius: .5rem;
+            }
+        }
+
+    }
+
+    .packages{
+        display: flex;
+        gap: 1rem;
+        margin: 1rem 0;
+        .pack{
+            padding: 1rem;
+            background-color: rgb(195, 101, 101);
+            border-radius: .5rem;
+            color: white;
+            font-weight: bold;
+            letter-spacing: 1px;
+            &.active{
+                background-color: rgb(79, 160, 105);
+            }
+        }
+    }
+}

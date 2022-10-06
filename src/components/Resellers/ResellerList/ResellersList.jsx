@@ -9,16 +9,18 @@ import { ServerIcon } from '../../icons/ServerIcon';
 import { TrashIcon } from '../../icons/TrashIcon';
 import Modal from '../../modal/Modal';
 import { CreditsEdit } from './EditResellerForm/CreditsEdit/CreditsEdit';
+import { DeleteReseller } from './EditResellerForm/DeleteReseller/DeleteReseller';
 import { EditResellerForm } from './EditResellerForm/EditResellerForm';
 import { ServersAndPackageEdit } from './EditResellerForm/ServersAndPackageEdit/ServersAndPackageEdit';
 import "./ResellerList.scss";
-export const ResellersList = ({ setTotalResellers }) => {
+export const ResellersList = ({ setTotalResellers,newResellerState,setNewResellerState }) => {
     //State
     const [resellers, setResellers] = useState([]);
     const [openModal, setOpenModal] = useState(false);
     const [openModalServers, setOpenModalServers] = useState(false)
     const [openModalCredits, setOpenModalCredits] = useState(false)
     const [resellerToEdit, setResellerToEdit] = useState(null);
+    const [openModalDelete, setOpenModalDelete] = useState(false);
 
     //Custom hooks
     const [getResellers, loading] = useFetchApi({
@@ -32,15 +34,15 @@ export const ResellersList = ({ setTotalResellers }) => {
             console.log(data);
             setResellers(data);
         })
-    }, [])
+    }, [newResellerState])
     return (
         <div className='resellers__list'>
             <div className='resellers__container'>
                 <div className="resellers">
                     {resellers.map(resell => {
                         const { reseller, servers, _id } = resell
-                        const serversNames = servers.map(s => s.server.data.name)
-
+                        const serversNames = servers.map(s => s.server?.data?.name)
+                        const creditAvailable = resell.credits.filter(c => c.new==true);
                         return (
                             <div className='reseller' key={_id}>
                                 <div className="info">
@@ -65,10 +67,12 @@ export const ResellersList = ({ setTotalResellers }) => {
 
                                 <div className="controls">
 
-                                    <span onClick={()=>{
+                                    <span className='credits' onClick={()=>{
                                          setOpenModalCredits(true)
                                          setResellerToEdit(resell)
-                                    }}><CoinPlusIcon /> </span>
+                                    }}> 
+                                    <span className='total_credits'>{creditAvailable?.length}</span>
+                                     <CoinPlusIcon /> </span>
                                     <span onClick={() => {
                                         setOpenModalServers(true)
                                         setResellerToEdit(resell)
@@ -77,26 +81,37 @@ export const ResellersList = ({ setTotalResellers }) => {
                                         setResellerToEdit(resell)
                                         setOpenModal(true)
                                     }}><i className="fa-solid fa-user-gear"></i></span>
-                                    <span className='text-danger'><TrashIcon></TrashIcon></span>
+
+                                    <span className='text-danger' onClick={()=>{
+                                        setResellerToEdit(resell)
+                                        setOpenModalDelete(true)
+                                    }}><TrashIcon></TrashIcon></span>
 
                                 </div>
 
 
                                 {openModal &&
                                     <Modal title={`Reseller Config: ${resellerToEdit.reseller.name}`} setOpenModal={setOpenModal}>
-                                        <EditResellerForm reseller={resellerToEdit} />
+                                        <EditResellerForm setNewResellerState={setNewResellerState} setOpenModal={setOpenModal} reseller={resellerToEdit} />
                                     </Modal>
                                 }
 
                                 {openModalServers &&
                                     <Modal title={`Reseller Servers: ${resellerToEdit.reseller.name}`} setOpenModal={setOpenModalServers}>
-                                        <ServersAndPackageEdit setOpenModal={setOpenModalServers} reseller={resellerToEdit} />
+                                        <ServersAndPackageEdit setNewResellerState={setNewResellerState} setOpenModal={setOpenModalServers} reseller={resellerToEdit} />
                                     </Modal>
                                 }
 
                                 {openModalCredits &&
                                     <Modal title={`Reseller Credits: ${resellerToEdit.reseller.name}`} setOpenModal={setOpenModalCredits}>
-                                        <CreditsEdit setOpenModal={setOpenModalServers} reseller={resellerToEdit} />
+                                        <CreditsEdit setNewResellerState={setNewResellerState} setOpenModal={setOpenModalCredits} reseller={resellerToEdit} />
+                                    </Modal>
+                                }
+
+                                {
+                                    openModalDelete && 
+                                    <Modal title="Eliminar Reseller" setOpenModal={setOpenModalDelete}>
+                                    <DeleteReseller setNewResellerState={setNewResellerState} setOpenModal={setOpenModalDelete} reseller={resellerToEdit} />
                                     </Modal>
                                 }
                             </div>

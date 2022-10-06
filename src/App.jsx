@@ -15,6 +15,10 @@ import React from 'react'
 import { Login } from './pages/Login/Login';
 import  {AppContext} from "./context/AppContext";
 import { Users } from './pages/users/Users';
+import { UserContextProvider } from './context/usersContext';
+import { ProtectedPage } from './pages/ProtectedPage/ProtectedPage';
+import { Demos } from './pages/Demos/Demos';
+import { NoRegisterUsers } from './pages/NoRegisterUsers/NoRegisterUsers';
 function App() {
   return (
     <div className="App">
@@ -22,12 +26,14 @@ function App() {
       <Router>
         
           <Routes>
-            <Route path="/" element={<Layout ></Layout>} />
-            <Route path="/users" element={<Layout ><Users/></Layout>} />
-            <Route path="/accounts" element={<Layout ><Accounts/></Layout>} />
-            <Route path="/servers" element={<Layout ><Server/></Layout>} />
-            <Route path="/paquetes" element={<Layout ><Paquetes/></Layout>} />
-            <Route path="/resellers" element={<Layout ><Resellers/></Layout>} />
+            <Route path="/" element={<ProtectedPage>  <UserContextProvider><Layout ><Users/></Layout></UserContextProvider></ProtectedPage>} />
+            <Route path="/users" element={<ProtectedPage>  <UserContextProvider><Layout ><Users/></Layout></UserContextProvider></ProtectedPage>} />
+            <Route path="/accounts" element={<ProtectedPage><Layout ><Accounts/></Layout></ProtectedPage>} />
+            <Route path="/servers" element={<ProtectedPage><Layout ><Server/></Layout></ProtectedPage>} />
+            <Route path="/paquetes" element={<ProtectedPage><Layout ><Paquetes/></Layout> </ProtectedPage>} />
+            <Route path="/resellers" element={<ProtectedPage><Layout ><Resellers/></Layout> </ProtectedPage>} />
+            <Route path="/demos" element={<ProtectedPage><Layout ><Demos/></Layout> </ProtectedPage>} />
+            <Route path="/no-register-users" element={<ProtectedPage><Layout ><NoRegisterUsers/></Layout> </ProtectedPage>} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             

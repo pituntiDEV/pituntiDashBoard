@@ -1,6 +1,4 @@
-import React, { useState } from 'react'
-import { NewUserContextProvider } from '../../context/NewUserContextProvider'
-import { UserContextProvider } from '../../context/usersContext'
+import React, { useContext, useState } from 'react'
 
 import { NewUserBar } from '../../components/NewUserBar/NewUserBar'
 import { UsersList } from '../../components/UsersList/UsersList'
@@ -11,6 +9,8 @@ import { useEffect } from 'react'
 export const Users = () => {
   //State
   const [users, setUsers] = useState([]);
+  const [newUserState,setNewUserState] = useState(false);
+
   //Custom Hooks
   const [getAllUsers, loading] = useFetchApi({ url: config.apiUrls.plex.getAllUsers, method: "GET" });
 
@@ -20,13 +20,12 @@ export const Users = () => {
     getAllUsers()
       .then(data => setUsers(data))
       .catch(error => console.log(error));
-  }, [])
+  }, [newUserState])
 
   return (
     <div className='Users container'>
-      <NewUserBar users={users} />
-      <UsersList users={users} />
-
+        <NewUserBar setNewUserState={setNewUserState} users={users} />
+        <UsersList setNewUserState={setNewUserState} users={users} />
     </div>
   )
 }

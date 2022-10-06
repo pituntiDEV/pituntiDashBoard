@@ -11,7 +11,7 @@
         "sidebar footer";
     grid-template-columns:minmax(200px, 100px) 1fr ;
 
-    grid-auto-rows: 80px auto max-content;
+    grid-auto-rows: 80px auto 23px;
 
     @include phone-only {
         grid-template-areas:
@@ -25,6 +25,8 @@
     header{
         grid-area: header;
         background-color: var(--color-primary) !important;
+        position: sticky;
+        top: 0;
         
     }
     aside{
@@ -43,7 +45,6 @@
     }
     footer{
         grid-area: footer;
-        background-color: rgb(113, 156, 185);
     }
 
 }

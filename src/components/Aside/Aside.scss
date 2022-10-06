@@ -4,7 +4,7 @@ aside{
    
     @include phone-only {
         
-        background-color: var(--color-primary)!important;
+        background-color: rgba(0, 0, 0, 0.596) !important;
         width: 100%;
         min-height: 100vh;
         position: fixed;
@@ -31,6 +31,8 @@ aside{
     }
 
     .menu{
+        position: sticky;
+        top: 1rem;
         .menu-list{
             display: flex;
             flex-direction: column;

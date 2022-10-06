@@ -1,13 +1,14 @@
 import React from 'react'
 import { useState } from 'react';
 import useFetchApi from '../../../hook/useFetchApi';
+import SWAlert from '../../SwAlert/SWAlert';
 import { Buttons } from './Buttons/Buttons';
 import { CreditsAndConnections } from './CreditsAndConnections/CreditsAndConnections';
 import "./NewResellerForm.scss";
 import { ResellerConfig } from './ResellerConfig/ResellerConfig';
 import { SearchReseller } from './SearchReseller/SearchReseller';
 import { ServerList } from './ServerList/ServerList';
-export const NewResellerForm = ({setOpenModal}) => {
+export const NewResellerForm = ({setOpenModal,setNewResellerState}) => {
 
     //State
     const [state,setState] = useState({
@@ -41,10 +42,11 @@ export const NewResellerForm = ({setOpenModal}) => {
         e.preventDefault();
         const serversIDS = state.servers.map(server=>{
             return {
-                server:server._id,
+                server:server.server._id,
                 packages:server.packages
             }
         })
+      
         const dataToSend={
             reseller:state.reseller,
             credits:state.credits,
@@ -62,6 +64,16 @@ export const NewResellerForm = ({setOpenModal}) => {
         }
         addReseller({
             body:JSON.stringify(dataToSend),
+        }).then(data=>{
+            SWAlert.alert({
+                title:data.message || "Reseller Agregado"
+            })
+            setOpenModal(false)
+            setNewResellerState(s=>!s)
+        }).catch((error)=>{
+            SWAlert.error({
+                title:error.message || "Algo salio mal"
+            })
         })
 
     }

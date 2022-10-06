@@ -1,0 +1,19 @@
+.delete-user-form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    .message{
+        background-color: rgb(219, 88, 88);
+        box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.66);
+        max-width: 500px;
+        padding: 1rem;
+        color: white;
+        border-radius: 1rem;
+        font-size: 2rem;
+        span{
+            font-weight: bold;
+            text-decoration: underline;
+        }
+    }
+}

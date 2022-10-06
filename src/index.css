@@ -52,3 +52,7 @@ code {
 .pr-1{
   padding-right: .5rem;
 }
+.swal2-popup {
+  font-size: 2rem !important;
+  font-family: Georgia, serif;
+}

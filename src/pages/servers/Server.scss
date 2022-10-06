@@ -1,5 +1,13 @@
-.server-page{
+.servers-page{
     padding:0 1rem;
+    .new_server_bar{
+        margin-top: 2rem;
+        background-color: var(--color-primary);
+        display: flex;
+        justify-content: space-between;
+        padding: 1rem;
+        color: #fff;
+    }
 }
 .accounts{
     display: grid;
@@ -25,43 +33,3 @@
     }
 }
 
-.servers{
-    display: grid;
-    gap: 1rem;
-    margin: 2rem 0;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    .server{
-        position: relative;
-        background:linear-gradient(to right, rgba(68, 45, 59, 0.781) 0%,rgba(237, 66, 69, 0.704) 100%);
-        padding: 1rem 0;
-        font-weight: bold;
-        color: #fff;
-        border-radius: 1rem 3rem;
-        text-align: center;
-        cursor: pointer;
-        box-shadow: -2px 2px 10px rgba(16, 19, 28, 0.5);
-        p{
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #fff;
-            margin: 0;
-        }
-        .fa-server{
-            position: absolute;
-            top: 1rem;
-            left: 1rem;
-            font-size: 3rem;
-        }
-        .add{
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-        }
-        small{
-            font-size: 1.5rem;
-            color: rgb(91, 89, 89);
-            text-shadow: -1px 1px 4px white;
-        }
-
-    }
-}

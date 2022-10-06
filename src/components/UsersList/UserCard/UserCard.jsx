@@ -1,12 +1,17 @@
 import React from 'react'
+import { CancelIcon } from '../../icons/CancelIcon'
 import { InputWithIcon } from '../../icons/InputWithIcon/InputWithIcon'
 import { ServerIcon } from '../../icons/ServerIcon'
 import { UserTieIcon } from '../../icons/UserTieIcon'
 import { Options } from './Options/Options'
 import "./UserCard.scss"
-export const UserCard = ({ user }) => {
+import dayjs from 'dayjs'
+export const UserCard = ({ user,setNewUserState }) => {
+  const expireAt = dayjs(user.credits[user.credits.length - 1]?.expireAt,"YYYY-MM-DD").format("DD/MMM/YYYY") || null;
+  const isExpired = dayjs(dayjs()).isAfter(expireAt);
+
   return (
-    <div className='user__card' key={user._id}>
+    <div className={`user__card ${isExpired && "expired"}`} key={user._id}>
       {/* header */}
       <div className='card__header'>
 
@@ -23,20 +28,25 @@ export const UserCard = ({ user }) => {
             <span> {user.name}</span>
           </InputWithIcon>
           <InputWithIcon>
-          <i class="fa-solid fa-at"></i>
+          <i className="fa-solid fa-at"></i>
             <div>{user.email}</div>
           </InputWithIcon>
 
           <InputWithIcon>
             <ServerIcon />
-            <small> {user.data.name} </small>
+            <small> {user?.data?.name} </small>
+          </InputWithIcon>
+
+          <InputWithIcon>
+          <CancelIcon/>
+          <small>{user.credits[user.credits.length - 1] ? expireAt:"null"}</small>
           </InputWithIcon>
         </div>
-
+         
       </div>
 
       <div className="card__options">
-        <Options user={user} />
+        <Options setNewUserState={setNewUserState} user={user} />
       </div>
 
     </div>

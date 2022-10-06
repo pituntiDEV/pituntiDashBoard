@@ -2,8 +2,9 @@ import React from 'react'
 import { useState } from 'react';
 import useFetchApi from '../../../../hook/useFetchApi';
 import { InputWithIcon } from '../../../icons/InputWithIcon/InputWithIcon';
+import SWAlert from '../../../SwAlert/SWAlert';
 import "./EditResellerForm.scss";
-export const EditResellerForm = ({ reseller }) => {
+export const EditResellerForm = ({ reseller,setNewResellerState,setOpenModal }) => {
     const { reseller: admin, } = reseller;
 
     //State
@@ -31,10 +32,16 @@ export const EditResellerForm = ({ reseller }) => {
         e.preventDefault();
         updateReseller({body:JSON.stringify(resellerToEdit)})
         .then(data=>{
-            console.log(data);
+            SWAlert.alert({
+                title:data.message || "Reseller updated"
+            })
+            setOpenModal(false);
+            setNewResellerState(s=>!s);
         })
         .catch((error)=>{
-            console.log(error)
+            SWAlert.error({
+                title:error.message || "Algo salio mal"
+            })
         })
 
 

@@ -7,11 +7,17 @@ export const UserContextProvider=({children})=>{
 
     const initialState={
         users:[],
+        newUserState:false
     }
     const [state,setState] = useState(initialState);
+
     const value={
         state,
-        setState
+        setState,
+        setNewUserState:()=>{
+            setState({...state,newUserState:!state.newUserState});
+        }
+
     }
 
     

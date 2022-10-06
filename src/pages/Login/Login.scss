@@ -2,26 +2,31 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #8597c9b1;
+    background-image: url("../../../public/assets/img/undraw_secure_login_pdn4.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
     min-height: 100vh;
-    
     form{
-        background-color: rgb(54, 52, 52);
+        filter: opacity(1);
+        box-shadow: 0px 0px 10px 5px rgb(233, 89, 89);
+        background-color: var(--color-primary);
         color:white;
         border-radius:1rem;
         margin-top: 4rem;
         padding: 5rem;
         max-width: 600px;
-        min-width: 30rem;
+        min-height: 500px;
         display: flex;
         flex-direction: column;
-        box-shadow: 0px 5px 4px rgba(107, 100, 159, 0.816);
         input{
-            margin-bottom: 1rem;
+           
+            margin: 2rem 0;
         }
         label{
             margin-top: 1rem;
             a{color:#fff;}
+        }
+        .form-group{
         }
     }
 }

@@ -5,13 +5,18 @@
     align-items: center;
     background-color: #8597c9b1;
     min-height: 100vh;
+    background-image: url("../../../public/assets/img/undraw_secure_login_pdn4.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
 
     form{
         background-color: rgb(58, 58, 58);
         border-radius:1rem;
         color:white;
         margin-top: 3rem;
-        padding: 3rem 10rem;
+        padding: 3rem 1rem;
+        min-width: 350px;
+        box-shadow: 0px 0px 10px 5px rgb(233, 89, 89);
         .form-group{
             display: flex;
             flex-direction: column;

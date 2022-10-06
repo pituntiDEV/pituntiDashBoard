@@ -12,7 +12,7 @@ export const Layout = ({children}) => {
         </header>
        <aside><Aside/></aside>
          <main>{children}</main>
-         <footer>Footer</footer>
+         <footer></footer>
 
     </div>
   )

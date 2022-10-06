@@ -1,11 +1,60 @@
-.notification-container{
+.notification-container {
     display: flex;
     gap: 2rem;
     align-items: center;
     word-wrap: break-word;
-    .profile{
+
+    .credits{
         position: relative;
-        .initial-letter{
+        .total_credits{
+            position: absolute;
+            left: -1.8rem;
+            top:-1.5rem;
+            width: 2.2rem;
+            height: 2.2rem;
+            border-radius: 50%;
+            border: 2px solid rgb(220, 217, 94);;
+            z-index: -1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1.2rem;
+            box-shadow: -1px 1px 3px rgb(255, 255, 255);
+
+        }
+        i{
+            z-index: 4;
+            color: rgb(220, 217, 94);
+        }
+    }
+
+    .user_not_allow {
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+       position: relative;
+       cursor: pointer;
+       color: white;
+       &:hover > span{
+        display: block;
+       }
+
+       span{
+        position: absolute;
+        bottom: -5rem;
+        word-wrap: break-word;
+        background-color: rgba(0, 0, 0, 0.532);
+        width: 10rem;
+        text-align: center;
+        display: none;
+       }
+    }
+
+    .profile {
+        position: relative;
+        z-index: 588;
+        .initial-letter {
+            color: white;
             background-color: red;
             height: 4rem;
             width: 4rem;
@@ -17,50 +66,54 @@
             cursor: pointer;
             border: none;
         }
-        &:hover > .options {
+
+        &:hover>.options {
             display: block;
         }
-        
 
-        .options{
+
+        .options {
             width: inherit;
             position: absolute;
             left: -15rem;
             width: 19rem;
             border-radius: 1rem;
             padding: 1rem;
-            display: none; 
+            display: none;
             box-shadow: -2px 1px 6px rgba(57, 56, 56, 0.619);
-            color:black;
+            color: black;
             text-overflow: ellipsis;
             background-color: rgb(255, 255, 255);
-            
-            .square{
+
+            .square {
                 position: absolute;
                 right: 1rem;
-                top:-.4rem;
+                top: -.4rem;
                 border-radius: .4rem;
                 transform: rotate(135deg);
                 width: 2rem;
                 height: 2rem;
                 background-color: white;
             }
-            .header{
-                p{
+
+            .header {
+                p {
                     white-space: initial;
                 }
             }
-            ul{
+
+            ul {
                 border-radius: .5rem;
                 overflow: hidden;
                 padding: 0;
                 list-style: none;
-                
-                
-                li{
-                padding: .5rem;
-                max-width: 100%;
-                border-bottom: 1px solid rgba(137, 135, 135, 0.568);
+
+
+                li {
+                    padding: .5rem;
+                    max-width: 100%;
+                    border-bottom: 1px solid rgba(137, 135, 135, 0.568);
+                    cursor: pointer;
                 }
             }
         }

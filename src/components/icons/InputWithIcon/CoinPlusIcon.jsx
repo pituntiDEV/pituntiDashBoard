@@ -11,9 +11,9 @@ const styles ={
         fontWeight:"bold",
     }
 }
-export const CoinPlusIcon = () => {
+export const CoinPlusIcon = (props) => {
   return (
-    <div style={styles.coin__plus__icon}>
+    <div {...props} style={styles.coin__plus__icon}>
         <CoinsIcon/>
         <span style={styles.plus}>+</span>
     </div>

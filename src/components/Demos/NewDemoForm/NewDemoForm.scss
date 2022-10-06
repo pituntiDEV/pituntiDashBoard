@@ -1,0 +1,54 @@
+.new_demo_form{
+    display: grid;
+    .form-group{
+        input,select{
+            font-size: 1.5rem;
+
+        }
+    }
+    .packages_container{
+        margin-top:  1rem;
+        .packages_list{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            .pack{
+                display: flex;
+                gap: .3rem;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                padding:.5rem 1rem ;
+                border-radius: .5rem;
+                font-size: 1.3rem;
+                background-color: red;
+                cursor: pointer;
+                &.active{
+                  background-color: rgb(75, 144, 97);
+              }
+            }
+        }
+    }
+    .options{
+        display: grid;
+        grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+        justify-content: center;
+        align-content: center;
+        .option{
+            display: flex;
+            flex-direction: column;
+            .data{
+               
+                display: flex;
+                select,input{
+                    height: 100%;
+                    border: none;
+                    padding: .5rem;
+                        
+                }
+                
+            }
+        }
+    }
+
+}

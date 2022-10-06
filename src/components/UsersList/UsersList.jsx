@@ -7,7 +7,7 @@ import { useUserFilter } from '../../hook/useUserFilter';
 
 import "./UsersList.scss";
 
-export const UsersList = ({ users }) => {
+export const UsersList = ({ users,setNewUserState }) => {
   //Context
   const { socket, state: { openEditModal }, setOpenEditModal } = useContext(appContext);
   
@@ -43,6 +43,7 @@ export const UsersList = ({ users }) => {
     setFilterValue({...filterValue,[e.target.name]: e.target.value});
   }
 
+
   return (
     <div className="users">
       <SearchInput onChange={search} />
@@ -50,7 +51,7 @@ export const UsersList = ({ users }) => {
       <div className="users__container">
         {
           usersFilter.map((user) => {
-            return(<UserCard key={user._id} user={user}/>)
+            return(<UserCard setNewUserState={setNewUserState} key={user._id} user={user}/>)
           })
         }
       </div>

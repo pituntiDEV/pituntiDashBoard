@@ -11,6 +11,7 @@ const useGetAccountServers =() => {
         try {
             const data = await getServers();
             setAccountServers(data.data.servers);
+            return data
         } catch (error) {
             console.log(error)
         }

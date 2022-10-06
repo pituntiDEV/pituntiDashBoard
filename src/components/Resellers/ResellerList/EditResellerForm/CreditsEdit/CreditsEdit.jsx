@@ -7,17 +7,18 @@ import { HouseWifiIcon } from '../../../../icons/HouseWifiIcon';
 import { InfoIcon } from '../../../../icons/InfoIcon';
 import { CoinPlusIcon } from '../../../../icons/InputWithIcon/CoinPlusIcon';
 import { InputWithIcon } from '../../../../icons/InputWithIcon/InputWithIcon';
+import SWAlert from '../../../../SwAlert/SWAlert';
 import "./CreditsEdit.scss"
-export const CreditsEdit = ({ reseller }) => {
+export const CreditsEdit = ({ reseller,setOpenModal,setNewResellerState }) => {
     //State
     const [credits, setCredits] = useState([]);
     const [getCredits, loadingCredits] = useFetchApi({
-        url: `/api/resellers/credits/${reseller.reseller._id}`,
+        url: `/api/resellers/credits/${reseller._id}`,
         method: 'GET',
     })
 
     const [addCredits, loadingAddCredits] = useFetchApi({
-        url: `/api/resellers/add/credits/${reseller.reseller._id}`,
+        url: `/api/resellers/add/credits/${reseller._id}`,
     })
     const [formData, setFormData] = useState({
         credits: "",
@@ -41,7 +42,15 @@ export const CreditsEdit = ({ reseller }) => {
         e.preventDefault();
         addCredits({ body: JSON.stringify(formData) })
             .then(data => {
-                console.log(data);
+                SWAlert.alert({
+                    title:data.message || "Creditos agregados"
+                })
+                setOpenModal(false);
+                setNewResellerState(s=>!s);
+            }).catch(error=>{
+                SWAlert.error({
+                    title:error.message || "Algo salio mal",
+                })
             })
     }
 
@@ -72,7 +81,7 @@ export const CreditsEdit = ({ reseller }) => {
                        </InputWithIcon>
                     </div>
                 </div>
-                <button className='btn btn-primary'>Agregar</button>
+                {!loadingAddCredits && <button className='btn btn-primary'>Agregar</button>}
             </form>
 
         </div>

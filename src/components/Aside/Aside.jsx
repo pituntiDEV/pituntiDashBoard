@@ -38,6 +38,11 @@ export const Aside = () => {
                 <i className="fa-solid fa-cash-register"></i>
                 <a href="/Resellers">Resellers</a>     
             </li>
+
+            <li className="menu-item">
+            <i className="fa-solid fa-ticket"></i>
+                <a href="/demos">Demos</a>     
+            </li>
             
         </ul>
         

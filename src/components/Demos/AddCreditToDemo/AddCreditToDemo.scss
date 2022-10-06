@@ -1,0 +1,19 @@
+.add_credits_to_demo{
+    .form-group{
+      display: flex;
+      flex-direction: column;
+    }
+    .admin{
+        .input{
+            margin-bottom: 1rem;
+            input,select{
+                height: 100%;
+                padding: .5rem .5rem;
+            }
+        }
+       
+    }
+    .reseller{
+
+    }
+}

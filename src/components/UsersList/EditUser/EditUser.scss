@@ -7,15 +7,20 @@
             font-weight: 600;
         }
     }
+
+    .server_name{
+        padding: .5rem;
+    }
    
   .packages-list{
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(150px,1fr));
     gap: 2rem;
     margin-bottom: 2rem;
     .package{
         display: flex;
         justify-content: center;
-        flex-direction: column;
+        gap:.5rem;
         align-items: center;
         padding: .5rem 1rem;
         border-radius: .5rem;

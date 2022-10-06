@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
+import { BtnPrimary } from '../../components/Buttons/BtnSucess/BtnPrimary';
 import SWAlert from '../../components/SwAlert/SWAlert';
 import useFetch from '../../hook/useFetchApi';
 
@@ -28,6 +29,9 @@ export const Login = () => {
                     title: 'Success',
                 });
             }
+            setTimeout(()=>{
+                window.location = "/users"
+            },1000)
         }).catch(err => {
             console.log(err);
             SWAlert.error({
@@ -46,10 +50,10 @@ export const Login = () => {
     return (
         <div className="Login">
             <form onSubmit={login}>
-                <h1>Login</h1>
+                <h1> <i className="fa-solid fa-lock"></i> LOGIN</h1>
                 <input onChange={onChange} name="email" type="text" placeholder="Email" />
                 <input onChange={onChange} name="password" type="password" placeholder="Password" />
-                <button type="submit">Login</button>
+                <BtnPrimary title="Login"/>
                 <label><Link to="/register">
                     Register
                 </Link>

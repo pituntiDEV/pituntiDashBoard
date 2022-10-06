@@ -5,12 +5,13 @@ import { InfoIcon } from '../../components/icons/InfoIcon';
 import { InputWithIcon } from '../../components/icons/InputWithIcon/InputWithIcon';
 import { PackCloseIcon } from '../../components/icons/PackCloseIcon';
 import { ServerIcon } from '../../components/icons/ServerIcon';
+import SWAlert from '../../components/SwAlert/SWAlert';
 import { appContext } from '../../context/AppContext';
 import useFetchApi from '../../hook/useFetchApi';
 import useGetPlexLibs from '../../hook/useGetPlexLibs';
 import "./SelectLibs.scss";
 
-export const SelectLibs = ({ server, accountServers }) => {
+export const SelectLibs = ({ server, setOpenModal,accountServers,setNewPackageState }) => {
 
   //States
 
@@ -18,15 +19,12 @@ export const SelectLibs = ({ server, accountServers }) => {
   const [selectedServer,setSelectedServer] = useState({});
 
   //custom hooks
-  const [request, loading] = useFetchApi({
+  const [AddPackage, loading] = useFetchApi({
     url: '/api/package/plex',
   })
 
   const [getLibs] = useGetPlexLibs()
 
-
-
-  const { setOpenModal } = React.useContext(appContext);
   const [data, setData] = useState({
     libs,
     name: "",
@@ -77,8 +75,18 @@ export const SelectLibs = ({ server, accountServers }) => {
         server: selectedServer._id,
         account: selectedServer.account
       }
-      request({
+      AddPackage({
         body: JSON.stringify(dataToSend)
+      }).then(data=>{
+        SWAlert.alert({
+          title:"Paquete agregado con exito"
+        })
+        setOpenModal(false);
+        setNewPackageState(a=>!a);
+      }).catch(error=>{
+        SWAlert.error({
+          title:error.message || "Algo salio mal"
+        })
       })
     } catch (error) {
       console.log("Algo salio mal");

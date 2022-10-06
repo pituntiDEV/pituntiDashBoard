@@ -16,19 +16,15 @@ export const ServerList = ({state,setState}) => {
     },[])
 
     //Functions
-    const selectServer=(server)=>{
-      let servers= state.servers;
-      const serverID= server._id;
-      const existe = servers.find(server=>server.server._id === serverID);
-      if(!existe){
-        servers = [...servers,{
-          server,
-          packages:[]
-        }];
-        setState({...state,servers});
+    const selectServer=(serverID)=>{
+      let stateServers = state.servers;
+      const existe = stateServers.find(s=>s.server._id==serverID._id);
+      if(!existe) {
+        stateServers=[...stateServers,{server:serverID,packages:[]}];
+        setState({...state,servers:stateServers})
       }else{
-        const newArray= servers.filter(server=>server.server._id !== serverID)
-        setState({...state,servers:newArray})
+        stateServers= stateServers.filter(s=>s.server._id !=serverID._id);
+        setState({...state,servers:stateServers})
       }
     }
   return (

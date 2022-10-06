@@ -9,9 +9,9 @@ export const Owner = ({state,setState}) => {
        let date= "";
        if(state.byMonth){
          const add = moment().add(value,"months").calendar();
-          date = moment(add).format("DD-MM-YYYY");
+          date = moment(add).format("YYYY-MM-DD");
        }else{
-         date = moment(value).format("DD-MM-YYYY");
+         date = moment(value).format("YYYY-MM-DD");
        }
      
        setState({...state,date});
@@ -47,7 +47,7 @@ export const Owner = ({state,setState}) => {
                             <option value="12">12 Meses</option>
                             
                         </select>
-                         :<input value={moment(state.date,'DD-MM-YYYY').format("YYYY-MM-DD")}  onChange={dateChange} type="date" required placeholder="Date" name="date" />
+                         :<input value={moment(state.date,'YYYY-MM-DD').format("YYYY-MM-DD")}  onChange={dateChange} type="date" required placeholder="Date" name="date" />
                     }
                 </InputWithIcon> 
             </div>
@@ -64,7 +64,7 @@ export const Owner = ({state,setState}) => {
             <input type="checkbox" onChange={(e)=>{
                     setState({...state, removeLibs:e.target.checked})
                 }} checked={state.removeLibs} name="" id="" />
-                <label htmlFor="email">Quitar libs despues de que usuario vence: :</label>
+                <label htmlFor="email">Quitar librerias despues de que el servicio expire [DIAS]?:</label>
                 <InputWithIcon>
                 <i class="fa-solid fa-user-lock"></i>
                     <input type="Number" value={state.removeLibsDays} placeholder="Quitar libs" onChange={inputOnChange}  min={1} name="removeLibsDays" />
@@ -76,7 +76,7 @@ export const Owner = ({state,setState}) => {
                 <input type="checkbox" onChange={(e)=>{
                     setState({...state, delete:e.target.checked})
                 }} checked={state.delete} name="" id="" />
-                <label className='text-danger'htmlFor="email">Eliminar automaticamente despues de vencido:</label>
+                <label className='text-danger'htmlFor="email">Eliminar automaticamente despues de vencido [DIAS]?:</label>
                 <InputWithIcon>
                 <i class="fa-solid fa-user-xmark"></i>
                     <input onChange={inputOnChange} type="Number" placeholder="Eliminar" value={state.deleteDays}  min={1} name="deleteDays" />

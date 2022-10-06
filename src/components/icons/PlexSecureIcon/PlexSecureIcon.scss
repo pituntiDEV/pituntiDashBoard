@@ -1,0 +1,23 @@
+.plex_secure_icon{
+    .logo{
+        
+        position: relative;
+        border-radius: 1rem;
+        overflow: hidden;
+        max-width: 12rem;
+        .logo_img{
+            img{
+                width: 100%;
+            }
+        }
+        .lock_img{
+            position: absolute;
+            bottom: 0rem;
+            right: .5rem;
+            img{
+                width: 3rem;
+            }
+        }
+
+    }
+}

@@ -37,14 +37,18 @@ export const Register = () => {
         req({
             body: JSON.stringify(data) 
         }).then(data=>{
-            data.error && SWAlert.error({
-                text: data.message.msg
-            })
+            console.log(data)
+           
             SWAlert.success({
-                text: data.message.msg
+                text: data?.message?.msg|| "Registrado",
+                preConfirm: () => {
+                    window.location.href = "/login";
+                }
             })
+            
         })
         .catch(err=>{
+            console.log(err)
             SWAlert.error({
                 text: err.message.msg
             })
@@ -62,7 +66,7 @@ export const Register = () => {
 
 
             <form onSubmit={submit}>
-                <h1>Register</h1>
+                <h1>  <i className="fa-solid fa-lock"></i> Register</h1>
 
                 <div className="form-group">
                     <label>Name</label>
@@ -85,7 +89,7 @@ export const Register = () => {
                         ="Confirm password" />
                     {errors.password2 && <span className="error">{errors.password2}</span>}
                 </div>
-                <button type="submit" className="btn btn-primary btn-register">Submit</button>
+                <button type="submit" className="btn btn-primary btn-register">Register</button>
 
 
             </form>

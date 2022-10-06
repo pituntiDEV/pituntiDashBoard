@@ -4,8 +4,9 @@
     box-shadow: inset 4px 4px 8px #918f8f67, -4px 10px 8px rgb(116, 129, 120);
     padding: 1rem;
     text-align: center;
-    background-color: rgb(255, 255, 255);
+    background-color: var(--color-primary);
     animation: infinite pi 5s steps(100);
+    
     display: grid;
  
     grid-template-areas: 
@@ -13,6 +14,10 @@
     "body options"
     ;
     grid-template-columns: 80% 20%;
+
+    &.expired{
+        box-shadow: 0 0 10px 2px red;
+    }
     .card__header{
         grid-area: header;
     }
@@ -34,6 +39,7 @@
                 border-radius: 50%;
                 margin: 0 auto;
                 margin-bottom: 1rem;
+                border: rgb(152, 48, 48) 2px solid;
                 box-shadow: -6px 3px 5px rgba(0, 0, 0, 0.725),6px 3px 15px rgba(72, 110, 66, 0.412);
                 
             }
@@ -42,6 +48,10 @@
     }
     .card__options{
         grid-area: options;
+        color: white;
+        border-left: 1px solid rgba(224, 224, 224, 0.726);
+        text-align: center;
+        margin-left: 1rem;
     }
 
 }

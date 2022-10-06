@@ -18,6 +18,9 @@ import config from "../config";
                 }); 
                 const data = await request.json();
                 setLoading(false);
+                if(data.error){
+                    reject(data);
+                }
                 resolve(data);
             } catch (error) {
                 setLoading(false);

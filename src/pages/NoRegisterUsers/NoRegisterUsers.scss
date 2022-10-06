@@ -1,0 +1,44 @@
+.no_register_users{
+    .search_bar{
+        display: flex;
+        margin-top: 1rem;
+        justify-content: space-between;
+        padding:  1rem;
+        background-color: var(--color-primary);
+        border-radius: .5rem;
+        box-shadow: -2px 2px 3px rgb(120, 118, 118);
+        select{
+            padding: .5rem 2rem;
+        }
+        button{
+            padding: .5rem 2rem;
+        }
+    }
+
+    .users{
+        margin-top: 2rem;
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: repeat(auto-fill,minmax(250px,1fr));
+        .user{
+            background-color: rgb(169, 53, 53);
+            color: white;
+            word-wrap: break-word;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            border-radius: .5rem ;
+            align-items: center;
+            gap: 1rem;
+            cursor: pointer;
+            .email{
+                font-weight: bold;
+                text-decoration: underline;
+            }
+            .active{
+                background-color: rgb(84, 176, 84);
+                padding: .5rem 1rem;
+            }
+        }
+    }
+}

@@ -1,0 +1,18 @@
+.new_demo_bar{
+    margin-top: 1rem;
+    .bar{
+        display: flex;
+        background-color: var(--color-primary);
+        justify-content: space-between;
+        padding:  1rem;
+        color: white;
+        border-radius: .5rem;
+        button{
+            border: 2px solid rgba(169, 54, 54, 0.725);
+            background-color: var(--color-primary);
+            color: white;
+            padding: .5rem 2rem;
+            box-shadow: -2px 2px 5px rgb(101, 104, 104);
+        }
+    }
+}

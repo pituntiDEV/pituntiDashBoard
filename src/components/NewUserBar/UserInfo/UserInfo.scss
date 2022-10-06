@@ -1,15 +1,35 @@
 .user__info__data{
     max-width: 500px;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
-    gap:1rem;
-    margin-top: 2rem;
+    .form-container{
+        display: grid;
+        grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+        gap:1rem;
+        margin-top: 2rem;
+
+    }
     .form-group{
         label{
             font-size: 1.2rem;
             font-weight: bold;
             color: var(--color-secondary);
+        }
+
+        .packages{
+            display: grid;
+            grid-template-columns: repeat(auto-fill,minmax(150px,1fr));
+            gap: 1rem;
+            .package{
+                background-color: var(--color-primary);
+                color: white;
+                text-align: center;
+                padding: 1rem;
+                border-radius: 1rem;
+                background-color: rgb(164, 56, 56);
+                &.active{
+                    background-color: rgb(45, 112, 54);
+                }
+            }
         }
     }
 }

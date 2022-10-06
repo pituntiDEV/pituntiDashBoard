@@ -34,7 +34,7 @@ class Api {
                 const data = await this.request({
                     url: "/api/server/plex",
                     method: "POST",
-                    body: JSON.stringify(server)
+                    body: JSON.stringify({server})
                 });
 
                 if (data.error) {
