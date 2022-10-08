@@ -5,6 +5,7 @@ import { BookIcon } from '../../../icons/BookIcon';
 import { CoinsIcon } from '../../../icons/CoinsIcon';
 import { EditSquareIcon } from '../../../icons/EditSquareIcon';
 import { InfoIcon } from '../../../icons/InfoIcon';
+import { CoinPlusIcon } from '../../../icons/InputWithIcon/CoinPlusIcon';
 import { RepeatIcon } from '../../../icons/RepeatIcon';
 import { TrashIcon } from '../../../icons/TrashIcon';
 import Modal from '../../../modal/Modal';
@@ -26,7 +27,7 @@ export const Options = ({ user,setNewUserState }) => {
                 <EditSquareIcon />
             </div>
             <div className='option' onClick={() => setOpenModalToAddCredits(true)}>
-                <CoinsIcon />
+                <CoinPlusIcon className="credits" />
             </div>
             <div className='option'>
                 <RepeatIcon />

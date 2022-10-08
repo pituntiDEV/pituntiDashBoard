@@ -22,5 +22,10 @@
     padding: 1rem;
     cursor: pointer;
     border-left: 2px solid rgb(158, 156, 156);
+    background:var(--color-primary);
+    color: white;
+    display: block;
+    height: 100%;
+    
    }
 }

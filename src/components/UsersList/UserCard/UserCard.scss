@@ -1,28 +1,58 @@
 .user__card {
-    border-radius: .5rem;
+    border-radius: 1rem;
     background-color: transparent;
     box-shadow: inset 4px 4px 8px #918f8f67, -4px 10px 8px rgb(116, 129, 120);
-    padding: 1rem;
+    padding: 0rem;
     text-align: center;
     background-color: var(--color-primary);
     animation: infinite pi 5s steps(100);
+    overflow: hidden;
     
     display: grid;
+  
  
     grid-template-areas: 
-    "header options"
-    "body options"
+    "header header"
+    "body body"
+    "options options"
     ;
-    grid-template-columns: 80% 20%;
 
     &.expired{
         box-shadow: 0 0 10px 2px red;
     }
     .card__header{
         grid-area: header;
+        background: var(--color-blue-serenity);
+        position: relative;
+        min-height: 7rem;
+        margin-bottom: 2rem;
+        border-radius:  0 0 50% 0;
+        
+        
+        .email{
+            font-weight: bold;
+            color:white;
+        }
+        img {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin: 0 auto;
+            margin-bottom: 1rem;
+            border: rgb(152, 48, 48) 2px solid;
+            box-shadow: -6px 3px 5px rgba(0, 0, 0, 0.725),6px 3px 15px rgba(72, 110, 66, 0.412);
+            bottom: calc( -2.5rem);
+            left: calc(50% - 25px);
+            
+        }
+        &.expired{
+            background: rgb(242, 83, 83);
+        }
     }
 
     .card__body {
+        padding: 1.3rem;
         grid-area: body;
 
         .user__info {
@@ -32,24 +62,13 @@
             .name {
                 font-weight: bold;
             }
-
-            img {
-                width: 50px;
-                height: 50px;
-                border-radius: 50%;
-                margin: 0 auto;
-                margin-bottom: 1rem;
-                border: rgb(152, 48, 48) 2px solid;
-                box-shadow: -6px 3px 5px rgba(0, 0, 0, 0.725),6px 3px 15px rgba(72, 110, 66, 0.412);
-                
-            }
            
         }
     }
     .card__options{
+        margin-top: 1rem;
         grid-area: options;
         color: white;
-        border-left: 1px solid rgba(224, 224, 224, 0.726);
         text-align: center;
         margin-left: 1rem;
     }

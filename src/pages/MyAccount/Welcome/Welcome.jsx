@@ -13,7 +13,7 @@ export const Welcome = () => {
         window.location.reload();
       }else{
         SWAlert.error({
-          title:data.message || "algo salio mal"
+          title:"No se pudo encotrar el usuario"
         })
       }
 

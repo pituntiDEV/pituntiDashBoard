@@ -1,6 +1,7 @@
 .user__options{
     display: flex;
-    flex-direction: column;
+    margin-bottom: 1rem ;
+  
     align-items: center;
     justify-content: space-around;
     gap: .5rem;
@@ -8,6 +9,9 @@
        color: rgb(235, 79, 79);
     }
 
+    .credits{
+        color: rgb(227, 221, 97);
+    }
     .libs{
         position: relative;
         span{

@@ -8,6 +8,7 @@
   --color-blue-light:#36659e;
   --color-green-ligth:#2BD999;
   --color-white:white;
+  --color-blue-serenity:linear-gradient(to right,rgb(109, 130, 169),rgb(69, 116, 181))
 
 }
 body {

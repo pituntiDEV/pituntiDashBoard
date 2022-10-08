@@ -12,6 +12,9 @@
         gap: 1rem;
         .user_playing{
             background-color: #282a2d;
+            border-radius: 1rem;
+            overflow: hidden;
+            padding: .5rem;
             .user_playing_header{
                 position: relative;
                 background-color: #282a2d;
@@ -21,13 +24,14 @@
                 span{
                     position: absolute;
                     background-color: rgb(233, 67, 67);
-                    width: 2.5rem;
+                    width: 4rem;
                     height: 2.5rem;
                     display: flex;
                     justify-content: center;
                     align-items: center;
                     border-radius: 0 0 1rem 0;
                     cursor: pointer;
+                    box-shadow: -1px 1px 3px white;
                 }
                 img{
                     width: 100%;

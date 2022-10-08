@@ -13,25 +13,19 @@ export const UserCard = ({ user,setNewUserState }) => {
   return (
     <div className={`user__card ${isExpired && "expired"}`} key={user._id}>
       {/* header */}
-      <div className='card__header'>
-
-
+      <div className={`card__header  ${isExpired && "expired"}`}> 
+        <div className='email'>{user.email}</div>
+          <img src={user.data?.invited?.thumb} alt="" />
       </div>
 
       {/* body */}
       <div className='card__body'>
 
         <div className="user__info">
-          <img src={user.data?.invited?.thumb} alt="" />
           <InputWithIcon>
             <UserTieIcon />
             <span> {user.name}</span>
           </InputWithIcon>
-          <InputWithIcon>
-          <i className="fa-solid fa-at"></i>
-            <div>{user.email}</div>
-          </InputWithIcon>
-
           <InputWithIcon>
             <ServerIcon />
             <small> {user?.data?.name} </small>

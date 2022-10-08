@@ -4,7 +4,7 @@ import "./SearchInput.scss";
 export const SearchInput = (props) => {
     return (
         <div className='search'>
-            <input {...props} type="search" />
+            <input placeholder='Buscar usuario' {...props} type="search" />
             <SearchIcon/>
         </div>
     )

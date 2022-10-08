@@ -27,7 +27,7 @@ export const UserCard = ({ setUser,user, showCoverHandler, showCover, setShowCov
                     </div>}
                     <p>{user.email}</p>
                     <img src={user.data?.invited?.thumb} alt="" />
-
+dd
                 </div>
                 <UserControllButtons setUser={setUser} showCoverHandler={showCoverHandler} user={user} />
             </div>
