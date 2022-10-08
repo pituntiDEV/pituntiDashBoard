@@ -29,11 +29,11 @@ export const AccountInfo = () => {
       <div className="info_container">
         <div className="info">
           <header>
+          <div className="email">{localStorage.getItem("email_to_info")}</div>
             <img src={user?.thumb || "https://ps.w.org/user-avatar-reloaded/assets/icon-256x256.png?rev=2540745"} alt="" />
           </header>
           <div className="data">
             <div className="name">{user?.name}</div>
-            <div className="email">{localStorage.getItem("email_to_info")}</div>
             <div className="expireAt">{user?.expireAt}</div>
             <div className="server">{user.serverName}</div>
             <div className="numLibraries">Librerias #{user.numLibraries}</div>
