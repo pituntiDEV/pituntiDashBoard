@@ -1,0 +1,64 @@
+:root{
+    --header-width:30rem;
+    --header-height:15rem;
+}
+.account_info{
+
+    top:0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+   
+    .info{
+        position: relative;
+        background-color: rgb(62, 60, 60);
+        border-radius: 2rem;
+        margin-top: 1rem;
+        overflow: hidden;
+        header{
+            position: relative;
+            min-width: var(--header-width);
+            min-height: var(--header-height);
+            margin-bottom: 6rem;
+            background-color: rgb(201, 99, 99);
+            
+            img{
+               position: absolute;
+                width: 12rem;
+                width: 12rem;
+                bottom: calc(50% + -75% );
+                left: calc( 50% - 6rem );
+                border-radius: 50%;
+                border:1rem solid white;
+                
+
+            }
+        }
+        .data{
+            display: flex;
+            padding: 1rem;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+            
+        }
+    }
+}
+.recent_movies{
+    margin-top: 2rem;
+   .slide{
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
+    gap: 1rem;
+    .img_container{
+
+        img{
+            width: 100%;
+            display: block;
+        }
+    }
+   }
+}
