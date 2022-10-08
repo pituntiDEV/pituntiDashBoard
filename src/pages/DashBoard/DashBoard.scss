@@ -1,0 +1,67 @@
+.playing{
+    .total{
+        span{
+            font-size: 3rem;
+            font-weight: bold;
+        }
+    }
+    .users_playing_container{
+        margin-top: 2rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fill,minmax(210px,1fr));
+        gap: 1rem;
+        .user_playing{
+            background-color: #282a2d;
+            .user_playing_header{
+                position: relative;
+                background-color: #282a2d;
+                color: white;
+                display: grid;
+                grid-template-columns: 35% 65%;
+                span{
+                    position: absolute;
+                    background-color: rgb(233, 67, 67);
+                    width: 2.5rem;
+                    height: 2.5rem;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 0 0 1rem 0;
+                    cursor: pointer;
+                }
+                img{
+                    width: 100%;
+                    min-height: 10rem;
+                }
+                .info{
+                    text-align: center;
+                }
+            }
+    
+            .user_playing_body{
+                text-align: center;
+                background-color: #e5a00d;
+                border-radius: 1rem;
+                margin: 1rem;
+            }
+            .user_playing_footer{
+                display: flex;
+                color: white;
+                align-items: center;
+                gap: 1rem;
+                background-color: #282a2d;
+                .img{
+                    display: block;
+                    width: 5rem;
+                    height: 5rem;
+                    border-radius: 50%;
+                    overflow: hidden;
+                   img{
+                    width: 100%;
+                   }
+                }
+    
+            }
+        }
+    }
+}

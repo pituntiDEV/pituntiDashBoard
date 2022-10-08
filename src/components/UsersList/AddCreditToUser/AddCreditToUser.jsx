@@ -35,8 +35,8 @@ export const AddCreditToUser = ({ user, setOpenModal,setNewUserState }) => {
     }, [])
 
     useEffect(() => {
-        const url = myAdminID == user.admin._id ? `/api/plex/user/add/credits/admin/${user._id}` : `/api/plex/user/add/credits/reseller/${user._id}`
-        setUrl(url)
+        const uri = myAdminID == user.admin._id ? `/api/plex/user/add/credits/admin/${user._id}` : `/api/plex/user/add/credits/reseller/${user._id}`
+        setUrl(uri)
     }, [myAdminID])
 
     //functions
@@ -64,6 +64,7 @@ export const AddCreditToUser = ({ user, setOpenModal,setNewUserState }) => {
                 {myAdminID && myAdminID != user.admin._id && <AddCreditsByReseller send={send}  user={user} register={register} errors={errors} />}
 
                 {!loadingAddCredits && <div className="btns">
+                    
                 <BtnPrimary title="Agregar" />
                 <BtnSecondary type="button" onClick={() => setOpenModal(false)} title="Cancel" />
                 </div>}

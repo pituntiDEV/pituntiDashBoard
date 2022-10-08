@@ -65,6 +65,7 @@ export const NewDemoForm = ({setOpenModal,setDemoState}) => {
 
     getSharedServers()
       .then(data => {
+       
         setsharedServers(data);
       })
   }, [])
@@ -189,10 +190,10 @@ export const NewDemoForm = ({setOpenModal,setDemoState}) => {
             })}>{server.data.name}</option>
           })}
           {sharedServers.map(server => {
-            return <option key={server.server._id} value={JSON.stringify({
+            return <option key={server._id} value={JSON.stringify({
               owner:false,
-              _id:server.server._id
-            })}>[shared]{server.server.data?.name}</option>
+              _id:server._id
+            })}>[shared]{server.data?.name}</option>
           })}
         </select>
         <p className='text-danger'>

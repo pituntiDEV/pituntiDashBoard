@@ -27,7 +27,7 @@ export const Notification = () => {
     useEffect(()=>{
         getMyAccountReseller().then(data=>{
            setMyAccountReseller(data);
-           const creditAvailables  = data.credits.filter(c=>c.new==true);
+           const creditAvailables  = data?.credits?.filter(c=>c.new==true);
            setCreditsAvailable(creditAvailables);
         })
     },[])

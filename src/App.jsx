@@ -19,6 +19,8 @@ import { UserContextProvider } from './context/usersContext';
 import { ProtectedPage } from './pages/ProtectedPage/ProtectedPage';
 import { Demos } from './pages/Demos/Demos';
 import { NoRegisterUsers } from './pages/NoRegisterUsers/NoRegisterUsers';
+import { DashBoard } from './pages/DashBoard/DashBoard';
+import { MyAccount } from './pages/MyAccount/MyAccount';
 function App() {
   return (
     <div className="App">
@@ -26,7 +28,8 @@ function App() {
       <Router>
         
           <Routes>
-            <Route path="/" element={<ProtectedPage>  <UserContextProvider><Layout ><Users/></Layout></UserContextProvider></ProtectedPage>} />
+            <Route path='/my-account' element={<MyAccount/>}/>
+            <Route path="/" element={<ProtectedPage>  <UserContextProvider><Layout ><DashBoard/></Layout></UserContextProvider></ProtectedPage>} />
             <Route path="/users" element={<ProtectedPage>  <UserContextProvider><Layout ><Users/></Layout></UserContextProvider></ProtectedPage>} />
             <Route path="/accounts" element={<ProtectedPage><Layout ><Accounts/></Layout></ProtectedPage>} />
             <Route path="/servers" element={<ProtectedPage><Layout ><Server/></Layout></ProtectedPage>} />

@@ -16,7 +16,7 @@ export const Aside = () => {
         <ul className="menu-list">
             <li className="menu-item">
                 <i className="fa-solid fa-gauge-high"></i> 
-                <a href="#">Home</a>
+                <a href="/">Home</a>
             </li>
             <li className="menu-item">
                 <i className="fa-solid fa-users"></i>

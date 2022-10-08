@@ -41,18 +41,24 @@ export const UserInfo = (props) => {
     useEffect(() => {
         getMyServers().then(({ data }) => {
             setMyServers(data.servers);
+            console.log(data);
         })
 
         getSharedServers()
             .then(data => {
+              
                 setsharedServers(data);
+
             })
+
     }, [])
 
     useEffect(() => {
+        console.log(state.server.id)
         if (state.server.id) {
             getPackages().then(data => {
                 setPackages(data);
+                console.log(data);
             })
         }
     }, [state.server])
@@ -116,7 +122,7 @@ export const UserInfo = (props) => {
                         <label htmlFor="email">Server:</label>
                         <InputWithIcon>
                             <ServerIcon />
-                            <select onChange={onChangeServer} required defaultValue={state.server.id}>
+                            <select onChange={onChangeServer} required defaultValue={JSON.stringify(state.server)}>
                                 <option disabled value={""}>Server</option>
                                 {
                                     myServers.map(server => {
@@ -127,7 +133,8 @@ export const UserInfo = (props) => {
                                 }
 
                                 {
-                                    sharedServers.map(({ server }) => {
+                                    sharedServers.map(( server ) => {
+                                        
                                         return (
                                             <option key={server._id} value={JSON.stringify({ id: server._id, owner: false, ownerID: server.admin })}>🔃{server.data.name}</option>
                                         )

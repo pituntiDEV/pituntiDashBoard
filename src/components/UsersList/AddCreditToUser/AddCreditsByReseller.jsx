@@ -3,7 +3,6 @@ import useFetchApi from '../../../hook/useFetchApi'
 
 export const AddCreditsByReseller = ({send,user,register,errors}) => {
  //state
- const [credits,setCredits] =useState([]);
  const [state,setState] = useState({
   connections:[],
   credits:[],
@@ -11,21 +10,22 @@ export const AddCreditsByReseller = ({send,user,register,errors}) => {
  const [connNumber,setConnNumber] = useState("");
   //Custom Hooks
   const [getCredits] = useFetchApi({
-    url:`/api/credits/shared-available/?provider=${user.admin._id}`,
+    url:`/api/credits/shared-available-by-provider/?provider=${user.admin._id}`,
     method: 'GET',
   })
 
   //Effects
   useEffect(()=>{
-    getCredits().then(({data})=>{
-      setCredits(data);
+    getCredits().then((data)=>{
      const conn = data.reduce((acc,credit)=>{
       if(!acc.includes(credit.conexion)){
-        acc.push(credit.conexion);
+        if(credit.new==true){
+          acc.push(credit.conexion);
+        }
       }
       return acc.sort((a,b)=>a-b);
      },[])
-     const availableCredits = data.filter(credit=>credit.conexion==connNumber);
+     const availableCredits = data.filter(credit=>credit.conexion==connNumber && credit.new ==true);
      setState({...state,connections:conn,credits:availableCredits})
     })
   },[send,connNumber])

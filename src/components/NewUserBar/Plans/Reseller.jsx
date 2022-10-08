@@ -12,7 +12,7 @@ export const Reseller = ({ state, setState }) => {
     const [availableCredits, setAvailableCredits] = useState([]);
     //Custom Hooks
     const [getCredits, loading] = useFetchApi({
-        url: `/api/credits/shared-available/?provider=${state.server.ownerID}`,
+        url: `/api/credits/shared-available-by-provider/?provider=${state.server.ownerID}`,
         method: "GET",
     })
 
@@ -21,11 +21,14 @@ export const Reseller = ({ state, setState }) => {
     //Effects
     useEffect(() => {
         getCredits()
-            .then(({ data }) => {
+            .then(( data ) => {
                 setCredits(data);
+                
                 const conn = data.reduce((acc, credits) => {
                     if (!acc.includes(credits.conexion)) {
-                        acc.push(credits.conexion);
+                        if(credits.new){
+                            acc.push(credits.conexion);
+                        }
                     }
 
                     return acc.sort();

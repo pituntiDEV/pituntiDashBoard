@@ -18,7 +18,7 @@ export const AddCreditsToDemoByReseller = ({ user,setOpenModal,setDemoState }) =
   })
 
   const [getCredits, loading] = useFetchApi({
-    url: `/api/credits/shared-available/?provider=${user.admin}`,
+    url: `/api/credits/shared-available-by-provider/?provider=${user.admin}`,
     method: "GET",
 })
 
@@ -27,19 +27,21 @@ export const AddCreditsToDemoByReseller = ({ user,setOpenModal,setDemoState }) =
   //Effects
   useEffect(()=>{
     getCredits().then(data=>{
-      const connectionsAvailable = data.data.reduce((acc,c)=>{
+      const connectionsAvailable = data.reduce((acc,c)=>{
         if(!acc.includes(c.conexion)){
-          acc.push(c.conexion);
+          if(c.new){
+            acc.push(c.conexion);
+          }
         }
         return acc;
       },[])
       setConnections(connectionsAvailable.sort((a,b)=>a-b));
-      setCredits(data.data)
+      setCredits(data)
     })
   },[])
 
   useEffect(()=>{
-    setAvailableCredits(credits.filter(c=>c.conexion==getValues("connections")));
+    setAvailableCredits(credits.filter(c=>c.conexion==getValues("connections") && c.new===true));
   },[watch("connections")])
 
   //Functions
