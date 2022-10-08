@@ -43,7 +43,7 @@ export const AccountInfo = () => {
 
     </div>
       <div className="recent_movies container">
-        <h2>Agregado Recientemente:</h2>
+        {recentMovies.length > 0 && <h2>Agregado Recientemente:</h2>}
         <div className="slide">
           {recentMovies?.map(({
             ratingKey,
