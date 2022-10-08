@@ -51,13 +51,14 @@
     margin-top: 2rem;
    .slide{
     display: grid;
-    grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
+    grid-template-columns: repeat(auto-fill,minmax(150px,1fr));
     gap: 1rem;
     .img_container{
-
+        box-shadow: -4px 4px 6px black;
         img{
             width: 100%;
             display: block;
+            height: 100%;
         }
     }
    }
