@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react'
+import { CloseIcon } from '../../../components/icons/CloseIcon';
 import "./AccountInfo.scss";
 export const AccountInfo = () => {
   const [user,setUser] = useState({});
@@ -23,12 +24,21 @@ export const AccountInfo = () => {
   },[])
 
 
+  const logOut=()=>{
+    localStorage.removeItem("email_to_info");
+    window.location.reload();
+  }
+
+
   return (
     <>
     <div className='account_info'>
       <div className="info_container">
         <div className="info">
           <header>
+            <div className="btn-exit" onClick={logOut}>
+              <CloseIcon/>
+            </div>
           <div className="email">{localStorage.getItem("email_to_info")}</div>
             <img src={user?.thumb || "https://ps.w.org/user-avatar-reloaded/assets/icon-256x256.png?rev=2540745"} alt="" />
           </header>

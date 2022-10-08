@@ -28,6 +28,13 @@
             border-radius: 0 0 50%;
             text-align: center;
             border-bottom:  2rem solid rgb(255, 255, 255);
+            .btn-exit{
+                position: absolute;
+                right: 2rem;
+                top: .5rem;
+                color: var(--color-primary);
+                text-shadow: -1px 2px 2px rgb(213, 210, 210);
+            }
             div{
                 padding-top: 1rem;
                 font-size: 2rem;
