@@ -11,7 +11,7 @@ export const PackagesList = ({ server,resellerToEdit,setResellerToEdit }) => {
 
     const [packages, setPackages] = useState([]);
     const [getPackages, loading] = useFetchApi({
-        url: "/api/package/plex/server/" + server._id,
+        url: "/api/package/plex/server/" + server?._id,
         method: "GET",
     })
 
@@ -52,8 +52,8 @@ export const PackagesList = ({ server,resellerToEdit,setResellerToEdit }) => {
     return (
         <div className="packages__list">
 
-            <details>
-                <summary> <ServerIcon /> {server.data.name} Packages:</summary>
+            {packages.length> 0 && <details>
+                <summary> <ServerIcon /> {server?.data?.name} Packages:</summary>
                 
                     <ul className="packages__container">
                         {packages.map(pack => {
@@ -68,7 +68,7 @@ export const PackagesList = ({ server,resellerToEdit,setResellerToEdit }) => {
                     </ul>
                 
 
-            </details>
+            </details>}
         </div>
     )
 }

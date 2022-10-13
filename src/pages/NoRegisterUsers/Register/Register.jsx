@@ -16,7 +16,7 @@ export const Register = ({ user, setUSersState, setOpenModal }) => {
     packages: [],
     seller: ""
   })
-
+ console.log(user)
   const [packs, setPacks] = useState([])
   const [resellers, setResellers] = useState([]);
 
@@ -40,6 +40,7 @@ export const Register = ({ user, setUSersState, setOpenModal }) => {
   //Effects
   useEffect(() => {
     getPackages().then(data => {
+      console.log(state);
       const packages = data.data.filter(p => p.server.data.clientIdentifier == state.data.machineIdentifier);
       setPacks(packages);
     })

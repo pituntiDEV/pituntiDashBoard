@@ -27,9 +27,9 @@ export const UsersFilter = (props) => {
                     <i className="fa-solid fa-battery-half"></i>
                     <select {...props} name="state" id="" defaultValue={''}>
                         <option value="" disabled>Estado</option>
-                        <option value="todos">Todos</option>
-                        <option value="activos">Activos</option>
-                        <option value="Vencidos">Vencidos</option>
+                        <option value="all">Todos</option>
+                        <option value="active">Activos</option>
+                        <option value="expired">Vencidos</option>
                     </select>
                     </InputWithIcon>
                     </div>
@@ -52,6 +52,7 @@ export const UsersFilter = (props) => {
                         </InputWithIcon>
 
                     </div>
+                    
                 </div>
             </div>
   )

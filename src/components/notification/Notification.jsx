@@ -12,32 +12,31 @@ const Logout=()=>{
     window.location.href="/login"
 }
 export const Notification = () => {
+    //Context
+    const appContextValue = useContext(appContext); 
     //State
-    const [myAccountReseller,setMyAccountReseller] = useState({});
-    const [creditsAvailable,setCreditsAvailable] = useState([]);
+    const [totalCredits,setAllCredits] = useState({});
     //Context
     const {state:{account_data}  } = useContext(appContext);
 
     //Custom hooks
-    const [getMyAccountReseller] = useFetchApi({
-        url:`/api/resellers/get-my-account`,
+    const [getMyTotalCredits] = useFetchApi({
+        url:`/api/credits/shared-available`,
         method: 'GET',
     })
 
     useEffect(()=>{
-        getMyAccountReseller().then(data=>{
-           setMyAccountReseller(data);
-           const creditAvailables  = data?.credits?.filter(c=>c.new==true);
-           setCreditsAvailable(creditAvailables);
+        getMyTotalCredits().then(data=>{
+           setAllCredits(data);
         })
-    },[])
+    },[appContextValue.state.onChangeCredits])
     
     return (
         <div className="notification-container">
             
-            {myAccountReseller?.credits?.length && <span className='credits'>
+            {totalCredits.length >0  && <span className='credits'>
             <div className="total_credits">
-            {myAccountReseller?.credits?.length && creditsAvailable?.length}
+            {totalCredits.length}
             </div>
                 <CoinsIcon/>
             </span>}
@@ -68,7 +67,6 @@ export const Notification = () => {
                     </div>
                     <ul>
                         <li>Profile</li>
-                        {myAccountReseller?.credits?.length && <li>Credits : {creditsAvailable?.length}</li>}
                         <li>Setting</li>
                         <li onClick={Logout}>Logout</li>
                     </ul>

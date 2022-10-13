@@ -21,6 +21,7 @@ import { Demos } from './pages/Demos/Demos';
 import { NoRegisterUsers } from './pages/NoRegisterUsers/NoRegisterUsers';
 import { DashBoard } from './pages/DashBoard/DashBoard';
 import { MyAccount } from './pages/MyAccount/MyAccount';
+import { Settings } from './pages/Settings/Settings';
 function App() {
   return (
     <div className="App">
@@ -30,6 +31,7 @@ function App() {
           <Routes>
             <Route path='/my-account' element={<MyAccount/>}/>
             <Route path="/" element={<ProtectedPage>  <UserContextProvider><Layout ><DashBoard/></Layout></UserContextProvider></ProtectedPage>} />
+            <Route path="/setting" element={<ProtectedPage>  <UserContextProvider><Settings/></UserContextProvider></ProtectedPage>} />
             <Route path="/users" element={<ProtectedPage>  <UserContextProvider><Layout ><Users/></Layout></UserContextProvider></ProtectedPage>} />
             <Route path="/accounts" element={<ProtectedPage><Layout ><Accounts/></Layout></ProtectedPage>} />
             <Route path="/servers" element={<ProtectedPage><Layout ><Server/></Layout></ProtectedPage>} />

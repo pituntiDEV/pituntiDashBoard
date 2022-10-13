@@ -122,7 +122,7 @@ export const UserInfo = (props) => {
                         <label htmlFor="email">Server:</label>
                         <InputWithIcon>
                             <ServerIcon />
-                            <select onChange={onChangeServer} required defaultValue={JSON.stringify(state.server)}>
+                            <select onChange={onChangeServer} required defaultValue={''}>
                                 <option disabled value={""}>Server</option>
                                 {
                                     myServers.map(server => {

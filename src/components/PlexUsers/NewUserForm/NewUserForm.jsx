@@ -1,10 +1,17 @@
 import React, { useEffect, useState } from 'react'
+import { useContext } from 'react';
+import { appContext } from '../../../context/AppContext';
 import useFetchApi from '../../../hook/useFetchApi';
 import { Plans } from '../../NewUserBar/Plans/Plans';
 import { UserInfo } from '../../NewUserBar/UserInfo/UserInfo';
 import SWAlert from '../../SwAlert/SWAlert';
 import "./NewUserForm.scss";
 export const NewUserForm = ({setNewUserState,setOpenModal}) => {
+
+  //Context
+    const appContextValue = useContext(appContext);
+  
+  //States
   const [url,setUrl] = useState("");
   const [step, setStep] = useState(1);
   const [state, setState] = useState({
@@ -32,6 +39,8 @@ export const NewUserForm = ({setNewUserState,setOpenModal}) => {
   const [addUser, loading] = useFetchApi({
     url: url,
   })
+
+
   //Props
 
   const props = {
@@ -55,6 +64,8 @@ export const NewUserForm = ({setNewUserState,setOpenModal}) => {
   },[state.server]
   )
 
+
+  //Finctions
   const submit=(e)=>{
     e.preventDefault();
     if(step < Object.keys(steps).length){
@@ -67,6 +78,7 @@ export const NewUserForm = ({setNewUserState,setOpenModal}) => {
       SWAlert.alert({
         title:data.message || "Usuario Agregado"
       })
+      appContextValue.setState({...appContextValue.state,onChangeCredits:!appContextValue.state.onChangeCredits});
       setNewUserState(a=>!a);
       setOpenModal(false);
     }).catch(error=>{

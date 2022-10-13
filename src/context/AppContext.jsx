@@ -18,7 +18,8 @@ export const AppContext = ({ children }) => {
     openEditModal: false,
     users:[],
     packages:[],
-    account_data:{}
+    account_data:{},
+    onChangeCredits:null,
     
   });
   //Custom Hooks
@@ -30,6 +31,7 @@ export const AppContext = ({ children }) => {
   //Effects
   useEffect(()=>{
      getMyInfo().then(data=>{
+      localStorage.setItem("_id",data._id)
       setState({...state,account_data:data})
      });
   },[])

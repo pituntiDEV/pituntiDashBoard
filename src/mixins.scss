@@ -5,7 +5,14 @@
     
 }
 @mixin phone-only {
-    @media (max-width: 768px) {
+    @media (max-width: 668px) {
+        @content;
+    }
+    
+}
+
+@mixin tablet-only {
+    @media (max-width: 868px) {
         @content;
     }
     

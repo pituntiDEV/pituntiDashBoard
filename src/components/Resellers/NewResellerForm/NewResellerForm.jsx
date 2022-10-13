@@ -68,8 +68,8 @@ export const NewResellerForm = ({setOpenModal,setNewResellerState}) => {
             SWAlert.alert({
                 title:data.message || "Reseller Agregado"
             })
-            // setOpenModal(false)
-            // setNewResellerState(s=>!s)
+            setOpenModal(false)
+            setNewResellerState(s=>!s)
         }).catch((error)=>{
             SWAlert.error({
                 title:error.message || "Algo salio mal"

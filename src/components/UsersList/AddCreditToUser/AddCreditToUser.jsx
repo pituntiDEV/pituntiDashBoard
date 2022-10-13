@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useForm } from "react-hook-form";
-import { UsersContext } from '../../../context/usersContext';
+import { appContext } from '../../../context/AppContext';
 import useFetchApi from '../../../hook/useFetchApi';
 import { BtnPrimary } from '../../Buttons/BtnSucess/BtnPrimary';
 import { BtnSecondary } from '../../Buttons/BtnSucess/BtnSecondary';
@@ -9,7 +9,8 @@ import { AddCreditsByAdmin } from './AddCreditsByAdmin';
 import { AddCreditsByReseller } from './AddCreditsByReseller';
 import "./AddCreditToUser.scss"
 export const AddCreditToUser = ({ user, setOpenModal,setNewUserState }) => {
-   
+   //Context
+   const appContextValue = useContext(appContext);
 
     //States
     const [myAdminID, setMyAdminID] = useState("");
@@ -46,6 +47,7 @@ export const AddCreditToUser = ({ user, setOpenModal,setNewUserState }) => {
                 title: data.message || "Ok",
                 icon: "success"
             })
+            appContextValue.setState({...appContextValue.state,onChangeCredits:!appContextValue.state.onChangeCredits})
             setNewUserState(s=>!s);
             setOpenModal(false);
   

@@ -25,12 +25,22 @@ export const DeleteAccount = ({accountID,setOpenModal,setDeleteAccount}) => {
     }
   return (
     <div>
-        <p className='text-danger'>
+        
+        <h2 className='text-danger'>!!Avertencia</h2>
+        <h3 className='text-dark'>Se eliminaran todos los: 
+        <ul className='text-info'>
+          <li>Servidores</li>
+          <li>Paquetes</li>
+          <li>Usuarios</li>
+        </ul>
+         de la base de datos relacionados a esta cuenta</h3>
+
+         <p className='text-danger'>
             Estas seguro de eliminar esta cuenta?
         </p>
          <div className="btns">
-         <BtnPrimary className="bg-danger" onClick={deleteAccounts} title="Si,Eliminar"/>
-         <BtnSecondary title="Cancelar"/>
+         <BtnPrimary className="bg-danger" onClick={deleteAccounts} title="Si,Eliminar TODO"/>
+         <BtnSecondary onClick={()=>setOpenModal(false)} title="Cancelar"/>
          </div>
     </div>
   )

@@ -58,7 +58,9 @@ export const Login = () => {
                     Register
                 </Link>
                 </label>
-
+             <p className='estado_de_mi_cuenta'>
+               <a href="/my-account"> Estado de mi cuenta</a>
+             </p>
             </form>
         </div>
     )

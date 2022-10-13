@@ -86,7 +86,7 @@ export const ServersAndPackageEdit = ({ reseller, setOpenModal,setNewResellerSta
             servers.map((server) => {
               const { _id, data } = server;
               const { name } = data
-              const existe = resellerToEdit.servers.find(s => s.server._id == server._id);
+              const existe = resellerToEdit.servers.find(s => s.server?._id == server?._id);
               return (
                 <div onClick={() => changeServer(server)} className={`server ${existe && "selected"} `}>
                   {existe && <CheckIcon className="d-inlineblock pr-1" />}

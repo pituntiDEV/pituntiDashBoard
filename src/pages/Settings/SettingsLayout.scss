@@ -1,0 +1,58 @@
+@import "../../mixins.scss";
+@keyframes menuOpen {
+    0%{ width: 0px;}
+    100%{width: 350px;}
+}
+.settings{
+    display: grid;
+    grid-template-areas: 
+    "header header"
+    "main main "
+    "footer footer";
+    @include  tablet-only{
+        display: grid;
+        grid-template-areas: 
+        "header header"
+        "aside main "
+        "aside footer"
+
+    }
+
+    ;
+    .settings-header{
+        background-color: var(--color-primary);
+        padding: .1rem 0 ;
+        grid-area: header;
+    }
+    aside{
+       display: none;
+       position: relative;
+       @include  tablet-only{
+        display: block;
+        position: relative;
+       }
+       &.active{
+        display: block;
+        position: absolute;
+        z-index: 922;
+        ul{
+            position: absolute;
+            @include  tablet-only{
+                position: relative;
+            }
+            background-color: red;
+            width: 350px;
+            height: 100%;
+            animation: menuOpen .5s;
+
+            
+        }
+       }
+    }
+    main{
+        grid-area: main;
+    }
+    footer{
+        grid-area: footer;
+    }
+}
