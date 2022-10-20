@@ -11,6 +11,9 @@ const config={
             getPlexServers:"/api/server/get/all",
             //api/plex/user/userID:
             updateUser:"/api/plex/user/"
+        },
+        superUser:{
+            validate:"/api/super/validate"
         }
     },
 }

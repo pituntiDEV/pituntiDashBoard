@@ -1,0 +1,12 @@
+.super_user_layout{
+    header{
+        background-color: var(--color-primary);
+        color: white;
+        ul{
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+    }
+}

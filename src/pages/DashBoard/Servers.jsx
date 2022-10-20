@@ -11,7 +11,8 @@ export const Servers = ({ server }) => {
     //VARS
     const token = server.data.accessToken;
     const connection = server.data.connections.find(c => c.local == false);
-    const url = connection.uri
+    const url = connection.uri.replace("http", "https");
+    
     const playingUrl = `${url}/status/sessions?X-Plex-Token=${token}`;
 
     //State
@@ -33,7 +34,7 @@ export const Servers = ({ server }) => {
             .then(data => data.json())
             .then(data => {
                 setUsersPlaying(data?.MediaContainer?.Metadata || []);
-                console.log(data);
+                
             }).catch(error => {
                 console.log(error);
             })

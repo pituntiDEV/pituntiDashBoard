@@ -22,6 +22,7 @@ import { NoRegisterUsers } from './pages/NoRegisterUsers/NoRegisterUsers';
 import { DashBoard } from './pages/DashBoard/DashBoard';
 import { MyAccount } from './pages/MyAccount/MyAccount';
 import { Settings } from './pages/Settings/Settings';
+import { SuperUser } from './pages/SuperUser/SuperUser';
 function App() {
   return (
     <div className="App">
@@ -29,6 +30,7 @@ function App() {
       <Router>
         
           <Routes>
+            <Route path='/superUser' element={<SuperUser/>} />
             <Route path='/my-account' element={<MyAccount/>}/>
             <Route path="/" element={<ProtectedPage>  <UserContextProvider><Layout ><DashBoard/></Layout></UserContextProvider></ProtectedPage>} />
             <Route path="/setting" element={<ProtectedPage>  <UserContextProvider><Settings/></UserContextProvider></ProtectedPage>} />

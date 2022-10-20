@@ -3,6 +3,22 @@
     gap: 2rem;
     align-items: center;
     word-wrap: break-word;
+    .web_hooks{
+        position: relative;
+        &:hover > p{
+            display: block;
+        }
+        p{
+            display: none;
+            word-wrap: break-word;
+            position: absolute;
+            padding: .3rem;
+            left: 50%;
+            translate: -50%;
+            background-color: rgb(136, 102, 102);
+           
+        }
+    }
 
     .credits{
         position: relative;

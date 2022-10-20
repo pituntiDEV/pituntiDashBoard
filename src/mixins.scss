@@ -12,7 +12,7 @@
 }
 
 @mixin tablet-only {
-    @media (max-width: 868px) {
+    @media (min-width: 868px) {
         @content;
     }
     

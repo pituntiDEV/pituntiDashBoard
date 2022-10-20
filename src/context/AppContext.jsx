@@ -4,7 +4,7 @@ import { io } from 'socket.io-client';
 import useFetchApi from '../hook/useFetchApi';
 
 export const appContext = React.createContext();
-const socket =  io("192.168.1.38:1992", {
+const socket =  io(process.env.REACT_APP_IO_URL, {
   query: {
       _id: localStorage.getItem("_id") || ""
   }
@@ -12,6 +12,7 @@ const socket =  io("192.168.1.38:1992", {
 
 
 export const AppContext = ({ children }) => {
+ 
   //State
   const [state, setState] = useState({
     openModal: false,
@@ -51,6 +52,7 @@ export const AppContext = ({ children }) => {
 
   return (
     <appContext.Provider value={value}>
+      
       {
         children
       }

@@ -1,0 +1,13 @@
+.planes{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+    label{
+        font-weight: bold;
+    }
+    input,select,textarea{
+        padding: .5rem 0;
+        width: 100%;
+    }
+}
