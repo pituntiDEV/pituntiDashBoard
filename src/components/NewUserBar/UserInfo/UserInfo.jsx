@@ -10,6 +10,7 @@ import { PackOpenIcon } from '../../icons/PackOpenIcon';
 import { ServerIcon } from '../../icons/ServerIcon';
 import  {useForm} from "react-hook-form";
 import "./UserInfo.scss";
+import { Packages } from './Packages';
 export const UserInfo = (props) => {
     const { state, setState} = props;
 
@@ -31,17 +32,21 @@ export const UserInfo = (props) => {
         method: "GET",
     })
 
-    const [getPackages, loadingPackages] = useFetchApi({
-        url: "/api/package/plex/server/" + state.server.id,
-        method: "GET",
-    })
+    const serversAccount = state.servers.reduce((acc,s)=>{
+        if(!acc.includes(s.account)){
+          acc.push(s.account)
+        }
+        return acc;
+    },[])
+
+
+
 
 
     //Effects
     useEffect(() => {
         getMyServers().then(({ data }) => {
             setMyServers(data.servers);
-            console.log(data);
         })
 
         getSharedServers()
@@ -53,39 +58,41 @@ export const UserInfo = (props) => {
 
     }, [])
 
-    useEffect(() => {
-        console.log(state.server.id)
-        if (state.server.id) {
-            getPackages().then(data => {
-                setPackages(data);
-                console.log(data);
-            })
-        }
-    }, [state.server])
+  
 
 
     //ONCHANGE
 
-    const onChangeServer = (e) => {
-        const server = JSON.parse(e.target.value)
-        setState({ ...state, server,packages:[] })
+    const onChangeServer = (server) => {
+        const existe = state.servers.find(s => s._id === server._id)
+        if(!existe){
+           setState({...state,servers:[...state.servers,server]})
+        }else{
+           const servers = state.servers.filter(s=>s._id != server._id);
+           setState({...state,servers})
+        }
 
+ 
+
+        
     };
     const onChangeInput = (e) => {
         setState({ ...state, [e.target.name]: e.target.value })
     }
 
-    const packagesOnChange = (packID) => {
-        let packages = state.packages;
-        const existe = packages.includes(packID);
-        if (!existe) {
-            packages = [...packages, packID];
-        } else {
-            packages = packages.filter(p => p != packID);
-        }
-        setState({ ...state, packages })
+    const packagesOnChange = (pack) => {
+        console.log(pack)
+        // let packages = state.packages;
+        // const existe = packages.includes(packID);
+        // if (!existe) {
+        //     packages = [...packages, packID];
+        // } else {
+        //     packages = packages.filter(p => p != packID);
+        // }
+        // setState({ ...state, packages })
 
     }
+    
 
     return (
         <>
@@ -118,36 +125,12 @@ export const UserInfo = (props) => {
                         </InputWithIcon>
                     </div>
 
-                    <div className='form-group'>
-                        <label htmlFor="email">Server:</label>
-                        <InputWithIcon>
-                            <ServerIcon />
-                            <select onChange={onChangeServer} required defaultValue={''}>
-                                <option disabled value={""}>Server</option>
-                                {
-                                    myServers.map(server => {
-                                        return (
-                                            <option key={server._id} value={JSON.stringify({ id: server._id, owner: true, ownerID: server.admin._id })}>{server.data.name}</option>
-                                        )
-                                    })
-                                }
-
-                                {
-                                    sharedServers.map(( server ) => {
-                                        
-                                        return (
-                                            <option key={server._id} value={JSON.stringify({ id: server._id, owner: false, ownerID: server.admin })}>🔃{server.data.name}</option>
-                                        )
-                                    })
-                                }
-                            </select>
-                        </InputWithIcon>
-                    </div>
+                   
 
                   
                 </div>
 
-                <div className='form-group'>
+                {/* <div className='form-group'>
                     <label htmlFor="Packages">Packages:{packages.length && state.server.id ? packages.length:<span className="text-danger p-1">Seleccione paquetes </span>}</label>
                     <div className="packages">
                         {packages.map(pack => {
@@ -168,12 +151,55 @@ export const UserInfo = (props) => {
                             )
                         })}
                     </div>
-                </div>
+                </div> */}
+
+                <div className='form-group my-4'>
+                        <h3 className='fw-bold' htmlFor="email">Server:</h3>
+                           <div className="servers">
+                                {
+                                    myServers.map(server => {
+                                        const existe = state.servers.find(s=>s._id == server._id);
+
+                                        return (
+                                            <div onClick={()=>onChangeServer(server)} className={`server ${existe && "active"}`} key={server._id} value={JSON.stringify({ id: server._id, owner: true, ownerID: server.admin._id })}><ServerIcon/> {server.data.name}
+                                            
+                                            </div>
+                                        )
+                                    })
+                                }
+
+                                {
+                                    sharedServers.map(( server ) => {
+                                        const existe = state.servers.find(s=>s._id == server._id);
+                                        
+                                        return (
+                                            <div 
+                                            onClick={()=>onChangeServer(server)} className={`server ${existe && "active"}`} key={server._id} value={JSON.stringify({ id: server._id, owner: false, ownerID: server.admin })}>🔃{server.data.name}</div>
+                                        )
+                                    })
+                                }
+                            
+                           </div>
+                    </div>
+
+                    <div className="packages">
+                        {state.servers.map(server=>{
+                            return (
+                                <Packages state={state} setState={setState} server={server}/>
+                            )
+                        })}
+                    </div>
 
             </div>
+            {
+                serversAccount.length > 1 && 
+                <div className="alert alert-danger">
+                    No se puede Agregar servers de siferente cuentas
+                </div>
+            }
             <div className="buttons">
                 {
-                    packages.length >0 && state.packages.length>0 &&
+                     state.packages.length>0 && serversAccount.length < 2 &&
                     <button className='btn btn-primary'>Next</button>
                 }
             </div>

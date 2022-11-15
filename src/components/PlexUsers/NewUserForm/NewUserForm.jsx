@@ -32,7 +32,8 @@ export const NewUserForm = ({setNewUserState,setOpenModal}) => {
     deleteDays: 6,
     removeLibs: false,
     removeLibsDays: 3,
-    byMonth: false
+    byMonth: false,
+    servers:[]
   });
 
   //Custom Hooks
@@ -59,9 +60,21 @@ export const NewUserForm = ({setNewUserState,setOpenModal}) => {
 
   //Effects
   useEffect(()=>{
-    const uri = state.server.owner?"/api/plex/user/add":"/api/plex/user/add/reseller"
+    const _id= localStorage.getItem("_id")
+    const validateAdmin = state.servers.reduce((acc,server)=>{
+      if(server.admin._id == _id){
+          acc = [...acc,true]
+      }
+      return acc;
+  },[]);
+
+ 
+
+  const isNotAdmin = state.servers.filter(s=>s.admin._id != _id);
+  const isAdmin = isNotAdmin.length ==0 ? true:false
+    const uri = isAdmin?"/api/plex/user/add":"/api/plex/user/add/reseller";
     setUrl(uri)
-  },[state.server]
+  },[state.servers]
   )
 
 

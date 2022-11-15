@@ -3,10 +3,12 @@ import { useState } from 'react';
 import { Lineal } from '../../components/Chart/Lineal';
 import useGetAccountServers from '../../hook/useGetAccountServers'
 import { Servers } from './Servers';
-import "./DashBoard.scss";
+// import "./DashBoard.scss";
 import useFetchApi from '../../hook/useFetchApi';
 import { CloseIcon } from '../../components/icons/CloseIcon';
 import dayjs from 'dayjs';
+import { Sessions } from './Sessions/Sessions';
+import { GeneralCard } from '../../components/GeneralCard/GeneralCard';
 export const DashBoard = () => {
   
     
@@ -17,7 +19,7 @@ export const DashBoard = () => {
     //Custom Hooks
     const [getServers] = useGetAccountServers();
     const [getSessions,loadingGetSessions] = useFetchApi({
-      url:"/api/plex/get/plexSessions",
+      url:"/api/plex/sessions",
       method:"GET",
     })
 
@@ -66,15 +68,18 @@ export const DashBoard = () => {
 
     
   return (
+    <div className='container' >
+    {/* <GeneralCard/> */}
     <div className='playing'>
+
     <div className="total">
-     <span>{sessions.length}</span>
-    <svg aria-hidden="true" className="_11ni0ce26 _11ni0ceb p0ac3m1 p0ac3m3 p0ac3ma" fill="currentColor" height="48" viewBox="0 0 48 48" width="48" xmlns="https://www.w3.org/2000/svg"><path clipRule="evenodd" d="M24 45C35.598 45 45 35.598 45 24C45 12.402 35.598 3 24 3C12.402 3 3 12.402 3 24C3 35.598 12.402 45 24 45ZM30.8462 11.2308C30.5306 10.4734 29.7844 9.98555 28.964 10.0003C28.1436 10.0151 27.4154 10.5295 27.1273 11.2978L19.7377 31.0034L15.7889 23.1056C15.4501 22.428 14.7575 22 14 22H8V26H12.7639L18.2111 36.8944C18.5669 37.6059 19.3105 38.0389 20.1048 37.9973C20.8992 37.9556 21.5934 37.4471 21.8727 36.7022L29.0979 17.4349L32.1538 24.7692C32.4644 25.5145 33.1926 26 34 26H40V22H35.3333L30.8462 11.2308Z" fill="currentColor" fillRule="evenodd"></path></svg>
+    
      {/* <Lineal data={usersPlaying.length} server={server} /> */}
      {/* {server.data?.name} */}
     </div>
+    <Sessions sessions={sessions}/>
 
-     <div className='users_playing_container container'>
+     {/* <div className='users_playing_container container'>
          {
              sessions.map((session) => {
               const { user,User, data,server,thumb, title, year, duration, Player,player,type,parentThumb,Session} =session;
@@ -131,7 +136,7 @@ export const DashBoard = () => {
              })
          }
 
-     </div>
+     </div> */}
 
      {/* {openModalTerminate && 
      <Modal title="Parar la reproduccion" setOpenModal={setOpenModalTerminate}>
@@ -139,5 +144,7 @@ export const DashBoard = () => {
           <BtnPrimary onClick={terminateSession} title="Finalizar"/>
      </Modal>} */}
  </div>
+    
+    </div>
   )
 }

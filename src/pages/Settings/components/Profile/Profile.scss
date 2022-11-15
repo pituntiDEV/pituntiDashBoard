@@ -1,0 +1,17 @@
+.profile_Edit{
+   margin-top: 2rem;
+   max-width: 600px;
+   margin: 1rem auto;
+   border: rgba(60, 108, 147, 0.686) solid 1px;
+   padding: 1rem;
+   .form-group{
+    display: flex;
+    flex-direction: column;
+   }
+   .current__photo__profile{
+      width: 5rem;
+      img{
+         width: 100%;
+      }
+   }
+}

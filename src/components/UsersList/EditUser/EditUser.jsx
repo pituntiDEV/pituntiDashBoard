@@ -16,26 +16,33 @@ import { UserTieIcon } from '../../icons/UserTieIcon';
 import { useForm } from "react-hook-form"
 import { UsersContext } from '../../../context/usersContext';
 import SWAlert from '../../SwAlert/SWAlert';
+import {Packages} from "../../../pages/NoRegisterUsers/Register/Packages/Packages"
+import { PackagesList } from './PackagesList';
 
 export const EditUser = ({ user, setOpenModal, setNewUserState }) => {
     //Vars
     const isAdmin = localStorage.getItem("_id") == user.admin._id;
-    const userExpireDate =user.credits[user.credits.length - 1]?.expireAt || null;
-
-
+    const userExpireDate = user.credits[user.credits.length - 1]?.expireAt || null;
 
     //State
     const [packages, setPackages] = useState([]);
     const [state, setState] = useState({
         name: user.name,
-        packages: user.packages.map(p => p._id),
-        date: isAdmin?userExpireDate:null
+        packages: user.packages,
+        date: isAdmin ? userExpireDate : null,
+        servers: user.servers
     });
 
+    const [myServers, setMyServers] = useState([]);
 
-    //Custom Hooks
+
+
     const [getPackages, loadingPackages] = useFetchApi({
         url: "/api/package/plex/server/" + user.server,
+        method: "GET",
+    })
+    const [getMyServers, loadingGetMyServers] = useFetchApi({
+        url: `/api/server/get/all`,
         method: "GET",
     })
     const { register, handleSubmit, unregister, formState: { errors } } = useForm();
@@ -52,6 +59,12 @@ export const EditUser = ({ user, setOpenModal, setNewUserState }) => {
         getPackages().then(data => {
             setPackages(data)
         })
+
+        getMyServers().then(data => {
+            setMyServers(data?.data?.servers)
+        }).catch(error => {
+            console.log(error);
+        })
     }, [user])
 
     //Functions
@@ -61,10 +74,25 @@ export const EditUser = ({ user, setOpenModal, setNewUserState }) => {
         !existe ? setState({ ...state, packages: [...state.packages, pack._id] }) : setState({ ...state, packages: state.packages.filter(p => p != pack._id) });
     }
 
+    const onChangeServer=(server)=>{
+        const existe = state.servers.find(s=>s._id===server._id);
+        if(!existe){
+           setState({...state,servers:[...state.servers,server]});
+        }else{
+           
+            const servers = state.servers.filter(s=>s._id!=server._id)
+           setState({...state,servers});
+        }
+
+        console.log(user);
+          
+    }
+
 
     const submit = () => {
+       
         updateUser({
-            body: JSON.stringify(state)
+            body: JSON.stringify({...user,...state})
         }).then(data => {
             SWAlert.alert({
                 title: `Editastes a ${user?.email}` || data.message,
@@ -85,10 +113,10 @@ export const EditUser = ({ user, setOpenModal, setNewUserState }) => {
     return (
         <form onSubmit={handleSubmit(submit)} className='EditUser'>
             <h1>{user.email}</h1>
-            <InputWithIcon>
+            {/* <InputWithIcon>
                 <ServerIcon />
                 <span className='server_name'>{" Server:" + user.data.name} </span>
-            </InputWithIcon>
+            </InputWithIcon> */}
 
             <div className='form-group'>
                 <label htmlFor="">Name:</label>
@@ -118,7 +146,42 @@ export const EditUser = ({ user, setOpenModal, setNewUserState }) => {
                 <small className='text-danger'>{errors.name && "*Nombre requerido"}</small>
             </div>}
 
-            <div className='form-group'>
+            <div className="servers_container">
+                <h3 className='fw-bold'>Servers:</h3>
+                <div className='servers'>
+                    {
+                        myServers.map((server) => {
+                            const selected = state.servers.find(s=>s._id == server._id);
+
+                            return (
+                                <div onClick={()=>{
+                                    onChangeServer(server);
+                                }} key={server._id} className={`server ${selected && "selected"}`}>
+                                   <ServerIcon /> {server.data.name}
+                                   
+                                </div>
+                            )
+                        })
+                    }
+                </div>
+            </div>
+
+            <div className="packages_container mt-5">
+                <h2 className='fw-bold'>Paquetes:</h2>
+                <div className="packages">
+                    {
+                        state.servers.map(server=>{
+                            return (
+                                <div key={server._id} className="pack">
+                                   <PackagesList server={server} state={state} setState={setState}/>
+                                </div>
+                            )
+                        })
+                    }
+                </div>
+            </div>
+
+            {/* <div className='form-group'>
                 <label>Paquetes:</label>
                 <div className='packages-list'>
                     {
@@ -142,7 +205,7 @@ export const EditUser = ({ user, setOpenModal, setNewUserState }) => {
 
                 </div>
                 <small className='text-danger'>{errors.packages && "Seleccione una paquete"}</small>
-            </div>
+            </div> */}
 
 
 

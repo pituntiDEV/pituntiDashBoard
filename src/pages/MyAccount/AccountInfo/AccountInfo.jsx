@@ -40,6 +40,7 @@ export const AccountInfo = () => {
               <CloseIcon/>
             </div>
           <div className="email">{localStorage.getItem("email_to_info")}</div>
+          
             <img src={user?.thumb || "https://ps.w.org/user-avatar-reloaded/assets/icon-256x256.png?rev=2540745"} alt="" />
           </header>
           <div className="data">
@@ -61,7 +62,8 @@ export const AccountInfo = () => {
           })=>{
             return (
             <div key={ratingKey} className="img_container">
-              <img src= {`${process.env.REACT_APP_API_URL}/api/my-account-info/plex-img?img=${thumb}`} alt="" />
+             
+              <img src= {`${process.env.REACT_APP_API_URL}/api/my-account-info/plex-img?img=${thumb}`} alt="No funciona" />
             </div>)
           })}
 

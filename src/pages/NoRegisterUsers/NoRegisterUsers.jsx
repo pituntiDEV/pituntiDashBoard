@@ -47,14 +47,17 @@ export const NoRegisterUsers = () => {
 
         try {
             const token = account.data.user.authToken;
+         
             const allUsers = await getAllUsers();
             const allUsersFromPlex = await getUsersFromPlex(token);
-            const ids = allUsers.map(u => u.data.invitedId);
+
+            const ids = allUsers.map(u => u.data[0]?.invited.id|| u.data.invitedId);
+            console.log(ids);
             const usersNoRegsiters = allUsersFromPlex.filter(u => !ids.includes(u.id));
             setUsers(usersNoRegsiters);
 
         } catch (error) {
-
+           console.log(error)
         }
 
 
@@ -95,7 +98,7 @@ export const NoRegisterUsers = () => {
 
                     {openRegisterModal &&
                         <Modal setOpenModal={setOpenRegisterModal} title="Registrar usuario">
-                            <Register setOpenModal={setOpenRegisterModal} setUSersState={setUSersState} user={userToRegister} />
+                            <Register account={account} setOpenModal={setOpenRegisterModal} setUSersState={setUSersState} user={userToRegister} />
                         </Modal>}
                 </section>
             }

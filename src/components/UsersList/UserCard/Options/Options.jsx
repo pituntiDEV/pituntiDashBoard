@@ -37,7 +37,7 @@ export const Options = ({ user,setNewUserState }) => {
             </div>
             <div className='option'>
                 <div className='libs'>
-                    <span>{user.packages.length ==0 ?0:user.data?.numLibraries}</span>
+                        <span>{user.packages.length ==0 ?0:user.data[0]?.numLibraries|| user.data?.numLibraries}</span>
                     <BookIcon />
                 </div>
             </div>

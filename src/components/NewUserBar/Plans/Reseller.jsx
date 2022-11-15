@@ -12,7 +12,7 @@ export const Reseller = ({ state, setState }) => {
     const [availableCredits, setAvailableCredits] = useState([]);
     //Custom Hooks
     const [getCredits, loading] = useFetchApi({
-        url: `/api/credits/shared-available-by-provider/?provider=${state.server.ownerID}`,
+        url: `/api/credits/shared-available-by-provider/?provider=${state.servers[0].admin}`,
         method: "GET",
     })
 

@@ -1,36 +1,58 @@
-.EditUser{
-    .form-group{
+.EditUser {
+    .form-group {
         margin: 1rem 0;
-        label{
+
+        label {
             margin-bottom: .5rem;
             font-size: 1.5rem;
             font-weight: 600;
         }
     }
 
-    .server_name{
+    .server_name {
         padding: .5rem;
     }
-   
-  .packages-list{
-    display: grid;
-    grid-template-columns: repeat(auto-fill,minmax(150px,1fr));
-    gap: 2rem;
-    margin-bottom: 2rem;
-    .package{
-        display: flex;
-        justify-content: center;
-        gap:.5rem;
-        align-items: center;
-        padding: .5rem 1rem;
-        border-radius: .5rem;
-        box-shadow: -2px 3px 5px black;
-        
-        &.selected{
-            color: white;
-            background-color: rgb(76, 148, 132);
+
+    .packages-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 2rem;
+        margin-bottom: 2rem;
+
+        .package {
+            display: flex;
+            justify-content: center;
+            gap: .5rem;
+            align-items: center;
+            padding: .5rem 1rem;
+            border-radius: .5rem;
+            box-shadow: -2px 3px 5px black;
+
+            &.selected {
+                color: white;
+                background-color: rgb(76, 148, 132);
+            }
+
         }
-        
     }
-  }
+
+    .servers_container {
+        .servers {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+
+            .server {
+                text-align: center;
+                background-color: rgb(243, 93, 93);
+                border-radius: .5rem;
+                padding: .5rem 0;
+                box-shadow: 2px 3px 4px rgb(84, 83, 83);
+                color:white;
+                &.selected{
+                    background-color: rgb(60, 133, 185);
+                }
+            }
+        }
+    }
 }

@@ -3,28 +3,42 @@ import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { BtnPrimary } from '../../../components/Buttons/BtnSucess/BtnPrimary'
 import { BtnSecondary } from '../../../components/Buttons/BtnSucess/BtnSecondary'
+import { ServerIcon } from '../../../components/icons/ServerIcon'
 import SWAlert from '../../../components/SwAlert/SWAlert'
 import useFetchApi from '../../../hook/useFetchApi'
+import { Packages } from './Packages/Packages'
 import "./Register.scss";
 
-export const Register = ({ user, setUSersState, setOpenModal }) => {
+export const Register = ({ account,user, setUSersState, setOpenModal }) => {
+ 
   //State
   const [state, setState] = useState({
     name: "",
     email: user.email,
-    data: user.sharedServers[0],
+    sharedServers: user.sharedServers,
+    userPlexID:user.id,
     packages: [],
-    seller: ""
+    seller: "",
+    servers:[]
+
   })
- console.log(user)
+  
+
   const [packs, setPacks] = useState([])
   const [resellers, setResellers] = useState([]);
+  const [servers, setServers] = useState([]);
 
   //Custom hooks
   const [getResellers] = useFetchApi({
     url: "/api/resellers/",
     method: "GET",
   })
+
+  //GetServers
+  const [getServers] = useFetchApi({
+    url:`/api/server/get/all`,
+    method: 'GET',
+  });
 
   const [getPackages] = useFetchApi({
     url: `/api/package/plex/get/all`,
@@ -40,29 +54,41 @@ export const Register = ({ user, setUSersState, setOpenModal }) => {
   //Effects
   useEffect(() => {
     getPackages().then(data => {
-      console.log(state);
       const packages = data.data.filter(p => p.server.data.clientIdentifier == state.data.machineIdentifier);
       setPacks(packages);
     })
-
     getResellers().then(resells => {
       setResellers(resells);
     })
+    getServers().then(data => {
+      setServers(data.data.servers);
+    })
   }, [])
+
+  useEffect(() => {
+    const serversIDS = state.servers.reduce((acc,server)=>{
+      if(!acc.includes(server._id)){
+        acc.push(server._id);
+      }
+      return acc;
+    },[])
+    const packsFilter = state.packages.filter(p=>serversIDS.includes(p.server))
+    setState({...state, packages:packsFilter})
+  },[state.servers])
 
   //funtions
   const submit = (data) => {
+
     if (state.packages.length < 1) { return; }
     const dataToSend = {
       ...data,
       packages: state.packages,
-      data: {
-        ...state.data, invited: {
-          thumb: user.thumb
-        }
-      },
+      sharedServers: state.sharedServers,
       seller: state.seller,
       email: user.email,
+      servers:state.servers,
+      userPlexID:state.userPlexID,
+      
 
     };
 
@@ -89,6 +115,18 @@ export const Register = ({ user, setUSersState, setOpenModal }) => {
       setState({ ...state, packages: [...state.packages, pack._id] })
     } else {
       setState({ ...state, packages: state.packages.filter(p => p != pack._id) })
+    }
+  }
+
+  const changeServer= (server) => {
+   
+    const existe = state.servers.find(s => s._id === server._id);
+    if(!existe){
+       const servers = [...state.servers, server];
+       setState({...state, servers});
+    }else{
+      const servers = state.servers.filter(s => s._id != server._id);
+      setState({...state, servers});
     }
   }
   return (
@@ -157,7 +195,31 @@ export const Register = ({ user, setUSersState, setOpenModal }) => {
         </div>
       </div>
 
-      <div className="form-group packages">
+      <div className="form-group servers">
+        <h3>Servers:</h3>
+        <div className="servers__container">
+          {servers.map(server => {
+            const existe = state.servers.find(s => s._id === server._id);
+            return (
+              <div onClick={()=>changeServer(server)} key={server._id} className={`server ${existe && "active"}`} >
+                <ServerIcon/> {server?.data?.name}
+              </div>)
+          })}
+        </div>
+      </div>
+
+      <div className="form-group servers">
+        {state.servers.length >0 && <h3>Packages:</h3>}
+        {state.servers.map(server => {
+          
+          return (
+            <Packages state={state} setState={setState} server={server} key={server._id}/>
+            )
+        })}
+      </div>
+      
+
+      {/* <div className="form-group packages">
         {packs.map(pack => {
           const active = state.packages.includes(pack._id);
           return (
@@ -165,7 +227,7 @@ export const Register = ({ user, setUSersState, setOpenModal }) => {
               {pack.name}
             </div>)
         })}
-      </div>
+      </div> */}
 
 
       {!loadingRegisterUser && state.packages.length > 0 &&

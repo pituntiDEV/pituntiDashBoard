@@ -1,0 +1,119 @@
+.all_sessions{
+    
+    .total{
+        font-size: 3rem;
+        font-weight: bold;   
+    }
+    .sessions_container{
+        
+        margin-top: 2rem;
+   
+     
+        .no_registred{
+            h2{
+                font-size: 2rem;
+                font-weight: bold;
+                margin: 0;
+            }
+            .bar{
+                height: .5rem;
+                background-color: rgb(241, 50, 50);
+                margin-bottom: 1rem;
+            }
+
+            .sessions{
+                
+                display: grid;
+                grid-template-columns: repeat(auto-fill,minmax(170px,1fr));
+                gap: 1rem;
+            }
+        }
+        .registred{
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin: 1rem 0;
+            .sessions{
+                
+                display: grid;
+                grid-template-columns: repeat(auto-fill,minmax(170px,1fr));
+                gap: 1rem;
+            }
+            h2{
+                font-size: 2rem;
+                font-weight: bold;
+                margin: 0;
+            }
+            .bar{
+                height: .5rem;
+                background-color: rgb(126, 214, 88);
+                margin-bottom: 1rem;
+                box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.792);
+                border-radius: 1rem;
+            }
+        }
+        .user_playing{
+            background-color: #282a2d;
+            border-radius: 1rem;
+            overflow: hidden;
+            padding: .5rem;
+            .user_playing_header{
+                position: relative;
+                background-color: #282a2d;
+                color: white;
+                display: grid;
+                grid-template-columns: 35% 65%;
+                span{
+                    position: absolute;
+                    background-color: rgb(233, 67, 67);
+                    width: 4rem;
+                    height: 2.5rem;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 0 0 1rem 0;
+                    cursor: pointer;
+                    box-shadow: -1px 1px 3px white;
+                }
+                img{
+                    width: 100%;
+                    min-height: 10rem;
+                }
+                .info{
+                    text-align: center;
+                }
+            }
+    
+            .user_playing_body{
+                text-align: center;
+                background-color: #e5a00d;
+                border-radius: 1rem;
+                margin: 1rem;
+            }
+            .user_playing_footer{
+                display: flex;
+                color: white;
+                align-items: center;
+                gap: 1rem;
+                background-color: #282a2d;
+                .img{
+                    display: block;
+                    width: 5rem;
+                    height: 5rem;
+                    border-radius: 50%;
+                    overflow: hidden;
+                   img{
+                    width: 100%;
+                   }
+                }
+    
+            }
+        }
+    }
+}
+.terminate{
+    textarea{
+        display: block;
+        width: 100%;
+    }
+}

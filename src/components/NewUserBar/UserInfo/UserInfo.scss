@@ -32,4 +32,29 @@
             }
         }
     }
+    .servers{
+        display: grid;
+        grid-template-columns: repeat(auto-fill,minmax(150px,1fr));
+        gap:1rem;
+        .server{
+            background-color: rgb(247, 108, 108);
+            color: white;
+            text-align: center;
+            border-radius: .5rem;
+            padding: .5rem 0;
+            cursor: pointer;
+            &:hover{
+                transform: scale(1.05);
+            }
+            &.active{
+                background-color: rgb(111, 169, 111);
+            }
+            
+        }
+    }
+    .packages{
+        .pack{
+            cursor: pointer;
+        }
+    }
 }

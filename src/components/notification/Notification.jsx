@@ -21,12 +21,14 @@ export const Notification = () => {
     const [openModalWebHook,setOpenModalWebHook] =useState(false);
     //Context
     const { state: { account_data } } = useContext(appContext);
+    
 
     //Custom hooks
     const [getMyTotalCredits] = useFetchApi({
         url: `/api/credits/shared-available`,
         method: 'GET',
     })
+    
 
     useEffect(() => {
         getMyTotalCredits().then(data => {
@@ -61,9 +63,15 @@ export const Notification = () => {
             <i className="fa-solid fa-bell"></i>
             <i className="fa-solid fa-message"></i>
             <div className="profile">
-                <button className="initial-letter">
+               {!account_data?.config?.thumb ?<button className="initial-letter">
                     {account_data?.name && account_data?.name[0] || ""}
+                    
                 </button>
+                :
+                <div className="photo_profile">
+                    <img src={`${process.env.REACT_APP_API_URL}/api/img/profiles/${account_data.config.thumb}`}/>
+                </div>
+                }
                 <div className="options">
                     <div className="square"></div>
                     <div className="header">
@@ -74,8 +82,8 @@ export const Notification = () => {
                         <p className="">{account_data.email}</p>
                     </div>
                     <ul>
-                        <li>Profile</li>
-                        <li>Setting</li>
+                        {/* <li>Profile</li> */}
+                        <li><a href="/setting">Setting</a></li>
                         <li onClick={Logout}>Logout</li>
                     </ul>
                 </div>

@@ -15,7 +15,7 @@ export const UserCard = ({ user,setNewUserState }) => {
       {/* header */}
       <div className={`card__header  ${isExpired && "expired"}`}> 
         <div className='email'>{user.email}</div>
-          <img src={user.data?.invited?.thumb} alt="" />
+          <img src={ user.data[0]?.invited?.thumb||user.data?.invited?.thumb} alt="" />
       </div>
 
       {/* body */}
@@ -28,7 +28,7 @@ export const UserCard = ({ user,setNewUserState }) => {
           </InputWithIcon>
           <InputWithIcon>
             <ServerIcon />
-            <small> {user?.data?.name} </small>
+            <small> {user?.data[0] && user.data.map(d=>d.name).join(",") || user?.data.name} </small>
           </InputWithIcon>
 
           <InputWithIcon>

@@ -3,6 +3,10 @@
     gap: 2rem;
     align-items: center;
     word-wrap: break-word;
+    a{
+        color: black;
+        text-decoration: none;
+    }
     .web_hooks{
         position: relative;
         &:hover > p{
@@ -81,6 +85,19 @@
             border-radius: 50%;
             cursor: pointer;
             border: none;
+        }
+
+        .photo_profile{
+            height: 5rem;
+            width: 5rem;
+            border-radius: 50%;
+            overflow: hidden;
+            img{
+                object-fit: cover;
+                width: 100%;
+                display: block;
+            }
+            box-shadow: 0px 0px 6px white;;
         }
 
         &:hover>.options {
