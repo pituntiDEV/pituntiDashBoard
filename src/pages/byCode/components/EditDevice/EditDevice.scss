@@ -1,0 +1,24 @@
+.edit__device__form{
+    .form__group{
+        display: flex;
+        flex-direction: column;
+        margin: 1rem 0 ;
+        label{
+            color: rgb(66, 67, 67);
+            font-weight: bold;
+            font-size: 1.4rem;
+        }
+        input{
+            padding: 1rem ;
+            border-radius: .4rem;
+        }
+    }
+    button{
+        display: block;
+        width: 100%;
+        background-color: #1f1f1f;
+        color: white;
+        font-size: 2rem;
+        letter-spacing: 2px;
+    }
+}

@@ -1,4 +1,4 @@
-import React,{ useState }  from 'react'
+import React, { useState } from 'react'
 import { AccountList } from '../../components/Accounts/AccountList/AccountList';
 import { PlexSecureIcon } from '../../components/icons/PlexSecureIcon/PlexSecureIcon';
 import Modal from '../../components/modal/Modal';
@@ -6,16 +6,18 @@ import SWAlert from '../../components/SwAlert/SWAlert';
 import useFetchApi from '../../hook/useFetchApi';
 import Plex from '../../services/Plex';
 import "./Accounts.scss";
+import { NewEmbyAccountForm } from './components/NewEmbyAccountForm/NewEmbyAccountForm';
 export const Accounts = () => {
     //State
     const [openModal, setOpenModal] = useState(false);
+    const [openModalToEmby, setOpenModalToEmby] = useState(false);
     const [wating, setWating] = useState(false);
-    const [newAccountState,setNewAccountState] = useState(false);
-    const [totalAccounts,setTotalAccounts] = useState(0);
+    const [newAccountState, setNewAccountState] = useState(false);
+    const [totalAccounts, setTotalAccounts] = useState(0);
 
     //Custom hooks
-    const [addAccount , loading] = useFetchApi({
-        url:`/api/plex/account`,
+    const [addAccount, loading] = useFetchApi({
+        url: `/api/plex/account`,
         method: 'POST',
     })
 
@@ -24,34 +26,37 @@ export const Accounts = () => {
 
 
     //Functions
-    const login = async() => {
+    const login = async () => {
         try {
             setWating(true);
-            const token= await plexServices.login();
+            const token = await plexServices.login();
             const account = await plexServices.getAccount(token);
-            const newAccount = await addAccount({body:JSON.stringify({account})});
+            const newAccount = await addAccount({ body: JSON.stringify({ account }) });
             setWating(false);
             SWAlert.success({
-                title:newAccount.message
+                title: newAccount.message
             })
-            setNewAccountState(a=>!a)
-            
+            setNewAccountState(a => !a)
+
         } catch (error) {
             SWAlert.error({
-                title:error.message
+                title: error.message
             })
             setWating(false);
         }
-       
+
     }
 
     return (
         <div className="accounts__container container">
             <div className="accounts__bar ">
                 <span>Total {totalAccounts} Account</span>
-                <button onClick={() => setOpenModal(true)}>New Account</button>
+                <div className="btn-group">
+                    <button onClick={() => setOpenModal(true)}>New Plex Account</button>
+                    {/* <button onClick={() => setOpenModalToEmby(true)}>New Emby Account</button> */}
+                </div>
             </div>
-            <AccountList setTotalAccounts={setTotalAccounts}  newAccountState={newAccountState}/>
+            <AccountList setTotalAccounts={setTotalAccounts} newAccountState={newAccountState} />
 
             {openModal &&
                 <Modal setOpenModal={setOpenModal} title="New Account">
@@ -71,6 +76,12 @@ export const Accounts = () => {
                     }
 
                 </Modal>}
+
+            {openModalToEmby &&
+                <Modal title="Nueva cuenta emby" setOpenModal={setOpenModalToEmby}>
+                   <NewEmbyAccountForm/>
+                </Modal>
+            }
         </div>
     )
 }

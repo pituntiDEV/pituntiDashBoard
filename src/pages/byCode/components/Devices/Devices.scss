@@ -1,0 +1,67 @@
+.Devices{
+    margin-top: 2rem;
+    position: relative;
+    h2{
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin-bottom: 2rem;
+        
+    }
+    .devices__list{
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
+        gap: 1rem;
+     
+        .device{
+            background-color: #1f1f1f;
+            color: white;
+            text-align: center;
+            border-radius: 1rem;
+            .header{
+                label{
+                    font-size: 1rem;
+                }
+                .logo{
+                    img{
+                        height: 3.5rem;
+                        background-color: rgb(226, 222, 222);
+                        border-radius: 1rem;
+                    }
+
+                    .email{
+                        font-size: 1.3rem;
+                        text-decoration: underline;
+                    }
+                    
+                }
+                .name{
+                    font-size: 1.3rem;
+                    font-style: italic;
+                }
+            }
+        }
+
+        .options{
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+           ul{
+            display: flex;
+            justify-content: space-around;
+            li{
+                border: #ffffff24 2px solid;
+                width: 3rem;
+                height: 3rem;
+                border-radius: 50%;
+                box-shadow:  -1px 1px 3px red ;
+            }
+          
+           }
+        }
+
+    }
+
+    .loading{
+        position: relative;
+    }
+}

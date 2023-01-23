@@ -27,9 +27,8 @@ export const ServersAndPackageEdit = ({ reseller, setOpenModal,setNewResellerSta
 
   useEffect(() => {
     getServers()
-      .then(({ data: { servers } }) => {
-        setServers(servers);
-
+      .then((myServers) => {
+        setServers(myServers);
       })
   }, [])
 
@@ -39,8 +38,10 @@ export const ServersAndPackageEdit = ({ reseller, setOpenModal,setNewResellerSta
 
     const serverExist = resellerToEdit.servers.find(s => s.server._id == server._id);
 
+    
     if (serverExist) {
-      const newServer = resellerToEdit.servers.filter(s => s.server._id != server._id);
+   
+      const newServer = resellerToEdit.servers.filter(s => s.server?._id &&  s.server._id != server._id);
       setResellerToEdit({ ...resellerToEdit, servers: newServer });
     } else {
 
@@ -58,7 +59,7 @@ export const ServersAndPackageEdit = ({ reseller, setOpenModal,setNewResellerSta
     e.preventDefault();
     const formatServers = resellerToEdit.servers.map(s => {
       return {
-        server: s.server._id,
+        server: s.server?._id,
         packages: s.packages
       }
     });

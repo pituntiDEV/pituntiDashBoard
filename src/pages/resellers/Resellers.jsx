@@ -13,7 +13,7 @@ export const Resellers = () => {
 
   return (
     <div className='resellers container'>
-      <NewResellerBar setNewResellerState={setNewResellerState} totalresellers={totalResellers} onClick={() => setOpenModal(true)} />
+      <NewResellerBar  totalresellers={totalResellers} onClick={() => setOpenModal(true)} />
       
       <div className='resellers-new__btn m-2'>
       

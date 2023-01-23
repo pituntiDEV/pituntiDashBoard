@@ -1,0 +1,16 @@
+.shared__by__code{
+    background:linear-gradient(to right,rgb(252, 113, 44), rgb(87, 87, 156));
+    display: flex;
+    justify-content: flex-end;
+    padding: .5rem;
+
+    button{
+        margin: .5rem;
+        border-radius: .5rem;
+        border-color: rgb(0, 0, 0,.2);
+        box-shadow: -2px 2px 3px rgb(41, 41, 41);
+        padding:  .5rem;
+        min-width: 120px;
+        font-size: 1.6rem;
+    }
+}

@@ -60,7 +60,15 @@ export const Login = () => {
                 </label>
              <p className='estado_de_mi_cuenta'>
                <a href="/my-account"> Estado de mi cuenta</a>
+               
              </p>
+             <p>
+             <a href="/password/recovery/form">Olvide mi contraseña</a>
+             </p>
+
+             <div className="logo">
+             <img src="./assets/img/tecnodev3d_logo.png" className='logo' />
+             </div>
             </form>
         </div>
     )

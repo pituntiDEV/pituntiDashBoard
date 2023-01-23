@@ -1,0 +1,38 @@
+.toggle__swhich__wrap{
+    .switch{
+        position: relative;
+        display: inline-block;
+        height: 20px;
+        width: 40px;
+        background-color: rgb(213, 61, 61);
+        border-radius: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        &::after{
+            position: absolute;
+            content: "";
+            height: 15px;
+            width: 15px;
+            border-radius: 50%;
+            background-color: white;
+            left: 3px;
+            transition: all .5s;
+
+        }
+    }
+
+    input[type="checkbox"]:checked + .switch::after{
+      transform:  translateX(20px);
+      
+    }
+
+    input[type="checkbox"]:checked + .switch{
+        background-color: rgb(30, 169, 30);
+      }
+
+      input[type="checkbox"]{
+        display: none;
+      }
+}

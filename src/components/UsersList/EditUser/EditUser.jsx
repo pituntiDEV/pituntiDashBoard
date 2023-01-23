@@ -60,8 +60,8 @@ export const EditUser = ({ user, setOpenModal, setNewUserState }) => {
             setPackages(data)
         })
 
-        getMyServers().then(data => {
-            setMyServers(data?.data?.servers)
+        getMyServers().then(servers => {
+            setMyServers(servers)
         }).catch(error => {
             console.log(error);
         })

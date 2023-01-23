@@ -1,14 +1,9 @@
 import React from 'react';
 import { useState,useEffect } from 'react';
-import { io } from 'socket.io-client';
+
 import useFetchApi from '../hook/useFetchApi';
 
 export const appContext = React.createContext();
-const socket =  io(process.env.REACT_APP_IO_URL, {
-  query: {
-      _id: localStorage.getItem("_id") || ""
-  }
-});
 
 
 export const AppContext = ({ children }) => {
@@ -40,7 +35,7 @@ export const AppContext = ({ children }) => {
   const value={
     state,
     setState,
-    socket,
+ 
     setOpenModal: () => {
       setState(state=>({...state,openModal:!state.openModal}));
     },

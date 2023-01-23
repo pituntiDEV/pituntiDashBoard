@@ -5,6 +5,7 @@ import { UsersList } from '../../components/UsersList/UsersList'
 import useFetchApi from '../../hook/useFetchApi'
 import config from '../../config'
 import { useEffect } from 'react'
+import { Spinner } from '../../components/Spinner/Spinner'
 
 export const Users = () => {
   //State
@@ -23,9 +24,14 @@ export const Users = () => {
   }, [newUserState])
 
   return (
-    <div className='Users container'>
+    <div className='Users container' style={{position:"relative"}}>
+      {
+        loading ? <div className='loading'><Spinner/></div>
+        :<>
         <NewUserBar setNewUserState={setNewUserState} users={users} />
         <UsersList setNewUserState={setNewUserState} users={users} />
+        </>
+      }
     </div>
   )
 }

@@ -1,20 +1,21 @@
 import React, { useContext, useEffect } from 'react'
 import { useState } from 'react';
-import { Lineal } from '../../components/Chart/Lineal';
 import useGetAccountServers from '../../hook/useGetAccountServers'
 import { Servers } from './Servers';
 // import "./DashBoard.scss";
 import useFetchApi from '../../hook/useFetchApi';
-import { CloseIcon } from '../../components/icons/CloseIcon';
-import dayjs from 'dayjs';
 import { Sessions } from './Sessions/Sessions';
-import { GeneralCard } from '../../components/GeneralCard/GeneralCard';
+import {io} from "socket.io-client";
+import config from '../../config';
+
 export const DashBoard = () => {
   
     
     //State
     const [servers,setServers] = useState([]);
     const [sessions , setSessions] = useState([]);
+    const [newSessions , setNewSessions] = useState([]);
+    const [socket,setSocket] = useState(null);
   
     //Custom Hooks
     const [getServers] = useGetAccountServers();
@@ -37,6 +38,31 @@ export const DashBoard = () => {
       return hours + " h " + minutes + " min";
   }
 
+  // Effects for Socket.io
+  useEffect(()=>{
+    const socketConn = io(config.socketUrl+"/playing",{
+      query: {
+          _id: localStorage.getItem("_id") || "",
+            token: localStorage.getItem("access-token")
+          
+      }
+    });
+
+    setSocket(socketConn)
+  
+    return ()=>{
+      socketConn.disconnect()
+    }
+  },[])
+
+  useEffect(()=>{
+     socket?.on("playing",(data)=>{
+      console.log(data);
+      if(data.payload.event=="media.play"){
+        setNewSessions([...newSessions,data])
+      }
+     })
+  },[socket,newSessions])
 
     useEffect(()=>{
       getSessions().then(data=>{
@@ -56,9 +82,9 @@ export const DashBoard = () => {
 
 
     useEffect(()=>{
-        getServers().then(data=>{
-          
-            setServers(data.data.servers)
+        getServers().then(servers=>{
+            
+            setServers(servers)
         })
         .catch(error=>{
             console.log(error)
@@ -74,10 +100,12 @@ export const DashBoard = () => {
 
     <div className="total">
     
-     {/* <Lineal data={usersPlaying.length} server={server} /> */}
+     
      {/* {server.data?.name} */}
     </div>
-    <Sessions sessions={sessions}/>
+
+    
+    <Sessions sessions={sessions} newSessions={newSessions}/>
 
      {/* <div className='users_playing_container container'>
          {

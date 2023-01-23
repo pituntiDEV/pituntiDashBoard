@@ -1,7 +1,7 @@
 import React from 'react'
 import "./NewResellerBar.scss";
 export const NewResellerBar = (props) => {
-  const {totalresellers,setNewResellerState}=props;
+  const {totalresellers}=props;
   return (
     <div className='new__reseller__bar'>
         <div className='new__reseller__counter'>

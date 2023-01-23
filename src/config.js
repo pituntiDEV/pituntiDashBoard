@@ -1,6 +1,7 @@
 const config={
     userID:localStorage.getItem("_id"),
     apiBackendUrl:process.env.REACT_APP_API_URL,
+    socketUrl:process.env.REACT_APP_IO_URL,
     apiUrls:{
         getPackagesFromReseller:"/api/package/shared-with-me",
         getAdminPackage:"/api/package/plex/get/all",

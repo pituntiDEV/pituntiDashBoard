@@ -1,0 +1,43 @@
+.search-user{
+    background-color: rgb(48, 46, 46);
+    display: grid;
+    grid-template-columns: calc(100% - 40px) 40px;
+    max-width: 500px;
+    overflow: hidden;
+    margin: 0 auto;
+    border-radius:.4rem;
+    input{
+        border-radius:.4rem;
+        border: none;
+        padding: .5rem;
+        &:focus{
+            border-bottom: 2px solid rgba(74, 231, 47, 0.626);
+            outline: auto ;
+        }
+    }
+    .icon{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+    }
+
+}
+.results{
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px,1fr));
+    justify-content: center;
+    align-content: center;
+    gap:1rem;
+    .user{
+        text-align: center;
+        background-color: #1f1f1f;
+        color: white;
+        padding: .5rem;
+        word-wrap: break-word;
+        height: 50px;
+        border-radius: .5rem;
+        cursor: pointer;
+    }
+}

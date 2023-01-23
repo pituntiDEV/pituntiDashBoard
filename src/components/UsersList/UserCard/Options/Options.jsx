@@ -29,12 +29,12 @@ export const Options = ({ user,setNewUserState }) => {
             <div className='option' onClick={() => setOpenModalToAddCredits(true)}>
                 <CoinPlusIcon className="credits" />
             </div>
-            <div className='option'>
+            {/* <div className='option'>
                 <RepeatIcon />
-            </div>
-            <div className='option'>
+            </div> */}
+            {/* <div className='option'>
                 <InfoIcon />
-            </div>
+            </div> */}
             <div className='option'>
                 <div className='libs'>
                         <span>{user.packages.length ==0 ?0:user.data[0]?.numLibraries|| user.data?.numLibraries}</span>

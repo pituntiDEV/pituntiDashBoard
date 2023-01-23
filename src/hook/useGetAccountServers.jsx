@@ -9,9 +9,9 @@ const useGetAccountServers =() => {
     })
     const getAccountServers = async () => {
         try {
-            const data = await getServers();
-            setAccountServers(data.data.servers);
-            return data
+            const servers = await getServers();
+            setAccountServers(servers);
+            return servers
         } catch (error) {
             console.log(error)
         }

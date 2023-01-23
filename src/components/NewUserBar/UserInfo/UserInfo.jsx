@@ -45,8 +45,8 @@ export const UserInfo = (props) => {
 
     //Effects
     useEffect(() => {
-        getMyServers().then(({ data }) => {
-            setMyServers(data.servers);
+        getMyServers().then((servers) => {
+            setMyServers(servers);
         })
 
         getSharedServers()
@@ -174,7 +174,7 @@ export const UserInfo = (props) => {
                                         
                                         return (
                                             <div 
-                                            onClick={()=>onChangeServer(server)} className={`server ${existe && "active"}`} key={server._id} value={JSON.stringify({ id: server._id, owner: false, ownerID: server.admin })}>🔃{server.data.name}</div>
+                                            onClick={()=>onChangeServer(server)} className={`server ${existe && "active"}`} key={server?._id} value={JSON.stringify({ id: server?._id, owner: false, ownerID: server?.admin })}>🔃{server?.data.name}</div>
                                         )
                                     })
                                 }

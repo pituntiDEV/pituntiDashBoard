@@ -1,0 +1,12 @@
+@import "../../mixins.scss";
+
+.chat__page {
+    background-color: #3c4945;
+    display: grid;
+    grid-template-columns: 400px 1fr;
+
+    .chat__list {
+        width: 100%;
+    }
+    .chat__messages{}
+}

@@ -59,8 +59,8 @@ export const NewDemoForm = ({setOpenModal,setDemoState}) => {
 
   //Effects
   useEffect(() => {
-    getMyServers().then(({ data }) => {
-      setMyServers(data.servers);
+    getMyServers().then((servers) => {
+      setMyServers(servers);
     })
 
     getSharedServers()

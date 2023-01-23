@@ -6,6 +6,7 @@ import {UsersFilter} from './UsersFilter/UsersFilter';
 import { useUserFilter } from '../../hook/useUserFilter';
 
 import "./UsersList.scss";
+import { Spinner } from '../Spinner/Spinner';
 
 export const UsersList = ({ users,setNewUserState }) => {
   //Context
@@ -46,8 +47,12 @@ export const UsersList = ({ users,setNewUserState }) => {
 
   return (
     <div className="users">
+
+      
       <SearchInput onChange={search} />
       <UsersFilter users={users} onChange={hanledChange}/>
+        <hr />
+      
       <div className="users__container">
         {
           usersFilter.map((user) => {

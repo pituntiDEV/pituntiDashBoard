@@ -31,7 +31,6 @@ export const ResellersList = ({ setTotalResellers,newResellerState,setNewReselle
     useEffect(() => {
         getResellers().then(data => {
             setTotalResellers(data.length);
-            console.log(data);
             setResellers(data);
         })
     }, [newResellerState])

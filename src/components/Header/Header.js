@@ -13,6 +13,8 @@ export const Header = () => {
         <div onClick={menuToggle} className="btn-menu">
           <i className="fa-solid fa-bars"></i>
         </div>
+
+        
           <p className="name">
               Pitunti DashBoard
           </p>

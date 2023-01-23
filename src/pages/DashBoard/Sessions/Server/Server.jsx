@@ -7,11 +7,12 @@ import Modal from '../../../../components/modal/Modal';
 import SWAlert from '../../../../components/SwAlert/SWAlert';
 import useFetchApi from '../../../../hook/useFetchApi';
 import "./Server.scss";
+const datesUtils = require('../../../../utils/date/');
 export const Server = ({ session: sessionData }) => {
    
 
     //VARS
-    const { usersRegistered, serverName, server, usersNotRegistred } = sessionData;
+    const { usersRegistered, serverName, server, demosRegistered,usersNotRegistred } = sessionData;
     const totalUsers = usersNotRegistred.length + usersRegistered.length;
 
     //States
@@ -117,6 +118,77 @@ export const Server = ({ session: sessionData }) => {
                         </div>
 
                     </div>
+
+                    <div className="demos registred">
+                        {
+                            demosRegistered.length > 0 &&
+                            <>
+                                <h2>Demos</h2>
+                                <div className="bar"></div>
+                            </>
+                        }
+                        <div className="sessions">
+                        {
+                            demosRegistered.map(({ userDB, session }) => {
+                                const durationT = ""
+                                return (
+                                    <div className='user user_playing'>
+                                        <div className="user_playing_header">
+                                            <span onClick={() => {
+                                                  setSessionToStop({
+                                                    session:session.Session.id,
+                                                    server:sessionData.server
+                                                 })
+                                                 setOpenModalTerminate(true);
+                                            }}>
+                                                <CloseIcon />
+                                            </span>
+                                            <img src={`${process.env.REACT_APP_API_URL}/api/my-account-info/plex-img/byServer?path=${session.type == "movie" ? session.thumb : session.parentThumb || session.thumb}&&server=${server}`} alt="" />
+
+                                            <div className="info">
+                                                <div>{session.type == "movie" ? session.title : `${session.grandparentTitle}-${session.title}`}</div>
+                                                <div>{session.year}</div>
+                                                <div>{durationT}</div>
+                                            </div>
+                                        </div>
+                                        <div className="user_playing_body">
+                                            <div>{session.Player?.product}--{session.Player?.platform}</div>
+                                            <div className='fw-bold'>{session.Player?.state}</div>
+                                            <div>{session.Player?.remotePublicAddress}</div>
+                                        </div>
+
+                                        <div className="user_playing_footer">
+                                            <span className='img'>
+                                                <img src={session.User.thumb} alt="" />
+                                            </span>
+                                            <span>
+                                                {session?.User?.title}
+                                                <div></div>
+                                                <div>
+                                                    {userDB?.email}
+                                                </div>
+                                                {userDB?.email && <div>Expira:
+                                                    
+                                                   
+                                                    {dayjs(userDB?.expireAt).format("DD-MMM-YYYY hh:mm a")}
+                                                </div>}
+                                                  
+
+                                                {
+                                                    !userDB?.email && <div className='alert alert-danger'>No registrado</div>
+                                                }
+                                            </span>
+                                        </div>
+
+
+                                    </div>
+                                )
+                            })
+                        }
+                        </div>
+
+                    </div>
+
                     <div className="registred">
                         {
                             usersRegistered.length > 0 &&
@@ -166,8 +238,11 @@ export const Server = ({ session: sessionData }) => {
                                                     {userDB?.email}
                                                 </div>
                                                 {userDB?.email && <div>Expira:
+                                                    
+                                                   
                                                     {dayjs(userDB?.credits[userDB?.credits.length - 1]?.expireAt).format("DD-MMM-YYYY")}
                                                 </div>}
+                                                    <span className='badge bg-danger'>{datesUtils.remainingTime(userDB?.credits[userDB?.credits.length - 1]?.expireAt)} Days</span>
 
                                                 {
                                                     !userDB?.email && <div className='alert alert-danger'>No registrado</div>
@@ -183,6 +258,8 @@ export const Server = ({ session: sessionData }) => {
                         </div>
 
                     </div>
+
+               
                 </div>
             </div>
             {openModalTerminate &&

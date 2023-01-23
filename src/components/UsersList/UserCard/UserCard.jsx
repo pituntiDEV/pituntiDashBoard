@@ -1,8 +1,7 @@
 import React from 'react'
-import { CancelIcon } from '../../icons/CancelIcon'
+
 import { InputWithIcon } from '../../icons/InputWithIcon/InputWithIcon'
-import { ServerIcon } from '../../icons/ServerIcon'
-import { UserTieIcon } from '../../icons/UserTieIcon'
+
 import { Options } from './Options/Options'
 import "./UserCard.scss"
 import dayjs from 'dayjs'
@@ -23,16 +22,18 @@ export const UserCard = ({ user,setNewUserState }) => {
 
         <div className="user__info">
           <InputWithIcon>
-            <UserTieIcon />
+            {/* <UserTieIcon /> */}
+            <i className="fa-solid fa-id-card"></i>
             <span> {user.name}</span>
           </InputWithIcon>
           <InputWithIcon>
-            <ServerIcon />
+            {/* <ServerIcon /> */}
+            <i className="fa-solid fa-share-nodes"></i>
             <small> {user?.data[0] && user.data.map(d=>d.name).join(",") || user?.data.name} </small>
           </InputWithIcon>
 
           <InputWithIcon>
-          <CancelIcon/>
+          <i className="fa-solid fa-clock"></i>
           <small>{user.credits[user.credits.length - 1] ? expireAt:"null"}</small>
           </InputWithIcon>
         </div>

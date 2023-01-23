@@ -2,9 +2,11 @@ import React from 'react'
 import useFetchApi from '../../hook/useFetchApi'
 import config from '../../config'
 import { useEffect } from 'react'
-import { Layout } from './Layout'
+import { Layout } from './Layout';
+import dates from "../../utils/date/index";
 import "./SuperUser.scss";
 export const SuperUser = () => {
+
   const [validateSuperUser,loadingValidateSuperUser] = useFetchApi({
     url:config.apiUrls.superUser.validate,
     method:"GET",

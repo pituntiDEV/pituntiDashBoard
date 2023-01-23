@@ -34,7 +34,10 @@ export const Server = () => {
         <Modal title="New Server" setOpenModal={setOpenModal}>
           <NewServerForm setNewServerState={setNewServerState} setOpenModal={setOpenModal} />
         </Modal>}
+        
       <ServersList newServerState={newServerState} setTotalServers={setTotalServers} />
+
+
 
     </div>
   )

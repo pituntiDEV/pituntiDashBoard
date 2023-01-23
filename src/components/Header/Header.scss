@@ -6,8 +6,23 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
+    position: relative;
 
     .brand {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+       
+        border-radius: 1rem 1rem 0 0 ;
+        img{
+             border-radius: 1rem;
+            max-width: 60px;
+            display: block;
+        }
+        .name{
+           font-size: 2rem;
+           font-weight: bold;
+        }
         .btn-menu {
             display: none;
 

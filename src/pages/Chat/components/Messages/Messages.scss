@@ -1,0 +1,71 @@
+.messages{
+    background-color: rgb(252, 248, 248);
+    padding: 1rem;
+    margin: 2rem 0;
+    overflow-y: auto;
+    max-height: 250px;
+    .message{
+       position: relative;
+        display: flex;
+        margin: 4rem 0;
+       
+        
+        .from{
+            background-color: rgb(243, 71, 33);
+            padding: .3rem 1rem;
+            position: absolute;
+            top: -2rem;
+            left: 0;
+            border-radius: 0 3rem 1rem 0;
+        }
+        &.me{
+            justify-content: flex-end;
+            .text{
+                background-color: rgb(81, 152, 75);
+                
+                color: white;
+                font-weight: bold;
+
+            }
+        }
+        .text{
+            position: relative;
+            padding: 1rem;
+            background-color: rgb(66, 66, 66);
+            border-radius: 1rem;
+            color: white;
+            font-weight: bold;
+            flex: 0 0 50%;
+            max-width: 100%;
+            word-wrap: break-word;
+            box-shadow: -3px 3px 7px 1px rgb(0, 0, 0);
+            
+            
+            
+        }
+       
+    }
+
+    
+}
+
+.chat-messages{
+    
+    form{
+       display: flex;
+       flex-direction: column;
+       gap: 1rem;
+       input{
+        padding: 1rem .5rem;
+        border-radius: 1rem;
+       }
+       button{
+        background-color: rgb(56, 65, 83);
+        color: white;
+        font-weight: bold;
+        font-size: 2rem;
+        box-shadow: -2px 2px 3px rgb(70, 70, 71);
+        border-radius: .5rem;
+       }
+    }
+}

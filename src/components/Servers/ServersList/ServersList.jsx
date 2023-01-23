@@ -21,9 +21,9 @@ export const ServersList = ({ setTotalServers, newServerState }) => {
   });
 
   useEffect(() => {
-    getServers().then(({ data }) => {
-      setServers(data.servers);
-      setTotalServers(data.servers?.length);
+    getServers().then((servers) => {
+      setServers(servers);
+      setTotalServers(servers?.length);
     })
   }, [newServerState,serverState])
   return (

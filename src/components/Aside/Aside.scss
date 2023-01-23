@@ -20,11 +20,18 @@ aside{
                 color: var(--color-primary);
               
                 position: absolute;
-                top: 1rem;
+                top: .5rem;
+                height: 3rem;
+                width: 3rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 50%;
                 right: 1.5rem;
-                color: rgb(182, 46, 46);
-                text-shadow: 0px 0px 10px red;
+                color: rgb(255, 255, 255);
+                text-shadow: 0px 0px 10px rgb(76, 75, 75);
                 font-size: 2rem;
+                background-color: rgb(204, 96, 96);
             }
         }
         z-index: 4;

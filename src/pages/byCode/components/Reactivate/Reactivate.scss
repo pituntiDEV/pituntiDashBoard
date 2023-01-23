@@ -1,0 +1,31 @@
+.Reactivate {
+    .form__group {
+
+        input {
+            max-width: 150px;
+            margin: 0 auto;
+            padding: 1rem 0;
+            font-size: 5rem;
+            text-align: center;
+            border-radius: 1rem;
+            text-transform: uppercase;
+        }
+
+    }
+    .button {
+        display: flex;
+        margin-top: 1rem;
+        color: red;
+        justify-content: center;
+        button{
+            width: 150px;
+            padding: .5rem 0;
+            background-color: rgb(61, 61, 96);
+            color: white;
+            font-weight: bold;
+            font-size: 2rem;
+            border-radius: 1rem;
+            box-shadow: -2px 3px 3px rgb(73, 72, 72);
+        }
+    }
+}

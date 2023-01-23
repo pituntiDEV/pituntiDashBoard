@@ -1,4 +1,6 @@
 import React,{useEffect} from 'react'
+import { useState } from 'react';
+import useFetchApi from '../../../../hook/useFetchApi';
 import useGetAccountServers from '../../../../hook/useGetAccountServers';
 import { HouseWifiIcon } from '../../../icons/HouseWifiIcon';
 import { ServerIcon } from '../../../icons/ServerIcon';
@@ -6,13 +8,20 @@ import { PackagesList } from '../PackagesList/PackagesList';
 import "./ServerList.scss";
 export const ServerList = ({state,setState}) => {
 
-
+ const [servers,setServers] = useState([])
 
     //Custom Hooks
-    const [getServers,servers,loading]=useGetAccountServers()
+     //Customs Hooks
+  const [getServers, loading] = useFetchApi({
+    url: `/api/server/get/all`,
+    method: 'GET',
+  });
 
     useEffect(()=>{
         getServers()
+          .then(servers=>{
+            setServers(servers);
+          })
     },[])
 
     //Functions

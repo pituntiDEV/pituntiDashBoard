@@ -17,6 +17,20 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+ul{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.form__group{
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.form__group select,input{
+  padding: .5rem;
+}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
@@ -28,7 +42,6 @@ code {
   border-radius: .3rem;
   border:none;
   margin: 1rem 0;
-  margin-right: 1rem;
   padding: .5rem 2rem;
   box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.675);
   font-size: 1.3rem;
@@ -39,6 +52,7 @@ code {
   background-color: rgb(51, 90, 135);
   color: white
 }
+
 
 .btn-secondary{
   background-color: rgb(81, 82, 83);

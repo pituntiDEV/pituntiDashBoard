@@ -19,6 +19,7 @@ export const Notification = () => {
     //State
     const [totalCredits, setAllCredits] = useState({});
     const [openModalWebHook,setOpenModalWebHook] =useState(false);
+    const [notifications,setNotifications] = useState([]);
     //Context
     const { state: { account_data } } = useContext(appContext);
     
@@ -28,6 +29,17 @@ export const Notification = () => {
         url: `/api/credits/shared-available`,
         method: 'GET',
     })
+
+    const [getNotifications,loadingGetNotifications] = useFetchApi({
+        url:"/api/notifications",
+        method: 'GET',
+    })
+
+    useEffect(()=>{
+        getNotifications().then(data=>{
+            setNotifications(data);
+        })
+    },[])
     
 
     useEffect(() => {
@@ -54,13 +66,33 @@ export const Notification = () => {
                 </span>
             </Link>
 
+            {/* WebHooks LINK */}
             <div className="web_hooks">
                 <i onClick={async()=>{
                     setOpenModalWebHook(true); //
                 }} className="fa-solid fa-blog"></i>
                 
             </div>
-            <i className="fa-solid fa-bell"></i>
+
+            {/* Notifications */}
+            <div className="notifications">
+                <div className="icon">
+                    <div className="punto"></div>
+                    <i className="fa-solid fa-bell"></i>
+
+                </div>
+                
+
+                <div className="notifications-list">
+                    {notifications.map(notification=>{
+                        return (<div key={notification._id} className='notification'>
+                            <i className="fa-solid fa-bell"></i> {notification.action}
+                        </div>)
+                    })}
+                </div>
+            </div>
+
+            {/* Messages */}
             <i className="fa-solid fa-message"></i>
             <div className="profile">
                {!account_data?.config?.thumb ?<button className="initial-letter">

@@ -10,8 +10,8 @@ export const Layout = () => {
     <div className='super_user_layout'>
          <header>
             <ul>
-                <li>Go Home</li>
-                <li onClick={()=>setOpenModalToNewUser(true)}>New User</li>
+                <li><a href="/">Go Home</a></li>
+                <li onClick={()=>setOpenModalToNewUser(true)}>Add Plan</li>
             </ul>
          </header>
 
@@ -21,7 +21,7 @@ export const Layout = () => {
          
          {openModalToNewUser && 
          <Modal title="New User" setOpenModal={setOpenModalToNewUser }>
-            <NewUser/>
+            <NewUser setOpenModal={setOpenModalToNewUser}/>
          </Modal>}
     </div>
   )

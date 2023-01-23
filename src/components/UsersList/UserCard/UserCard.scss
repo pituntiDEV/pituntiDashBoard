@@ -22,26 +22,28 @@
     }
     .card__header{
         grid-area: header;
-        background: var(--color-blue-serenity);
+        // background: var(--color-blue-serenity);
+        background: rgb(89, 119, 17);
         position: relative;
-        min-height: 7rem;
+        min-height: 5.5rem;
         margin-bottom: 2rem;
         border-radius:  0 0 50% 0;
+        border-bottom: 3px solid rgb(252, 252, 252);
         
         
         .email{
             font-weight: bold;
             color:white;
+            letter-spacing: 1px;
         }
         img {
             position: absolute;
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             margin: 0 auto;
             margin-bottom: 1rem;
-            border: rgb(152, 48, 48) 2px solid;
-            box-shadow: -6px 3px 5px rgba(0, 0, 0, 0.725),6px 3px 15px rgba(72, 110, 66, 0.412);
+            border: rgb(255, 255, 255) 3px solid;
             bottom: -50%;
             left: 50%;
             translate: -50%;
@@ -53,13 +55,13 @@
     }
 
     .card__body {
-        padding: 1.3rem;
+        padding:0 1rem;
         grid-area: body;
 
         .user__info {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: .5rem;
+            gap: .3rem;
             .name {
                 font-weight: bold;
             }

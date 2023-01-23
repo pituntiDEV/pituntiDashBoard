@@ -9,7 +9,10 @@ const Modal = ({ children,title="Modal TITLe",setOpenModal,reset=()=>{}}={}) => 
           <div className="modal__title">
             <h3>{title}</h3>
           </div>
-          <div className="modal__close" onClick={()=>setOpenModal(false)}><CloseIcon/></div>
+          <div className="modal__close" onClick={()=>{
+            reset();
+            
+            setOpenModal(false)}}><CloseIcon/></div>
         </div>
         <div className="modal__body">
           {children}

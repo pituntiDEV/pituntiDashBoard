@@ -12,7 +12,9 @@ export const Aside = () => {
         <div onClick={menuToggle} className="btn-menu">
         <i className="fa-solid fa-xmark"></i>
         </div>
-
+       <div className="logo">
+        {/* <img src="./assets/img/tecnodev3d_logo.png" /> */}
+       </div>
         <ul className="menu-list">
             <li className="menu-item">
                 <i className="fa-solid fa-gauge-high"></i> 
@@ -21,6 +23,10 @@ export const Aside = () => {
             <li className="menu-item">
                 <i className="fa-solid fa-users"></i>
                 <a href="/users">Users</a>     
+            </li>
+            <li className="menu-item">
+            <i className="fa-solid fa-code"></i>
+                <a href="/byCode">Act.Por codigo</a>     
             </li>
             <li className="menu-item">
                 <i className="fa-solid fa-file-invoice"></i>

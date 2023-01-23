@@ -23,6 +23,12 @@ import { DashBoard } from './pages/DashBoard/DashBoard';
 import { MyAccount } from './pages/MyAccount/MyAccount';
 import { Settings } from './pages/Settings/Settings';
 import { SuperUser } from './pages/SuperUser/SuperUser';
+import { Chat } from './pages/Chat/Chat';
+import { ChatContextProvider } from './pages/Chat/context/ChatContextProvider';
+import { ByCode } from './pages/byCode/ByCode';
+import { ResellersByCode } from './pages/byCode/ResellersByCode';
+import { PasswordRecovery } from './components/Passwords/PasswordRecovery';
+import { PasswordRecoveryForm } from './components/Passwords/PasswordRecoveryForm';
 function App() {
   return (
     <div className="App">
@@ -31,10 +37,18 @@ function App() {
         
           <Routes>
             <Route path='/superUser' element={<SuperUser/>} />
+
+            <Route path='/chat' element={< ChatContextProvider><Chat/></ChatContextProvider>}/>
+            
+            <Route path='/chat/:chatID' element={<ChatContextProvider>
+              <Chat/>
+            </ChatContextProvider>}/>
             <Route path='/my-account' element={<MyAccount/>}/>
             <Route path="/" element={<ProtectedPage>  <UserContextProvider><Layout ><DashBoard/></Layout></UserContextProvider></ProtectedPage>} />
             <Route path="/setting" element={<ProtectedPage>  <UserContextProvider><Settings/></UserContextProvider></ProtectedPage>} />
             <Route path="/users" element={<ProtectedPage>  <UserContextProvider><Layout ><Users/></Layout></UserContextProvider></ProtectedPage>} />
+            <Route path="/byCode" element={<ProtectedPage>  <UserContextProvider><Layout ><ByCode/></Layout></UserContextProvider></ProtectedPage>} />
+            <Route path="/byCode/resellers" element={<ProtectedPage>  <UserContextProvider><Layout ><ResellersByCode/></Layout></UserContextProvider></ProtectedPage>} />
             <Route path="/accounts" element={<ProtectedPage><Layout ><Accounts/></Layout></ProtectedPage>} />
             <Route path="/servers" element={<ProtectedPage><Layout ><Server/></Layout></ProtectedPage>} />
             <Route path="/paquetes" element={<ProtectedPage><Layout ><Paquetes/></Layout> </ProtectedPage>} />
@@ -43,6 +57,11 @@ function App() {
             <Route path="/no-register-users" element={<ProtectedPage><Layout ><NoRegisterUsers/></Layout> </ProtectedPage>} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/password/recovery/form" element={<PasswordRecoveryForm />} />
+            <Route path="/password/recovery" element={<PasswordRecovery />} />
+            <Route path="/*" element={<h1>Not Found</h1>} />
+
+            
             
           </Routes>
       </Router>

@@ -2,7 +2,6 @@ import dayjs from 'dayjs';
 import React, { useState } from 'react'
 import { useEffect } from 'react';
 import { BtnPrimary } from '../../components/Buttons/BtnSucess/BtnPrimary';
-import { Lineal } from '../../components/Chart/Lineal';
 import { CloseIcon } from '../../components/icons/CloseIcon';
 import Modal from '../../components/modal/Modal';
 import useFetchApi from '../../hook/useFetchApi';

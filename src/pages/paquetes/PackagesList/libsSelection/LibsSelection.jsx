@@ -65,7 +65,7 @@ export const LibsSelection = ({ pack,setPaqueteState,setOpenModal }) => {
       body:JSON.stringify(state),
     }).then(data=>{
       setPaqueteState(s=>!s);
-      setOpenModal(false);
+      // setOpenModal(false);
       SWAlert.alert({
         title:"Paquete Actualizado"
       })

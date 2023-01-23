@@ -1,0 +1,10 @@
+.edit__reseller__by__code{
+    .accounts__container{
+        display: grid;
+        gap:1rem;
+        grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
+        word-wrap: break-word;
+        text-align: center;
+      
+    }
+}

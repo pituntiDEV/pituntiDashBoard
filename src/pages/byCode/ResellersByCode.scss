@@ -1,0 +1,53 @@
+.ResellersByCode{
+    .resellers__list{
+        margin: 1rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
+        gap: 1rem;
+        .reseller{
+            background-color: #1f1f1f;
+            color: white;
+            padding: 1rem;
+            border-radius: 2rem;
+            .header{
+                text-align: center;
+               
+            }
+            .footer{
+                ul{
+                    display: flex;
+                    justify-content: space-around;
+                    
+                    li{
+                        position: relative;
+                        height: 2.5rem;
+                        width: 2.5rem;
+                        border: 1px solid rgb(255, 255, 255);
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        border-radius: 50%;
+                        box-shadow: -2px 2px 3px rgb(178, 46, 46);
+                        .credits {
+                            position: absolute;
+                            top: -1rem;
+                            right: -1rem;
+                            width: 2rem;
+                            z-index: 0;
+                            height: 2rem;
+                            background-color: rgb(220, 188, 48);
+                            border-radius: 50%;
+                            color: #1f1f1f;
+                            font-weight: bold;
+                            border: 1px solid rgb(198, 37, 37);
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+}

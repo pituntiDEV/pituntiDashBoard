@@ -16,10 +16,7 @@ export const UsersFilter = (props) => {
 
   return (
     <div className='filter'>
-               <div> <InputWithIcon>
-                <i className="fa-solid fa-filter bg-warning "></i>
-                <p className='title pl-1'>Filter By:</p>
-                </InputWithIcon></div>
+              
                 <div className='inputs'>
                     <div className='inputFilter'>
                     <small>Estado:</small>
