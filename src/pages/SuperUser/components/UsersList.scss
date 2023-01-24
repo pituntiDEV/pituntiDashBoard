@@ -1,0 +1,14 @@
+.sales__users__list{
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
+    gap:1rem;
+    margin: 0 2rem;
+    margin-top: 3rem;
+    .user{
+        background-color: rgb(74, 99, 222);
+        color: white;
+        text-align: center;
+        border-radius: .5rem;
+        box-shadow: -2px 2px 5px black;
+    }
+}

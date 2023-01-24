@@ -7,6 +7,7 @@ import useFetchApi from '../../hook/useFetchApi';
 import { Sessions } from './Sessions/Sessions';
 import {io} from "socket.io-client";
 import config from '../../config';
+import { Playing } from './components/Playing/Playing';
 
 export const DashBoard = () => {
   
@@ -104,7 +105,7 @@ export const DashBoard = () => {
      {/* {server.data?.name} */}
     </div>
 
-    
+    {/* <Playing/> */}
     <Sessions sessions={sessions} newSessions={newSessions}/>
 
      {/* <div className='users_playing_container container'>

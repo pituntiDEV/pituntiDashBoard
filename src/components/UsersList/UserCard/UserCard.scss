@@ -22,19 +22,20 @@
     }
     .card__header{
         grid-area: header;
-        // background: var(--color-blue-serenity);
         background: rgb(89, 119, 17);
+        background: var(--color-blue-serenity);
         position: relative;
         min-height: 5.5rem;
         margin-bottom: 2rem;
         border-radius:  0 0 50% 0;
         border-bottom: 3px solid rgb(252, 252, 252);
         
-        
         .email{
+            overflow-wrap: break-word;
             font-weight: bold;
             color:white;
-            letter-spacing: 1px;
+            
+            
         }
         img {
             position: absolute;

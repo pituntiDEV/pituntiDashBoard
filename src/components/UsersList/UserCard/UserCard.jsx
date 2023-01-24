@@ -5,9 +5,10 @@ import { InputWithIcon } from '../../icons/InputWithIcon/InputWithIcon'
 import { Options } from './Options/Options'
 import "./UserCard.scss"
 import dayjs from 'dayjs'
+import utils from "../../../utils/date/index";
 export const UserCard = ({ user,setNewUserState }) => {
   const expireAt = dayjs(user.credits[user.credits.length - 1]?.expireAt,"YYYY-MM-DD").format("DD/MMM/YYYY") || null;
-  const isExpired = dayjs(dayjs()).isAfter(expireAt);
+  const isExpired = utils.isExpired(expireAt)
 
   return (
     <div className={`user__card ${isExpired && "expired"}`} key={user._id}>

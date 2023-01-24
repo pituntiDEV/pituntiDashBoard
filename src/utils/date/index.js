@@ -1,4 +1,7 @@
 const dayjs = require('dayjs');
+// require('dayjs/locale/es')
+
+// dayjs.locale('es')
 
 const addMonths= (numMonth,date,format="YYYY-MM-DD")=>{
   try {
@@ -32,12 +35,17 @@ const renewPoint =(date)=>{
   const current = isExpired(date) ? currentDate():date;
   return current;
 }
+
+const formatDate =(date)=>{
+  return dayjs(date).format("DD/MMMM/YYYY");
+}
 module.exports={
   addMonths,
   currentDate,
   isExpired,
   renewPoint,
   remainingTime,
-  remainingTimeByDays
+  remainingTimeByDays,
+  formatDate
   
 }

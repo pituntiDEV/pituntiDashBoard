@@ -101,6 +101,8 @@ export const NewUser = ({setOpenModal}) => {
                                     return <option key={(i + 1) * 25} value={(i + 1) * 25} >{(i + 1) * 25} Usuarios</option>
                                 })
                             }
+
+                            <option value="Ilimitado">Ilimitado</option>
                         </select>
                     </div>
                     <div className='cobro'>

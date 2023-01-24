@@ -116,6 +116,14 @@ export const Notification = () => {
                     <ul>
                         {/* <li>Profile</li> */}
                         <li><a href="/setting">Setting</a></li>
+                        <li>
+                            {account_data.plan !="free"?`⭐Plan ${account_data.plan} usuarios`:`🆓Plan Free`}</li>
+                       <li>
+                       {
+                            account_data.plan !="free" && <div>⏳Exp: <small className='text-danger'>{account_data.expireAt}</small></div>
+                        }
+                       </li>
+                        
                         <li onClick={Logout}>Logout</li>
                     </ul>
                 </div>

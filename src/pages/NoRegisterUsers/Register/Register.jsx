@@ -60,8 +60,8 @@ export const Register = ({ account,user, setUSersState, setOpenModal }) => {
     getResellers().then(resells => {
       setResellers(resells);
     })
-    getServers().then(data => {
-      setServers(data.data.servers);
+    getServers().then(servers => {
+      setServers(servers);
     })
   }, [])
 

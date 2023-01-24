@@ -7,7 +7,7 @@ import Modal from '../../../../components/modal/Modal';
 import SWAlert from '../../../../components/SwAlert/SWAlert';
 import useFetchApi from '../../../../hook/useFetchApi';
 import "./Server.scss";
-const datesUtils = require('../../../../utils/date/');
+const datesUtils = require('../../../../utils/date/index');
 export const Server = ({ session: sessionData }) => {
    
 
