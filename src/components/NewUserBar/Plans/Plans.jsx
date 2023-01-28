@@ -13,7 +13,7 @@ export const Plans = (props) => {
     const isAdmin = isNotAdmin.length ==0 ? true:false
     
 
-console.log(isNotAdmin);
+// console.log(isNotAdmin);
 
     
     return (

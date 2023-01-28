@@ -57,7 +57,7 @@ export const PackagesList = ({ server,resellerToEdit,setResellerToEdit }) => {
                 
                     <ul className="packages__container">
                         {packages.map(pack => {
-                          const findServer = resellerToEdit.servers.find(s=>s.server._id== server._id);
+                          const findServer = resellerToEdit.servers.find(s=>s.server?._id== server._id);
                             return (
                                 <li className={`package ${findServer.packages.includes(pack._id) && "active"} `} onClick={()=>selectPackage(pack)}>-- 
                                 &nbsp;

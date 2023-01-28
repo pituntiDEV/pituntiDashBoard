@@ -81,7 +81,7 @@ export const UserInfo = (props) => {
     }
 
     const packagesOnChange = (pack) => {
-        console.log(pack)
+        // console.log(pack)
         // let packages = state.packages;
         // const existe = packages.includes(packID);
         // if (!existe) {
@@ -169,7 +169,7 @@ export const UserInfo = (props) => {
                                 }
 
                                 {
-                                    sharedServers.map(( server ) => {
+                                    sharedServers.map(( {server} ) => {
                                         const existe = state.servers.find(s=>s._id == server._id);
                                         
                                         return (
