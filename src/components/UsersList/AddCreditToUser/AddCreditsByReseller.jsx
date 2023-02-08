@@ -16,16 +16,15 @@ export const AddCreditsByReseller = ({send,user,register,errors}) => {
 
   //Effects
   useEffect(()=>{
-    getCredits().then((data)=>{
-     const conn = data.reduce((acc,credit)=>{
+    getCredits().then((myCreditsAvailables)=>{
+    
+     const conn = myCreditsAvailables.reduce((acc,credit)=>{
       if(!acc.includes(credit.conexion)){
-        if(credit.new==true){
           acc.push(credit.conexion);
-        }
       }
       return acc.sort((a,b)=>a-b);
      },[])
-     const availableCredits = data.filter(credit=>credit.conexion==connNumber && credit.new ==true);
+     const availableCredits = myCreditsAvailables.filter(credit=>credit.conexion==connNumber);
      setState({...state,connections:conn,credits:availableCredits})
     })
   },[send,connNumber])
