@@ -18,12 +18,16 @@ export const AddCreditsByReseller = ({send,user,register,errors}) => {
   useEffect(()=>{
     getCredits().then((myCreditsAvailables)=>{
     
+      //Buscando las conecciones disponibles
      const conn = myCreditsAvailables.reduce((acc,credit)=>{
       if(!acc.includes(credit.conexion)){
           acc.push(credit.conexion);
       }
       return acc.sort((a,b)=>a-b);
-     },[])
+     },[]);
+
+
+    //Buscando creditos disponibles
      const availableCredits = myCreditsAvailables.filter(credit=>credit.conexion==connNumber);
      setState({...state,connections:conn,credits:availableCredits})
     })

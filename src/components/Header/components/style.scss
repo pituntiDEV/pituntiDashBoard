@@ -1,0 +1,28 @@
+.credits_by_code{
+    position: relative;
+    margin-right: 1rem;
+    display: flex;
+    span{
+        font-size: 1rem;
+        position: absolute;
+        top: -1.5rem;
+    }
+  
+    small{
+        position: absolute;
+        top:-1.5rem;
+        left:-1.8rem;
+        width: 2.5rem;
+        height: 2.5rem;
+        z-index: -1;
+        box-shadow: 0 0 10px rgb(233, 200, 17);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    i{
+        font-size: 2rem;
+        color: rgb(192, 216, 243);
+    }
+}

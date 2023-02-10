@@ -9,6 +9,7 @@ import { useState } from 'react';
 import { CoinsIcon } from '../icons/CoinsIcon';
 import SWAlert from '../SwAlert/SWAlert';
 import Modal from '../modal/Modal';
+import { CreditsByCode } from '../Header/components/CreditsByCode';
 const Logout = () => {
     localStorage.removeItem("access-token");
     window.location.href = "/login"
@@ -50,6 +51,10 @@ export const Notification = () => {
 
     return (
         <div className="notification-container">
+
+            <div>
+               <CreditsByCode/>
+            </div>
 
             {totalCredits.length > 0 && <span className='credits'>
                 <div className="total_credits">
