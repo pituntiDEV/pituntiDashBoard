@@ -10,6 +10,7 @@ export const EditResellerForm = ({setResellersState,user,setOpenModal}) => {
     const [userAccounts,setUserAccounts] =useState(user.accounts);
     const [accounts,loading]=useGetPlexAccounts();
     const [demoDuration,setDemoDuration] = useState(user.demoDuration);
+    const [activateCost,setActivateCost] = useState(user.activateCost);
 
     //Custom Hooks
     const [edit,loadingToEdit] = useFetchApi({
@@ -35,7 +36,8 @@ export const EditResellerForm = ({setResellersState,user,setOpenModal}) => {
         e.preventDefault();
         edit({body:JSON.stringify({
             accounts:userAccounts,
-            demoDuration
+            demoDuration,
+            activateCost
         })})
         .then(data=>{
             setResellersState(s=>!s);
@@ -75,6 +77,14 @@ export const EditResellerForm = ({setResellersState,user,setOpenModal}) => {
             setDemoDuration(e.target.value)
         }} min="0" value={demoDuration} name="demoTime" id="demoTIme" />
        </div>
+        
+       <div className="form__group">
+        <label htmlFor="demoTime">Costo activacíon (credits)</label>
+        <input type="number" onChange={(e)=>{
+            setActivateCost(e.target.value)
+        }} min="0" value={activateCost} name="demoTime" id="demoTIme" />
+       </div>
+
        <div className="buttonss mt-5 d-flex gap-4">
             <input className='btn btn-primary' type="submit" value="Editar" />
             <input onClick={()=>{

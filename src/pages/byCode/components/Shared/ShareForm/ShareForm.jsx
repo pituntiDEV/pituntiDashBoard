@@ -15,7 +15,9 @@ export const ShareForm = ({setOpenModal,setResellersState}) => {
         reseller: "",
         account: "",
         credits:0,
-        demoDuration:0
+        demoDuration:0,
+        activateCost:1
+
     })
 
     //Custom Hooks
@@ -133,6 +135,11 @@ export const ShareForm = ({setOpenModal,setResellersState}) => {
                 <div className="form__group">
                     <label htmlFor="credits">Credits:</label>
                     <input type="number" required onChange={onChange} name="credits" id="credits" min="1" />
+                </div>
+
+                <div className="form__group">
+                    <label htmlFor="activateCost">Costo por cada activacion (creditos):</label>
+                    <input type="number" value={formData.activateCost} required onChange={onChange} name="activateCost" id="credits" min="1" />
                 </div>
 
                 <div className="form__group ">

@@ -148,9 +148,9 @@ export const ActivateForm = ({ setOpenModal, setDevicesState }) => {
                 </div >
                 : !isOwner && !isDemo && formData.account_id ?
                     <div className="form_group" >
-                        <label htmlFor="credits">Creditos</label>
+                        <label htmlFor="credits">Mes:</label>
                         <select defaultValue={''} onChange={onChange} required placeholder='Credist' id="credits">
-                            <option value="" disabled>Creditos</option>
+                            <option value="" disabled>Mes</option>
                             {
                                 credits.map((credit, i) => {
                                     return (
