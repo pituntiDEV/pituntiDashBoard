@@ -7,14 +7,15 @@ import SWAlert from '../../../../components/SwAlert/SWAlert'
 import useFetchApi from '../../../../hook/useFetchApi'
 import useGetPlexLibs from '../../../../hook/useGetPlexLibs'
 import "./LibsSelection.scss"
-export const LibsSelection = ({ pack,setPaqueteState,setOpenModal }) => {
+export const LibsSelection = ({ pack, setPaqueteState, setOpenModal }) => {
 
-  
+
   //states
   const [libs, setLibs] = useState([]);
-  const [state,setState] = useState({
-    name:pack.name,
-    libs:pack.libs,
+  const [state, setState] = useState({
+    name: pack.name,
+    libs: pack.libs,
+    priceByPackage:pack.priceByPackage
   })
   //Custom Hooks
   const [getPackages, loadingGetPackages] = useFetchApi({
@@ -27,55 +28,55 @@ export const LibsSelection = ({ pack,setPaqueteState,setOpenModal }) => {
   })
   const [getPlexLibs] = useGetPlexLibs();
 
-  const [updatePackage,loadingUpdatePackage] = useFetchApi({
-    url:`/api/package/${pack._id}`,
+  const [updatePackage, loadingUpdatePackage] = useFetchApi({
+    url: `/api/package/${pack._id}`,
     method: 'PUT',
   })
 
 
-  
+
   //Effects
   useEffect(() => {
     getServerByID().then(data => {
       getPlexLibs(data).then((data) => {
         setLibs(data);
       })
-      
-    })
-    
-  }, [])
-  const libsPackIDS = state.libs.map(l=>l.id);
 
-  const hanledToggleLibs = (lib)=>{
+    })
+
+  }, [])
+  const libsPackIDS = state.libs.map(l => l.id);
+
+  const hanledToggleLibs = (lib) => {
     let libs = state.libs;
-    const existe = libs.find(l=>l.id == lib.id);
-    if(!existe){
+    const existe = libs.find(l => l.id == lib.id);
+    if (!existe) {
       libs.push(lib);
-      setState({...state, libs});
-    }else{
-      libs= libs.filter(l=>l.id!=lib.id);
-      setState({...state, libs});
+      setState({ ...state, libs });
+    } else {
+      libs = libs.filter(l => l.id != lib.id);
+      setState({ ...state, libs });
     }
 
   }
 
-  const submit=(e)=>{
+  const submit = (e) => {
     e.preventDefault();
     updatePackage({
-      body:JSON.stringify(state),
-    }).then(data=>{
-      setPaqueteState(s=>!s);
-      // setOpenModal(false);
+      body: JSON.stringify(state),
+    }).then(data => {
+      setPaqueteState(s => !s);
       SWAlert.alert({
-        title:"Paquete Actualizado"
+        title: "Paquete Actualizado"
       })
+      setOpenModal(false);
 
     })
-    .catch(error=>{
-      alert.error({
-        title:error.message || "Algo salio mal"
+      .catch(error => {
+        alert.error({
+          title: error.message || "Algo salio mal"
+        })
       })
-    })
   }
   return (
     <form onSubmit={submit} className='packageUpdate'>
@@ -83,24 +84,38 @@ export const LibsSelection = ({ pack,setPaqueteState,setOpenModal }) => {
         {libs.map(lib => {
           const selected = libsPackIDS.includes(lib.id);
           return (
-            <div onClick={()=>hanledToggleLibs(lib)} className={`lib ${selected && "selected"}`}>
+            <div onClick={() => hanledToggleLibs(lib)} className={`lib ${selected && "selected"}`}>
               <p className='fw-bold'>
-              <i className={`fa-solid ${lib.type=="movie" && "fa-film" }  ${lib.type=="show" && "fa-video" }`}></i> ({lib.type})
-                </p>
+                <i className={`fa-solid ${lib.type == "movie" && "fa-film"}  ${lib.type == "show" && "fa-video"}`}></i> ({lib.type})
+              </p>
               {lib.title}
             </div>
           )
         })}
       </datalist>
       <div className="form">
-        <input onChange={(e)=>{
-          setState({...state,name:e.target.value})
-        }} type="text" value={state.name} />
+        <div className="form__group">
+          <label htmlFor="name">Name:</label>
+          <input onChange={(e) => {
+            setState({ ...state, name: e.target.value })
+          }} type="text" required minLength={4} value={state.name} />
+
+        </div>
+
+        <div className="form__group mt-3">
+          <label htmlFor="priceByPackage">Precio extra:</label>
+          <input onChange={(e) => {
+            setState({ ...state, priceByPackage: e.target.value })
+          }} type="number"  value={state.priceByPackage} />
+
+        </div>
       </div>
 
+
+
       <div className="btns">
-        <BtnPrimary title="Editar"/>
-        <BtnSecondary type="button" title="Cancelar"/>
+        <BtnPrimary title="Editar" />
+        <BtnSecondary onClick={()=>setOpenModal(false)} type="button" title="Cancelar" />
       </div>
     </form>
   )
