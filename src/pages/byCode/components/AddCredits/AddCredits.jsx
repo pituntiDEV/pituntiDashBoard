@@ -53,7 +53,7 @@ export const AddCredits = ({ deviceToAddCredits,setOpenModal,setDevicesState }) 
         } catch (error) {
             console.log(error)
            SWAlert.error({
-            title:error.error || "Error"
+            title:error.message || "Error"
            })
         }
     }
