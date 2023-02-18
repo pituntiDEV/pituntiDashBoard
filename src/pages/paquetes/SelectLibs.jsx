@@ -1,6 +1,7 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
+import { CoinsIcon } from '../../components/icons/CoinsIcon';
 import { InfoIcon } from '../../components/icons/InfoIcon';
 import { InputWithIcon } from '../../components/icons/InputWithIcon/InputWithIcon';
 import { PackCloseIcon } from '../../components/icons/PackCloseIcon';
@@ -30,6 +31,8 @@ export const SelectLibs = ({ server, setOpenModal,accountServers,setNewPackageSt
     libs,
     name: "",
     description: "",
+    priceByPackage:""
+
   });
 
 
@@ -72,6 +75,7 @@ export const SelectLibs = ({ server, setOpenModal,accountServers,setNewPackageSt
       const dataToSend = {
         name: data.name,
         description: data.description,
+        priceByPackage:data.priceByPackage,
         libs: libsSelected,
         server: selectedServer._id,
         account: selectedServer.account
@@ -128,6 +132,15 @@ export const SelectLibs = ({ server, setOpenModal,accountServers,setNewPackageSt
           <InputWithIcon>
             <InfoIcon />
             <input type="text" required name="description" onChange={onChange} />
+          </InputWithIcon>
+
+        </div>
+
+        <div className='form-group'>
+          <label>Creditos Extras</label>
+          <InputWithIcon>
+            <CoinsIcon/>
+            <input type="number" required name="priceByPackage" onChange={onChange} />
           </InputWithIcon>
 
         </div>

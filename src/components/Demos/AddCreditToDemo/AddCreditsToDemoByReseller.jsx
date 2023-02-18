@@ -79,11 +79,11 @@ export const AddCreditsToDemoByReseller = ({ user,setOpenModal,setDemoState }) =
       </div>
 
       <div className="form-group mt-3">
-        <label htmlFor="">Creditos:</label>
+        <label htmlFor="">Mes:</label>
         <select required {...register("credits",{
           required:"*Requerido"
         })}>
-          <option value="">Seleccione:</option>
+          <option value="">Seleccione Mes:</option>
           {
             availableCredits.map((c,i)=><option key={c._id}>{i+1}</option>)
           }

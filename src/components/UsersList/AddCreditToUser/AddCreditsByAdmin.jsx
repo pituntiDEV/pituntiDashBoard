@@ -5,7 +5,7 @@ export const AddCreditsByAdmin = ({ register, errors }) => {
   return (
     <div className='form_by_admin'>
       <div className="form-group">
-        <label htmlFor="">Creditos:</label>
+        <label htmlFor="">Mes:</label>
         <input className='input' type="number" min="1" {...register("credits", {
           required: true,
           min: 1

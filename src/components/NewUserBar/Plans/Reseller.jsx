@@ -8,6 +8,8 @@ import { InputWithIcon } from '../../icons/InputWithIcon/InputWithIcon'
 export const Reseller = ({ state, setState }) => {
     //State
     const [credits, setCredits] = useState([]);
+    const [credistExtras,setCreditsExtras] = useState(0);
+    const [totalCredits,setTotalCredits] = useState(0)
     const [connections, setConnections] = useState([]);
     const [availableCredits, setAvailableCredits] = useState([]);
     //Custom Hooks
@@ -20,6 +22,12 @@ export const Reseller = ({ state, setState }) => {
 
     //Effects
     useEffect(() => {
+        const getCreditsExtras = state.packages.reduce((acc,pack)=>{
+            acc+=pack.priceByPackage;
+            return acc;
+        },0);
+        setCreditsExtras(getCreditsExtras);
+
         getCredits()
             .then(( data ) => {
                 setCredits(data);
@@ -36,8 +44,26 @@ export const Reseller = ({ state, setState }) => {
 
                 setConnections(conn)
             })
+        
     }, [])
 
+
+    // Haciendo el calculo de cobro de creditos
+    useEffect(()=>{
+        if(credistExtras > 0){
+            const total = credistExtras * Number(state.credits)
+            setTotalCredits(total)
+        }else{
+            setTotalCredits(state.credits)
+        }
+       
+       
+    },[state.credits,credistExtras])
+
+    //
+     useEffect(()=>{
+        setState({...state,totalCredits})
+     },[totalCredits])
 
     //Functions
     const onChangeInput = (e) => {
@@ -51,11 +77,15 @@ export const Reseller = ({ state, setState }) => {
 
     }
 
+ 
     //Get credist
     return (
         <div className="reseller">
+            {/* <div className="alert alert-info">
+               Total creditos:{totalCredits}
+            </div> */}
             <div className='form-group'>
-                
+               
                 <label htmlFor="email">Connections:</label>
                 <InputWithIcon>
                     <i className="fa-solid fa-satellite-dish"></i>
@@ -72,11 +102,11 @@ export const Reseller = ({ state, setState }) => {
                 </InputWithIcon>
             </div>
             <div className='form-group'>
-                <label htmlFor="email">Credits:</label>
+                <label htmlFor="email">Meses:</label>
                 <InputWithIcon>
-                    <CoinsIcon />
+                <i className="fa-solid fa-calendar-days"></i>
                     <select name="credits" onChange={onChangeInput} defaultValue={""} required id="">
-                        <option value="" disabled>Creditos</option>
+                        <option value="" disabled>Meses</option>
                         {availableCredits.map((c, i) => <option key={i + 1} value={i + 1}>{i + 1}</option>)}
                     </select>
                 </InputWithIcon>

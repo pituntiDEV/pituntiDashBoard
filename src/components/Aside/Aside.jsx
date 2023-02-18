@@ -22,7 +22,11 @@ export const Aside = () => {
             </li>
             <li className="menu-item">
                 <i className="fa-solid fa-users"></i>
-                <a href="/users">Users</a>     
+                <a href="/users">Plex Users</a>     
+            </li>
+            <li className="menu-item">
+                <i className="fa-solid fa-users"></i>
+                <a href="/users/emby">Emby Users</a>     
             </li>
             <li className="menu-item">
             <i className="fa-solid fa-code"></i>

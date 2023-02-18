@@ -23,9 +23,16 @@
                 height: 5rem;
                 width: 5rem;
                 border-radius: 50%;
-                border: solid 2px red;
+                border: solid 2px rgb(247, 243, 243);
                 overflow: hidden;
-
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 2rem;
+                text-transform: uppercase;
+                background:linear-gradient(to right,rgb(59, 88, 165),rgb(55, 255, 0));
+                font-weight: bold;
+                text-shadow: -2px 2px 3px black;
                 img {
                     height: 100%;
                 }

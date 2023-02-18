@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useEffect } from 'react';
+import useFetchApi from '../../../hook/useFetchApi';
 import { useGetAccounts } from '../../../hook/useGetAccounts';
 import { RepeatIcon } from '../../icons/RepeatIcon';
 import { TrashIcon } from '../../icons/TrashIcon';
@@ -11,14 +12,24 @@ export const AccountList = ({newAccountState,setTotalAccounts}) => {
   const [openModalToRemoveAccount,setOpenModalToRemoveAccount] = useState(false);
   const [accountID,setAccountID] = useState("");
   const [deleteAccount,setDeleteAccount] = useState(false);
+  const [embyAccounts,setEmbyAccounts] = useState([]);
 
   //Custom hooks
   const [getAccount, accounts, loading] = useGetAccounts();
+  const [getEmbyAccounts,loadingGetEmbyAccounts] = useFetchApi({
+    url:`/api/emby/accounts`,
+    method: 'GET',
+  });
  
 
   //Effects
   useEffect(() => {
     getAccount();
+    getEmbyAccounts()
+      .then(data=>{
+        setEmbyAccounts(data)
+      })
+    
     
   }, [newAccountState,deleteAccount])
 
@@ -32,6 +43,30 @@ export const AccountList = ({newAccountState,setTotalAccounts}) => {
     <div className="account__list">
       {loading && <div>Loading...</div>}
       
+      {
+        embyAccounts.map(account=>{
+          return (
+            <div className='account' key={account._id}>
+            <div className="account__container">
+              <div className="profile">
+                {/* <img src={account.data.user.thumb} alt="" /> */}
+                {account.email[0]}
+              </div>
+              ({account.platform})
+              <span>{account.email}</span>
+            </div>
+
+            <div className="controls">
+              <span><RepeatIcon/></span>
+              <span onClick={()=>{
+                setOpenModalToRemoveAccount(true)
+                setAccountID(account._id)
+              }}><TrashIcon/></span>
+            </div>
+          </div>
+          )
+        })
+      }
 
       {
         accounts.map((account) => {
@@ -40,6 +75,7 @@ export const AccountList = ({newAccountState,setTotalAccounts}) => {
               <div className="profile">
                 <img src={account.data.user.thumb} alt="" />
               </div>
+              ({account.platform})
               <span>{account.email}</span>
             </div>
 

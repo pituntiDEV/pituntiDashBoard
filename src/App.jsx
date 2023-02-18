@@ -29,6 +29,7 @@ import { ByCode } from './pages/byCode/ByCode';
 import { ResellersByCode } from './pages/byCode/ResellersByCode';
 import { PasswordRecovery } from './components/Passwords/PasswordRecovery';
 import { PasswordRecoveryForm } from './components/Passwords/PasswordRecoveryForm';
+import EmbyUsers from './pages/emby/users/EmbyUsers';
 function App() {
   return (
     <div className="App">
@@ -47,6 +48,10 @@ function App() {
             <Route path="/" element={<ProtectedPage>  <UserContextProvider><Layout ><DashBoard/></Layout></UserContextProvider></ProtectedPage>} />
             <Route path="/setting" element={<ProtectedPage>  <UserContextProvider><Settings/></UserContextProvider></ProtectedPage>} />
             <Route path="/users" element={<ProtectedPage>  <UserContextProvider><Layout ><Users/></Layout></UserContextProvider></ProtectedPage>} />
+
+            <Route path="/users/emby" element={<ProtectedPage>  <UserContextProvider><Layout ><EmbyUsers/></Layout></UserContextProvider></ProtectedPage>} />
+
+
             <Route path="/byCode" element={<ProtectedPage>  <UserContextProvider><Layout ><ByCode/></Layout></UserContextProvider></ProtectedPage>} />
             <Route path="/byCode/resellers" element={<ProtectedPage>  <UserContextProvider><Layout ><ResellersByCode/></Layout></UserContextProvider></ProtectedPage>} />
             <Route path="/accounts" element={<ProtectedPage><Layout ><Accounts/></Layout></ProtectedPage>} />

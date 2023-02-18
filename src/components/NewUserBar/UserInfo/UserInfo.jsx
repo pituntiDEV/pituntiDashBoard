@@ -159,9 +159,9 @@ export const UserInfo = (props) => {
                                 {
                                     myServers.map(server => {
                                         const existe = state.servers.find(s=>s._id == server._id);
-
+                                           
                                         return (
-                                            <div onClick={()=>onChangeServer(server)} className={`server ${existe && "active"}`} key={server._id} value={JSON.stringify({ id: server._id, owner: true, ownerID: server.admin._id })}><ServerIcon/> {server.data.name}
+                                            <div key={server._id} onClick={()=>onChangeServer(server)} className={`server ${existe && "active"}`} value={JSON.stringify({ id: server._id, owner: true, ownerID: server.admin._id })}><ServerIcon/> {server.data.name}
                                             
                                             </div>
                                         )
@@ -185,7 +185,7 @@ export const UserInfo = (props) => {
                     <div className="packages">
                         {state.servers.map(server=>{
                             return (
-                                <Packages state={state} setState={setState} server={server}/>
+                                <Packages key={server._id} state={state} setState={setState} server={server}/>
                             )
                         })}
                     </div>

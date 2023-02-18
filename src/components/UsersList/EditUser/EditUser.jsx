@@ -173,7 +173,7 @@ export const EditUser = ({ user, setOpenModal, setNewUserState }) => {
                         state.servers.map(server=>{
                             return (
                                 <div key={server._id} className="pack">
-                                   <PackagesList server={server} state={state} setState={setState}/>
+                                   <PackagesList user={user} server={server} state={state} setState={setState}/>
                                 </div>
                             )
                         })

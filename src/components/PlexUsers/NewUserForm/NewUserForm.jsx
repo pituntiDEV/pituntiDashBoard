@@ -33,6 +33,7 @@ export const NewUserForm = ({setNewUserState,setOpenModal}) => {
     removeLibs: false,
     removeLibsDays: 3,
     byMonth: false,
+    totalCredits:0,
     servers:[]
   });
 

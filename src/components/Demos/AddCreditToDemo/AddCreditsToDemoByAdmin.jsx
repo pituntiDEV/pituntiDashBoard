@@ -30,7 +30,7 @@ export const AddCreditsToDemoByAdmin = ({ user,setOpenModal,setDemoState }) => {
         <div className='admin'>
             <form onSubmit={handleSubmit(submit)} action="">
                 <div className="form-group">
-                    <label htmlFor="">Creditos:</label>
+                    <label htmlFor="">Mes:</label>
                     <input min="1" type="number" {...register("credits", {
                         required: "*Requerido",
                         min: {

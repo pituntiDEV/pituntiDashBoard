@@ -53,7 +53,7 @@ export const Accounts = () => {
                 <span>Total {totalAccounts} Account</span>
                 <div className="btn-group">
                     <button onClick={() => setOpenModal(true)}>New Plex Account</button>
-                    {/* <button onClick={() => setOpenModalToEmby(true)}>New Emby Account</button> */}
+                    <button onClick={() => setOpenModalToEmby(true)}>New Emby Account</button>
                 </div>
             </div>
             <AccountList setTotalAccounts={setTotalAccounts} newAccountState={newAccountState} />
@@ -79,7 +79,7 @@ export const Accounts = () => {
 
             {openModalToEmby &&
                 <Modal title="Nueva cuenta emby" setOpenModal={setOpenModalToEmby}>
-                   <NewEmbyAccountForm/>
+                   <NewEmbyAccountForm setNewAccountState={setNewAccountState} setOpenModal={setOpenModalToEmby}/>
                 </Modal>
             }
         </div>

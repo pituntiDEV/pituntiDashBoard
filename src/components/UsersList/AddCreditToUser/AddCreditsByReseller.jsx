@@ -61,12 +61,12 @@ export const AddCreditsByReseller = ({send,user,register,errors}) => {
     </div>
 
     <div className="form-group">
-      <label htmlFor="">Creditos:</label>
+      <label htmlFor="">Mes:</label>
       <select {...register("credits",{
         required: true,
         min: 1,
       })} defaultValue={""}  className='input'>
-        <option value="" disabled>Creditos</option>
+        <option value="" disabled>Mes</option>
         {
           state.credits.map((credit,i)=>{
             return <option key={credit._id} value={i+1}>{i+1}</option>
