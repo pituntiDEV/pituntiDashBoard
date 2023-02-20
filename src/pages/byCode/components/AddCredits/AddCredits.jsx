@@ -45,6 +45,7 @@ export const AddCredits = ({ deviceToAddCredits,setOpenModal,setDevicesState }) 
             const responce = await addCredits({
                 body:JSON.stringify(formData)
             })
+            console.log(responce);
             SWAlert.alert({
                 title:`Creditos agregados a ${deviceToAddCredits.name}`
             })
@@ -67,9 +68,9 @@ export const AddCredits = ({ deviceToAddCredits,setOpenModal,setDevicesState }) 
             </div>
                 :
                 <div className="form__group">
-                    <label htmlFor="credits">Credits:</label>
+                    <label htmlFor="credits">Mes:</label>
                     <select onChange={onChange} name="credtis" defaultValue={""} id="credits">
-                        <option value="" disabled>Selecciona los creditos</option>
+                        <option value="" disabled>Selecciona Mes</option>
                         {
                             availableCredits.map((credits,index)=>{
                                 return (
