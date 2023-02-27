@@ -1,0 +1,19 @@
+.servers{
+    .server{
+        .packages{
+        display: flex;
+        margin-left: 2rem;
+        gap: 1rem;
+       
+        .pack{
+            background-color: rgba(244, 59, 59, 0.823);
+            padding: 1rem;
+            border-radius: 1rem;
+            color: white;
+        }
+        .active{
+            background-color: rgb(103, 175, 75);
+        }
+    }
+    }
+}

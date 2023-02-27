@@ -10,16 +10,18 @@ import { RepeatIcon } from '../../../icons/RepeatIcon';
 import { TrashIcon } from '../../../icons/TrashIcon';
 import Modal from '../../../modal/Modal';
 import { AddCreditToUser } from '../../AddCreditToUser/AddCreditToUser';
+import { AuthData } from '../../AuthData';
 import { DeleteUserForm } from '../../DeleteUserForm/DeleteUserForm';
 import { EditUser } from '../../EditUser/EditUser';
 import "./Options.scss";
 
 
-export const Options = ({ user,setNewUserState }) => {
-   
+export const Options = ({ user, setNewUserState }) => {
+
     const [openModalToEdit, setOpenModalToEdit] = useState(false);
     const [openModalToAddCredits, setOpenModalToAddCredits] = useState(false);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
+    const [openAuthModal,setOpenAuthModal] = useState(false);
     return (
         <div className='user__options'>
 
@@ -35,9 +37,13 @@ export const Options = ({ user,setNewUserState }) => {
             {/* <div className='option'>
                 <InfoIcon />
             </div> */}
+            {user.auth &&
+                <div className="option" onClick={() => setOpenAuthModal(true)}>
+                    <i className="fa-solid fa-user-lock"></i>
+                </div>}
             <div className='option'>
                 <div className='libs'>
-                        <span>{user.packages.length ==0 ?0:user.data[0]?.numLibraries|| user.data?.numLibraries}</span>
+                    <span>{user.packages.length == 0 ? 0 : user.data[0]?.numLibraries || user.data?.numLibraries}</span>
                     <BookIcon />
                 </div>
             </div>
@@ -63,6 +69,12 @@ export const Options = ({ user,setNewUserState }) => {
             {openDeleteModal &&
                 <Modal title="Delete User" setOpenModal={setOpenDeleteModal}>
                     <DeleteUserForm setNewUserState={setNewUserState} user={user} setOpenModal={setOpenDeleteModal} />
+                </Modal>
+            }
+
+            {openAuthModal &&
+                <Modal title="Auth" setOpenModal={setOpenAuthModal}>
+                    <AuthData user={user} setOpenModal={setOpenAuthModal} />
                 </Modal>
             }
 

@@ -3,6 +3,7 @@ import useFetchApi from '../../hook/useFetchApi';
 import Modal from '../modal/Modal';
 import { NewUserForm } from '../PlexUsers/NewUserForm/NewUserForm';
 import { StepCounter } from '../StepCounter/StepCounter';
+import { CreatePlexUser } from './components/CreatePlexUser/CreatePlexUser';
 import "./NewUserBar.scss";
 export const NewUserBar = ({users,setNewUserState}) => {
   //State
@@ -14,6 +15,12 @@ export const NewUserBar = ({users,setNewUserState}) => {
         <span>{users.length}</span> 
         <p>Usuarios</p>
     </div>
+
+
+     <div className='newUserBtn'>
+
+      
+    <CreatePlexUser setNewUserState={setNewUserState}/>
     <div>
         <button className='btn-add' onClick={() => {
             setOpenModal(true);
@@ -22,6 +29,7 @@ export const NewUserBar = ({users,setNewUserState}) => {
             Agregar nuevo usuario
         </button>
     </div>
+     </div>
 
     {openModal && 
     <Modal title='New User' setOpenModal={setOpenModal}>
