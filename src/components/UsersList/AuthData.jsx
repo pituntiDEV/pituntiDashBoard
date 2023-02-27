@@ -1,11 +1,11 @@
 import React from 'react'
 
 export const AuthData = ({user}) => {
-    const  copySomething=async(text)=> {
+    const  copySomething=async()=> {
         try {
           const toCopy = `
-              Email:${user.auth.email}\n,
-              Password:${user.auth.password}
+Email:${user.auth.email}\n
+Password:${user.auth.password}
           `
           await navigator.clipboard.writeText(toCopy);
           console.log('Text or Page URL copied');
