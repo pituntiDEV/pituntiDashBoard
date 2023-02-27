@@ -14,8 +14,11 @@ export const CreatePlexUserForm = ({ setOpenModal,setNewUserState }) => {
         password: "",
         credits: 1,
         servers: [],
-        connections: 1
+        connections: 1,
+        whatsapp:null
     })
+
+    const [myServers,setMyServers] = useState([])
 
     // request to add user
     const [createUser, loading] = useFetchApi({
@@ -87,6 +90,11 @@ export const CreatePlexUserForm = ({ setOpenModal,setNewUserState }) => {
             </div>
 
             <div className="form__group">
+                <label htmlFor="whatsapp"><i className="fa-brands fa-whatsapp text-success"></i> Whatsapp:</label>
+                <input type="number" onChange={onCHangeInputHandler} value={formData.whatsapp} required name="whatsapp" id="whatsapp" />
+            </div>
+
+            <div className="form__group">
                 <label htmlFor="password">Password:</label>
                 <input type="password" onChange={onCHangeInputHandler} value={formData.password} required name="password" id="password" />
                 {formData.password}
@@ -104,7 +112,7 @@ export const CreatePlexUserForm = ({ setOpenModal,setNewUserState }) => {
                 <input type="number" min={1} onChange={onCHangeInputHandler} value={formData.credits} required name="credits" id="credits" />
             </div>
 
-            <ShowLibs onChange={onCHangeInputHandler} setFormData={setFormData} formData={formData} />
+            <ShowLibs myServers={myServers} setMyServers={setMyServers} onChange={onCHangeInputHandler} setFormData={setFormData} formData={formData} />
 
             <div className='d-flex gap-4'>
                 <BtnPrimary title="Crear usuario" />

@@ -4,9 +4,9 @@ import useGetAccountServers from '../../../../../hook/useGetAccountServers'
 import { useGetSharedServers } from '../../../../../hook/useGetSharedServers';
 import { ServerIcon } from '../../../../icons/ServerIcon';
 import "./Servers.scss";
-export const ShowLibs = ({ formData,setFormData, onChange }) => {
+export const ShowLibs = ({ formData,setFormData, onChange ,myServers,setMyServers}) => {
     // States
-    const [servers, setServers] = useState([]);
+
     const [sharedServers, setSharedServers] = useState([]);
     const [selectedServers, setSelectedServers] = useState([]);
     const [url,setUrl] = useState("");
@@ -16,23 +16,29 @@ export const ShowLibs = ({ formData,setFormData, onChange }) => {
     })
 
     // Get my servers an shared servers
-    const [getServers, , loading] = useGetAccountServers();
+    const [getMyServers, loading] = useFetchApi({
+        url:`/api/server/get/all`,
+        method: "GET",
+    });
     const [getSharedServers, loadingSharedServer] = useGetSharedServers();
     
     //Get All Servers
     useEffect(() => {
-        getServers()
-            .then((data) => {
-
-                const serversData = data.map(server => {
-                    return {
+        getMyServers()
+            .then(async(data) => {
+                const serversData =[];
+                for (const server of data){
+                    setUrl(`/api/package/plex/server/${server._id}`);
+                    const pk =url ? await getPackages():[];
+                    serversData.push({
                         _id: server._id,
                         name: server.data.name,
-                        packages: [],
+                        packages: pk,
                         owner: true
-                    }
-                })
-                setServers(serversData);
+                    })  
+                }
+                 console.log(serversData);
+                setMyServers(serversData);
             })
 
         getSharedServers()
@@ -48,21 +54,9 @@ export const ShowLibs = ({ formData,setFormData, onChange }) => {
                 })
                 setSharedServers(serversData);
             })
-    }, []);
+    }, [url]);
 
-    // Get packages by Server
-    useEffect(()=>{
-        for(const server of servers){
-            setUrl(`/api/package/plex/server/${server._id}`)
-            if(url){
-                getPackages()
-                .then(data=>{
-                    server.packages = data;
-                })
-            }
-       
-        }
-    },[servers])
+
 
     const selectPackages = (selectedPack, selectedServer) => {
         const updatedSelectedServers = [...selectedServers];
@@ -96,7 +90,7 @@ export const ShowLibs = ({ formData,setFormData, onChange }) => {
         
 
             {
-                 servers.map(server => {
+                 myServers.map(server => {
                     return (
                         <div className='server' key={server._id}>
                             <hr />
