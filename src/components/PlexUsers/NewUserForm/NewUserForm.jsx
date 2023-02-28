@@ -34,7 +34,8 @@ export const NewUserForm = ({setNewUserState,setOpenModal}) => {
     removeLibsDays: 3,
     byMonth: false,
     totalCredits:0,
-    servers:[]
+    servers:[],
+    whatsapp:null
   });
 
   //Custom Hooks

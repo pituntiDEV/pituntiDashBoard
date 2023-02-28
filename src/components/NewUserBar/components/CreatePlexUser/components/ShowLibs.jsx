@@ -28,16 +28,13 @@ export const ShowLibs = ({ formData,setFormData, onChange ,myServers,setMyServer
             .then(async(data) => {
                 const serversData =[];
                 for (const server of data){
-                    setUrl(`/api/package/plex/server/${server._id}`);
-                    const pk =url ? await getPackages():[];
                     serversData.push({
                         _id: server._id,
                         name: server.data.name,
-                        packages: pk,
+                        packages: server.packages,
                         owner: true
                     })  
                 }
-                 console.log(serversData);
                 setMyServers(serversData);
             })
 

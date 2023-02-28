@@ -1,8 +1,9 @@
 .user__card {
+  
     border-radius: 1rem;
     background-color: transparent;
     box-shadow: inset 4px 4px 8px #918f8f67, -4px 10px 8px rgb(116, 129, 120);
-    padding: 0rem;
+    padding: .0rem;
     text-align: center;
     background-color: var(--color-primary);
     animation: infinite pi 5s steps(100);
@@ -21,6 +22,7 @@
         box-shadow: 0 0 10px 2px red;
     }
     .card__header{
+        position: relative;
         grid-area: header;
         background: rgb(89, 119, 17);
         background: var(--color-blue-serenity);
@@ -29,12 +31,25 @@
         margin-bottom: 2rem;
         border-radius:  0 0 50% 0;
         border-bottom: 3px solid rgb(252, 252, 252);
+        .whatsapp{
+            font-size: 2.3rem;
+            color: white;
+            position: absolute;
+            top:1.5rem;
+            left: 1rem;
+            text-shadow: -0px 0px 3px rgb(255, 255, 255);
+            cursor: pointer;
+            border-bottom: 2px solid #000000a4;
+        }
         
         .email{
             overflow-wrap: break-word;
             font-weight: bold;
             color:white;
-            
+            padding:0 1rem;
+            max-width: 90%;
+            margin: 0 auto;
+
             
         }
         img {

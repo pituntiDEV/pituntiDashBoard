@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import useFetchApi from '../../../../../hook/useFetchApi'
 import { BtnPrimary } from '../../../../Buttons/BtnSucess/BtnPrimary'
 import { BtnSecondary } from '../../../../Buttons/BtnSucess/BtnSecondary'
+import { WhatsappIcon } from '../../../../icons/WhatsappIcon'
 import SWAlert from '../../../../SwAlert/SWAlert'
 import { ShowLibs } from './ShowLibs'
 const lettersMin = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
@@ -90,7 +91,7 @@ export const CreatePlexUserForm = ({ setOpenModal,setNewUserState }) => {
             </div>
 
             <div className="form__group">
-                <label htmlFor="whatsapp"><i className="fa-brands fa-whatsapp text-success"></i> Whatsapp:</label>
+                <label htmlFor="whatsapp"><WhatsappIcon/> Whatsapp:</label>
                 <input type="number" onChange={onCHangeInputHandler} value={formData.whatsapp} required name="whatsapp" id="whatsapp" />
             </div>
 

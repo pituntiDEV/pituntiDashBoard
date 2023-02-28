@@ -11,6 +11,7 @@ import { ServerIcon } from '../../icons/ServerIcon';
 import  {useForm} from "react-hook-form";
 import "./UserInfo.scss";
 import { Packages } from './Packages';
+import { WhatsappIcon } from '../../icons/WhatsappIcon';
 export const UserInfo = (props) => {
     const { state, setState} = props;
 
@@ -114,6 +115,12 @@ export const UserInfo = (props) => {
                             <i className="fa-solid fa-envelope"></i>
                             <input type="email" required onChange={onChangeInput} value={state.email} placeholder="Email" name="email" />
                         </InputWithIcon>
+                    </div>
+
+                    <div className='form__group'>
+                        <small htmlFor="email" className='text-muted'><WhatsappIcon/> Whatsapp:</small>
+                            <input type="number" required onChange={onChangeInput} value={state.whatsapp} placeholder="Whatsapp" name="whatsapp" />
+                      
                     </div>
 
 

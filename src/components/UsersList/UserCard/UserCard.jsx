@@ -6,6 +6,7 @@ import { Options } from './Options/Options'
 import "./UserCard.scss"
 import dayjs from 'dayjs'
 import utils from "../../../utils/date/index";
+import { WhatsappIcon } from '../../icons/WhatsappIcon'
 export const UserCard = ({ user,setNewUserState }) => {
   const expireAt = dayjs(user.expireAt).format("DD/MMM/YYYY") || null;
   const isExpired = utils.isExpired(user.expireAt)
@@ -13,7 +14,14 @@ export const UserCard = ({ user,setNewUserState }) => {
   return (
     <div className={`user__card ${isExpired && "expired"}`} key={user._id}>
       {/* header */}
+     
       <div className={`card__header  ${isExpired && "expired"}`}> 
+      <div className="whatsapp">
+        {
+          user.whatsapp &&
+          <a href={`https://api.whatsapp.com/send?phone=${user.whatsapp}`}><WhatsappIcon/></a>
+        }
+      </div>
         <div className='email'>{user.email}</div>
           <img src={ user.data[0]?.invited?.thumb||user.data?.invited?.thumb} alt="" />
       </div>
