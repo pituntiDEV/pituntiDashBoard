@@ -9,9 +9,9 @@ export const Owner = ({state,setState}) => {
        let date= "";
        if(state.byMonth){
          const add = moment().add(value,"months").calendar();
-          date = moment(add).format("YYYY-MM-DD");
+          date = moment(add);
        }else{
-         date = moment(value).format("YYYY-MM-DD");
+         date = moment(value);
        }
      
        setState({...state,date});
@@ -37,7 +37,7 @@ export const Owner = ({state,setState}) => {
                     <i className="fa-solid fa-calendar-days"></i>
                     {
                         state.byMonth 
-                        ?<select required defaultValue={""} onChange={dateChange}>
+                        ?<select required defaultValue={""} name="credits" onChange={dateChange}>
                             <option value="" disabled>Add Mes</option>
                             <option value="1">1 Mes</option>
                             <option value="2">2 Meses</option>

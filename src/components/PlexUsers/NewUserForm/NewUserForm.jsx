@@ -87,6 +87,7 @@ export const NewUserForm = ({setNewUserState,setOpenModal}) => {
       setStep(step+1);
       return;
     }
+   
     addUser({
       body:JSON.stringify(state)
     }).then(data=>{

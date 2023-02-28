@@ -4,16 +4,14 @@ import useGetAccountServers from '../../../../../hook/useGetAccountServers'
 import { useGetSharedServers } from '../../../../../hook/useGetSharedServers';
 import { ServerIcon } from '../../../../icons/ServerIcon';
 import "./Servers.scss";
-export const ShowLibs = ({ formData,setFormData, onChange ,myServers,setMyServers}) => {
+export const ShowLibs = ({ formData,setFormData, onChange}) => {
     // States
 
     const [sharedServers, setSharedServers] = useState([]);
     const [selectedServers, setSelectedServers] = useState([]);
-    const [url,setUrl] = useState("");
-    const [getPackages,loadingPackages] = useFetchApi({
-        url,
-        method: "GET",
-    })
+    const [myServers,setMyServers] = useState([]);
+
+    
 
     // Get my servers an shared servers
     const [getMyServers, loading] = useFetchApi({
@@ -25,16 +23,19 @@ export const ShowLibs = ({ formData,setFormData, onChange ,myServers,setMyServer
     //Get All Servers
     useEffect(() => {
         getMyServers()
-            .then(async(data) => {
-                const serversData =[];
-                for (const server of data){
-                    serversData.push({
+            .then(data => {
+                console.log(data);
+                const serversData = data.map(server => {
+                    console.log(server.packages);
+                    return {
                         _id: server._id,
                         name: server.data.name,
-                        packages: server.packages,
-                        owner: true
-                    })  
-                }
+                        packages:server.packages,
+                        owner: true,
+
+                    }
+                })
+                console.log(serversData);
                 setMyServers(serversData);
             })
 
