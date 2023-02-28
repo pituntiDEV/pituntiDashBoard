@@ -43,11 +43,11 @@
         }
         
         .email{
-            overflow-wrap: break-word;
+            word-wrap:break-word;
             font-weight: bold;
             color:white;
             padding:0 1rem;
-            max-width: 90%;
+            font-size: 1.5rem;
             margin: 0 auto;
 
             
