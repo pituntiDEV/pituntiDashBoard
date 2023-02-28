@@ -51,7 +51,7 @@ export const ShowLibs = ({ formData,setFormData, onChange ,myServers,setMyServer
                 })
                 setSharedServers(serversData);
             })
-    }, [url]);
+    }, []);
 
 
 
