@@ -14,6 +14,10 @@
                 color: white;
                 border-radius: 1rem;
                 box-shadow: -2px 2px 3px rgb(76, 75, 75);
+                .name{
+                    overflow: auto; /* para permitir el desplazamiento cuando el contenido es demasiado grande */
+                    word-wrap: break-word; /* para permitir que el texto se envuelva dentro del contenedor */
+                }
             }
         }
     }
