@@ -31,7 +31,7 @@ export const SelectLibs = ({ server, setOpenModal,accountServers,setNewPackageSt
     libs,
     name: "",
     description: "",
-    priceByPackage:""
+    priceByPackage:"0"
 
   });
 
@@ -140,7 +140,7 @@ export const SelectLibs = ({ server, setOpenModal,accountServers,setNewPackageSt
           <label>Creditos Extras</label>
           <InputWithIcon>
             <CoinsIcon/>
-            <input type="number" required name="priceByPackage" onChange={onChange} />
+            <input type="number" value={data.priceByPackage} required name="priceByPackage" onChange={onChange} />
           </InputWithIcon>
 
         </div>

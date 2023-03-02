@@ -134,7 +134,7 @@ export const ShareForm = ({setOpenModal,setResellersState}) => {
 
                 <div className="form__group">
                     <label htmlFor="credits">Credits:</label>
-                    <input type="number" required onChange={onChange} name="credits" id="credits" min="1" />
+                    <input type="number" required onChange={onChange} name="credits" id="credits" min="0" />
                 </div>
 
                 <div className="form__group">
