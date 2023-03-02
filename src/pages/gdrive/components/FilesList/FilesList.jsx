@@ -2,9 +2,11 @@ import React, { useState } from 'react'
 import { BtnPrimary } from '../../../../components/Buttons/BtnSucess/BtnPrimary';
 import { BtnSecondary } from '../../../../components/Buttons/BtnSucess/BtnSecondary';
 import Modal from '../../../../components/modal/Modal';
+import { Spinner } from '../../../../components/Spinner/Spinner';
+import SWAlert from '../../../../components/SwAlert/SWAlert';
 import useFetchApi from '../../../../hook/useFetchApi';
 
-export const FilesList = ({files}) => {
+export const FilesList = ({files,loadingFiles}) => {
     const [openModal,setOpenModal] = useState(false);
     const [email,setEmail] = useState(localStorage.getItem("gdriveEmail"));
     const [file,setFile]=useState(null);
@@ -22,11 +24,19 @@ export const FilesList = ({files}) => {
         }
          share({body:JSON.stringify(formData)})
             .then(data=>{
-                console.log(data);
+                SWAlert.success({
+                    title:data.message
+                })
+            })
+            .catch(error=>{
+                SWAlert.error({
+                    title:error.message,
+                })
             })
     }
   return (
     <div className='files__containers'>
+            <div className="text-center"> {loadingFiles && <Spinner/>}</div>
         <div className="files">
             {files.map(file=>{
                 return (
@@ -43,7 +53,8 @@ export const FilesList = ({files}) => {
         </div>
 
         {openModal &&<Modal setOpenModal={setOpenModal} title='Compartir con migo'>
-               <form onSubmit={submit} action="">
+                {loading && <Spinner/>}
+               {!loading && <form onSubmit={submit} action="">
                    <div className="">
                     <span className='fw-600'>Compartir:</span>
                     <small className='text-muted'> {fileName}</small>
@@ -60,7 +71,7 @@ export const FilesList = ({files}) => {
                     <BtnPrimary title="Compartir"/>
                    <BtnSecondary type="button" onClick={()=>setOpenModal(false)} title="Cancelar"/>
                    </div>
-               </form>
+               </form>}
         </Modal>}
     </div>
   )

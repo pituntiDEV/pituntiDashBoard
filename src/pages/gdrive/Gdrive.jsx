@@ -16,6 +16,7 @@ export const Gdrive = () => {
        setQuery(e.target.value);
     }
     const search=()=>{
+        setFiles([]);
         searchFiles({body:JSON.stringify({query})})
             .then(files=>{
                 setFiles(files);
@@ -24,7 +25,7 @@ export const Gdrive = () => {
   return (
     <div className='Gdrive'>
         <Search onChange={onChange} onClick={search} className="gdrive__search"/>
-        <FilesList files={files}/>
+        <FilesList loadingFiles={loading} files={files}/>
     </div>
   )
 }
