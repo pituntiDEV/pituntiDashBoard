@@ -24,7 +24,7 @@ export const Gdrive = () => {
     }
   return (
     <div className='Gdrive'>
-        <Search onChange={onChange} onClick={search} className="gdrive__search"/>
+        <Search placeholder="Escribe el nombre del archivo a buscar" onChange={onChange} onClick={search} className="gdrive__search"/>
         <FilesList loadingFiles={loading} files={files}/>
     </div>
   )
