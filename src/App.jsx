@@ -30,6 +30,7 @@ import { ResellersByCode } from './pages/byCode/ResellersByCode';
 import { PasswordRecovery } from './components/Passwords/PasswordRecovery';
 import { PasswordRecoveryForm } from './components/Passwords/PasswordRecoveryForm';
 import EmbyUsers from './pages/emby/users/EmbyUsers';
+import { Gdrive } from './pages/gdrive/Gdrive';
 function App() {
   return (
     <div className="App">
@@ -64,6 +65,8 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/password/recovery/form" element={<PasswordRecoveryForm />} />
             <Route path="/password/recovery" element={<PasswordRecovery />} />
+            {/* Gdrive */}
+            <Route path="/gdrive" element={<ProtectedPage><Layout ><Gdrive/></Layout> </ProtectedPage>} />
             <Route path="/*" element={<h1>Not Found</h1>} />
 
             

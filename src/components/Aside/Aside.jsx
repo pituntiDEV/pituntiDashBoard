@@ -53,6 +53,10 @@ export const Aside = () => {
             <i className="fa-solid fa-ticket"></i>
                 <a href="/demos">Demos</a>     
             </li>
+            <li className="menu-item">
+            <i className="fa-brands fa-google-drive"></i>
+            <a href="/gdrive">Google Drive</a>     
+            </li>
             
         </ul>
         

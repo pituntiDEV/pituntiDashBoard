@@ -1,0 +1,23 @@
+.gdrive__search{
+    display: grid;
+    grid-template-columns: calc(100% - 50px) 50px;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 1rem;
+    margin: 1rem auto;
+    overflow: hidden;
+    input[type="text"]{
+        
+        border: none;
+        outline: none;
+        padding: .5rem 1rem;
+    }
+    i{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-left: 1px solid #000;
+        cursor: pointer;
+    }
+}
