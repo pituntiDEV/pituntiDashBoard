@@ -50,7 +50,7 @@ export const UsersFilter = (props) => {
 
                     </div>
                     <div className='inputFilter'>
-                    <small>Por Vencer[Dias]:</small>
+                    <small>Próximo a expirar[Dias]:</small>
                         <InputWithIcon>
                         <i className="fa-regular fa-clock"></i>
                         {/* <select onChange={hanledChange}  name="" id="" defaultValue={''}> */}
