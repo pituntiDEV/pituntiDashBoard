@@ -83,7 +83,7 @@ aside{
                     display: none;
                     
                 }
-                &.active > ul{
+                &.show-dropdown > ul{
                     display: block;
                 }
             }

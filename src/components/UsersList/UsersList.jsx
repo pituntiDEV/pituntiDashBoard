@@ -18,6 +18,7 @@ export const UsersList = ({ users,setNewUserState }) => {
     nameOrEmail: "",
     seller:"",
     state:"",
+    byExpireDay:"",
   });
 
   //Custom Hooks

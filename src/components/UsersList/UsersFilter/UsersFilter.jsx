@@ -32,7 +32,7 @@ export const UsersFilter = (props) => {
                     </div>
 
                     <div className='inputFilter'>
-                        <small> Seller:</small>
+                        <small>Vendedor:</small>
                         <InputWithIcon>
                         <i className="fa-solid fa-cash-register"></i>
                         {/* <select onChange={hanledChange}  name="" id="" defaultValue={''}> */}
@@ -49,6 +49,16 @@ export const UsersFilter = (props) => {
                         </InputWithIcon>
 
                     </div>
+                    <div className='inputFilter'>
+                    <small>Por Vencer[Dias]:</small>
+                        <InputWithIcon>
+                        <i className="fa-regular fa-clock"></i>
+                        {/* <select onChange={hanledChange}  name="" id="" defaultValue={''}> */}
+                        <input type="number" {...props}  name="byExpireDay" min={0} />
+
+                        </InputWithIcon>
+                    </div>
+
                     
                 </div>
             </div>

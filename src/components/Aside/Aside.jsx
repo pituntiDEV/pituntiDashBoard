@@ -8,18 +8,18 @@ const menuToggle = () => {
 }
 
 const dropdownToggle = (e) => {
-    const AllActives = document.querySelectorAll(".active");
+    const AllActives = document.querySelectorAll(".show-dropdown");
     const dropdown = e.currentTarget;
-    if(dropdown.classList.contains('active')){
-        dropdown.classList.remove("active");
+    if(dropdown.classList.contains('show-dropdown')){
+        dropdown.classList.remove("show-dropdown");
         return;
     }
    
     AllActives.forEach(el=>{
-        el.classList.remove("active");
+        el.classList.remove("show-dropdown");
     })
  
-    dropdown.classList.add("active")
+    dropdown.classList.add("show-dropdown")
 
 }
 export const Aside = () => {
@@ -101,6 +101,11 @@ export const Aside = () => {
                 <li className="menu-item">
                     <i className="fa-brands fa-google-drive"></i>
                     <a href="/gdrive">Google Drive</a>
+                </li>
+
+                <li className="menu-item">
+                <i className="fa-solid fa-screwdriver-wrench"></i>
+                    <a href="/gdrive">Config</a>
                 </li>
 
             </ul>
