@@ -50,17 +50,55 @@ aside{
             }
             list-style: none;
             gap: 1rem;
+            .menu-drop{
+                color: white;
+                border-radius: .5rem; 
+                background-color: var(--color-secondary);
+                .menu-item{
+                    background-color: rgb(46, 44, 44);
+                    margin: .2rem;
+                    padding-right: .2rem;
+                   
+                }
+                .title{
+                    .icon{
+                        max-width: 2rem;
+                        img{
+                            width: 100%;
+                        }
+                    }
+                    &::before{
+                        font-family: 'Font Awesome 6 Free';
+                        font-weight: 900;
+                        content: "\f0d7";
+                        transform: rotate(-90deg);
+                    }
+                    display: flex;
+                    gap: 1rem;
+                    padding: 1rem ;
+                    align-items: center;
+                    cursor: pointer;
+                }
+                ul{
+                    display: none;
+                    
+                }
+                &.active > ul{
+                    display: block;
+                }
+            }
             .menu-item{
                 background-color: var(--color-secondary);
-                color: white;
                 padding: 1rem ;
+                color: white;
                 display: flex;
                 gap: 1rem;
                 align-items: center;
                 transition: all .5s;
                 border-radius: .5rem;
                 &:hover{
-                    background-color: var(--color-secondary);
+                    background-color: rgb(53, 71, 95);
+                    transform: scale(1.04);
                 }
                 a{
                     color: white;
