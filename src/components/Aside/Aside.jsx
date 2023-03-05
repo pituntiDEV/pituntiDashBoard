@@ -10,15 +10,15 @@ const menuToggle = () => {
 const dropdownToggle = (e) => {
     const AllActives = document.querySelectorAll(".show-dropdown");
     const dropdown = e.currentTarget;
-    if(dropdown.classList.contains('show-dropdown')){
+    if (dropdown.classList.contains('show-dropdown')) {
         dropdown.classList.remove("show-dropdown");
         return;
     }
-   
-    AllActives.forEach(el=>{
+
+    AllActives.forEach(el => {
         el.classList.remove("show-dropdown");
     })
- 
+
     dropdown.classList.add("show-dropdown")
 
 }
@@ -51,12 +51,12 @@ export const Aside = () => {
                             <i className="fa-solid fa-users"></i>
                             <a href="/users">Plex Users</a>
                         </li>
-                    
+
                         <li className="menu-item">
                             <i className="fa-solid fa-code"></i>
                             <a href="/byCode">Act.Por codigo</a>
                         </li>
-                      
+
                         <li className="menu-item">
                             <i className="fa-solid fa-server"></i>
                             <a href="/servers">Servers</a>
@@ -78,17 +78,17 @@ export const Aside = () => {
                 </li>
                 {/* Emby */}
                 <li className="menu-drop" onClick={dropdownToggle}>
-                <div className="title">
+                    <div className="title">
                         <div className="icon">
-                        <img src="/assets/img/embyLogo.png" alt="" />
+                            <img src="/assets/img/embyLogo.png" alt="" />
                         </div>
                         <span>Emby</span>
                     </div>
                     <ul>
-                    <li className="menu-item">
-                    <i className="fa-solid fa-users"></i>
-                    <a href="/users/emby">Emby Users</a>
-                </li>
+                        <li className="menu-item">
+                            <i className="fa-solid fa-users"></i>
+                            <a href="/users/emby">Emby Users</a>
+                        </li>
                     </ul>
                 </li>
 
@@ -103,9 +103,21 @@ export const Aside = () => {
                     <a href="/gdrive">Google Drive</a>
                 </li>
 
-                <li className="menu-item">
-                <i className="fa-solid fa-screwdriver-wrench"></i>
-                    <a href="/gdrive">Config</a>
+
+                <li className="menu-drop" onClick={dropdownToggle}>
+                    <div className="title">
+                        <div className="icon">
+                            <i className="fa-solid fa-screwdriver-wrench"></i>
+                        </div>
+                        <span>Config</span>
+                    </div>
+                    <ul>
+                        <li className="menu-item">
+                            <i className="fa-brands fa-telegram"></i>
+                            <a href="/telegram">Telegram</a>
+                        </li>
+                    </ul>
+
                 </li>
 
             </ul>
