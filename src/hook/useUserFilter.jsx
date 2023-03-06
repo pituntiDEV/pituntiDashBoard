@@ -1,7 +1,7 @@
 import dayjs from "dayjs"
 import utils from "../utils/date/index";
 export const useUserFilter = (users) => {
-    const filter = ({nameOrEmail,seller,state,byExpireDay}) => {
+    const filter = ({nameOrEmail,seller,state,byExpireDay,server}) => {
         return users
             .filter(user => {
                 return filterByNameAndEmail(user, nameOrEmail)
@@ -14,6 +14,9 @@ export const useUserFilter = (users) => {
             })
             .filter(user=>{
                 return filterByExpireDate(user,byExpireDay)
+            })
+            .filter(user=>{
+                return filterByServer(user,server)
             })
     }
 
@@ -38,6 +41,20 @@ const filterByNameAndEmail = (user, input) => {
 const filterBySeller = (user, seller) => {
     if (seller) {
         return user.seller.email.toLowerCase().includes(seller.toLowerCase());
+    } else {
+        return user;
+    }
+
+}
+
+//Filter By Server
+const filterByServer= (user, server) => {
+    if (server) {
+        
+       const buscar=user.servers.find(s=>s._id == server);
+       if(buscar){
+        return user
+       }
     } else {
         return user;
     }

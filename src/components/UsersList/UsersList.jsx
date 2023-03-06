@@ -19,6 +19,7 @@ export const UsersList = ({ users,setNewUserState }) => {
     seller:"",
     state:"",
     byExpireDay:"",
+    server:""
   });
 
   //Custom Hooks
