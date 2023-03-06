@@ -54,7 +54,9 @@ export const UsersList = ({ users,setNewUserState }) => {
       <SearchInput onChange={search} />
       <UsersFilter users={users} onChange={hanledChange}/>
         <hr />
-      
+       <div className="text-center">
+       {usersFilter.length}
+       </div>
       <div className="users__container">
         {
           usersFilter.map((user) => {

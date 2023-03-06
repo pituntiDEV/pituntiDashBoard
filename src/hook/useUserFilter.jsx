@@ -77,7 +77,7 @@ const filterByExpireDate = (user, byExpireDay) => {
 //Filter By Seller
 const filterByState = (user,state) => {
     if (state == "active") {
-        const expireAt = user.credits[user.credits.length - 1]?.expireAt || null;
+        const expireAt = user.expireAt || null;
        
 
         const isActive = dayjs().isBefore(expireAt)
