@@ -7,21 +7,25 @@ import { EditSquareIcon } from '../../../icons/EditSquareIcon';
 import { InfoIcon } from '../../../icons/InfoIcon';
 import { CoinPlusIcon } from '../../../icons/InputWithIcon/CoinPlusIcon';
 import { RepeatIcon } from '../../../icons/RepeatIcon';
+import { ServerIcon } from '../../../icons/ServerIcon';
 import { TrashIcon } from '../../../icons/TrashIcon';
 import Modal from '../../../modal/Modal';
 import { AddCreditToUser } from '../../AddCreditToUser/AddCreditToUser';
 import { AuthData } from '../../AuthData';
+import { ChangeServerForm } from '../../ChangeServer/ChangeServerForm';
 import { DeleteUserForm } from '../../DeleteUserForm/DeleteUserForm';
+import { EditPlexUser } from '../../EditUser/EditPlexUser';
 import { EditUser } from '../../EditUser/EditUser';
 import "./Options.scss";
 
 
-export const Options = ({ user, setNewUserState }) => {
+export const Options = ({ user, setNewUserState, setUsers, users }) => {
 
     const [openModalToEdit, setOpenModalToEdit] = useState(false);
     const [openModalToAddCredits, setOpenModalToAddCredits] = useState(false);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
-    const [openAuthModal,setOpenAuthModal] = useState(false);
+    const [openModalToChangeServer, setOpenModalToChangeServer] = useState(false)
+    const [openAuthModal, setOpenAuthModal] = useState(false);
     return (
         <div className='user__options'>
 
@@ -31,9 +35,9 @@ export const Options = ({ user, setNewUserState }) => {
             <div className='option' onClick={() => setOpenModalToAddCredits(true)}>
                 <CoinPlusIcon className="credits" />
             </div>
-            {/* <div className='option'>
-                <RepeatIcon />
-            </div> */}
+            <div className='option'>
+                <ServerIcon onClick={()=>setOpenModalToChangeServer(true)}/>
+            </div>
             {/* <div className='option'>
                 <InfoIcon />
             </div> */}
@@ -55,8 +59,8 @@ export const Options = ({ user, setNewUserState }) => {
 
             {/* MODALS */}
             {openModalToEdit &&
-                <Modal title="Edit User" setOpenModal={setOpenModalToEdit}>
-                    <EditUser setNewUserState={setNewUserState} user={user} setOpenModal={setOpenModalToEdit} />
+                <Modal title="Editar usuario PLEX" setOpenModal={setOpenModalToEdit}>
+                    <EditPlexUser users={users} setUsers={setUsers} setNewUserState={setNewUserState} user={user} setOpenModal={setOpenModalToEdit} />
                 </Modal>
             }
 
@@ -75,6 +79,12 @@ export const Options = ({ user, setNewUserState }) => {
             {openAuthModal &&
                 <Modal title="Auth" setOpenModal={setOpenAuthModal}>
                     <AuthData user={user} setOpenModal={setOpenAuthModal} />
+                </Modal>
+            }
+
+            {openModalToChangeServer &&
+                <Modal title="Cambiar Server" setUsers={setUsers} setOpenModal={setOpenModalToChangeServer}>
+                    <ChangeServerForm user={user}  users={users} setUsers={setUsers} setOpenModal={setOpenModalToChangeServer} />
                 </Modal>
             }
 

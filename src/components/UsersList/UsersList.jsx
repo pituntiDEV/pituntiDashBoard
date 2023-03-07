@@ -8,7 +8,7 @@ import { useUserFilter } from '../../hook/useUserFilter';
 import "./UsersList.scss";
 import { Spinner } from '../Spinner/Spinner';
 
-export const UsersList = ({ users, setNewUserState }) => {
+export const UsersList = ({ users, setNewUserState, setUsers }) => {
   //Context
   const { socket, state: { openEditModal }, setOpenEditModal } = useContext(appContext);
 
@@ -56,14 +56,14 @@ export const UsersList = ({ users, setNewUserState }) => {
       <hr />
       <div className="text-center">
        
-        <button type="button" class="btn btn-dark">
-        Total filtrados: <span class="badge text-bg-success"> {usersFilter.length}</span>
+        <button type="button" className="btn btn-dark">
+        Total filtrados: <span className="badge text-bg-success"> {usersFilter.length}</span>
         </button>
       </div>
       <div className="users__container">
         {
           usersFilter.map((user) => {
-            return (<UserCard setNewUserState={setNewUserState} key={user._id} user={user} />)
+            return (<UserCard users={users} setUsers={ setUsers} setNewUserState={setNewUserState} key={user._id} user={user} />)
           })
         }
       </div>

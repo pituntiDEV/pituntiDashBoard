@@ -7,7 +7,7 @@ import "./UserCard.scss"
 import dayjs from 'dayjs'
 import utils from "../../../utils/date/index";
 import { WhatsappIcon } from '../../icons/WhatsappIcon'
-export const UserCard = ({ user,setNewUserState }) => {
+export const UserCard = ({ user,setNewUserState, setUsers,users }) => {
   const expireAt = dayjs(user.expireAt).format("DD/MMM/YYYY") || null;
   const isExpired = utils.isExpired(user.expireAt)
 
@@ -51,7 +51,7 @@ export const UserCard = ({ user,setNewUserState }) => {
       </div>
 
       <div className="card__options">
-        <Options setNewUserState={setNewUserState} user={user} />
+        <Options users={users} setUsers={ setUsers} setNewUserState={setNewUserState} user={user} />
       </div>
 
     </div>

@@ -13,7 +13,7 @@ const useGetAccountServers =() => {
             setAccountServers(servers);
             return servers
         } catch (error) {
-            console.log(error)
+            return error
         }
     }
     return [getAccountServers,accountServers, loading]

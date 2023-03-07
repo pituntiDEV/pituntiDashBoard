@@ -36,8 +36,8 @@ const renewPoint =(date)=>{
   return current;
 }
 
-const formatDate =(date)=>{
-  return dayjs(date).format("DD/MMMM/YYYY");
+const formatDate =(date,format="DD/MMMM/YYYY")=>{
+  return dayjs(date).format(format);
 }
 module.exports={
   addMonths,

@@ -6,11 +6,12 @@
     justify-content: space-around;
     gap: .5rem;
     .option{
-        height: 3rem;
-        width: 3rem;
+        height: 2.5rem;
+        width: 2.5rem;
         border-radius: 50%;
         border: 2px solid white;
         box-shadow: -2px 2px 4px rgb(225, 88, 88);
+        font-size: 1.4rem;
     }
     .delete{
        color: rgb(235, 79, 79);

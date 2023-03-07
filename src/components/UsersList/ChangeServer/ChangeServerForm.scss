@@ -1,0 +1,28 @@
+.change__plex__server{
+    .servers{
+        display: grid;
+        gap: 1rem;
+        .server{
+            grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
+            .name{
+                border-bottom: 2px solid #00000060;
+            }
+            .packs{
+                display: grid;
+                grid-template-columns: repeat(auto-fill,minmax(100px,1fr));
+                gap:1rem;
+                margin-top: 1rem;
+                .pack{
+                    background-color: rgb(231, 60, 60);
+                    text-align: center;
+                    font-weight: bold;
+                    color: white;
+                    border-radius: 1rem;
+                    &.active{
+                        background-color: rgb(63, 139, 65);
+                    }
+                }
+            }
+        }
+    }
+}

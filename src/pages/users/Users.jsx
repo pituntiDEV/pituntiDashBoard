@@ -29,7 +29,7 @@ export const Users = () => {
         loading ? <div className='loading'><Spinner/></div>
         :<>
         <NewUserBar setNewUserState={setNewUserState} users={users} />
-        <UsersList setNewUserState={setNewUserState} users={users} />
+        <UsersList  setUsers={ setUsers} setNewUserState={setNewUserState} users={users} />
         </>
       }
     </div>
