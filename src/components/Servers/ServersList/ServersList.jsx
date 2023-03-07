@@ -5,6 +5,7 @@ import { EditServer } from '../../../pages/servers/components/EditServer';
 import { EditSquareIcon } from '../../icons/EditSquareIcon';
 import { ServerIcon } from '../../icons/ServerIcon';
 import { TrashIcon } from '../../icons/TrashIcon';
+import { UserTieIcon } from '../../icons/UserTieIcon';
 import Modal from '../../modal/Modal';
 import { DeleteServer } from './DeleteServer/DeleteServer';
 import "./ServersList.scss";
@@ -20,7 +21,7 @@ export const ServersList = ({ setTotalServers, newServerState }) => {
 
   //Custom hooks
   const [getServers, loadingGetServers] = useFetchApi({
-    url: `/api/server/get/all`,
+    url: `/api/server/get/all?users=true`,
     method: 'GET',
   });
 
@@ -55,6 +56,7 @@ export const ServersList = ({ setTotalServers, newServerState }) => {
                 <div className="info">
                   <span className="circle">{server.data.name[0]}</span>
                   <span> <ServerIcon /> {server.data.name}</span>
+                  <span> <UserTieIcon/> {server.users.length} {server.limit ? `/ ${server.limit}`:""}</span>
                 </div>
               </div>
             </div>)
