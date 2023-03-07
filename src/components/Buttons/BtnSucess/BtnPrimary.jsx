@@ -1,5 +1,4 @@
 import React from 'react'
-
 export const BtnPrimary = (props) => {
     const {title} = props
   return (

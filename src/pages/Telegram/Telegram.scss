@@ -1,0 +1,24 @@
+.Telegram{
+    .telegram__header__container{
+       background-color: rgb(25, 70, 97);
+       border-radius: 1rem;
+       margin: 1rem;
+       display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding:0 1rem ;
+        .telegram__header{
+            margin: 2rem;
+            border-radius: 1rem;
+            .logo{
+                max-width: 5rem;
+                img{
+                    width: 100%;
+                }
+            }
+        }
+        .options{
+            margin-right: 3rem;
+        }
+   }
+}

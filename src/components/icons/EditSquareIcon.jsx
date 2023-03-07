@@ -1,7 +1,7 @@
 import React from 'react'
 
-export const EditSquareIcon = () => {
+export const EditSquareIcon = (props) => {
   return (
-    <i className="fa-solid fa-pen-to-square"></i>
+    <i {...props} className="fa-solid fa-pen-to-square"></i>
   )
 }

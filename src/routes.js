@@ -22,6 +22,7 @@ import { PasswordRecoveryForm } from './components/Passwords/PasswordRecoveryFor
 import EmbyUsers from './pages/emby/users/EmbyUsers';
 import { Gdrive } from './pages/gdrive/Gdrive';
 import { Layout } from './components/Layout';
+import { Telegram } from './pages/Telegram/Telegram';
 
 const Protected = ({ children }) => {
     return <ProtectedPage>  <UserContextProvider><Layout >{children}</Layout></UserContextProvider></ProtectedPage>
@@ -103,6 +104,10 @@ const routes = {
         {
             path:"/gdrive",
             element: <Protected><Gdrive /></Protected>
+        },
+        {
+            path:"/telegram",
+            element:<Protected><Telegram/></Protected>
         }
     ],
     client:[

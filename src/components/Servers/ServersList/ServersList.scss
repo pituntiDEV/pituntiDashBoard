@@ -18,8 +18,10 @@
                 .options{
                     display: flex;
                     justify-content: center;
+                    flex-direction: column;
+                    gap:1rem;
                     align-items: center;
-                    color: rgb(228, 103, 103);
+                    
                 }
                 .info{
                     border-left: 1px solid rgb(162, 158, 158);
