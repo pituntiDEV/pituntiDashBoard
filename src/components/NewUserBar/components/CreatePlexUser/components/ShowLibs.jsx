@@ -24,9 +24,8 @@ export const ShowLibs = ({ formData,setFormData, onChange}) => {
     useEffect(() => {
         getMyServers()
             .then(data => {
-                console.log(data);
+               
                 const serversData = data.map(server => {
-                    console.log(server.packages);
                     return {
                         _id: server._id,
                         name: server.data.name,

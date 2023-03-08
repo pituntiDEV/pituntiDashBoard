@@ -1,15 +1,17 @@
 .servers{
     .server{
         .packages{
-        display: flex;
+        display: grid;
         margin-left: 2rem;
+        grid-template-columns: repeat(auto-fill,minmax(150px,1fr));
         gap: 1rem;
-       
+        
         .pack{
             background-color: rgba(244, 59, 59, 0.823);
             padding: 1rem;
             border-radius: 1rem;
             color: white;
+            text-align: center;
         }
         .active{
             background-color: rgb(103, 175, 75);
