@@ -79,7 +79,7 @@ export const DemosList = ({ demos,setDemoState }) => {
 
             {
                 openModalToAddCredits && 
-                <Modal setOpenModal={setOpenModalToAddCredits}>
+                <Modal title='Pasar a usuarios' setOpenModal={setOpenModalToAddCredits}>
                     <AddCreditToDemo setDemoState={setDemoState} setOpenModal={setOpenModalToAddCredits} user={user}/>
                 </Modal>
             }

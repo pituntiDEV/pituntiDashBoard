@@ -92,7 +92,7 @@ export const CreatePlexUserForm = ({ setOpenModal,setNewUserState }) => {
 
             <div className="form__group">
                 <label htmlFor="whatsapp"><WhatsappIcon/> Whatsapp:</label>
-                <input type="number" onChange={onCHangeInputHandler} value={formData.whatsapp}  name="whatsapp" id="whatsapp" />
+                <input type="text" onChange={onCHangeInputHandler} value={formData.whatsapp}  name="whatsapp" id="whatsapp" />
             </div>
 
             <div className="form__group">

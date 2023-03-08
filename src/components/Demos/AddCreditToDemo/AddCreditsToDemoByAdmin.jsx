@@ -81,7 +81,7 @@ export const AddCreditsToDemoByAdmin = ({ user,setOpenModal,setDemoState }) => {
                     <span className='text-danger'>{errors.deleteDays?.message}</span>
                 </div>
 
-                <div className="btns">
+                <div className="d-flex gap-3">
                     <BtnPrimary title="Agregar" />
                     <BtnSecondary title="Cancelar" />
                 </div>
