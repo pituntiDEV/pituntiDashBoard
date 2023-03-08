@@ -30,7 +30,7 @@ export const Gdrive = () => {
         const value= e.target.value;
         const filesFilters = files.filter(file=>{
             if(value!=""){
-                return file.name.includes(value)
+                return file.name.toLowerCase().includes(value.toLowerCase())
             }
             return file
         })
@@ -41,7 +41,7 @@ export const Gdrive = () => {
   return (
     <div className='Gdrive'>
         <Search placeholder="Escribe el nombre del archivo a buscar" onChange={onChange} onClick={search} className="gdrive__search"/>
-        <Search placeholder="Buscar palabras claves Ejem:1x1 s01e01 s1e2" onChange={filer}  className="gdrive__search"/>
+        <Search placeholder="Buscar palabras claves Ejem:1x1 S01E01 s01e01 s1e2" onChange={filer}  className="gdrive__search"/>
        
         <FilesList loadingFiles={loading} files={filesFilter}/>
     </div>
