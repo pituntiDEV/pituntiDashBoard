@@ -119,7 +119,7 @@ export const UserInfo = (props) => {
 
                     <div className='form__group'>
                         <small htmlFor="email" className='text-muted'><WhatsappIcon/> Whatsapp:</small>
-                            <input type="text" onChange={onChangeInput} value={state.whatsapp} placeholder="Whatsapp" name="whatsapp" />
+                            <input type="tel" onChange={onChangeInput} value={state.whatsapp} placeholder="Whatsapp" name="whatsapp" />
                       
                     </div>
 
