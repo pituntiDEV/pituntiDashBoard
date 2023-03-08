@@ -37,6 +37,9 @@ export const FilesList = ({files,loadingFiles}) => {
   return (
     <div className='files__containers'>
             <div className="text-center"> {loadingFiles && <Spinner/>}</div>
+            {files.length >0 &&<div className="m-4">
+                Total:{files.length}
+            </div>}
         <div className="files">
             {files.map(file=>{
                 return (
