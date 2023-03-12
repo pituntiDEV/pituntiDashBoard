@@ -117,7 +117,7 @@ export const ChangeServerForm = ({ user,setOpenModal, users,setUsers}) => {
                     
                     return (
                       <div onClick={()=>onChangePack(pk)} key={pk._id} className={`pack ${existe && "active"}`}>
-                        {pk.name}{pk.libs.length}
+                        {pk.name}
                       </div>
                     )
                   })

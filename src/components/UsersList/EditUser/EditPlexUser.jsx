@@ -5,11 +5,15 @@ import { BtnPrimary } from '../../Buttons/BtnSucess/BtnPrimary';
 import { BtnSecondary } from '../../Buttons/BtnSucess/BtnSecondary';
 import SWAlert from '../../SwAlert/SWAlert';
 export const EditPlexUser = ({ user, setOpenModal, setUsers, users }) => {
+    console.log(user.delete);
     const expireAt = utils.formatDate(user.expireAt, "YYYY-MM-DDTHH:mm");
     const isAdmin = localStorage.getItem("_id") == user.admin._id;
     const [formData, setFormData] = useState({
         name: user.name,
-        expireAt: expireAt
+        expireAt: expireAt,
+        deleteDays:user.delete?user.deleteDays:"",
+        removeLibsDays:user.removeLibs?user.removeLibsDays:""
+        
     })
     const [update, loading] = useFetchApi({
         url: `/api/plex/user/info/${user._id}`,
@@ -27,6 +31,8 @@ export const EditPlexUser = ({ user, setOpenModal, setUsers, users }) => {
                 const userUpdate = usersUpdated.find(u => u._id == user._id);
                 userUpdate.name = formData.name;
                 userUpdate.expireAt = formData.expireAt;
+                userUpdate.deleteDays = formData.deleteDays;
+                userUpdate.removeLibsDays=formData.removeLibsDays;
                 setOpenModal(false);
                 setUsers(usersUpdated)
                 SWAlert.alert({
@@ -49,6 +55,14 @@ export const EditPlexUser = ({ user, setOpenModal, setUsers, users }) => {
                 <label htmlFor="name">Fecha Expiracíon:</label>
                 <input onChange={onChange} type="datetime-local" name="expireAt" id="name" value={formData.expireAt} />
             </div>}
+            <div className="form__group">
+                <label htmlFor="name">Eliminar despues que vencio(dias)</label>
+                <input onChange={onChange} type="number" placeholder='Dejar en blaco para no eliminar' name="deleteDays" id="name" value={formData.deleteDays} />
+            </div>
+            <div className="form__group">
+                <label htmlFor="name">Quitar librerias despues que vencio(dias)</label>
+                <input onChange={onChange} type="number" placeholder='Dejar en blaco para no quitar libs' name="removeLibsDays" id="name" value={formData.removeLibsDays} />
+            </div>
             <div className="d-flex gap-2">
                 <BtnPrimary title="Editar" />
                 <BtnSecondary onClick={() => setOpenModal(false)} title="Cancelar" type="button" />
