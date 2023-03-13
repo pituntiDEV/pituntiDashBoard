@@ -1,0 +1,35 @@
+.create__user__form {
+    .deleteForm {
+        margin-bottom: 1rem;
+        h2 {
+            text-align: center;
+            font-weight: bold;
+            color: rgb(209, 75, 75);
+            text-transform: uppercase;
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        
+
+            .option {
+                display: flex;
+                flex-direction: column;
+                gap: .2rem;
+                
+                label{
+                    color: rgb(99, 98, 98);
+                    font-weight: bold;
+                    margin-bottom: .3rem;
+                }
+                input{
+                    border-radius: .6rem;
+                    border: none;
+                }
+               
+            }
+        }
+    }
+}

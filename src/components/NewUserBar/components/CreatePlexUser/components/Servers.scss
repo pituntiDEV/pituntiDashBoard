@@ -1,9 +1,13 @@
 .servers{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     .server{
+        border-right: solid rgba(62, 61, 61, 0.266) 2px;
+        padding: 1rem;
         .packages{
         display: grid;
         margin-left: 2rem;
-        grid-template-columns: repeat(auto-fill,minmax(150px,1fr));
+        grid-template-columns: repeat(auto-fill,minmax(100px,1fr));
         gap: 1rem;
         
         .pack{

@@ -16,7 +16,7 @@ export const Header = () => {
 
         
           <p className="name">
-              Pitunti DashBoard
+              Magic DashBoard
           </p>
       </div>
 
