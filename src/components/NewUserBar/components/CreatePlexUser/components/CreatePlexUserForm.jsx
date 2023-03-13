@@ -32,8 +32,27 @@ export const CreatePlexUserForm = ({ setOpenModal, setNewUserState }) => {
     const onCHangeInputHandler = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     }
+
+    const validatePassword = (password) => {
+        var regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+
+        // Verificar si la contraseña cumple con los requisitos
+        if (regex.test(password)) {
+            return true
+        } else {
+           return false
+        }
+    }
     const submit = (e) => {
         e.preventDefault();
+        const isValidPassword=validatePassword(formData.password);
+        if(!isValidPassword){
+           SWAlert.error({
+            title: 'Invalid Password',
+            text:"Agrega una contraseña valida de minimo 8 caracteres incluyendo letras y numeros"
+           })
+            return
+        }
         createUser({ body: JSON.stringify(formData) })
             .then(data => {
                 SWAlert.alert({
@@ -98,9 +117,9 @@ export const CreatePlexUserForm = ({ setOpenModal, setNewUserState }) => {
             </div>
 
             <div className="form__group">
-                <label htmlFor="password">Password:</label>
-                <input type="password" onChange={onCHangeInputHandler} value={formData.password} required name="password" id="password" />
-                {formData.password}
+                <label htmlFor="password">Password:{formData.password}</label>
+                <input type="password" onChange={onCHangeInputHandler} minLength={8} value={formData.password} required name="password" id="password" />
+
                 <button className='btn btn-warning' type='button' onClick={generarPassword}>Generar Password</button>
             </div>
 
@@ -109,10 +128,10 @@ export const CreatePlexUserForm = ({ setOpenModal, setNewUserState }) => {
                 <div className="options">
                     <div className="delete option">
                         <label htmlFor="">Eliminar usuarios despues de vencido en (dias)</label>
-                        <input type="number" onChange={onCHangeInputHandler}  name="deleteDays" placeholder='Dejar en blaco para no eliminar' />
+                        <input type="number" onChange={onCHangeInputHandler} name="deleteDays" placeholder='Dejar en blaco para no eliminar' />
                     </div>
                     <div className="deleteLibs option">
-                        <label htmlFor="">Eliminar usuarios despues de vencido en (dias)</label>
+                        <label htmlFor="">Quitar librerias despues de vencido (dias)</label>
                         <input type="number" onChange={onCHangeInputHandler} name="removeLibsDays" placeholder='Dejar en blaco para no quitar librerias' />
                     </div>
                 </div>
