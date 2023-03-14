@@ -67,7 +67,7 @@ export const Login = () => {
              </p>
 
              <div className="logo">
-             <img src="./assets/img/tecnodev3d_logo.png" className='logo' />
+             <img src="/assets/img/logo250x250.png" className='logo'/>
              </div>
             </form>
         </div>

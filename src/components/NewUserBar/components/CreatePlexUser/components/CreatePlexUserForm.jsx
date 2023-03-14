@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import useFetchApi from '../../../../../hook/useFetchApi'
 import { BtnPrimary } from '../../../../Buttons/BtnSucess/BtnPrimary'
 import { BtnSecondary } from '../../../../Buttons/BtnSucess/BtnSecondary'
@@ -6,11 +6,15 @@ import { WhatsappIcon } from '../../../../icons/WhatsappIcon'
 import SWAlert from '../../../../SwAlert/SWAlert'
 import { ShowLibs } from './ShowLibs';
 import "./createNewUserForm.scss";
+import { appContext } from '../../../../../context/AppContext'
 
 const lettersMin = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 const lettersMay = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 const numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 export const CreatePlexUserForm = ({ setOpenModal, setNewUserState }) => {
+
+     //Context
+     const appContextValue = useContext(appContext);
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -60,6 +64,7 @@ export const CreatePlexUserForm = ({ setOpenModal, setNewUserState }) => {
                 })
                 setOpenModal(false);
                 setNewUserState(s => !s);
+                appContextValue.setState({...appContextValue.state,onChangeCredits:!appContextValue.state.onChangeCredits});
             })
             .catch((error) => {
                 SWAlert.error({

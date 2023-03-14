@@ -16,7 +16,8 @@ export const Header = () => {
 
         
           <p className="name">
-              Magic DashBoard
+             <img src="/assets/img/logoMagic.png"/>
+              <h1>Magic DashBoard</h1>
           </p>
       </div>
 

@@ -58,7 +58,7 @@ export const EditResellerForm = ({ reseller,setNewResellerState,setOpenModal }) 
                     <InputWithIcon>
                         <i className="fa-solid fa-user-lock"></i>
                         <input onChange={inputOnChange} type="number" value={resellerToEdit.removeUsersLibsDays
-                        } name="removeUsersLibsDays" min="1" />
+                        } name="removeUsersLibsDays" min="0" />
                     </InputWithIcon>
                 </div>
 
@@ -69,7 +69,7 @@ export const EditResellerForm = ({ reseller,setNewResellerState,setOpenModal }) 
                     <label htmlFor="" className=""> Eliminar usuarios [Dias]?</label>
                     <InputWithIcon>
                         <i className="fa-solid fa-user-xmark"></i>
-                        <input onChange={inputOnChange} type="number" value={resellerToEdit.deleteUsersDays} placeholder='Dias a eliminar' name="deleteUsersDays" min="1" />
+                        <input onChange={inputOnChange} type="number" value={resellerToEdit.deleteUsersDays} placeholder='Dias a eliminar' name="deleteUsersDays" min="0" />
                     </InputWithIcon>
                 </div>
                 {/* Permitir Demos */}

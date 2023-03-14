@@ -5,14 +5,15 @@ import { BtnPrimary } from '../../Buttons/BtnSucess/BtnPrimary';
 import { BtnSecondary } from '../../Buttons/BtnSucess/BtnSecondary';
 import SWAlert from '../../SwAlert/SWAlert';
 export const EditPlexUser = ({ user, setOpenModal, setUsers, users }) => {
-    console.log(user.delete);
     const expireAt = utils.formatDate(user.expireAt, "YYYY-MM-DDTHH:mm");
     const isAdmin = localStorage.getItem("_id") == user.admin._id;
     const [formData, setFormData] = useState({
         name: user.name,
         expireAt: expireAt,
         deleteDays: user.delete ? user.deleteDays : "",
-        removeLibsDays: user.removeLibs ? user.removeLibsDays : ""
+        removeLibsDays: user.removeLibs ? user.removeLibsDays : "",
+        whatsapp:user.whatsapp,
+        comments:user.comments
 
     })
     const [update, loading] = useFetchApi({
@@ -33,6 +34,9 @@ export const EditPlexUser = ({ user, setOpenModal, setUsers, users }) => {
                 userUpdate.expireAt = formData.expireAt;
                 userUpdate.deleteDays = formData.deleteDays;
                 userUpdate.removeLibsDays = formData.removeLibsDays;
+                userUpdate.whatsapp = formData.whatsapp;
+                userUpdate.comments = formData.comments
+
                 setOpenModal(false);
                 setUsers(usersUpdated)
                 SWAlert.alert({
@@ -50,6 +54,14 @@ export const EditPlexUser = ({ user, setOpenModal, setUsers, users }) => {
             <div className="form__group">
                 <label htmlFor="name">Name:</label>
                 <input onChange={onChange} type="text" name="name" id="name" value={formData.name} />
+            </div>
+            <div className="form__group">
+                <label htmlFor="whatsapp">WhatsApp:</label>
+                <input onChange={onChange} type="text" name="whatsapp" id="whatsapp" value={formData.whatsapp} />
+            </div>
+            <div className="form__group">
+                <label htmlFor="comments">Comentarios:</label>
+                <input onChange={onChange} type="text" name="comments" id="comments" value={formData.comments} />
             </div>
             {isAdmin && <div className="form__group">
                 <label htmlFor="name">Fecha Expiracíon:</label>
