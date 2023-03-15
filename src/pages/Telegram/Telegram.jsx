@@ -1,8 +1,24 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Modal from '../../components/modal/Modal';
+import useFetchApi from '../../hook/useFetchApi';
+import { ChatBotList } from './components/ChatBotList/ChatBotList';
 import { NewChatBotForm } from './components/NewChatBotForm/NewChatBotForm';
 import "./Telegram.scss";
 export const Telegram = () => {
+    //State
+    const [bots,setBots] = useState([])
+    //Get My ChatBots
+    const [getMyBots,Loading] =useFetchApi({
+        url:`/api/telegram/chatBot`,
+        method:"GET"
+    })
+
+    useEffect(()=>{
+        getMyBots()
+            .then(bots=>{
+                setBots(bots)
+            })
+    },[])
     const [openModalToNewChatBot,setOpenModalToNewChatBot] = useState(false);
     return (
         <div className='Telegram'>
@@ -18,10 +34,10 @@ export const Telegram = () => {
                         </button>
                     </div>
             </div>
-
+            <ChatBotList bots={bots} setBots={setBots}/>
             {openModalToNewChatBot &&
             <Modal title="Nuevo Chat Bot" setOpenModal={setOpenModalToNewChatBot}>
-                <NewChatBotForm setOpenModal={setOpenModalToNewChatBot}/>
+                <NewChatBotForm bots={bots} setBots={setBots} setOpenModal={setOpenModalToNewChatBot}/>
             </Modal>}
 
         </div>

@@ -1,0 +1,36 @@
+.ChatBotList{
+    .bots{
+        display: grid;
+        gap:1rem;
+        grid-template-columns: repeat(auto-fill,minmax(150px,1fr));
+        .bot{
+            background-color:#194661;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            border-radius: 1rem;
+            box-shadow: -2px 2px 7px rgb(0, 0, 0) ;
+            i{
+                margin-right: .5rem;
+            }
+            .options{
+                display: flex;
+                justify-content: center;
+                gap: 2rem;
+                .option{
+                    border: 2px rgba(8, 8, 8, 0.74) solid;
+                    height: 3rem;
+                    width: 3rem;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 50%;
+                    text-align: center;
+                   i{
+                    margin-left:.5rem;
+                   }
+                }
+            }
+        }
+    }
+}

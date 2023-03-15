@@ -50,7 +50,7 @@ export const Login = () => {
     return (
         <div className="Login">
             <form onSubmit={login}>
-                <h1> <i className="fa-solid fa-lock"></i> LOGIN</h1>
+                <div> <i className="fa-solid fa-lock"></i> LOGIN</div>
                 <input onChange={onChange} name="email" type="text" placeholder="Email" />
                 <input onChange={onChange} name="password" type="password" placeholder="Password" />
                 <BtnPrimary title="Login"/>
@@ -67,8 +67,9 @@ export const Login = () => {
              </p>
 
              <div className="logo">
-             <img src="/assets/img/logo250x250.png" className='logo'/>
+             <img src="/assets/img/logoTrasparent250x250.png" className='logo'/>
              </div>
+             <h1>Magic Dashboard</h1>
             </form>
         </div>
     )

@@ -19,14 +19,14 @@
             align-items: center;
             @include phone-only {
                 flex-direction: column;
-                margin-top: 3rem;
+                margin-top: 2rem;
                 position: absolute;
                 z-index: -3;
             }
-            gap: 1rem;
+           
             img{
                  border-radius: 1rem;
-                max-width: 90px;
+                max-width: 60px;
                 display: block;
             }
            font-size: 2rem;
