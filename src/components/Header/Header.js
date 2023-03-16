@@ -15,10 +15,10 @@ export const Header = () => {
         </div>
 
         
-          <p className="name">
+          <div className="name">
              <img src="/assets/img/logoTrasparent250x250.png"/>
               <h1>Magic DashBoard</h1>
-          </p>
+          </div>
       </div>
 
       <div className='notifications'>

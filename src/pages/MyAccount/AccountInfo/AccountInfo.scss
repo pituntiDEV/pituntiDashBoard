@@ -2,80 +2,114 @@
     --header-width:30rem;
     --header-height:15rem;
 }
-.account_info{
 
-    top:0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+.my__account__info{
+
+    .account_info{
     
-    .info{
-        box-shadow: -10px 10px 5px rgba(0, 0, 0, 0.478);
-        position: relative;
-        background-color: rgb(62, 60, 60);
-        border-radius: 2rem;
-        margin-top: 1rem;
-        overflow: hidden;
-        header{
+        
+        .info{
+            box-shadow: -10px 10px 5px rgba(0, 0, 0, 0.478);
             position: relative;
-            min-width: var(--header-width);
-            min-height: var(--header-height);
-            margin-bottom: 6rem;
-            background-color: rgb(201, 99, 99);
-            border-radius: 0 0 50%;
-            text-align: center;
-            border-bottom:  2rem solid rgb(255, 255, 255);
-            .btn-exit{
-                position: absolute;
-                right: 2rem;
-                top: .5rem;
-                color: var(--color-primary);
-                text-shadow: -1px 2px 2px rgb(213, 210, 210);
+            background-color: rgb(62, 60, 60);
+            border-radius: 2rem;
+            margin-top: 1rem;
+            overflow: hidden;
+            max-width: 300px;
+            margin: 0 auto;
+            header{
+                position: relative;
+                min-width: var(--header-width);
+                min-height: var(--header-height);
+                margin-bottom: 6rem;
+                background-color: rgb(201, 99, 99);
+                border-radius: 0 0 50%;
+                text-align: center;
+                border-bottom:  2rem solid rgb(255, 255, 255);
+                .btn-exit{
+                    position: absolute;
+                    right: 2rem;
+                    top: .5rem;
+                    color: var(--color-primary);
+                    text-shadow: -1px 2px 2px rgb(213, 210, 210);
+                }
+                div{
+                    padding-top: 1rem;
+                    font-size: 2rem;
+                    font-weight: bold;
+                    color: white;
+                }
+                
+                img{
+                   position: absolute;
+                    width: 12rem;
+                    width: 12rem;
+                    bottom: calc(50% + -75% );
+                    left: calc( 50% - 6rem );
+                    border-radius: 50%;
+                    border:2rem solid white;
+                    display: block;
+                    
+                    
+    
+                }
             }
-            div{
-                padding-top: 1rem;
-                font-size: 2rem;
-                font-weight: bold;
+            .data{
+                display: flex;
+                padding: 1rem;
+                flex-direction: column;
+                align-items: center;
                 color: white;
-            }
-            
-            img{
-               position: absolute;
-                width: 12rem;
-                width: 12rem;
-                bottom: calc(50% + -75% );
-                left: calc( 50% - 6rem );
-                border-radius: 50%;
-                border:2rem solid white;
-                display: block;
                 
-                
-
             }
         }
-        .data{
-            display: flex;
-            padding: 1rem;
-            flex-direction: column;
-            align-items: center;
-            color: white;
+    
+    }
+    .servers__shared{
+        margin-top: 3rem;
+        h3{
+            font-weight: bold;
             
+        }
+        .servers__container{
+            display: grid;
+            grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
+            gap: 1rem;
+            .server-shared{
+                background-color: rgb(67, 104, 83);
+                text-align: center;
+                color: white;
+                border-radius: 1rem;
+                padding:1rem 0;
+            }
         }
     }
 }
 .recent_movies{
     margin-top: 2rem;
+    h2{
+        margin: 2rem 0;
+        font-weight: bold;
+    }
    .slide{
     display: grid;
     grid-template-columns: repeat(auto-fill,minmax(150px,1fr));
-    gap: 1rem;
+    gap: 3rem;
     .img_container{
         box-shadow: -4px 4px 6px black;
+        position: relative;
+        .title{
+            
+            display: flex;
+            justify-content: center;
+          
+            background-color: black;
+            color: white;
+            font-size: 1.5rem;
+        }
         img{
             width: 100%;
+            height: 100%;
             display: block;
             height: 100%;
             &:hover{

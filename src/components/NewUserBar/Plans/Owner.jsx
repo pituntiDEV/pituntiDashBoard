@@ -67,7 +67,7 @@ export const Owner = ({state,setState}) => {
                 <label htmlFor="email">Quitar librerias despues de que el servicio expire [DIAS]?:</label>
                 <InputWithIcon>
                 <i class="fa-solid fa-user-lock"></i>
-                    <input type="Number" value={state.removeLibsDays} placeholder="Quitar libs" onChange={inputOnChange}  min={1} name="removeLibsDays" />
+                    <input type="Number" value={state.removeLibsDays} placeholder="Quitar libs" onChange={inputOnChange}  min={0} name="removeLibsDays" />
                     <small>Dias</small>
                 </InputWithIcon>
             </div>
@@ -79,7 +79,7 @@ export const Owner = ({state,setState}) => {
                 <label className='text-danger'htmlFor="email">Eliminar automaticamente despues de vencido [DIAS]?:</label>
                 <InputWithIcon>
                 <i class="fa-solid fa-user-xmark"></i>
-                    <input onChange={inputOnChange} type="Number" placeholder="Eliminar" value={state.deleteDays}  min={1} name="deleteDays" />
+                    <input onChange={inputOnChange} type="Number" placeholder="Eliminar" value={state.deleteDays}  min={0} name="deleteDays" />
                     <small>Dias</small>
                 </InputWithIcon>
             </div>
