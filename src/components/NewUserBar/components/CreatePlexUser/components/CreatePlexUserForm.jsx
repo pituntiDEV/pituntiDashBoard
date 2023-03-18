@@ -22,7 +22,8 @@ export const CreatePlexUserForm = ({ setOpenModal, setNewUserState }) => {
         credits: 1,
         servers: [],
         connections: 1,
-        whatsapp: null
+        whatsapp: null,
+        comments:""
     })
 
     const [myServers, setMyServers] = useState([])
@@ -114,6 +115,12 @@ export const CreatePlexUserForm = ({ setOpenModal, setNewUserState }) => {
                 <label htmlFor="email">Email:</label>
                 <input type="email" onChange={onCHangeInputHandler} value={formData.email} required name="email" id="email" />
                 <button className='btn btn-warning' type='button' onClick={generarEmail}>Generar email</button>
+            </div>
+
+            <div className="form__group">
+                <label htmlFor="email">Comentarios:</label>
+                <input type="text" placeholder='Opcional' onChange={onCHangeInputHandler} value={formData.comments} name="comments" id="comments" />
+
             </div>
 
             <div className="form__group">

@@ -125,10 +125,10 @@ export const UserInfo = (props) => {
 
 
                     <div className='form-group'>
-                        <label htmlFor="email">Description:</label>
+                        <label htmlFor="email">Comentarios:</label>
                         <InputWithIcon>
                             <i className="fa-regular fa-comment"></i>
-                            <input type="text"  onChange={onChangeInput} value={state.description} placeholder="Description" name="description" />
+                            <input type="text"   onChange={onChangeInput} value={state.comments} placeholder="Opcional" name="comments" />
                         </InputWithIcon>
                     </div>
 

@@ -4,6 +4,7 @@ import { TrashIcon } from '../../../../components/icons/TrashIcon';
 import { DeleteBot } from '../DeleteBot/DeleteBot';
 import { EditChatBot } from '../EditChatBot/EditChatBot';
 import { SendMessagesTelegramBot } from '../SendMessagesTelegramBot/SendMessagesTelegramBot';
+import { SendNotifications } from '../SendNotifications';
 import "./ChatBotList.scss";
 export const ChatBotList = ({bots,setBots}) => {
   return (
@@ -27,6 +28,10 @@ export const ChatBotList = ({bots,setBots}) => {
 
                             <div className="option">
                                 <DeleteBot bots={bots} setBots={setBots} bot={bot}/>
+                            </div>
+
+                            <div className="option">
+                                <SendNotifications bots={bots} setBots={setBots} bot={bot}/>
                             </div>
 
                         </div>

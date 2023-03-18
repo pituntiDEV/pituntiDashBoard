@@ -2,7 +2,7 @@
     .bots{
         display: grid;
         gap:1rem;
-        grid-template-columns: repeat(auto-fill,minmax(150px,1fr));
+        grid-template-columns: repeat(auto-fill,minmax(250px,1fr));
         .bot{
             background-color:#194661;
             color: white;
