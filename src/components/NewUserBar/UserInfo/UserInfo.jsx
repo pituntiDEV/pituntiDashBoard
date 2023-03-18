@@ -128,7 +128,7 @@ export const UserInfo = (props) => {
                         <label htmlFor="email">Description:</label>
                         <InputWithIcon>
                             <i className="fa-regular fa-comment"></i>
-                            <input type="text" required onChange={onChangeInput} value={state.description} placeholder="Description" name="description" />
+                            <input type="text"  onChange={onChangeInput} value={state.description} placeholder="Description" name="description" />
                         </InputWithIcon>
                     </div>
 

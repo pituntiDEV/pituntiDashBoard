@@ -19,7 +19,7 @@ export const UserCard = ({ user,setNewUserState, setUsers,users }) => {
       <div className="whatsapp">
         {
           user.whatsapp &&
-          <a href={`https://api.whatsapp.com/send?phone=${user.whatsapp}`}><WhatsappIcon/></a>
+          <a href={`https://api.whatsapp.com/send?phone=${user.whatsapp}&&text=""`}><WhatsappIcon/></a>
         }
       </div>
         <div className='email'>{user.email}</div>
