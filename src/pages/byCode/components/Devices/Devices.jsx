@@ -18,6 +18,7 @@ import Kodi from './images/Kodi';
 import { Plex } from './images/Plex';
 import { Roku } from './images/Roku';
 import { Samsung } from './images/Samsung';
+const utils = require('../../../../utils/date/index');
 
 var relativeTime = require('dayjs/plugin/relativeTime')
 dayjs.extend(relativeTime)
@@ -91,8 +92,9 @@ export const Devices = ({ devicesState, setDevicesState }) => {
             <div className="devices__list">
                 {
                     myDevices.length > 0 && filterDevices.map(device => {
+                        const isExpired = utils.isExpired(device.expireAt);
                         return (
-                            <div key={device._id} className='device'>
+                            <div key={device._id} className={`device ${isExpired && "expired"}`}>
                                 <div className="header">
                                     <label><i className="fa-solid fa-microchip"></i> {device.device.id}</label>
                                     <div className="logo">
@@ -103,22 +105,22 @@ export const Devices = ({ devicesState, setDevicesState }) => {
                                         <hr />
                                     </div>
                                 </div>
-                                <div className="body">
+                                <small className="body">
                                     <div className="name">
                                         {device.name}
                                     </div>
 
-                                    <div className="brand">
+                                    <small className="brand">
                                         {device.device.vendor || device.device.platform}
-                                    </div>
-                                </div>
+                                    </small>
+                                </small>
 
                                 <div className="footer ">
 
                                     <div className="expireAt">
-                                        <small className='text-danger'>Expira:</small>
+                                       
                                         <div className="date">
-                                        {dayjs(device.expireAt).calendar()}
+                                        {utils.formatDate(device.expireAt)}
                                         </div>
                                     </div>
                                 </div>

@@ -1,6 +1,7 @@
 .Devices{
     margin-top: 2rem;
     position: relative;
+    
     h2{
         font-size: 2.5rem;
         font-weight: bold;
@@ -18,13 +19,24 @@
             color: white;
             text-align: center;
             border-radius: 1rem;
+            &.expired{
+                text-shadow: -1px -1px 3px rgb(249, 243, 243);
+               
+                background-color: rgb(193, 61, 61);
+                color: #000000;
+                font-weight: bold;
+                li{
+                    background-color: rgb(255, 255, 255);
+                }
+              
+          }
             .header{
                 label{
                     font-size: 1rem;
                 }
                 .logo{
                     img{
-                        height: 3.5rem;
+                        height: 2.5rem;
                         background-color: rgb(226, 222, 222);
                         border-radius: 1rem;
                     }
@@ -36,7 +48,7 @@
                     
                 }
                 .name{
-                    font-size: 1.3rem;
+                    font-size: 1rem;
                     font-style: italic;
                 }
             }
@@ -53,7 +65,7 @@
                 width: 3rem;
                 height: 3rem;
                 border-radius: 50%;
-                box-shadow:  -1px 1px 3px red ;
+                box-shadow:  -1px 1px 3px rgb(58, 88, 195) ;
             }
           
            }

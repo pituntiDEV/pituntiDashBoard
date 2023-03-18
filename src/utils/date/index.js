@@ -36,7 +36,7 @@ const renewPoint =(date)=>{
   return current;
 }
 
-const formatDate =(date,format="DD/MMMM/YYYY")=>{
+const formatDate =(date,format="DD/MMM/YYYY")=>{
   return dayjs(date).format(format);
 }
 module.exports={
