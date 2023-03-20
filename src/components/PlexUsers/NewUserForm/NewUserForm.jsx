@@ -24,7 +24,7 @@ export const NewUserForm = ({setNewUserState,setOpenModal}) => {
     email: "",
     package: "",
     packages: [],
-    description: "",
+    comments: "",
     date: "",
     credits: 0,
     connections: "",

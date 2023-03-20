@@ -8,7 +8,7 @@ import dayjs from 'dayjs'
 import utils from "../../../utils/date/index";
 import { WhatsappIcon } from '../../icons/WhatsappIcon'
 export const UserCard = ({ user,setNewUserState, setUsers,users }) => {
-  const expireAt = dayjs(user.expireAt).format("DD/MMM/YYYY") || null;
+  const expireAt = dayjs(user.expireAt).format("DD/MMM/YYYY - h:mmA	") || null;
   const isExpired = utils.isExpired(user.expireAt)
 
   return (

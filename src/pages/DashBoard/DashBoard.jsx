@@ -104,7 +104,7 @@ export const DashBoard = () => {
      
      {/* {server.data?.name} */}
     </div>
-
+      {/* <GraficaBarras/> */}
     {/* <Playing/> */}
     <Sessions sessions={sessions} newSessions={newSessions}/>
 
