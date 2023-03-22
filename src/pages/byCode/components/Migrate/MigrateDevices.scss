@@ -1,0 +1,29 @@
+.search__devices__by__email__for__migrate {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 70% 30%;
+    margin-bottom: 2rem;
+
+}
+
+.devices__list__to__migrate {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+    .device{
+        background-color: rgb(220, 90, 90);
+        border-radius: 1rem;
+        color: white;
+        text-align: center;
+        .footer{
+            display: flex;
+            .btn-primary{
+               border: none;
+               flex: 1;
+               margin: 1rem;
+               border-radius: .5rem;
+               box-shadow: -2px 2px 3px rgb(45, 44, 44);
+            }
+        }
+    }
+}

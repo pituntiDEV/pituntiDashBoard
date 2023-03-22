@@ -24,7 +24,7 @@ var relativeTime = require('dayjs/plugin/relativeTime')
 dayjs.extend(relativeTime)
 var calendar = require('dayjs/plugin/calendar')
 dayjs.extend(calendar)
-export const Devices = ({ devicesState, setDevicesState }) => {
+export const Devices = ({ devicesState, setDevicesState}) => {
     // State
     const [myDevices, setMyDevices] = useState([]);
     const [deviceToDelete, setDeviceToDelete] = useState(null);
@@ -123,6 +123,10 @@ export const Devices = ({ devicesState, setDevicesState }) => {
                                         {utils.formatDate(device.expireAt)}
                                         </div>
                                     </div>
+
+                                   {isExpired ?<small className='text-danger'>Vencido</small>:
+                                        <small className='text-success'>Active</small>
+                                    }
                                 </div>
 
                                 <div className="options">

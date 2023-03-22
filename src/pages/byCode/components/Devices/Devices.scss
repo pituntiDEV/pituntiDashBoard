@@ -21,13 +21,14 @@
             border-radius: 1rem;
             box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.455);
             &.expired{
-                text-shadow: -1px -1px 3px rgb(249, 243, 243);
-               
-                background-color: rgb(193, 61, 61);
-                color: #000000;
-                font-weight: bold;
-                li{
-                    background-color: rgb(255, 255, 255);
+                
+                overflow: hidden;
+                .header{
+                    text-shadow: -1px -1px 3px rgb(249, 243, 243);
+                    color: #000000;
+                    font-weight: bold;
+                    background-color: #f25353;
+
                 }
               
           }
@@ -53,14 +54,17 @@
                     font-style: italic;
                 }
             }
+          
         }
 
         .options{
             margin-top: 1rem;
             margin-bottom: 1rem;
+           
            ul{
             display: flex;
             justify-content: space-around;
+            align-items: flex-start;
             li{
                 border: #ffffff24 2px solid;
                 width: 3rem;
