@@ -1,36 +1,25 @@
+import React from 'react';
+import { VictoryBar, VictoryChart } from 'victory';
 
-import { Bar } from 'react-chartjs-2';
-import { Line } from 'react-chartjs-2';
-import Chart from 'chart.js/auto';
-import { LinearScale } from 'chart.js';
-Line.register(LinearScale);
+const GraficaBarras = ({data,x,y}) => {
+  // const data = [
+  //   { month: 'Enero', ventas: 120 },
+  //   { month: 'Febrero', ventas: 19 },
+  //   { month: 'Marzo', ventas: 3 },
+  //   { month: 'Abril', ventas: 5 },
+  //   { month: 'Mayo', ventas: 2 },
+  //   { month: 'Junio', ventas: 3 },
+  // ];
 
-const data = {
-  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-  datasets: [
-    {
-      label: 'My Dataset',
-      data: [10, 20, 30, 40, 50, 60, 70],
-      fill: false,
-      borderColor: 'rgb(75, 192, 192)',
-      tension: 0.1
-    }
-  ]
+  return (
+    <VictoryChart>
+      <VictoryBar style={{
+       data: { 
+        fill: "rgb(77, 175, 207)" 
+      }
+      }} data={data} x={x} y={y} />
+    </VictoryChart>
+  );
 };
-
-const options = {
-  scales: {
-    y: {
-      beginAtZero: true
-    }
-  }
-};
-
-const GraficaBarras = () => (
- <div>
-   <Line data={data} options={options} />
-
- </div>
-);
 
 export default GraficaBarras;

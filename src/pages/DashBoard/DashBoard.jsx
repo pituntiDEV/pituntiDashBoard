@@ -8,6 +8,8 @@ import { Sessions } from './Sessions/Sessions';
 import {io} from "socket.io-client";
 import config from '../../config';
 import { Playing } from './components/Playing/Playing';
+import GraficaBarras from '../../components/Chart/GraficaBarras';
+import { Statistics } from './components/Statistics/Statistics';
 
 export const DashBoard = () => {
   
@@ -105,6 +107,7 @@ export const DashBoard = () => {
      {/* {server.data?.name} */}
     </div>
       {/* <GraficaBarras/> */}
+      <Statistics/>
     {/* <Playing/> */}
     <Sessions sessions={sessions} newSessions={newSessions}/>
 
