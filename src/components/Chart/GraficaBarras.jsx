@@ -15,7 +15,8 @@ const GraficaBarras = ({data,x,y}) => {
     <VictoryChart>
       <VictoryBar style={{
        data: { 
-        fill: "rgb(77, 175, 207)" 
+        fill: "rgb(77, 175, 207)",
+        width:20 
       }
       }} data={data} x={x} y={y} />
     </VictoryChart>

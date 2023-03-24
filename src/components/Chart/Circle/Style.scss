@@ -1,0 +1,60 @@
+.circleChart {
+    margin: 1rem 0;
+    max-width: 150px;
+    @keyframes rellenar {
+        to {
+            stroke-dasharray: var(--porcentaje) var(--max);
+        }
+    }
+
+    .porcentajes {
+        position: relative;
+        
+        span {
+          
+            position: absolute;
+            top: 0%;
+            left: 0%;
+            bottom: 0%;
+            right: 0%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font: 20px/1em Verdana;
+            margin-top: 1rem;
+           
+            text-shadow: -1px 1px rgb(11, 11, 11);
+            font-weight: bold;
+            color: white;
+           
+            small{
+                font-size: 1.2rem;
+                font-weight: bold;
+                text-align: center;
+                // background-color: rgba(255, 255, 255, 0.749);
+                padding: 0 1rem;
+                width: 140px;
+                margin-top: .3rem;
+                border-radius: 1rem;
+            }
+        }
+
+        circle {
+            fill: none;
+            stroke-width: 20;
+            transform: rotate(-90deg);
+            transform-origin: 50%;
+            stroke-dasharray: 100 100;
+            stroke: #484747;
+        }
+
+        circle:nth-child(2) {
+            /* el segundo círculo, es el que se ve por encima del anterior y debe tener el color mas intenso y el area del porcentaje */
+            stroke: var(--color);
+            stroke-dasharray: 0 100;
+            animation: rellenar .35s linear forwards;
+        }
+    }
+
+}
