@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Circle } from '../../../../components/Chart/Circle/Circle'
+import { PlexChart } from '../../../../components/Chart/PlexChart/PlexChart';
 import useFetchApi from '../../../../hook/useFetchApi'
 import { ActiveUsers } from './ActiveUsers'
 import "./Style.scss";
@@ -33,6 +34,8 @@ export const Statistics = () => {
 
         </div>
         <ActiveUsers/>
+
+        {/* <PlexChart/> */}
 
         
     </div>

@@ -1,0 +1,33 @@
+.create__demo__account{
+    .packages_list{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        .pack{
+            padding: .5rem;
+            color: white;
+            border-radius: 1rem;
+            background-color: rgb(212, 81, 81);
+            box-shadow: -2px 2px rgb(82, 80, 80);
+            &.active{
+                background-color: rgb(25, 171, 30);
+            }
+        }
+    }
+    .options{
+        margin-top: 1rem;
+        .options_container{
+            display: flex;
+            gap: 2rem;
+            .option{
+                display: flex;
+                flex-direction: column;
+    
+                .data{
+                    
+                    display: flex;
+                }
+            }
+        }
+    }
+}

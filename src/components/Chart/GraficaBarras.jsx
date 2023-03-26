@@ -1,5 +1,5 @@
 import React from 'react';
-import { VictoryBar, VictoryChart } from 'victory';
+import { VictoryBar, VictoryChart, VictoryTheme } from 'victory';
 
 const GraficaBarras = ({data,x,y}) => {
   // const data = [
@@ -13,10 +13,14 @@ const GraficaBarras = ({data,x,y}) => {
 
   return (
     <VictoryChart>
-      <VictoryBar style={{
+      <VictoryBar 
+      cornerRadius={{ topLeft:10,topRight:5}}
+      theme={VictoryTheme.material}
+      barRatio={0.8}
+      alignment="start" style={{
        data: { 
-        fill: "rgb(77, 175, 207)",
-        width:20 
+        fill:  "#c43a31",
+        width:30 
       }
       }} data={data} x={x} y={y} />
     </VictoryChart>
