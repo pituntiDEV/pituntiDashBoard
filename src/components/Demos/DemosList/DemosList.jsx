@@ -13,12 +13,13 @@ dayjs.extend(relativeTime)
 var calendar = require('dayjs/plugin/calendar')
 dayjs.extend(calendar)
 
-export const DemosList = ({ demos,setDemoState }) => {
-    const [openEditModal,setOpenEditModal] = useState(false)
-    const [openModalToAddCredits,setOpenModalToAddCredits] = useState(false);
-    const [user,setUser] = useState({});
-    const [deleteDemo,loadingDeleteDemo] = useFetchApi({
-        url:`/api/demos/${user._id}`,
+export const DemosList = ({ demos, setDemoState }) => {
+    const [openEditModal, setOpenEditModal] = useState(false)
+    const [openModalToAddCredits, setOpenModalToAddCredits] = useState(false);
+    const [openModalToShowAuth, setOpenModalToShowAuth] = useState(false);
+    const [user, setUser] = useState({});
+    const [deleteDemo, loadingDeleteDemo] = useFetchApi({
+        url: `/api/demos/${user._id}`,
         method: 'DELETE',
     })
 
@@ -28,8 +29,8 @@ export const DemosList = ({ demos,setDemoState }) => {
                 {
                     demos.map(demo => {
                         const isActive = dayjs(demo.expireAt).isAfter(dayjs());
-                        return <>
-                            <div className={`demo_card ${!isActive &&  "no_active"}`}>
+                        return <div key={demo._id}>
+                            <div className={`demo_card ${!isActive && "no_active"}`}>
                                 <div className="data">
                                     <div className="background">
                                         <span><img src={demo.data.invited.thumb} alt="" /></span>
@@ -54,33 +55,49 @@ export const DemosList = ({ demos,setDemoState }) => {
                                 </div>
 
                                 <div className="controls">
-                                    <CoinPlusIcon onClick={()=>{
+                                    <CoinPlusIcon onClick={() => {
                                         setUser(demo);
                                         setOpenModalToAddCredits(true)
                                     }} />
-                                    <TrashIcon onClick={()=>{
+                                    {demo.auth &&
+                                        <div className="option" onClick={() =>{
+                                            setOpenModalToShowAuth(true)
+                                            setUser(demo);
+                                        }}>
+                                            <i className="fa-solid fa-user-lock"></i>
+                                        </div>}
+                                    <TrashIcon onClick={() => {
                                         setUser(demo);
-                                        setOpenEditModal(true)
+                                        setOpenModalToShowAuth(true)
                                     }} />
                                 </div>
                             </div>
-                        </>
+                        </div>
                     })
                 }
             </div>
 
-        {openEditModal &&
-            <Modal title="Delete demo" setOpenModal={setOpenEditModal}>
-                <DeleteConfirm state={setDemoState} exec={deleteDemo} setOpenModal={setOpenEditModal}>
-                    <span>Estas Seguro que quires eliminar a </span>
-                    <span className='text-danger fw-bold'>{user.email}?</span>
-                </DeleteConfirm>
-            </Modal>}
+            {openEditModal &&
+                <Modal title="Delete demo" setOpenModal={setOpenEditModal}>
+                    <DeleteConfirm state={setDemoState} exec={deleteDemo} setOpenModal={setOpenEditModal}>
+                        <span>Estas Seguro que quires eliminar a </span>
+                        <span className='text-danger fw-bold'>{user.email}?</span>
+                    </DeleteConfirm>
+                </Modal>}
 
             {
-                openModalToAddCredits && 
+                openModalToAddCredits &&
                 <Modal title='Pasar a usuarios' setOpenModal={setOpenModalToAddCredits}>
-                    <AddCreditToDemo setDemoState={setDemoState} setOpenModal={setOpenModalToAddCredits} user={user}/>
+                    <AddCreditToDemo setDemoState={setDemoState} setOpenModal={setOpenModalToAddCredits} user={user} />
+                </Modal>
+            }
+
+            
+{
+                openModalToShowAuth &&
+                <Modal title='Auth' setOpenModal={setOpenModalToShowAuth}>
+                   <p> <span className="fw-bold">Email</span>:{user.email};</p>
+                   <span className="fw-bold">Password:</span>:{user.auth.password}
                 </Modal>
             }
         </div>
