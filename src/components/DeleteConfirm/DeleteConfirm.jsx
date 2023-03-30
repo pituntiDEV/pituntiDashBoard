@@ -7,7 +7,7 @@ export const DeleteConfirm = ({children,setOpenModal,exec,state}={}) => {
   return (
     <div>
        {children}
-        <div className="btns">
+        <div className="btns d-flex gap-3">
             <BtnPrimary onClick={()=>{
                 exec().then((data)=>{
                     SWAlert.alert({

@@ -68,7 +68,7 @@ export const DemosList = ({ demos, setDemoState }) => {
                                         </div>}
                                     <TrashIcon onClick={() => {
                                         setUser(demo);
-                                        setOpenModalToShowAuth(true)
+                                        setOpenEditModal(true)
                                     }} />
                                 </div>
                             </div>
