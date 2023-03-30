@@ -38,7 +38,7 @@ export const UserCard = ({ user,setNewUserState, setUsers,users }) => {
           <InputWithIcon>
             {/* <ServerIcon /> */}
             <i className="fa-solid fa-share-nodes"></i>
-            <small> {user?.data[0] && user.data.map(d=>d.name).join(",") || user?.data.name} </small>
+            <small> { user?.data[0] && user?.data.map(d=>d?.name).join(",") || user?.data?.name} </small>
           </InputWithIcon>
 
           <InputWithIcon>

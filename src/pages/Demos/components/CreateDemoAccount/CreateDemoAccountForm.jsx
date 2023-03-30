@@ -1,5 +1,6 @@
 import React from 'react'
 import { useEffect } from 'react';
+import { useContext } from 'react';
 import { useState } from 'react';
 import { BtnPrimary } from '../../../../components/Buttons/BtnSucess/BtnPrimary';
 import { BtnSecondary } from '../../../../components/Buttons/BtnSucess/BtnSecondary';
@@ -7,10 +8,19 @@ import { CancelIcon } from '../../../../components/icons/CancelIcon';
 import { CheckIcon } from '../../../../components/icons/CheckIcon';
 import { PackOpenIcon } from '../../../../components/icons/PackOpenIcon';
 import SWAlert from '../../../../components/SwAlert/SWAlert';
+import { AppContext, appContext } from '../../../../context/AppContext';
 import useFetchApi from '../../../../hook/useFetchApi';
+import { useRandomText } from '../../../../hook/useRandomText';
 import "./Style.scss"
 
 export const CreateDemoAccountForm = ({ setOpenModal,setDemoState }) => {
+    const {state} = useContext(appContext);
+    const myData = state.account_data;
+    const dominio = myData.email.split('@')[0]
+    const terminationEmail =myData.email.split('@')[1].split(".")[1];
+   
+   
+    console.log(myData);
     //State
     const [formData, setFormData] = useState({
         name: "",
@@ -32,6 +42,8 @@ export const CreateDemoAccountForm = ({ setOpenModal,setDemoState }) => {
     const [sharedServers, setsharedServers] = useState([]);//Servers
     const [packages, setPackages] = useState([]); //Packages
     //Custom Hooks
+
+    const [getRandomText,randomText] = useRandomText(15)
     const [getMyServers, loading] = useFetchApi({
         url: "/api/server/get/all",
         method: "GET",
@@ -55,6 +67,7 @@ export const CreateDemoAccountForm = ({ setOpenModal,setDemoState }) => {
 
     //Effects
     useEffect(() => {
+        getRandomText();
         if (formData.server.server) {
             getPackages().then(data => {
                 setPackages(data);
@@ -136,12 +149,20 @@ export const CreateDemoAccountForm = ({ setOpenModal,setDemoState }) => {
             </div>
             <div className="form__group">
                 <label htmlFor="email" className='fw-bold'>Email:</label>
-                <input required onChange={onChangeInputs} type="email" name="email" className='form__control' id="email" />
+                <input required onChange={onChangeInputs} type="email" name="email" value={formData.email} className='form__control' id="email" />
+                <button type='button' className='btn btn-primary' onClick={()=>{
+                    getRandomText(8);
+                    setFormData({...formData,email:randomText+"@"+dominio+"."+terminationEmail})
+                }}>Email Random</button>
             </div>
 
             <div className="form__group">
                 <label htmlFor="password" className='fw-bold'>Password:</label>
-                <input required onChange={onChangeInputs} type="password" name="password" className='form__control' id="password" />
+                <input required onChange={onChangeInputs} type="password" value={formData.password} name="password" className='form__control' id="password" />
+                <button type='button' className='btn btn-primary' onClick={()=>{
+                    getRandomText(15);
+                    setFormData({...formData,password:randomText})
+                }}>Password random</button>
             </div>
 
             <div className="form__group">

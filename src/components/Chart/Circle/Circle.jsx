@@ -16,7 +16,7 @@ export const Circle = ({title="title",porcentage="50",max=100}) => {
     </svg>
     <span>
         
-        {porcentage}%
+        {Math.round(porcentajeUso,1)}%
         <small>{title}</small>
     </span>
   </div>

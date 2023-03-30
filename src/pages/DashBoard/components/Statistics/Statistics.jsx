@@ -25,7 +25,7 @@ export const Statistics = () => {
                 servers.map(server=>{
                     return (
                         <div className='server__data' key={server._id}>
-                        <Circle porcentage={server?.users?.length} max={server.limit||100} title={server?.data?.name}/>
+                        <Circle porcentage={server?.users?.length} max={server.limit|| 100} title={server?.data?.name}/>
                         
                         </div>
                     )
