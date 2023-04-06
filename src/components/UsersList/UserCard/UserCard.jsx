@@ -23,7 +23,7 @@ export const UserCard = ({ user,setNewUserState, setUsers,users }) => {
         }
       </div>
         <div className='email'>{user.email}</div>
-          <img src={ user.data[0]?.invited?.thumb||user.data?.invited?.thumb} alt="" />
+          <img src={ user.data[0]?.invited?.thumb||user.data?.invited?.thumb || user.thumb} alt="" />
       </div>
 
       {/* body */}

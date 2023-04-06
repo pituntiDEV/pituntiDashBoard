@@ -48,12 +48,12 @@ export const NoRegisterUsers = () => {
         try {
             const token = account.data.user.authToken;
          
-            const allUsers = await getAllUsers();
+            const allUsersDB = await getAllUsers();
             const allUsersFromPlex = await getUsersFromPlex(token);
 
-            const ids = allUsers.map(u => u.data[0]?.invited.id|| u.data.invitedId);
-            console.log(ids);
-            const usersNoRegsiters = allUsersFromPlex.filter(u => !ids.includes(u.id));
+            const emails = allUsersDB.map(u => u.email.toLowerCase());
+             console.log(allUsersFromPlex);
+            const usersNoRegsiters = allUsersFromPlex.filter(u => !emails.includes(u.email && u.email.toLowerCase()));
             setUsers(usersNoRegsiters);
 
         } catch (error) {
