@@ -60,7 +60,7 @@ export const Options = ({ user, setNewUserState, setUsers, users }) => {
             {/* MODALS */}
             {openModalToEdit &&
                 <Modal title="Editar usuario PLEX" setOpenModal={setOpenModalToEdit}>
-                    <EditPlexUser users={users} setUsers={setUsers} setNewUserState={setNewUserState} user={user} setOpenModal={setOpenModalToEdit} />
+                    <EditPlexUser users={users} setUsers={setUsers} user={user} setOpenModal={setOpenModalToEdit} />
                 </Modal>
             }
 
@@ -72,7 +72,7 @@ export const Options = ({ user, setNewUserState, setUsers, users }) => {
 
             {openDeleteModal &&
                 <Modal title="Delete User" setOpenModal={setOpenDeleteModal}>
-                    <DeleteUserForm setNewUserState={setNewUserState} user={user} setOpenModal={setOpenDeleteModal} />
+                    <DeleteUserForm users={users} setUsers={setUsers} setNewUserState={setNewUserState} user={user} setOpenModal={setOpenDeleteModal} />
                 </Modal>
             }
 

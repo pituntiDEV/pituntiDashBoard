@@ -28,17 +28,11 @@ export const EditPlexUser = ({ user, setOpenModal, setUsers, users }) => {
         e.preventDefault();
         update({ body: JSON.stringify(formData) })
             .then(data => {
-                const usersUpdated = [...users]
-                const userUpdate = usersUpdated.find(u => u._id == user._id);
-                userUpdate.name = formData.name;
-                userUpdate.expireAt = formData.expireAt;
-                userUpdate.deleteDays = formData.deleteDays;
-                userUpdate.removeLibsDays = formData.removeLibsDays;
-                userUpdate.whatsapp = formData.whatsapp;
-                userUpdate.comments = formData.comments
-
+                const allUsersCopy=[...users];
+                const userIndex= allUsersCopy.findIndex(u => u._id == user._id);
+                allUsersCopy[userIndex] = data;
                 setOpenModal(false);
-                setUsers(usersUpdated)
+                setUsers(allUsersCopy)
                 SWAlert.alert({
                     title: data.message || "Updated"
                 })

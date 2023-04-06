@@ -5,7 +5,7 @@ import { BtnPrimary } from '../../Buttons/BtnSucess/BtnPrimary';
 import { BtnSecondary } from '../../Buttons/BtnSucess/BtnSecondary';
 import SWAlert from '../../SwAlert/SWAlert';
 import "./DeleteUserForm.scss";
-export const DeleteUserForm = ({user,setOpenModal,setNewUserState}) => {
+export const DeleteUserForm = ({user,users,setUsers,setOpenModal,setNewUserState}) => {
  
     //States
     //Custom Hooks
@@ -18,7 +18,8 @@ export const DeleteUserForm = ({user,setOpenModal,setNewUserState}) => {
     e.preventDefault();
     
     deleteUser().then(data=>{
-       setNewUserState(s=>!s);
+        const allUsersCopy =users.filter(u=>u._id!=user._id);
+        setUsers(allUsersCopy);
        SWAlert.alert({title:`Eliminastes a ${user.name}`})
        setOpenModal(false)
     }).catch(err=>{

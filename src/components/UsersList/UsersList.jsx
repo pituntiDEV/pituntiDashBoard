@@ -6,7 +6,7 @@ import { UsersFilter } from './UsersFilter/UsersFilter';
 import { useUserFilter } from '../../hook/useUserFilter';
 
 import "./UsersList.scss";
-import { Spinner } from '../Spinner/Spinner';
+
 
 export const UsersList = ({ users, setNewUserState, setUsers }) => {
   //Context
