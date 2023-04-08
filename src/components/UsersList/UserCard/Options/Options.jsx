@@ -36,7 +36,7 @@ export const Options = ({ user, setNewUserState, setUsers, users }) => {
                 <CoinPlusIcon className="credits" />
             </div>
             <div className='option'>
-                <ServerIcon onClick={()=>setOpenModalToChangeServer(true)}/>
+                <ServerIcon onClick={() => setOpenModalToChangeServer(true)} />
             </div>
             {/* <div className='option'>
                 <InfoIcon />
@@ -84,7 +84,7 @@ export const Options = ({ user, setNewUserState, setUsers, users }) => {
 
             {openModalToChangeServer &&
                 <Modal title="Cambiar Server" setUsers={setUsers} setOpenModal={setOpenModalToChangeServer}>
-                    <ChangeServerForm user={user}  users={users} setUsers={setUsers} setOpenModal={setOpenModalToChangeServer} />
+                    <ChangeServerForm user={user} users={users} setUsers={setUsers} setOpenModal={setOpenModalToChangeServer} />
                 </Modal>
             }
 

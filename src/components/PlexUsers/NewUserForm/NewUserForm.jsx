@@ -6,13 +6,13 @@ import { Plans } from '../../NewUserBar/Plans/Plans';
 import { UserInfo } from '../../NewUserBar/UserInfo/UserInfo';
 import SWAlert from '../../SwAlert/SWAlert';
 import "./NewUserForm.scss";
-export const NewUserForm = ({setNewUserState,setOpenModal}) => {
+export const NewUserForm = ({ setNewUserState, setOpenModal }) => {
 
   //Context
-    const appContextValue = useContext(appContext);
-  
+  const appContextValue = useContext(appContext);
+
   //States
-  const [url,setUrl] = useState("");
+  const [url, setUrl] = useState("");
   const [step, setStep] = useState(1);
   const [state, setState] = useState({
     name: "",
@@ -33,9 +33,9 @@ export const NewUserForm = ({setNewUserState,setOpenModal}) => {
     removeLibs: false,
     removeLibsDays: 3,
     byMonth: false,
-    totalCredits:0,
-    servers:[],
-    whatsapp:null
+    totalCredits: 0,
+    servers: [],
+    whatsapp: null
   });
 
   //Custom Hooks
@@ -56,53 +56,53 @@ export const NewUserForm = ({setNewUserState,setOpenModal}) => {
   //Steps
   const steps = {
     1: <UserInfo {...props} />,
-    2: <Plans {...props} />
+    2: <Plans loading={loading} {...props} />
   }
 
 
   //Effects
-  useEffect(()=>{
-    const _id= localStorage.getItem("_id")
-    const validateAdmin = state.servers.reduce((acc,server)=>{
-      if(server.admin._id == _id){
-          acc = [...acc,true]
+  useEffect(() => {
+    const _id = localStorage.getItem("_id")
+    const validateAdmin = state.servers.reduce((acc, server) => {
+      if (server.admin._id == _id) {
+        acc = [...acc, true]
       }
       return acc;
-  },[]);
+    }, []);
 
- 
 
-  const isNotAdmin = state.servers.filter(s=>s.admin._id != _id);
-  const isAdmin = isNotAdmin.length ==0 ? true:false
-    const uri = isAdmin?"/api/plex/user/add":"/api/plex/user/add/reseller";
+
+    const isNotAdmin = state.servers.filter(s => s.admin._id != _id);
+    const isAdmin = isNotAdmin.length == 0 ? true : false
+    const uri = isAdmin ? "/api/plex/user/add" : "/api/plex/user/add/reseller";
     setUrl(uri)
-  },[state.servers]
+  }, [state.servers]
   )
 
 
   //Finctions
-  const submit=(e)=>{
+  const submit = (e) => {
     e.preventDefault();
-    if(step < Object.keys(steps).length){
-      setStep(step+1);
+    if (step < Object.keys(steps).length) {
+      setStep(step + 1);
       return;
     }
-   
+
     addUser({
-      body:JSON.stringify(state)
-    }).then(data=>{
+      body: JSON.stringify(state)
+    }).then(data => {
       SWAlert.alert({
-        title:data.message || "Usuario Agregado"
+        title: data.message || "Usuario Agregado"
       })
-      appContextValue.setState({...appContextValue.state,onChangeCredits:!appContextValue.state.onChangeCredits});
-      setNewUserState(a=>!a);
+      appContextValue.setState({ ...appContextValue.state, onChangeCredits: !appContextValue.state.onChangeCredits });
+      setNewUserState(a => !a);
       setOpenModal(false);
-    }).catch(error=>{
+    }).catch(error => {
       SWAlert.error({
-        title:error.message || "Algo salio mal"
+        title: error.message || "Algo salio mal"
       })
     })
-   
+
   }
 
   return (
