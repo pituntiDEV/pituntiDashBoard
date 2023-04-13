@@ -47,17 +47,17 @@ export const NoRegisterUsers = () => {
 
         try {
             const token = account.data.user.authToken;
-         
+
             const allUsersDB = await getAllUsers();
             const allUsersFromPlex = await getUsersFromPlex(token);
 
             const emails = allUsersDB.map(u => u.email.toLowerCase());
-             console.log(allUsersFromPlex);
+            console.log(allUsersFromPlex);
             const usersNoRegsiters = allUsersFromPlex.filter(u => !emails.includes(u.email && u.email.toLowerCase()));
             setUsers(usersNoRegsiters);
 
         } catch (error) {
-           console.log(error)
+            console.log(error)
         }
 
 
