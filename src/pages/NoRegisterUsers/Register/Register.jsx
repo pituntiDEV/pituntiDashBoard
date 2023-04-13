@@ -9,20 +9,21 @@ import useFetchApi from '../../../hook/useFetchApi'
 import { Packages } from './Packages/Packages'
 import "./Register.scss";
 
-export const Register = ({ account,user, setUSersState, setOpenModal }) => {
- 
+export const Register = ({ account, user, setUSersState, setOpenModal }) => {
+  console.log(account._id);
   //State
   const [state, setState] = useState({
     name: "",
     email: user.email,
     sharedServers: user.sharedServers,
-    userPlexID:user.id,
+    userPlexID: user.id,
     packages: [],
     seller: "",
-    servers:[]
+    servers: [],
+    account: account._id
 
   })
-  
+
 
   const [packs, setPacks] = useState([])
   const [resellers, setResellers] = useState([]);
@@ -36,7 +37,7 @@ export const Register = ({ account,user, setUSersState, setOpenModal }) => {
 
   //GetServers
   const [getServers] = useFetchApi({
-    url:`/api/server/get/all`,
+    url: `/api/server/get/all`,
     method: 'GET',
   });
 
@@ -45,7 +46,7 @@ export const Register = ({ account,user, setUSersState, setOpenModal }) => {
     method: 'GET',
   })
 
-  const [registerUser,loadingRegisterUser] = useFetchApi({
+  const [registerUser, loadingRegisterUser] = useFetchApi({
     url: `/api/plex/register`,
   })
 
@@ -66,15 +67,15 @@ export const Register = ({ account,user, setUSersState, setOpenModal }) => {
   }, [])
 
   useEffect(() => {
-    const serversIDS = state.servers.reduce((acc,server)=>{
-      if(!acc.includes(server._id)){
+    const serversIDS = state.servers.reduce((acc, server) => {
+      if (!acc.includes(server._id)) {
         acc.push(server._id);
       }
       return acc;
-    },[])
-    const packsFilter = state.packages.filter(p=>serversIDS.includes(p.server))
-    setState({...state, packages:packsFilter})
-  },[state.servers])
+    }, [])
+    const packsFilter = state.packages.filter(p => serversIDS.includes(p.server))
+    setState({ ...state, packages: packsFilter })
+  }, [state.servers])
 
   //funtions
   const submit = (data) => {
@@ -86,9 +87,10 @@ export const Register = ({ account,user, setUSersState, setOpenModal }) => {
       sharedServers: state.sharedServers,
       seller: state.seller,
       email: user.email,
-      servers:state.servers,
-      userPlexID:state.userPlexID,
-      
+      servers: state.servers,
+      userPlexID: state.userPlexID,
+      accountID: account._id
+
 
     };
 
@@ -118,15 +120,15 @@ export const Register = ({ account,user, setUSersState, setOpenModal }) => {
     }
   }
 
-  const changeServer= (server) => {
-   
+  const changeServer = (server) => {
+
     const existe = state.servers.find(s => s._id === server._id);
-    if(!existe){
-       const servers = [...state.servers, server];
-       setState({...state, servers});
-    }else{
+    if (!existe) {
+      const servers = [...state.servers, server];
+      setState({ ...state, servers });
+    } else {
       const servers = state.servers.filter(s => s._id != server._id);
-      setState({...state, servers});
+      setState({ ...state, servers });
     }
   }
   return (
@@ -201,23 +203,23 @@ export const Register = ({ account,user, setUSersState, setOpenModal }) => {
           {servers.map(server => {
             const existe = state.servers.find(s => s._id === server._id);
             return (
-              <div onClick={()=>changeServer(server)} key={server._id} className={`server ${existe && "active"}`} >
-                <ServerIcon/> {server?.data?.name}
+              <div onClick={() => changeServer(server)} key={server._id} className={`server ${existe && "active"}`} >
+                <ServerIcon /> {server?.data?.name}
               </div>)
           })}
         </div>
       </div>
 
       <div className="form-group servers">
-        {state.servers.length >0 && <h3>Packages:</h3>}
+        {state.servers.length > 0 && <h3>Packages:</h3>}
         {state.servers.map(server => {
-          
+
           return (
-            <Packages state={state} setState={setState} server={server} key={server._id}/>
-            )
+            <Packages state={state} setState={setState} server={server} key={server._id} />
+          )
         })}
       </div>
-      
+
 
       {/* <div className="form-group packages">
         {packs.map(pack => {

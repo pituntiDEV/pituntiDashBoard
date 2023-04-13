@@ -13,13 +13,13 @@ import useFetchApi from '../../../../hook/useFetchApi';
 import { useRandomText } from '../../../../hook/useRandomText';
 import "./Style.scss"
 
-export const CreateDemoAccountForm = ({ setOpenModal,setDemoState }) => {
-    const {state} = useContext(appContext);
+export const CreateDemoAccountForm = ({ setOpenModal, setDemoState }) => {
+    const { state } = useContext(appContext);
     const myData = state.account_data;
     const dominio = myData.email.split('@')[0]
-    const terminationEmail =myData.email.split('@')[1].split(".")[1];
-   
-   
+    const terminationEmail = myData.email.split('@')[1].split(".")[1];
+
+
     console.log(myData);
     //State
     const [formData, setFormData] = useState({
@@ -43,7 +43,7 @@ export const CreateDemoAccountForm = ({ setOpenModal,setDemoState }) => {
     const [packages, setPackages] = useState([]); //Packages
     //Custom Hooks
 
-    const [getRandomText,randomText] = useRandomText(15)
+    const [getRandomText, randomText] = useRandomText(15)
     const [getMyServers, loading] = useFetchApi({
         url: "/api/server/get/all",
         method: "GET",
@@ -126,19 +126,19 @@ export const CreateDemoAccountForm = ({ setOpenModal,setDemoState }) => {
 
     const submit = (e) => {
         e.preventDefault();
-        createDemoAccount({body:JSON.stringify(formData)})
-        .then(data=>{
-            SWAlert.alert({
-                title:data.message,
+        createDemoAccount({ body: JSON.stringify(formData) })
+            .then(data => {
+                SWAlert.alert({
+                    title: data.message,
+                })
+                setDemoState(s => !s);
+                setOpenModal(false)
             })
-            setDemoState(s=>!s);
-            setOpenModal(false)
-        })
-        .catch(error=>{
-            SWAlert.error({
-                title:error.message
+            .catch(error => {
+                SWAlert.error({
+                    title: error.message
+                })
             })
-        })
 
     }
     return (
@@ -150,18 +150,19 @@ export const CreateDemoAccountForm = ({ setOpenModal,setDemoState }) => {
             <div className="form__group">
                 <label htmlFor="email" className='fw-bold'>Email:</label>
                 <input required onChange={onChangeInputs} type="email" name="email" value={formData.email} className='form__control' id="email" />
-                <button type='button' className='btn btn-primary' onClick={()=>{
+                <button type='button' className='btn btn-primary' onClick={() => {
                     getRandomText(8);
-                    setFormData({...formData,email:randomText+"@"+dominio+"."+terminationEmail})
+                    setFormData({ ...formData, email: randomText + "@" + dominio + "." + terminationEmail })
                 }}>Email Random</button>
             </div>
 
             <div className="form__group">
                 <label htmlFor="password" className='fw-bold'>Password:</label>
                 <input required onChange={onChangeInputs} type="password" value={formData.password} name="password" className='form__control' id="password" />
-                <button type='button' className='btn btn-primary' onClick={()=>{
+                <small className='text-muted'>{formData.password}</small>
+                <button type='button' className='btn btn-primary' onClick={() => {
                     getRandomText(15);
-                    setFormData({...formData,password:randomText})
+                    setFormData({ ...formData, password: randomText })
                 }}>Password random</button>
             </div>
 
@@ -201,36 +202,36 @@ export const CreateDemoAccountForm = ({ setOpenModal,setDemoState }) => {
 
             </div>
 
-            {formData.owner && <> 
-            <div className='options'>
-                <details>
-                    <summary>Options</summary>
-                    <div className='options_container'>
-                        <div className="option">
-                            <label htmlFor="">Expire At:</label>
-                            <div className="data">
+            {formData.owner && <>
+                <div className='options'>
+                    <details>
+                        <summary>Options</summary>
+                        <div className='options_container'>
+                            <div className="option">
+                                <label htmlFor="">Expire At:</label>
+                                <div className="data">
 
-                                <input min="1" value={formData.expireAt} onChange={onChangeInputs} name="expireAt" type="number" />
+                                    <input min="1" value={formData.expireAt} onChange={onChangeInputs} name="expireAt" type="number" />
 
-                                <select onChange={onChangeInputs} name="format" >
-                                    <option value="hour">Hours</option>
-                                    <option value="day">Days</option>
-                                </select>
+                                    <select onChange={onChangeInputs} name="format" >
+                                        <option value="hour">Hours</option>
+                                        <option value="day">Days</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div className="option">
+                                <label htmlFor="">Eliminar despues de vencido en:</label>
+                                <div className="data">
+                                    <input onChange={onChangeInputs} value={formData.deleteAt} min="0" name="deleteAt" type="number" />
+                                    <select onChange={onChangeInputs} name="formatToDelete">
+                                        <option value="hour">Hours</option>
+                                        <option value="day">Days</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
-                        <div className="option">
-                            <label htmlFor="">Eliminar despues de vencido en:</label>
-                            <div className="data">
-                                <input onChange={onChangeInputs} value={formData.deleteAt} min="0" name="deleteAt" type="number" />
-                                <select onChange={onChangeInputs} name="formatToDelete">
-                                    <option value="hour">Hours</option>
-                                    <option value="day">Days</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </details>
-            </div>
+                    </details>
+                </div>
             </>
             }
 
