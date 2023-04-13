@@ -18,7 +18,6 @@ export const NoRegisterUsers = () => {
     const [users, setUsers] = useState([]);
     const [openRegisterModal, setOpenRegisterModal] = useState(false);
     const [userToRegister, setUserToRegister] = useState(null);
-    const [usersState, setUSersState] = useState(false);
 
     //Custom Hooks
     const [getUsersFromPlex, loadingGetUsersFromPlex] = useGetUsersFromPlex();
@@ -31,12 +30,6 @@ export const NoRegisterUsers = () => {
             setAccounts(data);
         })
     }, [])
-
-    useEffect(() => {
-        if (account) {
-            searchUsers().then();
-        }
-    }, [usersState])
 
     const onChangeServer = (e) => {
         const selectedServer = accounts.find(a => a._id == e.target.value);
@@ -98,7 +91,7 @@ export const NoRegisterUsers = () => {
 
                     {openRegisterModal &&
                         <Modal setOpenModal={setOpenRegisterModal} title="Registrar usuario">
-                            <Register account={account} setOpenModal={setOpenRegisterModal} setUSersState={setUSersState} user={userToRegister} />
+                            <Register setUsers={setUsers} users={users} account={account} setOpenModal={setOpenRegisterModal} user={userToRegister} />
                         </Modal>}
                 </section>
             }

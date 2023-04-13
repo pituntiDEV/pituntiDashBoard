@@ -9,8 +9,8 @@ import useFetchApi from '../../../hook/useFetchApi'
 import { Packages } from './Packages/Packages'
 import "./Register.scss";
 
-export const Register = ({ account, user, setUSersState, setOpenModal }) => {
-  console.log(account._id);
+export const Register = ({ account, users, setUsers, user, setUSersState, setOpenModal }) => {
+
   //State
   const [state, setState] = useState({
     name: "",
@@ -101,7 +101,8 @@ export const Register = ({ account, user, setUSersState, setOpenModal }) => {
         icon: "success"
       })
 
-      setUSersState(s => !s);
+      const usersUpdated = users.filter(u => u.id != user.id);
+      setUsers(usersUpdated);
       setOpenModal(false);
     }).catch(error => {
       SWAlert.error({
