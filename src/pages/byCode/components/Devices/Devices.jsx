@@ -18,13 +18,14 @@ import Kodi from './images/Kodi';
 import { Plex } from './images/Plex';
 import { Roku } from './images/Roku';
 import { Samsung } from './images/Samsung';
+import { Filters } from '../Filters/Filters';
 const utils = require('../../../../utils/date/index');
 
 var relativeTime = require('dayjs/plugin/relativeTime')
 dayjs.extend(relativeTime)
 var calendar = require('dayjs/plugin/calendar')
 dayjs.extend(calendar)
-export const Devices = ({ devicesState, setDevicesState}) => {
+export const Devices = ({ devicesState, setDevicesState }) => {
     // State
     const [myDevices, setMyDevices] = useState([]);
     const [deviceToDelete, setDeviceToDelete] = useState(null);
@@ -36,9 +37,11 @@ export const Devices = ({ devicesState, setDevicesState}) => {
     const [reactivateDevice, setReactivateDevice] = useState(null);
     const [openModalToReactivateDevice, setOpenModalToReactivateDevice] = useState(false);
     const [filterDevices, setFilterDevices] = useState([]);
+    const [accounts, setAccounts] = useState([]);
+    const [sellers, setSellers] = useState([]);
 
-    const filterState={
-        name:""
+    const filterState = {
+        name: ""
     }
 
     //Custom Hooks
@@ -52,7 +55,27 @@ export const Devices = ({ devicesState, setDevicesState}) => {
     useEffect(() => {
         getDevices().then(data => {
             setMyDevices(data)
-            setFilterDevices(data)
+            setFilterDevices(data);
+            const allAccounts = data.reduce((acc, dev) => {
+                if (!acc.includes(dev.account?.email)) {
+                    if (dev.account) {
+                        acc.push(dev.account?.email)
+                    }
+                }
+                return acc;
+            }, [])
+
+            const allSellers = data.reduce((acc, dev) => {
+                if (!acc.includes(dev.seller?.email)) {
+                    if (dev.seller) {
+                        acc.push(dev.seller?.email)
+                    }
+                }
+                return acc;
+            }, [])
+
+            setAccounts(allAccounts);
+            setSellers(allSellers);
         })
     }, [devicesState])
 
@@ -67,26 +90,26 @@ export const Devices = ({ devicesState, setDevicesState}) => {
     }
 
 
-   const search=(e)=>{
-     const filter = myDevices.filter(d=>{
-        if(e.target.value !=""){
+    const search = (e) => {
+        const filter = myDevices.filter(d => {
+            if (e.target.value != "") {
                 return d.name.toLowerCase().includes(e.target.value.toLowerCase()) || d.email.toLowerCase().includes(e.target.value.toLowerCase())
-        }else{
-            return d
-        }
-       
-     })
-     console.log(filterDevices.length);
-     setFilterDevices(filter)
-   }
+            } else {
+                return d
+            }
+
+        })
+        setFilterDevices(filter)
+    }
     return (
         <div className='Devices container'>
-            <SearchInput onChange={search}/>
+            <SearchInput onChange={search} />
+            <Filters sellers={sellers} accounts={accounts} myDevices={myDevices} filterDevices={filterDevices} setFilterDevices={setFilterDevices} />
 
             {/* <Pruebas/> */}
 
             <h2>
-                {loading ? "Cargando Espere..." : " Dispositivos:"}
+                {loading ? "Cargando Espere..." : ` Dispositivos:${myDevices.length}`}
                 <hr />
             </h2>
             <div className="devices__list">
@@ -118,13 +141,13 @@ export const Devices = ({ devicesState, setDevicesState}) => {
                                 <div className="footer ">
 
                                     <div className="expireAt">
-                                       
+
                                         <div className="date">
-                                        {utils.formatDate(device.expireAt)}
+                                            {utils.formatDate(device.expireAt)}
                                         </div>
                                     </div>
 
-                                   {isExpired ?<small className='text-danger'>Vencido</small>:
+                                    {isExpired ? <small className='text-danger'>Vencido</small> :
                                         <small className='text-success'>Active</small>
                                     }
                                 </div>
@@ -135,7 +158,7 @@ export const Devices = ({ devicesState, setDevicesState}) => {
                                             setDeviceToEdit(device);
                                             setOpenModalToEdit(true)
                                         }}><EditSquareIcon /></li>
-                                        <li onClick={()=>{
+                                        <li onClick={() => {
                                             setReactivateDevice(device);
                                             setOpenModalToReactivateDevice(true)
                                         }}>
@@ -180,8 +203,8 @@ export const Devices = ({ devicesState, setDevicesState}) => {
 
             {openModalToReactivateDevice &&
                 <Modal setOpenModal={setOpenModalToReactivateDevice} title={`Reactivar a ${reactivateDevice.name}`}>
-                    
-                    <Reactivate setDevicesState={setDevicesState} deviceToReactivate={reactivateDevice} setOpenModal={setOpenModalToReactivateDevice}/>
+
+                    <Reactivate setDevicesState={setDevicesState} deviceToReactivate={reactivateDevice} setOpenModal={setOpenModalToReactivateDevice} />
                 </Modal>
             }
 

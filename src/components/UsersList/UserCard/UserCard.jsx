@@ -7,23 +7,23 @@ import "./UserCard.scss"
 import dayjs from 'dayjs'
 import utils from "../../../utils/date/index";
 import { WhatsappIcon } from '../../icons/WhatsappIcon'
-export const UserCard = ({ user,setNewUserState, setUsers,users }) => {
+export const UserCard = ({ user, setNewUserState, setUsers, users }) => {
   const expireAt = dayjs(user.expireAt).format("DD/MMM/YYYY - h:mmA	") || null;
   const isExpired = utils.isExpired(user.expireAt)
 
   return (
     <div className={`user__card ${isExpired && "expired"}`} key={user._id}>
       {/* header */}
-     
-      <div className={`card__header  ${isExpired && "expired"}`}> 
-      <div className="whatsapp">
-        {
-          user.whatsapp &&
-          <a href={`https://api.whatsapp.com/send?phone=${user.whatsapp}&&text=""`}><WhatsappIcon/></a>
-        }
-      </div>
+
+      <div className={`card__header  ${isExpired && "expired"}`}>
+        <div className="whatsapp">
+          {
+            user.whatsapp &&
+            <a href={`https://api.whatsapp.com/send?phone=${user.whatsapp}&&text=""`}><WhatsappIcon /></a>
+          }
+        </div>
         <div className='email'>{user.email}</div>
-          <img src={ user.data[0]?.invited?.thumb||user.data?.invited?.thumb || user.thumb} alt="" />
+        <img src={user.data[0]?.invited?.thumb || user.data?.invited?.thumb || user.thumb} alt="" />
       </div>
 
       {/* body */}
@@ -38,20 +38,20 @@ export const UserCard = ({ user,setNewUserState, setUsers,users }) => {
           <InputWithIcon>
             {/* <ServerIcon /> */}
             <i className="fa-solid fa-share-nodes"></i>
-            <small> { user?.data[0] && user?.data.map(d=>d?.name).join(",") || user?.data?.name} </small>
+            <small> {user?.data[0] && user?.data.map(d => d?.name).join(",") || user?.data?.name} </small>
           </InputWithIcon>
 
           <InputWithIcon>
-          <i className="fa-solid fa-clock"></i>
-         
-          <small>{expireAt}</small>
+            <i className="fa-solid fa-clock"></i>
+
+            <small>{expireAt}</small>
           </InputWithIcon>
         </div>
-         
+
       </div>
 
       <div className="card__options">
-        <Options users={users} setUsers={ setUsers} setNewUserState={setNewUserState} user={user} />
+        <Options users={users} setUsers={setUsers} setNewUserState={setNewUserState} user={user} />
       </div>
 
     </div>

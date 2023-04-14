@@ -1,0 +1,15 @@
+.by_code_filters {
+    margin-bottom: 2rem;
+
+    span {
+        font-weight: bold;
+        font-size: 2rem;
+        color: rgb(74, 73, 73);
+    }
+
+    .filters {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+}

@@ -7,9 +7,8 @@ export const ByCode = () => {
   const [devicesState, setDevicesState] = useState(false);
   return (
     <div>
-
-            <Shared setDevicesState={setDevicesState}/>
-          <Devices  devicesState={devicesState} setDevicesState={setDevicesState}/>
+      <Shared setDevicesState={setDevicesState} />
+      <Devices devicesState={devicesState} setDevicesState={setDevicesState} />
     </div>
   )
 }
