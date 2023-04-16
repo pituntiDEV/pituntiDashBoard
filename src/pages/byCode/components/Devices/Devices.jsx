@@ -143,7 +143,7 @@ export const Devices = ({ devicesState, setDevicesState }) => {
                                     <div className="expireAt">
 
                                         <div className="date">
-                                            {utils.formatDate(device.expireAt)}
+                                            {utils.formatDate(device.expireAt, "DD/MMM/YYYY HH:mm:ss")}
                                         </div>
                                     </div>
 

@@ -5,6 +5,7 @@ import { BtnPrimary } from '../../Buttons/BtnSucess/BtnPrimary';
 import { BtnSecondary } from '../../Buttons/BtnSucess/BtnSecondary';
 import SWAlert from '../../SwAlert/SWAlert';
 export const EditPlexUser = ({ user, setOpenModal, setUsers, users }) => {
+    const currentCredit = user.credits[user.credits.length - 1];
     const expireAt = utils.formatDate(user.expireAt, "YYYY-MM-DDTHH:mm");
     const isAdmin = localStorage.getItem("_id") == user.admin._id;
     const [formData, setFormData] = useState({
@@ -12,8 +13,9 @@ export const EditPlexUser = ({ user, setOpenModal, setUsers, users }) => {
         expireAt: expireAt,
         deleteDays: user.delete ? user.deleteDays : "",
         removeLibsDays: user.removeLibs ? user.removeLibsDays : "",
-        whatsapp:user.whatsapp,
-        comments:user.comments
+        whatsapp: user.whatsapp,
+        comments: user.comments,
+        conexion: currentCredit?.conexion || 0
 
     })
     const [update, loading] = useFetchApi({
@@ -28,8 +30,8 @@ export const EditPlexUser = ({ user, setOpenModal, setUsers, users }) => {
         e.preventDefault();
         update({ body: JSON.stringify(formData) })
             .then(data => {
-                const allUsersCopy=[...users];
-                const userIndex= allUsersCopy.findIndex(u => u._id == user._id);
+                const allUsersCopy = [...users];
+                const userIndex = allUsersCopy.findIndex(u => u._id == user._id);
                 allUsersCopy[userIndex] = data;
                 setOpenModal(false);
                 setUsers(allUsersCopy)
@@ -64,6 +66,10 @@ export const EditPlexUser = ({ user, setOpenModal, setUsers, users }) => {
 
             {isAdmin &&
                 <>
+                    <div className="form__group">
+                        <label htmlFor="conexion">Conexiones:</label>
+                        <input onChange={onChange} type="number" placeholder='Conexiones' name="conexion" id="conexion" min={1} required value={formData.conexion} />
+                    </div>
                     <div className="form__group">
                         <label htmlFor="name">Eliminar despues que vencio(dias)</label>
                         <input onChange={onChange} type="number" placeholder='Dejar en blaco para no eliminar' name="deleteDays" id="name" value={formData.deleteDays} />
