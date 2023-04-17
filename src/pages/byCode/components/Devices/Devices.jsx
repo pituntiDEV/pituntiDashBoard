@@ -139,6 +139,10 @@ export const Devices = ({ devicesState, setDevicesState }) => {
                                 </small>
 
                                 <div className="footer ">
+                                    <small className="">
+                                        Registro:
+                                        {device?.account?.email}
+                                    </small>
 
                                     <div className="expireAt">
 
