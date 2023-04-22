@@ -1,7 +1,7 @@
 import { useState } from "react";
 import useFetchApi from "./useFetchApi"
 import config from "../config";
-const useGetAccountServers =() => {
+const useGetAccountServers = () => {
     const [accountServers, setAccountServers] = useState([])
     const [getServers, loading] = useFetchApi({
         url: config.apiUrls.plex.getPlexServers,
@@ -16,7 +16,7 @@ const useGetAccountServers =() => {
             return error
         }
     }
-    return [getAccountServers,accountServers, loading]
+    return [getAccountServers, accountServers, loading]
 }
 
 export default useGetAccountServers

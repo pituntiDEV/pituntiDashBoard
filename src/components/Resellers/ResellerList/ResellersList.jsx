@@ -13,7 +13,8 @@ import { DeleteReseller } from './EditResellerForm/DeleteReseller/DeleteReseller
 import { EditResellerForm } from './EditResellerForm/EditResellerForm';
 import { ServersAndPackageEdit } from './EditResellerForm/ServersAndPackageEdit/ServersAndPackageEdit';
 import "./ResellerList.scss";
-export const ResellersList = ({ setTotalResellers,newResellerState,setNewResellerState }) => {
+import { OptionsNotAdmin } from './components/OptionsNotAdmin';
+export const ResellersList = ({ setTotalResellers, newResellerState, setNewResellerState }) => {
     //State
     const [resellers, setResellers] = useState([]);
     const [openModal, setOpenModal] = useState(false);
@@ -39,9 +40,9 @@ export const ResellersList = ({ setTotalResellers,newResellerState,setNewReselle
             <div className='resellers__container'>
                 <div className="resellers">
                     {resellers.map(resell => {
-                        const { reseller, servers, _id } = resell
+                        const { reseller, servers, _id, admin, creator } = resell
                         const serversNames = servers.map(s => s.server?.data?.name)
-                        const creditAvailable = resell.credits.filter(c => c.new==true);
+                        const creditAvailable = resell.credits.filter(c => c.new == true);
                         return (
                             <div className='reseller' key={_id}>
                                 <div className="info">
@@ -66,26 +67,34 @@ export const ResellersList = ({ setTotalResellers,newResellerState,setNewReselle
 
                                 <div className="controls">
 
-                                    <span className='credits' onClick={()=>{
-                                         setOpenModalCredits(true)
-                                         setResellerToEdit(resell)
-                                    }}> 
-                                    <span className='total_credits'>{creditAvailable?.length}</span>
-                                     <CoinPlusIcon /> </span>
-                                    <span onClick={() => {
+                                    {!creator && <span className='credits' onClick={() => {
+                                        setOpenModalCredits(true)
+                                        setResellerToEdit(resell)
+                                    }}>
+                                        <span className='total_credits'>{creditAvailable?.length}</span>
+                                        <CoinPlusIcon />
+                                    </span>}
+
+                                    {!creator && <span onClick={() => {
                                         setOpenModalServers(true)
                                         setResellerToEdit(resell)
-                                    }}><ServerIcon /></span>
-                                    <span onClick={() => {
+                                    }}><ServerIcon />
+                                    </span>}
+
+                                    {!creator && <span onClick={() => {
                                         setResellerToEdit(resell)
                                         setOpenModal(true)
-                                    }}><i className="fa-solid fa-user-gear"></i></span>
+                                    }}><i className="fa-solid fa-user-gear"></i>
+                                    </span>}
 
-                                    <span className='text-danger' onClick={()=>{
+                                    {!creator && <span className='text-danger' onClick={() => {
                                         setResellerToEdit(resell)
                                         setOpenModalDelete(true)
-                                    }}><TrashIcon></TrashIcon></span>
+                                    }}><TrashIcon></TrashIcon></span>}
 
+                                    {/* Optiones para resellers de los resellers */}
+                                    {creator &&
+                                        <OptionsNotAdmin user={resell} />}
                                 </div>
 
 
@@ -108,9 +117,9 @@ export const ResellersList = ({ setTotalResellers,newResellerState,setNewReselle
                                 }
 
                                 {
-                                    openModalDelete && 
+                                    openModalDelete &&
                                     <Modal title="Eliminar Reseller" setOpenModal={setOpenModalDelete}>
-                                    <DeleteReseller setNewResellerState={setNewResellerState} setOpenModal={setOpenModalDelete} reseller={resellerToEdit} />
+                                        <DeleteReseller setNewResellerState={setNewResellerState} setOpenModal={setOpenModalDelete} reseller={resellerToEdit} />
                                     </Modal>
                                 }
                             </div>

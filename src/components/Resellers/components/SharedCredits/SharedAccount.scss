@@ -1,0 +1,16 @@
+.shared__credits {
+    margin: 2rem auto;
+    max-width: 500px;
+
+    .servers {
+        display: flex;
+
+        .server {
+            background-color: rgb(225, 49, 49);
+            color: white;
+            border-radius: .4rem;
+            padding: .0;
+            padding: .3rem;
+        }
+    }
+}

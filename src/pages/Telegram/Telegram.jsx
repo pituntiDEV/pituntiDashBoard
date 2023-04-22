@@ -6,20 +6,20 @@ import { NewChatBotForm } from './components/NewChatBotForm/NewChatBotForm';
 import "./Telegram.scss";
 export const Telegram = () => {
     //State
-    const [bots,setBots] = useState([])
+    const [bots, setBots] = useState([])
     //Get My ChatBots
-    const [getMyBots,Loading] =useFetchApi({
-        url:`/api/telegram/chatBot`,
-        method:"GET"
+    const [getMyBots, Loading] = useFetchApi({
+        url: `/api/telegram/chatBot`,
+        method: "GET"
     })
 
-    useEffect(()=>{
+    useEffect(() => {
         getMyBots()
-            .then(bots=>{
+            .then(bots => {
                 setBots(bots)
             })
-    },[])
-    const [openModalToNewChatBot,setOpenModalToNewChatBot] = useState(false);
+    }, [])
+    const [openModalToNewChatBot, setOpenModalToNewChatBot] = useState(false);
     return (
         <div className='Telegram'>
             <div className="telegram__header__container">
@@ -28,17 +28,17 @@ export const Telegram = () => {
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Telegram_2019_Logo.svg/1200px-Telegram_2019_Logo.svg.png" alt="" />
                     </div>
                 </div>
-                    <div className="options">
-                        <button onClick={()=>setOpenModalToNewChatBot(true)} className='btn btn-danger text-white'>
-                            Nuevo CHAT BOT
-                        </button>
-                    </div>
+                <div className="options">
+                    <button onClick={() => setOpenModalToNewChatBot(true)} className='btn btn-danger text-white'>
+                        Nuevo CHAT BOT
+                    </button>
+                </div>
             </div>
-            <ChatBotList bots={bots} setBots={setBots}/>
+            <ChatBotList bots={bots} setBots={setBots} />
             {openModalToNewChatBot &&
-            <Modal title="Nuevo Chat Bot" setOpenModal={setOpenModalToNewChatBot}>
-                <NewChatBotForm bots={bots} setBots={setBots} setOpenModal={setOpenModalToNewChatBot}/>
-            </Modal>}
+                <Modal title="Nuevo Chat Bot" setOpenModal={setOpenModalToNewChatBot}>
+                    <NewChatBotForm bots={bots} setBots={setBots} setOpenModal={setOpenModalToNewChatBot} />
+                </Modal>}
 
         </div>
     )

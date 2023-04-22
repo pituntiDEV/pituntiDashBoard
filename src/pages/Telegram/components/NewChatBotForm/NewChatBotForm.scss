@@ -1,0 +1,18 @@
+.NewChatBotForm {
+    .servers_container {
+        display: flex;
+        gap: 1rem;
+
+        .server {
+            background-color: rgb(231, 77, 77);
+            padding: 0 1rem;
+            color: white;
+            border-radius: .3rem;
+            cursor: pointer;
+
+            &.selected {
+                background-color: rgb(0, 128, 102);
+            }
+        }
+    }
+}

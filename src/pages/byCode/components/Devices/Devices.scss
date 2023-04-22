@@ -1,84 +1,102 @@
-.Devices{
+.Devices {
     margin-top: 2rem;
     position: relative;
-    
-    h2{
+
+    h2 {
         font-size: 2.5rem;
         font-weight: bold;
         margin-bottom: 2rem;
-        
+
     }
-    .devices__list{
+
+    .devices__list {
         position: relative;
         display: grid;
-        grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
         gap: 1rem;
-     
-        .device{
+
+        .device {
             background-color: #1f1f1f;
             color: white;
             text-align: center;
             border-radius: 1rem;
             box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.455);
-            &.expired{
-                
+
+            &.expired {
+
                 overflow: hidden;
-                .header{
+
+                .header {
                     text-shadow: -1px -1px 3px rgb(249, 243, 243);
                     color: #000000;
                     font-weight: bold;
                     background-color: #f25353;
 
                 }
-              
-          }
-            .header{
-                label{
+
+            }
+
+            .header {
+                label {
                     font-size: 1rem;
                 }
-                .logo{
-                    img{
+
+                .logo {
+                    img {
                         height: 2.5rem;
                         background-color: rgb(226, 222, 222);
                         border-radius: 1rem;
                     }
 
-                    .email{
+                    .email {
                         font-size: 1.3rem;
                         text-decoration: underline;
                     }
-                    
+
                 }
-                .name{
+
+                .name {
                     font-size: 1rem;
                     font-style: italic;
+
                 }
             }
-          
+
+            .account {
+                background-color: rgb(255, 255, 255);
+                color: #000000;
+                font-weight: bold;
+                padding: .2rem;
+                border-radius: .3rem;
+                box-shadow: -1px 1px 3px rgb(233, 81, 26);
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            }
+
         }
 
-        .options{
+        .options {
             margin-top: 1rem;
             margin-bottom: 1rem;
-           
-           ul{
-            display: flex;
-            justify-content: space-around;
-            align-items: flex-start;
-            li{
-                border: #ffffff24 2px solid;
-                width: 3rem;
-                height: 3rem;
-                border-radius: 50%;
-                box-shadow:  -1px 1px 3px rgb(58, 88, 195) ;
+
+            ul {
+                display: flex;
+                justify-content: space-around;
+                align-items: flex-start;
+
+                li {
+                    border: #ffffff24 2px solid;
+                    width: 3rem;
+                    height: 3rem;
+                    border-radius: 50%;
+                    box-shadow: -1px 1px 3px rgb(58, 88, 195);
+                }
+
             }
-          
-           }
         }
 
     }
 
-    .loading{
+    .loading {
         position: relative;
     }
 }
