@@ -11,7 +11,7 @@ export const NewResellerBar = (props) => {
         Total: {totalresellers} {totalresellers > 1 ? "Resellers" : "Reseller"}
       </div>
       <div className='new__reseller__btn d-flex gap-3'>
-        <button onClick={() => { setOpenModalToShareCredits(true) }}>Compartir cuenta</button>
+        <button onClick={() => { setOpenModalToShareCredits(true) }}>Compartir cuenta(BETA)</button>
         <button  {...props}>Agregar nuevo RESELLER</button>
       </div>
 
