@@ -30,7 +30,7 @@ export const OptionsNotAdmin = ({ user }) => {
 
             {openModalToRemove &&
                 <Modal title='Eliminar reseller' setOpenModal={setOpenModalToRemove}>
-                    <RemoveReseller />
+                    <RemoveReseller setOpenModal={setOpenModalToRemove} user={user} />
                 </Modal>
             }
         </>
