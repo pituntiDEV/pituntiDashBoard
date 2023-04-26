@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useGetSharedServers } from '../../../../hook/useGetSharedServers'
 import { SearchReseller } from '../../NewResellerForm/SearchReseller/SearchReseller';
 import "./SharedAccount.scss";
@@ -7,7 +7,13 @@ import { BtnPrimary } from '../../../Buttons/BtnSucess/BtnPrimary';
 import { BtnSecondary } from '../../../Buttons/BtnSucess/BtnSecondary';
 import SWAlert from '../../../SwAlert/SWAlert';
 import useFetchApi from '../../../../hook/useFetchApi';
+import { AppContext, appContext } from '../../../../context/AppContext';
+import { Spinner } from '../../../Spinner/Spinner';
 export const SharedAccount = ({ setOpenModal, setNewResellerState }) => {
+    const appCOntext = useContext(appContext);
+
+
+
     //States
 
     const [formData, setFormData] = useState({
@@ -42,6 +48,7 @@ export const SharedAccount = ({ setOpenModal, setNewResellerState }) => {
                 })
                 setOpenModal(false);
                 setNewResellerState(s => !s);
+                appCOntext.setState({ ...appCOntext.state, onChangeCredits: !appCOntext.onChangeCredits });
             })
             .catch(error => {
                 SWAlert.error({
@@ -81,10 +88,13 @@ export const SharedAccount = ({ setOpenModal, setNewResellerState }) => {
                 <input type="number" required min={1} name="conexion" onChange={onChange} id="conexion" />
             </div>
 
-            <div className="d-flex gap-3">
-                <BtnPrimary title="Agregar" />
-                <BtnSecondary type="button" onClick={() => setOpenModal(false)} title="Cancelar" />
-            </div>
+            {!loadingShared ?
+                <div className="d-flex gap-3">
+                    <BtnPrimary title="Agregar" />
+                    <BtnSecondary type="button" onClick={() => setOpenModal(false)} title="Cancelar" />
+                </div> :
+                <Spinner />
+            }
         </form>
     )
 }

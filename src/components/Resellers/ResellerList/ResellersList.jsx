@@ -94,7 +94,7 @@ export const ResellersList = ({ setTotalResellers, newResellerState, setNewResel
 
                                     {/* Optiones para resellers de los resellers */}
                                     {creator &&
-                                        <OptionsNotAdmin user={resell} />}
+                                        <OptionsNotAdmin setNewResellerState={setNewResellerState} user={resell} />}
                                 </div>
 
 

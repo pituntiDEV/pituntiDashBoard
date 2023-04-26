@@ -5,7 +5,7 @@ import { RemoveReseller } from './RemoveReseller';
 import { CoinPlusIcon } from '../../../icons/InputWithIcon/CoinPlusIcon';
 import { AddCoins } from './AddCoins';
 
-export const OptionsNotAdmin = ({ user }) => {
+export const OptionsNotAdmin = ({ user, setNewResellerState }) => {
 
     const [openModalToAddCoins, setOpenModalToAddCoins] = useState(false);
     const [openModalToRemove, setOpenModalToRemove] = useState(false);
@@ -30,7 +30,7 @@ export const OptionsNotAdmin = ({ user }) => {
 
             {openModalToRemove &&
                 <Modal title='Eliminar reseller' setOpenModal={setOpenModalToRemove}>
-                    <RemoveReseller setOpenModal={setOpenModalToRemove} user={user} />
+                    <RemoveReseller setNewResellerState={setNewResellerState} setOpenModal={setOpenModalToRemove} user={user} />
                 </Modal>
             }
         </>
