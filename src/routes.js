@@ -23,6 +23,7 @@ import EmbyUsers from './pages/emby/users/EmbyUsers';
 import { Gdrive } from './pages/gdrive/Gdrive';
 import { Layout } from './components/Layout';
 import { Telegram } from './pages/Telegram/Telegram';
+import { EmbyPackages } from './pages/emby/EmbyPackages/EmbyPackages';
 
 const Protected = ({ children }) => {
     return <ProtectedPage>  <UserContextProvider><Layout >{children}</Layout></UserContextProvider></ProtectedPage>
@@ -39,11 +40,11 @@ const routes = {
             element: <SuperUser />
         },
         {
-            path:"/setting",
-            element: <Protected><Settings/></Protected>
+            path: "/setting",
+            element: <Protected><Settings /></Protected>
         },
         {
-            path:"/accounts",
+            path: "/accounts",
             element: <Protected><Accounts /></Protected>
         }
     ],
@@ -64,7 +65,7 @@ const routes = {
             path: "/password/recovery",
             element: <PasswordRecovery />
         }
-       
+
     ],
     plex: [
         {
@@ -96,40 +97,45 @@ const routes = {
             element: <Protected><Demos /></Protected>
         },
         {
-            path:"/no-register-users",
+            path: "/no-register-users",
             element: <Protected><NoRegisterUsers /></Protected>
         }
     ],
-    services:[
+    services: [
         {
-            path:"/gdrive",
+            path: "/gdrive",
             element: <Protected><Gdrive /></Protected>
         },
         {
-            path:"/telegram",
-            element:<Protected><Telegram/></Protected>
+            path: "/telegram",
+            element: <Protected><Telegram /></Protected>
         }
     ],
-    client:[
+    client: [
         {
-            path:"/my-account",
-            element:<MyAccount />
+            path: "/my-account",
+            element: <MyAccount />
         }
     ],
-    chat:[
+    chat: [
         {
-            path:"/chat",
-            element:< ChatContextProvider><Chat /></ChatContextProvider>
+            path: "/chat",
+            element: < ChatContextProvider><Chat /></ChatContextProvider>
         },
         {
-            path:"/chat/:chatID",
-            element:< ChatContextProvider><Chat /></ChatContextProvider>
+            path: "/chat/:chatID",
+            element: < ChatContextProvider><Chat /></ChatContextProvider>
         }
     ],
-    emby:[
+    emby: [
         {
-            path:"/users/emby",
-            element:<Protected><EmbyUsers /></Protected>
+            path: "/users/emby",
+            element: <Protected><EmbyUsers /></Protected>
+        },
+
+        {
+            path: "/packages/emby",
+            element: <Protected><EmbyPackages /></Protected>
         }
     ]
 }

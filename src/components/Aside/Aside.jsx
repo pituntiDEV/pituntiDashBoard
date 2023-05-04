@@ -89,6 +89,11 @@ export const Aside = () => {
                             <i className="fa-solid fa-users"></i>
                             <a href="/users/emby">Emby Users</a>
                         </li>
+
+                        <li className="menu-item">
+                            <i className="fa-solid fa-cube"></i>
+                            <a href="/packages/emby">Paquetes Emby</a>
+                        </li>
                     </ul>
                 </li>
 

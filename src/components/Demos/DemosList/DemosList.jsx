@@ -33,7 +33,7 @@ export const DemosList = ({ demos, setDemoState }) => {
                             <div className={`demo_card ${!isActive && "no_active"}`}>
                                 <div className="data">
                                     <div className="background">
-                                        <span><img src={demo.data.invited.thumb} alt="" /></span>
+                                        <span><img src={demo?.data?.invited?.thumb || demo.data[0]?.invited?.thumb} alt="" /></span>
                                     </div>
                                     <div className="info">
 
@@ -60,7 +60,7 @@ export const DemosList = ({ demos, setDemoState }) => {
                                         setOpenModalToAddCredits(true)
                                     }} />
                                     {demo.auth &&
-                                        <div className="option" onClick={() =>{
+                                        <div className="option" onClick={() => {
                                             setOpenModalToShowAuth(true)
                                             setUser(demo);
                                         }}>
@@ -92,12 +92,12 @@ export const DemosList = ({ demos, setDemoState }) => {
                 </Modal>
             }
 
-            
-{
+
+            {
                 openModalToShowAuth &&
                 <Modal title='Auth' setOpenModal={setOpenModalToShowAuth}>
-                   <p> <span className="fw-bold">Email</span>:{user.email};</p>
-                   <span className="fw-bold">Password:</span>:{user.auth.password}
+                    <p> <span className="fw-bold">Email</span>:{user.email};</p>
+                    <span className="fw-bold">Password:</span>:{user.auth.password}
                 </Modal>
             }
         </div>
