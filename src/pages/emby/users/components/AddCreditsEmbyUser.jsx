@@ -11,7 +11,7 @@ export const AddCreditsEmbyUser = ({ user, setUpdateUserState }) => {
   const [openModal, setOpenModal] = useState(false);
   const [formData, setFormData] = useState({
     credits: "",
-    connections: "",
+    connections: user.connections,
   })
   const [addCredits, loading] = useFetchApi({
     url: `/api/emby/users/${user._id}/credits`,
@@ -20,20 +20,20 @@ export const AddCreditsEmbyUser = ({ user, setUpdateUserState }) => {
   ///api/emby/users/63e9f13ad362c58fb97ea02b/credits
   const addCreditsHandler = (e) => {
     e.preventDefault();
-    addCredits({body:JSON.stringify(formData)})
-      .then(data=>{
+    addCredits({ body: JSON.stringify(formData) })
+      .then(data => {
         console.log(data);
         SWAlert.alert({
-          title:data.message || "Success",
+          title: data.message || "Success",
         });
-        setUpdateUserState(s=>!s);
+        setUpdateUserState(s => !s);
         setOpenModal(false)
       })
-      .catch(error=>{
+      .catch(error => {
         SWAlert.error({
-          title:error.message || "Error",
+          title: error.message || "Error",
         })
-       
+
       })
   }
 
@@ -52,7 +52,7 @@ export const AddCreditsEmbyUser = ({ user, setUpdateUserState }) => {
             </div>
             <div className="form__group">
               <label htmlFor="connections">Conexiones</label>
-              <input required min={1} onChange={onChangeHandler} type="number" name="connections" id="connections" />
+              <input required value={formData.connections} min={1} onChange={onChangeHandler} type="number" name="connections" id="connections" />
             </div>
 
             <div className="d-flex gap-3">
