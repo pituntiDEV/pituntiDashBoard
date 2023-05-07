@@ -19,7 +19,7 @@ export const NewEmbyUserForm = ({ setOpenModal, setUpdateUserState }) => {
         credits: 1,
         connections: 1,
         packages: [],
-        account: null
+        account: null,
     });
 
 
@@ -103,6 +103,16 @@ export const NewEmbyUserForm = ({ setOpenModal, setUpdateUserState }) => {
             <div className="form__group">
                 <label htmlFor="conexiones">Conexiones:</label>
                 <input type="number" onChange={onChange} min={1} value={formData.connections} required name="connections" id="conexiones" />
+            </div>
+
+            <div className="form__group">
+                <label htmlFor="daysToDeleteAfterExpired">Eliminar despues de vencido(DIAS):</label>
+                <input type="number" placeholder='Dejar en blanco para no activar' onChange={onChange} min={1} value={formData.daysToDeleteAfterExpired} name="daysToDeleteAfterExpired" id="daysToDeleteAfterExpired" />
+            </div>
+
+            <div className="form__group">
+                <label htmlFor="daysToRemoveLibsAfterToExpired">Quitar LIBS despues de vencido(DIAS):</label>
+                <input type="number" placeholder='Dejar en blanco para no activar' onChange={onChange} min={1} value={formData.daysToRemoveLibsAfterToExpired} name="daysToRemoveLibsAfterToExpired" id="daysToRemoveLibsAfterToExpired" />
             </div>
 
             <div className="form__group">
