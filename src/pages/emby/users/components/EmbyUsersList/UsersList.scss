@@ -1,17 +1,30 @@
-.emby__users__container{
-    .emby__users__list{
-        display:grid;
+.emby__users__container {
+    .emby__users__list {
+        display: grid;
         gap: 2rem;
         margin-top: 2rem;
-        grid-template-columns: repeat(auto-fill,minmax(220px,1fr));
-        .user{
-            
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+
+
+        .user {
+
             background-color: var(--color-primary);
             color: white;
             border-radius: 1rem;
             overflow: hidden;
-            .header{
-                background-color: rgb(47, 109, 157);
+            box-shadow: -2px 2px 7px rgb(80, 78, 78);
+            position: relative;
+
+
+
+            &.expired {
+                .header {
+                    background-color: rgb(222, 80, 80);
+                }
+            }
+
+            .header {
+                background-color: rgb(39, 146, 96);
                 color: white;
                 letter-spacing: 1px;
                 padding: 1rem;
@@ -20,17 +33,42 @@
                 text-align: center;
                 border-radius: 0 0 10rem 0;
                 border-bottom: 3px solid #ffffff;
-            }
-            .body{
-                margin:1rem;
+                position: relative;
+
+                .initial_letter {
+                    position: absolute;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    text-transform: capitalize;
+                    box-shadow: 0 0 5px 2px rgb(255, 255, 255);
+                    left: -1rem;
+                    right: 0;
+                    top: 120%;
+                    transform: translateY(-50%);
+                    width: 3rem;
+                    /* establece el ancho del elemento */
+                    height: 3rem;
+                    /* ajusta la altura del elemento según tus necesidades */
+                    margin: auto;
+                    background-color: rgb(80, 148, 211);
+                    border-radius: 50%;
+
+                }
             }
 
-            .footer{
+            .body {
+                margin: 1rem;
+            }
+
+            .footer {
                 margin: 1rem 0;
-                ul{
+
+                ul {
                     display: flex;
                     justify-content: space-around;
-                    li{
+
+                    li {
                         height: 3rem;
                         width: 3rem;
                         border-radius: 50%;
