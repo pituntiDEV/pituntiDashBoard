@@ -4,7 +4,7 @@ import utils from "../../../../../utils/date/index"
 import { EditEmbyUser } from '../EditEmbyUser';
 import { DeleteEmbyUser } from '../DeleteEmbyUser';
 import { AddCreditsEmbyUser } from '../AddCreditsEmbyUser';
-export const EmbyUsersList = ({ users, setUpdateUserState }) => {
+export const EmbyUsersList = ({ users, setUsers, setUpdateUserState }) => {
     const findExpireDate = (credits) => {
         const credito = credits.filter(credit => !utils.isExpired(credit.expireAt));
         return {
@@ -41,7 +41,7 @@ export const EmbyUsersList = ({ users, setUpdateUserState }) => {
                             <div className="footer">
                                 {/* {expiration.current.connections} */}
                                 <ul>
-                                    <EditEmbyUser />
+                                    <EditEmbyUser user={user} setUsers={setUsers} users={users} />
                                     <AddCreditsEmbyUser setUpdateUserState={setUpdateUserState} user={user} />
                                     <DeleteEmbyUser setUpdateUserState={setUpdateUserState} user={user} />
                                 </ul>

@@ -6,27 +6,27 @@ import { Header } from './components/Header/Header'
 
 export default function EmbyUsers() {
   //State
-  const [users,setUsers] = useState([]);
-  const [updateUserState,setUpdateUserState] = useState(false);
+  const [users, setUsers] = useState([]);
+  const [updateUserState, setUpdateUserState] = useState(false);
   // Custom Hooks
-  const [getUsers,loading]= useFetchApi({
-    url:`/api/emby/users`,
+  const [getUsers, loading] = useFetchApi({
+    url: `/api/emby/users`,
     method: 'GET',
   });
 
   //Effects
-  useEffect(()=>{
+  useEffect(() => {
     getUsers()
-      .then(users=>{
+      .then(users => {
         setUsers(users)
       })
-  },[updateUserState])
+  }, [updateUserState])
 
 
   return (
     <div>
-      <Header setUpdateUserState={setUpdateUserState} users={users}/>
-      <EmbyUsersList setUpdateUserState={setUpdateUserState} users={users}/>
+      <Header setUpdateUserState={setUpdateUserState} users={users} />
+      <EmbyUsersList setUsers={setUsers} setUpdateUserState={setUpdateUserState} users={users} />
     </div>
   )
 }
