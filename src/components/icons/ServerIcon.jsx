@@ -1,4 +1,6 @@
 import React from 'react'
+import Modal from '../modal/Modal'
+import { useState } from 'react'
 
 export const ServerIcon = (props) => {
   return (

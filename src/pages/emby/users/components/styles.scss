@@ -19,3 +19,27 @@
         }
     }
 }
+
+.emby_change_server {
+
+
+    .embyLibs {
+        display: grid;
+
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+
+        .libs {
+            background-color: rgb(224, 71, 71);
+            padding: .5rem;
+            font-weight: bold;
+            text-align: center;
+            color: white;
+            border-radius: .5rem;
+            cursor: pointer;
+
+            &.active {
+                background-color: rgb(76, 170, 73);
+            }
+        }
+    }
+}

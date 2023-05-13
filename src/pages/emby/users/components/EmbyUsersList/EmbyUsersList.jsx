@@ -4,6 +4,7 @@ import utils from "../../../../../utils/date/index"
 import { EditEmbyUser } from '../EditEmbyUser';
 import { DeleteEmbyUser } from '../DeleteEmbyUser';
 import { AddCreditsEmbyUser } from '../AddCreditsEmbyUser';
+import { ChangeServer } from '../ChangeServer';
 export const EmbyUsersList = ({ users, setUsers, setUpdateUserState }) => {
     const findExpireDate = (credits) => {
         const credito = credits.filter(credit => !utils.isExpired(credit.expireAt));
@@ -19,6 +20,7 @@ export const EmbyUsersList = ({ users, setUsers, setUpdateUserState }) => {
                 {users.map((user) => {
                     const expiration = findExpireDate(user.credits)
                     const isExpired = utils.isExpired(user.expireAt);
+                    const props = { user, users, setUsers }
                     return (
                         <div className={`user ${isExpired && "expired"}`} key={user._id}>
                             <div className="header">
@@ -41,7 +43,8 @@ export const EmbyUsersList = ({ users, setUsers, setUpdateUserState }) => {
                             <div className="footer">
                                 {/* {expiration.current.connections} */}
                                 <ul>
-                                    <EditEmbyUser user={user} setUsers={setUsers} users={users} />
+                                    <EditEmbyUser {...props} />
+                                    <ChangeServer user={user} setUsers={setUsers} users={users} />
                                     <AddCreditsEmbyUser setUpdateUserState={setUpdateUserState} user={user} />
                                     <DeleteEmbyUser setUpdateUserState={setUpdateUserState} user={user} />
                                 </ul>
