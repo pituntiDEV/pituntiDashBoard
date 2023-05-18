@@ -1,0 +1,27 @@
+.emby__demos {
+    .header {
+        display: flex;
+        justify-content: space-between;
+        padding: 1rem 2rem;
+        background: linear-gradient(to right, #be8f55, #2e8813);
+
+        .count {
+            font-weight: bold;
+        }
+
+        .options {
+            button {
+                border-radius: .3rem;
+                border: none;
+                box-shadow: 0 0 3px black;
+                font-weight: bold;
+
+                &:hover {
+                    transform: scaleY(1.1);
+                    background-color: rgb(69, 155, 195);
+                    color: white;
+                }
+            }
+        }
+    }
+}

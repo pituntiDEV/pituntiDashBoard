@@ -24,6 +24,7 @@ import { Gdrive } from './pages/gdrive/Gdrive';
 import { Layout } from './components/Layout';
 import { Telegram } from './pages/Telegram/Telegram';
 import { EmbyPackages } from './pages/emby/EmbyPackages/EmbyPackages';
+import { EmbyDemos } from './pages/emby/Demos/EmbyDemos';
 
 const Protected = ({ children }) => {
     return <ProtectedPage>  <UserContextProvider><Layout >{children}</Layout></UserContextProvider></ProtectedPage>
@@ -136,6 +137,10 @@ const routes = {
         {
             path: "/packages/emby",
             element: <Protected><EmbyPackages /></Protected>
+        },
+        {
+            path: "/demos/emby",
+            element: <Protected><EmbyDemos /></Protected>
         }
     ]
 }

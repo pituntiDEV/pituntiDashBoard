@@ -1,13 +1,13 @@
 import { useState } from "react";
 import config from "../config";
- const useFetchApi = ({url="/",method="POST"}={}) => {
+const useFetchApi = ({ url = "/", method = "POST" } = {}) => {
     const [loading, setLoading] = useState(false);
     //Functions
-    const req=({body}={})=>{
-        return new Promise(async(resolve, reject) => {
+    const req = ({ body } = {}) => {
+        return new Promise(async (resolve, reject) => {
             try {
                 setLoading(true);
-                const request = await fetch(`${config.apiBackendUrl}${url}`,{
+                const request = await fetch(`${config.apiBackendUrl}${url}`, {
                     method,
                     headers: {
                         "Content-Type": "application/json",
@@ -15,10 +15,10 @@ import config from "../config";
                         "access-token": localStorage.getItem("access-token")
                     },
                     body
-                }); 
+                });
                 const data = await request.json();
                 setLoading(false);
-                if(data?.error){
+                if (data?.error) {
                     reject(data);
                 }
                 resolve(data);
@@ -31,7 +31,7 @@ import config from "../config";
 
     return [req, loading];
 
- 
+
 }
 
 
