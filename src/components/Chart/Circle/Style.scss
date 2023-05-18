@@ -1,6 +1,7 @@
 .circleChart {
     margin: 1rem 0;
     max-width: 150px;
+
     @keyframes rellenar {
         to {
             stroke-dasharray: var(--porcentaje) var(--max);
@@ -9,9 +10,9 @@
 
     .porcentajes {
         position: relative;
-        
+
         span {
-          
+
             position: absolute;
             top: 0%;
             left: 0%;
@@ -23,12 +24,12 @@
             justify-content: center;
             font: 20px/1em Verdana;
             margin-top: 1rem;
-           
+
             text-shadow: -1px 1px rgb(11, 11, 11);
             font-weight: bold;
             color: white;
-           
-            small{
+
+            small {
                 font-size: 1.2rem;
                 font-weight: bold;
                 text-align: center;
@@ -37,7 +38,17 @@
                 width: 140px;
                 margin-top: .3rem;
                 border-radius: 1rem;
+
+                &.tiny {
+                    color: white;
+                    font-size: 1.3rem;
+                    text-shadow: 2px 2px 3px 3px black;
+                    background-color: rgb(67, 110, 210);
+                    z-index: -1;
+                    max-width: 13rem;
+                }
             }
+
         }
 
         circle {
