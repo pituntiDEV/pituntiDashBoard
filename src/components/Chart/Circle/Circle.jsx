@@ -18,7 +18,7 @@ export const Circle = ({ title = "title", porcentage = "50", max = 100 }) => {
 
           {Math.round(porcentajeUso, 1)}%
           <small>{title}</small>
-          <small className='tiny'>{`${porcentage}/${max}`}</small>
+          {/* <small className='tiny'>{`${porcentage}/${max}`}</small> */}
         </span>
       </div>
 

@@ -7,7 +7,7 @@ import "./Style.scss";
 export const Statistics = () => {
     const [servers, setServers] = useState([]);
     const [getServersWithUsers, loading] = useFetchApi({
-        url: `/api/server/get/all?users=true`,
+        url: `/api/server/status`,
         method: 'GET',
     })
 
@@ -25,7 +25,7 @@ export const Statistics = () => {
                     servers.map(server => {
                         return (
                             <div className='server__data' key={server._id}>
-                                <Circle porcentage={server?.users} max={server.limit || 100} title={server?.data?.name} />
+                                <Circle porcentage={server?.totalUsers} max={server.limit || 100} title={server?.data?.name} />
 
                             </div>
                         )
