@@ -13,8 +13,8 @@ const lettersMay = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", 
 const numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 export const CreatePlexUserForm = ({ setOpenModal, setNewUserState }) => {
 
-     //Context
-     const appContextValue = useContext(appContext);
+    //Context
+    const appContextValue = useContext(appContext);
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -23,7 +23,7 @@ export const CreatePlexUserForm = ({ setOpenModal, setNewUserState }) => {
         servers: [],
         connections: 1,
         whatsapp: null,
-        comments:""
+        comments: ""
     })
 
     const [myServers, setMyServers] = useState([])
@@ -39,23 +39,23 @@ export const CreatePlexUserForm = ({ setOpenModal, setNewUserState }) => {
     }
 
     const validatePassword = (password) => {
-        var regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+        var regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&+=])(?=.{10,}).*$/;
 
         // Verificar si la contraseña cumple con los requisitos
         if (regex.test(password)) {
             return true
         } else {
-           return false
+            return false
         }
     }
     const submit = (e) => {
         e.preventDefault();
-        const isValidPassword=validatePassword(formData.password);
-        if(!isValidPassword){
-           SWAlert.error({
-            title: 'Invalid Password',
-            text:"Agrega una contraseña valida de minimo 8 caracteres incluyendo letras y numeros"
-           })
+        const isValidPassword = validatePassword(formData.password);
+        if (!isValidPassword) {
+            SWAlert.error({
+                title: 'Invalid Password',
+                text: "Agrega una contraseña valida de minimo 10 caracteres incluyendo letras minusculas y mayusculas , numeros & carateres especial: @#$%^&+="
+            })
             return
         }
         createUser({ body: JSON.stringify(formData) })
@@ -65,7 +65,7 @@ export const CreatePlexUserForm = ({ setOpenModal, setNewUserState }) => {
                 })
                 setOpenModal(false);
                 setNewUserState(s => !s);
-                appContextValue.setState({...appContextValue.state,onChangeCredits:!appContextValue.state.onChangeCredits});
+                appContextValue.setState({ ...appContextValue.state, onChangeCredits: !appContextValue.state.onChangeCredits });
             })
             .catch((error) => {
                 SWAlert.error({
@@ -102,8 +102,9 @@ export const CreatePlexUserForm = ({ setOpenModal, setNewUserState }) => {
             password += lettersMay[Math.floor(Math.random() * 26)];
             password += lettersMay[Math.floor(Math.random() * 26)];
             password += numbers[Math.floor(Math.random() * 10)];
+            password += numbers[Math.floor(Math.random() * 10)];
         }
-        setFormData({ ...formData, password: password })
+        setFormData({ ...formData, password: password + "@" })
     }
     return (
         <form onSubmit={submit} className="create__user__form">
@@ -130,7 +131,7 @@ export const CreatePlexUserForm = ({ setOpenModal, setNewUserState }) => {
 
             <div className="form__group">
                 <label htmlFor="password">Password:{formData.password}</label>
-                <input type="password" onChange={onCHangeInputHandler} minLength={8} value={formData.password} required name="password" id="password" />
+                <input type="password" onChange={onCHangeInputHandler} minLength={10} value={formData.password} required name="password" id="password" />
 
                 <button className='btn btn-warning' type='button' onClick={generarPassword}>Generar Password</button>
             </div>
