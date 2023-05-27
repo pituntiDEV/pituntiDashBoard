@@ -7,10 +7,10 @@ import { ServerIcon } from '../../../../icons/ServerIcon';
 import SWAlert from '../../../../SwAlert/SWAlert';
 import { PackagesList } from './PackagesList';
 import "./ServersAndPackageEdit.scss";
-export const ServersAndPackageEdit = ({ reseller, setOpenModal,setNewResellerState }) => {
+export const ServersAndPackageEdit = ({ reseller, setOpenModal, setNewResellerState }) => {
 
   //State
-  const [resellerToEdit, setResellerToEdit] = useState(reseller);
+  const [resellerToEdit, setResellerToEdit] = useState({ ...reseller, servers: [] });
   const [servers, setServers] = useState([]);
 
 
@@ -38,10 +38,10 @@ export const ServersAndPackageEdit = ({ reseller, setOpenModal,setNewResellerSta
 
     const serverExist = resellerToEdit.servers.find(s => s.server._id == server._id);
 
-    
+
     if (serverExist) {
-   
-      const newServer = resellerToEdit.servers.filter(s => s.server?._id &&  s.server._id != server._id);
+
+      const newServer = resellerToEdit.servers.filter(s => s.server?._id && s.server._id != server._id);
       setResellerToEdit({ ...resellerToEdit, servers: newServer });
     } else {
 
@@ -71,7 +71,7 @@ export const ServersAndPackageEdit = ({ reseller, setOpenModal,setNewResellerSta
         title: data.message || "Reseller editado"
       })
       setOpenModal(false)
-      setNewResellerState(s=>!s);
+      setNewResellerState(s => !s);
     }).catch(error => {
       SWAlert.error({
         title: error.message || "Algo salio mal"
@@ -105,11 +105,11 @@ export const ServersAndPackageEdit = ({ reseller, setOpenModal,setNewResellerSta
           return <PackagesList setResellerToEdit={setResellerToEdit} resellerToEdit={resellerToEdit} server={server.server} />
         })
       }
-      {!loadingEditReseller ?<div className="btns">
+      {!loadingEditReseller ? <div className="btns">
         <button type="submit" className="btn btn-primary">Editar</button>
         <button type="button" onClick={() => setOpenModal(false)} className="btn btn-secondary">Cancelar</button>
       </div>
-      :"Loading...."
+        : "Loading...."
       }
     </form>
   )

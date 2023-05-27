@@ -5,10 +5,10 @@ import { InputWithIcon } from '../../../icons/InputWithIcon/InputWithIcon';
 import SWAlert from '../../../SwAlert/SWAlert';
 import "./EditResellerForm.scss";
 export const EditResellerForm = ({ reseller, setNewResellerState, setOpenModal }) => {
-    const { reseller: admin, } = reseller;
-
+    const { credits, ...data } = reseller;
+    console.log(data);
     //State
-    const [resellerToEdit, setResellerToEdit] = useState({ ...reseller });
+    const [resellerToEdit, setResellerToEdit] = useState(data);
 
 
     //Custom Hooks
