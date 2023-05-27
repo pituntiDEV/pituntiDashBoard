@@ -33,7 +33,7 @@ export const EditResellerForm = ({ reseller, setNewResellerState, setOpenModal }
         updateReseller({ body: JSON.stringify(resellerToEdit) })
             .then(data => {
                 SWAlert.alert({
-                    title: data.message || "Reseller updated"
+                    title: data.message || "Reseller updated."
                 })
                 setOpenModal(false);
                 setNewResellerState(s => !s);
