@@ -129,13 +129,14 @@ export const EditResellerForm = ({ reseller, setNewResellerState, setOpenModal }
                     </InputWithIcon>
 
                 </div>
-                <InputWithIcon>
-                    <label htmlFor="minCreditsToShare">#</label>
+                <div>
 
-                    <input type="number" onChange={inputOnChange} name="minCreditsToShare" value={resellerToEdit.minCreditsToShare} min={0} placeholder='Min creditos a compartir' id="minCreditsToShare" />
+                    <label htmlFor="minCreditsToShare" className='fw-bold'># Min creditos a compartir</label>
+
+                    <input className='border-0 rounded-3' type="number" onChange={inputOnChange} name="minCreditsToShare" value={resellerToEdit.minCreditsToShare} min={0} placeholder='Min creditos a compartir' id="minCreditsToShare" />
 
 
-                </InputWithIcon>
+                </div>
             </div>
 
             <div className="buttons_edit">
