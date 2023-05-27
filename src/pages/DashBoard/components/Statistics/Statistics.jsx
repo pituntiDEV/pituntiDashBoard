@@ -27,6 +27,7 @@ export const Statistics = () => {
                             <div className='server__data' key={server._id}>
                                 <Circle porcentage={server?.totalUsers} max={server.limit || 100} title={server?.data?.name} />
 
+
                             </div>
                         )
                     })
