@@ -17,9 +17,13 @@ import { DeleteUserForm } from '../../DeleteUserForm/DeleteUserForm';
 import { EditPlexUser } from '../../EditUser/EditPlexUser';
 import { EditUser } from '../../EditUser/EditUser';
 import "./Options.scss";
+import { useRef } from 'react';
+import { useEffect } from 'react';
+import { Ellipsis } from '../../../icons/Ellipsis';
 
 
 export const Options = ({ user, setNewUserState, setUsers, users }) => {
+
 
     const [openModalToEdit, setOpenModalToEdit] = useState(false);
     const [openModalToAddCredits, setOpenModalToAddCredits] = useState(false);
@@ -45,15 +49,57 @@ export const Options = ({ user, setNewUserState, setUsers, users }) => {
                 <div className="option" onClick={() => setOpenAuthModal(true)}>
                     <i className="fa-solid fa-user-lock"></i>
                 </div>}
-            <div className='option'>
-                <div className='libs'>
-                    <span>{user.packages.length == 0 ? 0 : user.data[0]?.numLibraries || user.data?.numLibraries}</span>
-                    <BookIcon />
-                </div>
-            </div>
+
             <div className='option' onClick={() => setOpenDeleteModal(true)}>
                 <TrashIcon />
             </div>
+
+            <div className='option submenu__container' >
+                <Ellipsis />
+                <div className="submenu">
+                    <ul className='submenu_items'>
+
+                        <li className='submenu_item'>
+                            <hr />
+                            <div className="title">
+                                Vendedor:
+
+                            </div>
+                            <span className='info'>
+                                {user.seller.email}
+                            </span>
+                            <hr />
+                        </li>
+
+                        <li className='submenu_item' >
+                            Librerias:
+
+                            # {user.data.reduce((acc, data) => {
+                                acc += data.numLibraries;
+                                return acc;
+                            }, 0)}
+
+                            <hr />
+                        </li>
+                        <li className='submenu_item'>
+                            Servers:
+                            # {user?.data?.length || 0}
+                            <hr />
+                        </li>
+
+                        {user.comments && <li className='submenu_item'>
+                            Comentarios:
+                            <span>
+                                {user.comments}
+                            </span>
+                            <hr />
+                        </li>}
+
+                    </ul>
+                </div>
+            </div>
+
+
 
 
 

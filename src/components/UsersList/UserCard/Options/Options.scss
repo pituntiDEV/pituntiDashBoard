@@ -1,11 +1,12 @@
-.user__options{
+.user__options {
     display: flex;
-    margin-bottom: 1rem ;
-  
-    align-items: center;
+    margin-bottom: 1rem;
+
+
     justify-content: space-around;
     gap: .5rem;
-    .option{
+
+    .option {
         height: 2.5rem;
         width: 2.5rem;
         border-radius: 50%;
@@ -13,18 +14,61 @@
         box-shadow: -2px 2px 4px rgb(225, 88, 88);
         font-size: 1.4rem;
     }
-    .delete{
-       color: rgb(235, 79, 79);
+
+
+    .submenu__container {
+        &:hover>.submenu {
+            display: block
+        }
+
+
+
+        .submenu {
+            display: none;
+            background: linear-gradient(90deg, rgb(63, 63, 62, .9), black);
+            position: absolute;
+            min-width: 10rem;
+            top: 0rem;
+            right: 0rem;
+            bottom: 0;
+            max-height: 16rem;
+            border-radius: 1rem 1rem 0 1rem;
+            z-index: 1999999;
+            box-shadow: 1px 1px 3px rgb(252, 244, 25);
+            overflow-y: scroll;
+
+
+
+
+
+            .submenu_items {
+                padding: 0 1rem;
+
+                .submenu_item {
+                    display: flex;
+                    flex-direction: column;
+                }
+
+            }
+
+        }
+
     }
 
-    .credits{
+    .delete {
+        color: rgb(235, 79, 79);
+    }
+
+    .credits {
         color: rgb(227, 221, 97);
     }
-    .libs{
+
+    .libs {
         position: relative;
-        span{
+
+        span {
             position: absolute;
-            top:-.5rem;
+            top: -.5rem;
             left: 1.2rem;
             font-size: 1.2rem;
             height: 2rem;

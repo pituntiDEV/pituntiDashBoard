@@ -1,5 +1,5 @@
 .user__card {
-  
+
     border-radius: 1rem;
     background-color: transparent;
     box-shadow: inset 4px 4px 8px #918f8f67, -4px 10px 8px rgb(116, 129, 120);
@@ -8,20 +8,22 @@
     background-color: var(--color-primary);
     animation: infinite pi 5s steps(100);
     overflow: hidden;
-    
+    position: relative;
+
     display: grid;
-  
- 
-    grid-template-areas: 
-    "header header"
-    "body body"
-    "options options"
+
+
+    grid-template-areas:
+        "header header"
+        "body body"
+        "options options"
     ;
 
-    &.expired{
+    &.expired {
         box-shadow: 0 0 10px 2px red;
     }
-    .card__header{
+
+    .card__header {
         position: relative;
         grid-area: header;
         background: rgb(89, 119, 17);
@@ -29,29 +31,31 @@
         position: relative;
         min-height: 5.5rem;
         margin-bottom: 2rem;
-        border-radius:  0 0 50% 0;
+        border-radius: 0 0 50% 0;
         border-bottom: 3px solid rgb(252, 252, 252);
-        .whatsapp{
+
+        .whatsapp {
             font-size: 2.3rem;
             color: white;
             position: absolute;
-            top:1.5rem;
+            top: 1.5rem;
             left: 1rem;
             text-shadow: -0px 0px 3px rgb(255, 255, 255);
             cursor: pointer;
             border-bottom: 2px solid #000000a4;
         }
-        
-        .email{
-            word-wrap:break-word;
+
+        .email {
+            word-wrap: break-word;
             font-weight: bold;
-            color:white;
-            padding:0 1rem;
+            color: white;
+            padding: 0 1rem;
             font-size: 1.5rem;
             margin: 0 auto;
 
-            
+
         }
+
         img {
             position: absolute;
             width: 40px;
@@ -63,28 +67,31 @@
             bottom: -50%;
             left: 50%;
             translate: -50%;
-            
+
         }
-        &.expired{
+
+        &.expired {
             background: rgb(242, 83, 83);
         }
     }
 
     .card__body {
-        padding:0 1rem;
+        padding: 0 1rem;
         grid-area: body;
 
         .user__info {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: .3rem;
+
             .name {
                 font-weight: bold;
             }
-           
+
         }
     }
-    .card__options{
+
+    .card__options {
         margin-top: 1rem;
         grid-area: options;
         color: white;

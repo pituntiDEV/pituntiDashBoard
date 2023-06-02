@@ -30,7 +30,8 @@ export const ActivateForm = ({ setOpenModal, setDevicesState }) => {
         code: "",
         credits: 0,
         account_id: "",
-        demoTime:0
+        demoTime: 0,
+        whatsapp: ""
     })
     const [activate, loading] = useFetchApi({
         url: `/api/byCode/`,
@@ -89,7 +90,7 @@ export const ActivateForm = ({ setOpenModal, setDevicesState }) => {
         e.preventDefault();
 
         activate({
-            body: JSON.stringify({...formData,isDemo})
+            body: JSON.stringify({ ...formData, isDemo })
         }).then(data => {
             SWAlert.alert({
                 title: data.message
@@ -138,6 +139,10 @@ export const ActivateForm = ({ setOpenModal, setDevicesState }) => {
                 <input onChange={onChange} type="email" required placeholder='Email' id="email" />
             </div>
             <div className="form_group">
+                <label htmlFor="whatsapp">Whatsapp:</label>
+                <input onChange={onChange} type="text" placeholder='whatsapp' id="whatsapp" />
+            </div>
+            <div className="form_group">
                 <label htmlFor="code">Codigo:</label>
                 <input required onChange={onChange} type="text" minLength={4} placeholder='Codígo de activacíon' id="code" />
             </div>
@@ -173,7 +178,7 @@ export const ActivateForm = ({ setOpenModal, setDevicesState }) => {
 
 
 
-            {!loading &&  
+            {!loading &&
                 <button type='submit'>
                     Activar
                 </button>}

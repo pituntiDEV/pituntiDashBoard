@@ -4,15 +4,20 @@ import Modal from '../../../modal/Modal';
 import { RemoveReseller } from './RemoveReseller';
 import { CoinPlusIcon } from '../../../icons/InputWithIcon/CoinPlusIcon';
 import { AddCoins } from './AddCoins';
+import "./OptionsNotAdmin.scss";
 
-export const OptionsNotAdmin = ({ user, setNewResellerState }) => {
+
+export const OptionsNotAdmin = ({ user, setNewResellerState, creditAvailable }) => {
 
     const [openModalToAddCoins, setOpenModalToAddCoins] = useState(false);
     const [openModalToRemove, setOpenModalToRemove] = useState(false);
 
     return (
-        <>
-            <span onClick={() => setOpenModalToAddCoins(true)}>
+        <div className='OptionsNotAdmin'>
+
+            <span className='sub_credits' onClick={() => setOpenModalToAddCoins(true)}>
+                <span className='total_credits'>{creditAvailable}</span>
+
                 <CoinPlusIcon />
             </span>
 
@@ -24,6 +29,7 @@ export const OptionsNotAdmin = ({ user, setNewResellerState }) => {
             {/* Modals */}
             {openModalToAddCoins &&
                 <Modal title='Eliminar reseller' setOpenModal={setOpenModalToAddCoins}>
+
                     <AddCoins setOpenModal={setOpenModalToAddCoins} user={user} />
                 </Modal>
             }
@@ -33,6 +39,6 @@ export const OptionsNotAdmin = ({ user, setNewResellerState }) => {
                     <RemoveReseller setNewResellerState={setNewResellerState} setOpenModal={setOpenModalToRemove} user={user} />
                 </Modal>
             }
-        </>
+        </div>
     )
 }

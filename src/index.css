@@ -1,34 +1,50 @@
-:root{
-  --color-primary:#262626  !important;
-  --color-primario:rgba(0, 0, 0, 0.582)  !important;
-  --color-negro:#030311;
-  --color-amarillo:#F2AF5C;
-  --color-secondary:#454747;
-  --color-red-ligth:#F25C78;
-  --color-blue-light:#36659e;
-  --color-green-ligth:#2BD999;
-  --color-white:white;
-  --color-blue-serenity:linear-gradient(to right,rgb(109, 130, 169),rgb(69, 116, 181))
-
+:root {
+  --color-primary: #262626 !important;
+  --color-primario: rgba(0, 0, 0, 0.582) !important;
+  --color-negro: #030311;
+  --color-amarillo: #F2AF5C;
+  --color-secondary: #454747;
+  --color-red-ligth: #F25C78;
+  --color-blue-light: #36659e;
+  --color-green-ligth: #2BD999;
+  --color-white: white;
+  --color-blue-serenity: linear-gradient(to right, rgb(109, 130, 169), rgb(69, 116, 181))
 }
+
 body {
   margin: 0;
   font-family: 'Roboto Condensed', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  ::-webkit-scrollbar {
+    width: 0.5em;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: transparent;
+  }
+
 }
-ul{
+
+ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
-.form__group{
+
+.form__group {
   display: flex;
   flex-direction: column;
-  
+
 }
 
-.form__group select,input{
+.form__group select,
+input {
   padding: .5rem;
 }
 
@@ -36,37 +52,43 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-.btn{
+
+.btn {
   font-weight: bold;
   cursor: pointer;
   border-radius: .3rem;
-  border:none;
+  border: none;
   margin: 1rem 0;
   padding: .5rem 2rem;
   box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.675);
   font-size: 1.3rem;
-  letter-spacing: 1.5px;;
+  letter-spacing: 1.5px;
+  ;
 }
 
-.btn-primary{
+.btn-primary {
   background-color: rgb(51, 90, 135);
   color: white
 }
 
 
-.btn-secondary{
+.btn-secondary {
   background-color: rgb(81, 82, 83);
   color: white
 }
-.text-danger{
-  color:rgb(176, 8, 8)
+
+.text-danger {
+  color: rgb(176, 8, 8)
 }
-.pl-1{
+
+.pl-1 {
   padding-left: .5rem;
 }
-.pr-1{
+
+.pr-1 {
   padding-right: .5rem;
 }
+
 .swal2-popup {
   font-size: 2rem !important;
   font-family: Georgia, serif;
