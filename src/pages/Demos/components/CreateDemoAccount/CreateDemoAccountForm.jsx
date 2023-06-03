@@ -12,6 +12,8 @@ import { AppContext, appContext } from '../../../../context/AppContext';
 import useFetchApi from '../../../../hook/useFetchApi';
 import { useRandomText } from '../../../../hook/useRandomText';
 import "./Style.scss"
+import { usePlexPasswordGenerate } from '../../../../hook/usePlexPasswordGenerate';
+import { usePlexPasswordValidate } from '../../../../hook/usePlexPasswordValidate';
 
 export const CreateDemoAccountForm = ({ setOpenModal, setDemoState }) => {
     const { state } = useContext(appContext);
@@ -44,6 +46,8 @@ export const CreateDemoAccountForm = ({ setOpenModal, setDemoState }) => {
     //Custom Hooks
 
     const [getRandomText, randomText] = useRandomText(15)
+    const [generatePassword] = usePlexPasswordGenerate();
+    const [validatePassword] = usePlexPasswordValidate();
     const [getMyServers, loading] = useFetchApi({
         url: "/api/server/get/all",
         method: "GET",
@@ -124,21 +128,26 @@ export const CreateDemoAccountForm = ({ setOpenModal, setDemoState }) => {
 
     }
 
-    const submit = (e) => {
+    const submit = async (e) => {
+
         e.preventDefault();
-        createDemoAccount({ body: JSON.stringify(formData) })
-            .then(data => {
-                SWAlert.alert({
-                    title: data.message,
-                })
-                setDemoState(s => !s);
-                setOpenModal(false)
+        try {
+            validatePassword(formData.password)
+            const data = await createDemoAccount({ body: JSON.stringify(formData) })
+            SWAlert.alert({
+                title: data.message,
             })
-            .catch(error => {
-                SWAlert.error({
-                    title: error.message
-                })
+            setDemoState(s => !s);
+            setOpenModal(false)
+
+
+
+        } catch (error) {
+            SWAlert.error({
+                title: error.message
             })
+        }
+
 
     }
     return (
@@ -162,7 +171,7 @@ export const CreateDemoAccountForm = ({ setOpenModal, setDemoState }) => {
                 <small className='text-muted'>{formData.password}</small>
                 <button type='button' className='btn btn-primary' onClick={() => {
                     getRandomText(15);
-                    setFormData({ ...formData, password: randomText })
+                    setFormData({ ...formData, password: generatePassword() })
                 }}>Password random</button>
             </div>
 
