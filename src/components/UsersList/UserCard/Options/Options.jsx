@@ -74,10 +74,12 @@ export const Options = ({ user, setNewUserState, setUsers, users }) => {
                         <li className='submenu_item' >
                             Librerias:
 
-                            # {user.data.reduce((acc, data) => {
+                            # {Array.isArray(user.data) ? user?.data?.reduce((acc, data) => {
                                 acc += data.numLibraries;
                                 return acc;
-                            }, 0)}
+                            }, 0) :
+                                user.data.numLibraries
+                            }
 
                             <hr />
                         </li>
