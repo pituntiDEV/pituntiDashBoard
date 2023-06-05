@@ -5,27 +5,27 @@ import { NewResellerForm } from '../../components/Resellers/NewResellerForm/NewR
 import { ResellersList } from '../../components/Resellers/ResellerList/ResellersList';
 
 import "./Resellers.scss";
+import { useGetResellers } from './hooks/useGetResellers';
 export const Resellers = () => {
   //State
   const [openModal, setOpenModal] = useState(false);
-  const [totalResellers, setTotalResellers] = useState("--");
-  const [newResellerState, setNewResellerState] = useState(false);
+  const [resellers, setResellers] = useGetResellers();
 
   return (
     <div className='resellers container'>
-      <NewResellerBar setNewResellerState={setNewResellerState} totalresellers={totalResellers} onClick={() => setOpenModal(true)} />
+      <NewResellerBar setResellers={setResellers} resellers={resellers} onClick={() => setOpenModal(true)} />
 
       <div className='resellers-new__btn m-2'>
 
       </div>
 
-      <ResellersList setNewResellerState={setNewResellerState} newResellerState={newResellerState} setTotalResellers={setTotalResellers} />
+      <ResellersList setResellers={setResellers} resellers={resellers} />
 
 
       {/* Edit Data */}
       {openModal &&
         <Modal setOpenModal={setOpenModal} title='Nuevo Reseller'>
-          <NewResellerForm setNewResellerState={setNewResellerState} setOpenModal={setOpenModal} />
+          <NewResellerForm resellers={resellers} setResellers={setResellers} setOpenModal={setOpenModal} />
         </Modal>
       }
     </div>

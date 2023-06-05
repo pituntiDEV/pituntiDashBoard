@@ -14,27 +14,14 @@ import { EditResellerForm } from './EditResellerForm/EditResellerForm';
 import { ServersAndPackageEdit } from './EditResellerForm/ServersAndPackageEdit/ServersAndPackageEdit';
 import "./ResellerList.scss";
 import { OptionsNotAdmin } from './components/OptionsNotAdmin';
-export const ResellersList = ({ setTotalResellers, newResellerState, setNewResellerState }) => {
+export const ResellersList = ({ setResellers, resellers, newResellerState, setNewResellerState }) => {
     //State
-    const [resellers, setResellers] = useState([]);
     const [openModal, setOpenModal] = useState(false);
     const [openModalServers, setOpenModalServers] = useState(false)
     const [openModalCredits, setOpenModalCredits] = useState(false)
     const [resellerToEdit, setResellerToEdit] = useState(null);
     const [openModalDelete, setOpenModalDelete] = useState(false);
 
-    //Custom hooks
-    const [getResellers, loading] = useFetchApi({
-        url: "/api/resellers/",
-        method: "GET",
-    })
-
-    useEffect(() => {
-        getResellers().then(data => {
-            setTotalResellers(data.length);
-            setResellers(data);
-        })
-    }, [newResellerState])
     return (
         <div className='resellers__list'>
             <div className='resellers__container'>
@@ -55,7 +42,7 @@ export const ResellersList = ({ setTotalResellers, newResellerState, setNewResel
                                     </small>
 
                                     <div className="logo">
-                                        <span className="circle1">{reseller.name[0]}</span>
+                                        <span className="circle1">{reseller.name && reseller?.name[0]}</span>
                                         <span className="circle2"></span>
                                     </div>
 
