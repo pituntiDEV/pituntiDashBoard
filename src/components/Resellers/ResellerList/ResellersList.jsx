@@ -14,7 +14,7 @@ import { EditResellerForm } from './EditResellerForm/EditResellerForm';
 import { ServersAndPackageEdit } from './EditResellerForm/ServersAndPackageEdit/ServersAndPackageEdit';
 import "./ResellerList.scss";
 import { OptionsNotAdmin } from './components/OptionsNotAdmin';
-export const ResellersList = ({ setResellers, resellers, newResellerState, setNewResellerState }) => {
+export const ResellersList = ({ setResellers, setResellersState, resellers }) => {
     //State
     const [openModal, setOpenModal] = useState(false);
     const [openModalServers, setOpenModalServers] = useState(false)
@@ -81,32 +81,32 @@ export const ResellersList = ({ setResellers, resellers, newResellerState, setNe
 
                                     {/* Optiones para resellers de los resellers */}
                                     {creator &&
-                                        <OptionsNotAdmin creditAvailable={creditAvailable?.length} setNewResellerState={setNewResellerState} user={resell} />}
+                                        <OptionsNotAdmin creditAvailable={creditAvailable?.length} setNewResellerState={setResellersState} user={resell} />}
                                 </div>
 
 
                                 {openModal &&
                                     <Modal title={`Reseller Config: ${resellerToEdit.reseller.name}`} setOpenModal={setOpenModal}>
-                                        <EditResellerForm setNewResellerState={setNewResellerState} setOpenModal={setOpenModal} reseller={resellerToEdit} />
+                                        <EditResellerForm setResellersState={setResellersState} setOpenModal={setOpenModal} reseller={resellerToEdit} />
                                     </Modal>
                                 }
 
                                 {openModalServers &&
                                     <Modal title={`Reseller Servers: ${resellerToEdit.reseller.name}`} setOpenModal={setOpenModalServers}>
-                                        <ServersAndPackageEdit setNewResellerState={setNewResellerState} setOpenModal={setOpenModalServers} reseller={resellerToEdit} />
+                                        <ServersAndPackageEdit setResellersState={setResellersState} setOpenModal={setOpenModalServers} reseller={resellerToEdit} />
                                     </Modal>
                                 }
 
                                 {openModalCredits &&
                                     <Modal title={`Reseller Credits: ${resellerToEdit.reseller.name}`} setOpenModal={setOpenModalCredits}>
-                                        <CreditsEdit setNewResellerState={setNewResellerState} setOpenModal={setOpenModalCredits} reseller={resellerToEdit} />
+                                        <CreditsEdit setResellersState={setResellersState} setOpenModal={setOpenModalCredits} reseller={resellerToEdit} />
                                     </Modal>
                                 }
 
                                 {
                                     openModalDelete &&
                                     <Modal title="Eliminar Reseller" setOpenModal={setOpenModalDelete}>
-                                        <DeleteReseller setNewResellerState={setNewResellerState} setOpenModal={setOpenModalDelete} reseller={resellerToEdit} />
+                                        <DeleteReseller setResellersState={setResellersState} setOpenModal={setOpenModalDelete} reseller={resellerToEdit} />
                                     </Modal>
                                 }
                             </div>

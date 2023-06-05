@@ -9,23 +9,24 @@ import { useGetResellers } from './hooks/useGetResellers';
 export const Resellers = () => {
   //State
   const [openModal, setOpenModal] = useState(false);
-  const [resellers, setResellers] = useGetResellers();
+  const [resellersState, setResellersState] = useState(true);
+  const [resellers, setResellers] = useGetResellers([resellersState]);
 
   return (
     <div className='resellers container'>
-      <NewResellerBar setResellers={setResellers} resellers={resellers} onClick={() => setOpenModal(true)} />
+      <NewResellerBar setResellersState={setResellersState} setResellers={setResellers} resellers={resellers} onClick={() => setOpenModal(true)} />
 
       <div className='resellers-new__btn m-2'>
 
       </div>
 
-      <ResellersList setResellers={setResellers} resellers={resellers} />
+      <ResellersList setResellersState={setResellersState} setResellers={setResellers} resellers={resellers} />
 
 
       {/* Edit Data */}
       {openModal &&
         <Modal setOpenModal={setOpenModal} title='Nuevo Reseller'>
-          <NewResellerForm resellers={resellers} setResellers={setResellers} setOpenModal={setOpenModal} />
+          <NewResellerForm setResellersState={setResellersState} resellers={resellers} setResellers={setResellers} setOpenModal={setOpenModal} />
         </Modal>
       }
     </div>

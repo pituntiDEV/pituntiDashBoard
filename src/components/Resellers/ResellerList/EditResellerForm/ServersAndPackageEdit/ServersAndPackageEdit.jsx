@@ -7,7 +7,7 @@ import { ServerIcon } from '../../../../icons/ServerIcon';
 import SWAlert from '../../../../SwAlert/SWAlert';
 import { PackagesList } from './PackagesList';
 import "./ServersAndPackageEdit.scss";
-export const ServersAndPackageEdit = ({ reseller, setOpenModal, setNewResellerState }) => {
+export const ServersAndPackageEdit = ({ reseller, setOpenModal, setResellersState }) => {
 
   //State
   const [resellerToEdit, setResellerToEdit] = useState({ ...reseller, servers: [] });
@@ -71,7 +71,7 @@ export const ServersAndPackageEdit = ({ reseller, setOpenModal, setNewResellerSt
         title: data.message || "Reseller editado"
       })
       setOpenModal(false)
-      setNewResellerState(s => !s);
+      setResellersState(s => !s);
     }).catch(error => {
       SWAlert.error({
         title: error.message || "Algo salio mal"

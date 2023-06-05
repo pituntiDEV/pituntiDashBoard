@@ -4,7 +4,7 @@ import useFetchApi from '../../../../hook/useFetchApi';
 import { InputWithIcon } from '../../../icons/InputWithIcon/InputWithIcon';
 import SWAlert from '../../../SwAlert/SWAlert';
 import "./EditResellerForm.scss";
-export const EditResellerForm = ({ reseller, setNewResellerState, setOpenModal }) => {
+export const EditResellerForm = ({ reseller, setResellersState, setOpenModal }) => {
     const { credits, ...data } = reseller;
     console.log(data);
     //State
@@ -36,7 +36,7 @@ export const EditResellerForm = ({ reseller, setNewResellerState, setOpenModal }
                     title: data.message || "Reseller updated."
                 })
                 setOpenModal(false);
-                setNewResellerState(s => !s);
+                setResellersState(s => !s);
             })
             .catch((error) => {
                 SWAlert.error({

@@ -9,7 +9,7 @@ import SWAlert from '../../../SwAlert/SWAlert';
 import useFetchApi from '../../../../hook/useFetchApi';
 import { AppContext, appContext } from '../../../../context/AppContext';
 import { Spinner } from '../../../Spinner/Spinner';
-export const SharedAccount = ({ setOpenModal, setNewResellerState }) => {
+export const SharedAccount = ({ setOpenModal, setResellersState }) => {
     const appCOntext = useContext(appContext);
 
 
@@ -47,7 +47,7 @@ export const SharedAccount = ({ setOpenModal, setNewResellerState }) => {
                     title: data.message || "Success"
                 })
                 setOpenModal(false);
-                setNewResellerState(s => !s);
+                setResellersState(s => !s);
                 appCOntext.setState({ ...appCOntext.state, onChangeCredits: !appCOntext.onChangeCredits });
             })
             .catch(error => {

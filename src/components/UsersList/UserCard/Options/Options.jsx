@@ -20,16 +20,18 @@ import "./Options.scss";
 import { useRef } from 'react';
 import { useEffect } from 'react';
 import { Ellipsis } from '../../../icons/Ellipsis';
+import utils from "../../../../utils/date/index"
 
 
 export const Options = ({ user, setNewUserState, setUsers, users }) => {
 
-
+    console.log(user.credits);
     const [openModalToEdit, setOpenModalToEdit] = useState(false);
     const [openModalToAddCredits, setOpenModalToAddCredits] = useState(false);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
     const [openModalToChangeServer, setOpenModalToChangeServer] = useState(false)
     const [openAuthModal, setOpenAuthModal] = useState(false);
+    const [openModalToShowCredits, setOpenModalToShowCredits] = useState(false)
     return (
         <div className='user__options'>
 
@@ -58,6 +60,11 @@ export const Options = ({ user, setNewUserState, setUsers, users }) => {
                 <Ellipsis />
                 <div className="submenu">
                     <ul className='submenu_items'>
+                        {user.credits &&
+                            <li className='submenu_item'>
+                                <button onClick={() => setOpenModalToShowCredits(true)} className='btn btn-danger'>credits:{user?.credits?.length}</button>
+                                <hr />
+                            </li>}
 
                         <li className='submenu_item'>
                             <hr />
@@ -111,6 +118,27 @@ export const Options = ({ user, setNewUserState, setUsers, users }) => {
                     <EditPlexUser users={users} setUsers={setUsers} user={user} setOpenModal={setOpenModalToEdit} />
                 </Modal>
             }
+
+            {openModalToShowCredits &&
+                <Modal title="Creditos" setOpenModal={setOpenModalToShowCredits}>
+                    <h3 className='fw-bold'>Expire en {utils.formatDate(user.expireAt)} </h3>
+                    {
+                        user?.credits.map((credit) => {
+                            return (
+                                <div >
+                                    <div className="connections">
+                                        <p>Conecciones:{credit.conexion}</p>
+                                        <p>Usado en :{utils.formatDate(credit.updatedAt)}</p>
+                                    </div>
+                                    <hr />
+                                </div>
+                            )
+                        })
+
+                    }
+                </Modal>
+            }
+
 
             {openModalToAddCredits &&
                 <Modal title="Edit User" setOpenModal={setOpenModalToAddCredits}>

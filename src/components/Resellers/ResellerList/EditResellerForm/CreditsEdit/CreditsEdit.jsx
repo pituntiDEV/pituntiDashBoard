@@ -9,7 +9,7 @@ import { CoinPlusIcon } from '../../../../icons/InputWithIcon/CoinPlusIcon';
 import { InputWithIcon } from '../../../../icons/InputWithIcon/InputWithIcon';
 import SWAlert from '../../../../SwAlert/SWAlert';
 import "./CreditsEdit.scss"
-export const CreditsEdit = ({ reseller,setOpenModal,setNewResellerState }) => {
+export const CreditsEdit = ({ reseller, setOpenModal, setResellersState }) => {
     //State
     const [credits, setCredits] = useState([]);
     const [getCredits, loadingCredits] = useFetchApi({
@@ -43,13 +43,13 @@ export const CreditsEdit = ({ reseller,setOpenModal,setNewResellerState }) => {
         addCredits({ body: JSON.stringify(formData) })
             .then(data => {
                 SWAlert.alert({
-                    title:data.message || "Creditos agregados"
+                    title: data.message || "Creditos agregados"
                 })
                 setOpenModal(false);
-                setNewResellerState(s=>!s);
-            }).catch(error=>{
+                setResellersState(s => !s);
+            }).catch(error => {
                 SWAlert.error({
-                    title:error.message || "Algo salio mal",
+                    title: error.message || "Algo salio mal",
                 })
             })
     }
@@ -68,17 +68,17 @@ export const CreditsEdit = ({ reseller,setOpenModal,setNewResellerState }) => {
                     </div>
                     <div className='form-group'>
                         <label htmlFor="">Conecciones</label>
-                       <InputWithIcon>
-                       <HouseWifiIcon/>
-                       <input onChange={inputOnChange} value={formData.conexion} required type="number" min="1" className='form-control' name="conexion" id="" />
-                       </InputWithIcon>
+                        <InputWithIcon>
+                            <HouseWifiIcon />
+                            <input onChange={inputOnChange} value={formData.conexion} required type="number" min="1" className='form-control' name="conexion" id="" />
+                        </InputWithIcon>
                     </div>
                     <div className='form-group'>
                         <label htmlFor="">Description:</label>
-                       <InputWithIcon>
-                       <InfoIcon/>
-                       <input onChange={inputOnChange} value={formData.description} required type="text" className='form-control' name="description" id="" />
-                       </InputWithIcon>
+                        <InputWithIcon>
+                            <InfoIcon />
+                            <input onChange={inputOnChange} value={formData.description} required type="text" className='form-control' name="description" id="" />
+                        </InputWithIcon>
                     </div>
                 </div>
                 {!loadingAddCredits && <button className='btn btn-primary'>Agregar</button>}

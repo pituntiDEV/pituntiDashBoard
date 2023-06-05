@@ -8,7 +8,7 @@ import "./NewResellerForm.scss";
 import { ResellerConfig } from './ResellerConfig/ResellerConfig';
 import { SearchReseller } from './SearchReseller/SearchReseller';
 import { ServerList } from './ServerList/ServerList';
-export const NewResellerForm = ({ setOpenModal, resellers, setResellers }) => {
+export const NewResellerForm = ({ setOpenModal, setResellersState, resellers, setResellers }) => {
 
     //State
     const [state, setState] = useState({
@@ -69,7 +69,7 @@ export const NewResellerForm = ({ setOpenModal, resellers, setResellers }) => {
                 title: data.message || "Reseller Agregado"
             })
             setOpenModal(false);
-            setResellers([...resellers, data])
+            setResellersState(s => !s);
 
         }).catch((error) => {
             SWAlert.error({
