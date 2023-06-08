@@ -10,13 +10,19 @@ export const AccountInfo = () => {
   //State
   const email = localStorage.getItem("email_to_info");
   const [user, setUser] = useState({});
-  const [recentMovies, setRecentMovies] = useState([]);
+  const [recentMedia, setRecentMedia] = useState([]);
   const [servers, setServers] = useState([]);
+  const [serverId, setServerID] = useState(null);
 
   //Functions
 
   const [getRecents, loading] = useFetchApi({
     url: `/api/my-account-info/recent-movies?email=${email}`,
+    method: "GET"
+  })
+
+  const [getRecentsByServer, loadingGetReccentByServer] = useFetchApi({
+    url: `/api/my-account-info/recent-media-byServer/${serverId}`,
     method: "GET"
   })
 
@@ -26,9 +32,26 @@ export const AccountInfo = () => {
     getRecents()
       .then(data => {
         setUser(data.user);
-        setServers(data.userData)
+        setServers(data.user.servers);
+
+        if (data.user.servers.length > 0) {
+          setServerID(data.user.servers[0]._id)
+        }
       })
   }, [])
+
+  useEffect(() => {
+    if (serverId) {
+      getRecentsByServer()
+        .then(data => {
+          setRecentMedia(data)
+        })
+        .catch(error => {
+          console.log(error);
+        })
+    }
+
+  }, [serverId])
 
 
   const logOut = () => {
@@ -63,85 +86,42 @@ export const AccountInfo = () => {
       <div className="servers__shared container">
         <h3>Servers:</h3>
         <div className="servers__container">
-          {servers.map(server => {
-            return (
-              <div className='server-shared' key={server.server.name}>
-                <ServerIcon /> {server.server.name}
-              </div>
-            )
-          })}
+          <select onChange={(e) => { setServerID(e.target.value) }} defaultValue={servers[0]?._id} name="" id="">
+            {servers.map(server => {
+              return (
+                <option value={server._id} key={server.data.name}>
+                  {server.data.name}
+                </option>
+              )
+            })}
+
+          </select>
         </div>
       </div>
 
-      <div className="recents__container">
-        <div className="recents">
-          {servers.map(server => {
+
+      {/* Recent Container */}
+      <div className="recent_movies container">
+        <div className="slide">
+          {recentMedia.map(({
+            ratingKey,
+            thumb,
+            title,
+            parentTitle
+
+          }) => {
             return (
-              <div className='server-shared' key={server.server.name}>
-                <div className="recent_movies container">
-                  {server?.recent?.length > 0 && <h2>Agregado Recientemente A: {server.server.name}</h2>}
-                  <div className="slide">
-                    {server?.recent?.length > 0 && server.recent?.map(({
-                      ratingKey,
-                      thumb,
-                      title,
-                      parentTitle
-
-                    }) => {
-                      return (
-                        <div key={ratingKey} className="img_container">
-                           <div className="title">
-                            { parentTitle}{title}
-                           </div>
-                          <img src={`${process.env.REACT_APP_API_URL}/api/my-account-info/plex-img?server=${server.server._id}&&img=${thumb}`} alt="Imagen no disponible" />
-                        </div>)
-                    })}
-
-                  </div>
+              <div key={ratingKey} className="img_container">
+                <div className="title">
+                  {parentTitle}{title}
                 </div>
-              </div>
-            )
+                <img src={`${process.env.REACT_APP_API_URL}/api/my-account-info/plex-img?server=${serverId}&&img=${thumb}`} alt="Imagen no disponible" />
+              </div>)
           })}
+
         </div>
       </div>
     </div>
-    // <>
-    // <div className='account_info'>
-    //   <div className="info_container">
-    //     <div className="info">
-    //       <header>
-    //         <div className="btn-exit" onClick={logOut}>
-    //           <CloseIcon/>
-    //         </div>
-    //       <div className="email">{localStorage.getItem("email_to_info")}</div>
 
-    //         <img src={user?.thumb || "https://ps.w.org/user-avatar-reloaded/assets/icon-256x256.png?rev=2540745"} alt="" />
-    //       </header>
-    //       <div className="data">
-    //         <div className="name">{user?.name}</div>
-    //         {!loading && <div className="expireAt">{dateUtils.formatDate(user?.expireAt,"DD-MMMM-YYYY")}</div>}
-    //         <div className="server">{user.serverName}</div>
-    //       </div>
-    //     </div>
-    //   </div>
-
-    // </div>
-    //   <div className="recent_movies container">
-    //     {recentMovies.length > 0 && <h2>Agregado Recientemente:</h2>}
-    //     <div className="slide">
-    //       {recentMovies?.map(({
-    //         ratingKey,
-    //         thumb
-    //       })=>{
-    //         return (
-    //         <div key={ratingKey} className="img_container">
-
-    //           <img src= {`${process.env.REACT_APP_API_URL}/api/my-account-info/plex-img?img=${thumb}`} alt="Imagen no disponible" />
-    //         </div>)
-    //       })}
-
-    //     </div>
-    //   </div>
-    // </>
   )
 }
