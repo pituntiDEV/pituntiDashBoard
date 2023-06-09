@@ -10,8 +10,9 @@
 
         .libs_container {
 
-            display: flex;
-            gap: 1rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 2rem;
 
             .lib {
                 background-color: rgb(205, 84, 84);
@@ -20,6 +21,7 @@
                 font-weight: bold;
                 border-radius: .3rem;
                 box-shadow: -2px 2px 3px rgb(62, 60, 60);
+
                 cursor: pointer;
 
                 .header {
