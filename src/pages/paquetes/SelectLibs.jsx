@@ -12,12 +12,12 @@ import useFetchApi from '../../hook/useFetchApi';
 import useGetPlexLibs from '../../hook/useGetPlexLibs';
 import "./SelectLibs.scss";
 
-export const SelectLibs = ({ server, setOpenModal,accountServers,setNewPackageState }) => {
+export const SelectLibs = ({ server, setOpenModal, accountServers, setNewPackageState }) => {
 
   //States
 
   const [libs, setLibs] = useState([]);
-  const [selectedServer,setSelectedServer] = useState({});
+  const [selectedServer, setSelectedServer] = useState({});
 
   //custom hooks
   const [AddPackage, loading] = useFetchApi({
@@ -31,7 +31,7 @@ export const SelectLibs = ({ server, setOpenModal,accountServers,setNewPackageSt
     libs,
     name: "",
     description: "",
-    priceByPackage:"0"
+    priceByPackage: "0"
 
   });
 
@@ -75,22 +75,22 @@ export const SelectLibs = ({ server, setOpenModal,accountServers,setNewPackageSt
       const dataToSend = {
         name: data.name,
         description: data.description,
-        priceByPackage:data.priceByPackage,
+        priceByPackage: data.priceByPackage,
         libs: libsSelected,
         server: selectedServer._id,
         account: selectedServer.account
       }
       AddPackage({
         body: JSON.stringify(dataToSend)
-      }).then(data=>{
+      }).then(data => {
         SWAlert.alert({
-          title:"Paquete agregado con exito"
+          title: "Paquete agregado con exito"
         })
         setOpenModal(false);
-        setNewPackageState(a=>!a);
-      }).catch(error=>{
+        setNewPackageState(a => !a);
+      }).catch(error => {
         SWAlert.error({
-          title:error.message || "Algo salio mal"
+          title: error.message || "Algo salio mal"
         })
       })
     } catch (error) {
@@ -137,9 +137,9 @@ export const SelectLibs = ({ server, setOpenModal,accountServers,setNewPackageSt
         </div>
 
         <div className='form-group'>
-          <label>Creditos Extras</label>
+          <label>Costo de creditos Extras</label>
           <InputWithIcon>
-            <CoinsIcon/>
+            <CoinsIcon />
             <input type="number" value={data.priceByPackage} required name="priceByPackage" onChange={onChange} />
           </InputWithIcon>
 

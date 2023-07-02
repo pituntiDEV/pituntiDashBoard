@@ -11,6 +11,8 @@ export const EditEmbyUser = ({ user, users, setUsers }) => {
   const [formData, setFormData] = useState({ ...user });
   const [openModal, setOpenModal] = useState(false);
 
+  const isAdmin = localStorage.getItem("_id") == String(user.admin);
+
   //Custom Hooks
   const [editUser, loading] = useFetchApi({
     url: `/api/emby/users/${user._id}`,
@@ -58,15 +60,19 @@ export const EditEmbyUser = ({ user, users, setUsers }) => {
               <input value={formData.name} onChange={onChange} type="text" name="name" id="" />
             </div>
 
-            <div className="form__group">
-              <label htmlFor="connections">Conexiones:</label>
-              <input value={formData.connections} onChange={onChange} type="number" min={1} name="connections" id="" />
-            </div>
+            {isAdmin &&
+              <>
+                <div className="form__group">
+                  <label htmlFor="connections">Conexiones:</label>
+                  <input value={formData.connections} onChange={onChange} type="number" min={1} name="connections" id="" />
+                </div>
 
-            <div className="form__group">
-              <label htmlFor="expireAt">ExpireAt:</label>
-              <input value={new Date(formData.expireAt).toISOString().slice(0, 16)} onChange={onChange} type="datetime-local" name="expireAt" id="expireAt" />
-            </div>
+                <div className="form__group">
+                  <label htmlFor="expireAt">ExpireAt:</label>
+                  <input value={new Date(formData.expireAt).toISOString().slice(0, 16)} onChange={onChange} type="datetime-local" name="expireAt" id="expireAt" />
+                </div>
+              </>
+            }
 
             <div className="d-flex gap-3">
               <BtnPrimary title="Editar" />

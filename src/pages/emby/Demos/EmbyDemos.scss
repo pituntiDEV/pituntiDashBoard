@@ -24,4 +24,29 @@
             }
         }
     }
+
+}
+
+.new__emby__demo__form {
+
+    .packages {
+        display: flex;
+        margin-top: 1rem;
+
+        .pack {
+            background-color: rgb(235, 78, 78);
+            padding: 1rem;
+            border-radius: .5rem;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+
+
+
+            &.selected {
+                background-color: rgb(92, 172, 92);
+            }
+        }
+
+    }
 }

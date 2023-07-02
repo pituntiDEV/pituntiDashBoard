@@ -12,6 +12,7 @@ export const AddCreditsEmbyUser = ({ user, setUpdateUserState }) => {
   const [formData, setFormData] = useState({
     credits: "",
     connections: user.connections,
+    tv: false
   })
   const [addCredits, loading] = useFetchApi({
     url: `/api/emby/users/${user._id}/credits`,
@@ -40,6 +41,9 @@ export const AddCreditsEmbyUser = ({ user, setUpdateUserState }) => {
   const onChangeHandler = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }
+  const onChangeTV = (e) => {
+    setFormData({ ...formData, tv: e.target.checked });
+  }
   return (
     <>
       <li onClick={() => setOpenModal(true)}><CoinPlusIcon /></li>
@@ -53,6 +57,13 @@ export const AddCreditsEmbyUser = ({ user, setUpdateUserState }) => {
             <div className="form__group">
               <label htmlFor="connections">Conexiones</label>
               <input required value={formData.connections} min={1} onChange={onChangeHandler} type="number" name="connections" id="connections" />
+            </div>
+
+            <div className="form__group">
+              <label htmlFor="connections">TV</label>
+              <div className="">
+                <input onChange={onChangeTV} type="checkbox" name="tv" id="" /> TV?
+              </div>
             </div>
 
             <div className="d-flex gap-3">

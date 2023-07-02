@@ -4,7 +4,7 @@ import { useState } from 'react'
 import Modal from '../../../../../components/modal/Modal';
 import { NewDemoForm } from '../NewDemoForm';
 
-export const NewDemo = (props) => {
+export const NewDemo = () => {
     //States
     const [openModal, setOpenModal] = useState(false);
 
@@ -14,7 +14,7 @@ export const NewDemo = (props) => {
             <button onClick={() => setOpenModal(true)}>New Demo EmbyConnect</button>
             {openModal &&
                 <Modal title="New Demo EmbyConnect" setOpenModal={setOpenModal}>
-                    <NewDemoForm {...props} setOpenModal={setOpenModal} />
+                    <NewDemoForm setOpenModal={setOpenModal} />
 
                 </Modal>}
 

@@ -15,7 +15,7 @@ export const LibsSelection = ({ pack, setPaqueteState, setOpenModal }) => {
   const [state, setState] = useState({
     name: pack.name,
     libs: pack.libs,
-    priceByPackage:pack.priceByPackage
+    priceByPackage: pack.priceByPackage
   })
   //Custom Hooks
   const [getPackages, loadingGetPackages] = useFetchApi({
@@ -103,10 +103,10 @@ export const LibsSelection = ({ pack, setPaqueteState, setOpenModal }) => {
         </div>
 
         <div className="form__group mt-3">
-          <label htmlFor="priceByPackage">Costo de creditos:</label>
+          <label htmlFor="priceByPackage">Costo de creditos EXTRA:</label>
           <input onChange={(e) => {
             setState({ ...state, priceByPackage: e.target.value })
-          }} type="number"  value={state.priceByPackage} />
+          }} type="number" value={state.priceByPackage} />
           <small className='bg-warning px-1 my-3'>Asignar costo de creditos al paquete</small>
         </div>
       </div>
@@ -115,7 +115,7 @@ export const LibsSelection = ({ pack, setPaqueteState, setOpenModal }) => {
 
       <div className="btns">
         <BtnPrimary title="Editar" />
-        <BtnSecondary onClick={()=>setOpenModal(false)} type="button" title="Cancelar" />
+        <BtnSecondary onClick={() => setOpenModal(false)} type="button" title="Cancelar" />
       </div>
     </form>
   )

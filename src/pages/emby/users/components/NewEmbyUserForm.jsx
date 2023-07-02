@@ -6,13 +6,15 @@ import { useGetEmbyLibraries } from '../../../../hook/emby/useGetEmbyLibraries';
 import { useGetAllPackages } from '../../../../hook/emby/useGetAllPackages';
 import "./styles.scss";
 import { useGetPackagesByAccount } from '../../../../hook/emby/useGetPackagesByAccount';
+import { useGetEmbySharedServers } from '../../../../hook/emby/useGetEmbySharedServers';
 
 export const NewEmbyUserForm = ({ setOpenModal, setUpdateUserState }) => {
 
 
 
     // State
-    const [accounts, setAccounts] = useState([]);
+    const [servers, setServers] = useState([]);
+    const [sharedPackages, setSharedPackages] = useState([])
     const [formData, setFormData] = useState({
         name: "",
         userName: "",
@@ -20,6 +22,7 @@ export const NewEmbyUserForm = ({ setOpenModal, setUpdateUserState }) => {
         connections: 1,
         packages: [],
         account: null,
+        tv: false
     });
 
 
@@ -29,15 +32,17 @@ export const NewEmbyUserForm = ({ setOpenModal, setUpdateUserState }) => {
         url: `/api/emby/users`,
         method: "POST"
     })
-    const [getAccounts, loadingGetAccounts] = useFetchApi({
+    const [getServers, loadingGetAccounts] = useFetchApi({
         url: `/api/emby/accounts`,
         method: "GET"
     });
+
+    const [sharedServers, loadingSharedServers] = useGetEmbySharedServers();
     // Effects
     useEffect(() => {
-        getAccounts()
+        getServers()
             .then(accounts => {
-                setAccounts(accounts)
+                setServers(accounts)
             })
     }, []);
 
@@ -54,6 +59,18 @@ export const NewEmbyUserForm = ({ setOpenModal, setUpdateUserState }) => {
         }
     }
     const onChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value })
+    };
+
+    const onChangeSelect = (e) => {
+
+        const opcionSeleccionada = e.target.options[e.target.selectedIndex];
+        const isShared = opcionSeleccionada.getAttribute("data-shared");
+        if (isShared) {
+            const selectedServer = sharedServers.find(s => s.server._id == e.target.value);
+            if (!selectedServer) return;
+            setSharedPackages(selectedServer.packages)
+        }
         setFormData({ ...formData, [e.target.name]: e.target.value })
     };
 
@@ -98,6 +115,21 @@ export const NewEmbyUserForm = ({ setOpenModal, setUpdateUserState }) => {
                 <input type="number" onChange={onChange} min={1} value={formData.credits} required name="credits" id="credits" />
             </div>
 
+            <div className="form__group">
+                <div className="option">
+                    <div className="title">
+                        Permisos de acceso
+                    </div>
+                    <div className="value">
+                        <input type="checkbox" checked={formData.tv} onChange={(e) => setFormData({ ...formData, tv: e.target.checked })} name="EnableLiveTvAccess" id="" /> TV en Vivo
+                    </div>
+
+
+
+                </div>
+            </div>
+
+
 
 
             <div className="form__group">
@@ -117,13 +149,23 @@ export const NewEmbyUserForm = ({ setOpenModal, setUpdateUserState }) => {
 
             <div className="form__group">
                 <label htmlFor="credits">Server:</label>
-                <select onChange={onChange} required name="account" defaultValue={""} id="account">
+                <select onChange={onChangeSelect} required name="account" defaultValue={""} id="account">
                     <option value="" disabled>Selecciona un Server</option>
                     {
-                        accounts.map(account => {
+                        servers.map(account => {
                             return (
                                 <option value={account._id} key={account._id}>
                                     {account.data.name}
+                                </option>
+                            )
+                        })
+                    }
+
+                    {
+                        sharedServers.map(server => {
+                            return (
+                                <option data-shared={true} value={server.server._id} key={server.server._id}>
+                                    {server.server.data.name}-(Compartido)
                                 </option>
                             )
                         })
@@ -136,6 +178,17 @@ export const NewEmbyUserForm = ({ setOpenModal, setUpdateUserState }) => {
                 <div className="packages">
                     {
                         packages.map(pack => {
+                            const isSelected = formData.packages.find(pk => pk._id === pack._id);
+                            return (
+                                <div onClick={() => onChangePackages(pack)} key={pack._id} className={`pack ${isSelected && "selected"}`}>
+                                    {pack.name}
+                                </div>
+                            )
+                        })
+                    }
+
+                    {
+                        sharedPackages.map(pack => {
                             const isSelected = formData.packages.find(pk => pk._id === pack._id);
                             return (
                                 <div onClick={() => onChangePackages(pack)} key={pack._id} className={`pack ${isSelected && "selected"}`}>

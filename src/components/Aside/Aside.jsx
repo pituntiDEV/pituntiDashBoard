@@ -91,13 +91,18 @@ export const Aside = () => {
                         </li>
 
                         <li className="menu-item">
-                            <i className="fa-solid fa-ticket"></i>
+                            <i className="fa-solid fa-cube"></i>
                             <a href="/packages/emby">Paquetes Emby</a>
                         </li>
 
                         <li className="menu-item">
                             <i className="fa-solid fa-ticket"></i>
-                            <a href="/demos/emby">Demo</a>
+                            <a href="/demos/emby">Demos</a>
+                        </li>
+
+                        <li className="menu-item">
+                            <i className="fa-solid fa-cash-register"></i>
+                            <a href="/resellers/emby">Resellers (BETA)</a>
                         </li>
                     </ul>
                 </li>

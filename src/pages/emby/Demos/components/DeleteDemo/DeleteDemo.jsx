@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import useFetchApi from '../../../../../hook/useFetchApi';
 import SWAlert from '../../../../../components/SwAlert/SWAlert';
 import { Spinner } from '../../../../../components/Spinner/Spinner';
+import { Context } from '../../DemosContext';
 
 export const DeleteDemo = (props) => {
-    const { demo, demos, setDemos, setOpenModal } = props;
+    const { demo, setOpenModal } = props;
+    const { demos, setDemos } = useContext(Context);
 
     const [deleteDemo, loading] = useFetchApi({
         url: `/api/emby/demos/${demo._id}`,

@@ -1,28 +1,31 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import "./EmbyDemos.scss";
 import { NewDemo } from './components/NewDemo/NewDemo';
 import { DemosList } from './components/DemosList/DemosList';
 import { useGetEmbyDemos } from '../../../hook/emby/useGetEmbyDemos';
+import { Context, DemosContext } from './DemosContext';
 export const EmbyDemos = () => {
-    const [demos, setDemos, loading] = useGetEmbyDemos();
-    const props = {
-        demos,
-        setDemos
-    }
-
     return (
-        <div className='emby__demos'>
-            <div className='header'>
-                <div className="count">
-                    Total:{demos.length}
-                </div>
-                <div className="options">
-                    <NewDemo {...props} />
+        <DemosContext>
+            <div className='emby__demos'>
+                <div className='header'>
+                    <Context.Consumer>
+                        {
+                            ({ demos }) => (
+                                <div className="count">
+                                    Total:{demos.length}
+                                </div>
+                            )
+                        }
+                    </Context.Consumer>
+                    <div className="options">
+                        <NewDemo />
+
+                    </div>
 
                 </div>
-
+                <DemosList />
             </div>
-            <DemosList  {...props} />
-        </div>
+        </DemosContext>
     )
 }

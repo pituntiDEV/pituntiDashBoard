@@ -1,78 +1,64 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Form } from '../../../../components/Form/Form'
 import { useState } from 'react';
 import { useGetEmbyAccounts } from '../../../../hook/emby/useGetEmbyAccounts';
 import { useGetPackagesByAccount } from '../../../../hook/emby/useGetPackagesByAccount';
 import SWAlert from '../../../../components/SwAlert/SWAlert';
 import useFetchApi from '../../../../hook/useFetchApi';
+import { Context } from '../DemosContext';
+import { useGetEmbySharedServers } from '../../../../hook/emby/useGetEmbySharedServers';
 
 
 
-export const NewDemoForm = ({ setOpenModal, demos, setDemos }) => {
+export const NewDemoForm = ({ setOpenModal }) => {
+    const { demos, setDemos } = useContext(Context);
+    const [isSharing, setIsSharing] = useState(undefined);
     //States
+    const [sharedPackages, setSharedPackages] = useState([])
     const [formData, setFormData] = useState({
-        packages: []
+        packages: [],
+        account: null,
+        name: "",
+        email: "",
+        duration: null
     });
-    const [accounts] = useGetEmbyAccounts()
+
+    //Custom Hooks
+    const [sharedServers, loadingSharedServers] = useGetEmbySharedServers();
+    const [accounts] = useGetEmbyAccounts();
     const [packages, setPackages, loading] = useGetPackagesByAccount(formData.account);
-
-    const options = {
-        inputs: [
-            {
-                name: "name",
-                type: "text",
-                required: true,
-            },
-            {
-                name: "email",
-                type: "email",
-                required: true,
-            },
-
-            {
-                name: "duration",
-                type: "number",
-                min: 1,
-                required: true,
-                placeholder: "En horas"
-            },
-
-        ],
-        selects: [
-            {
-                name: "account",
-                required: true,
-                title: "Server",
-                placeholder: "Selecciona un server",
-                options: accounts.map(acc => ({
-                    name: acc.data.name,
-                    _id: acc._id
-                }))
-            }
-        ],
-        list: [
-            {
-                name: "packages",
-                data: packages
-            }
-        ]
-
-    }
-
-    const props = {
-        options,
-        formData,
-        setFormData,
-        btnSubmitTitle: "Agregar",
-        setOpenModal
-    }
-
-
-    //Custom hOOks
     const [addDemo, loadingAddDemo] = useFetchApi({
         url: `/api/emby/demos`,
         method: "POST",
     })
+
+    //Funtions
+    const onChangePackages = (pack) => {
+        const existe = formData.packages.find(pk => pk._id === pack._id);
+        if (!existe) {
+            const packagesUpdated = [...formData.packages, pack];
+            setFormData({ ...formData, packages: packagesUpdated })
+        } else {
+            const packagesUpdated = formData.packages.filter(pk => pk._id !== pack._id);
+            setFormData({ ...formData, packages: packagesUpdated })
+        }
+    }
+    const onChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value })
+    };
+    const onChangeSelect = (e) => {
+
+        const opcionSeleccionada = e.target.options[e.target.selectedIndex];
+        const isShared = opcionSeleccionada.getAttribute("data-shared");
+        if (isShared) {
+            const selectedServer = sharedServers.find(s => s.server._id == e.target.value);
+            if (!selectedServer) return;
+            setSharedPackages(selectedServer.packages);
+            setIsSharing(true);
+        }
+        setFormData({ ...formData, [e.target.name]: e.target.value })
+    };
+
 
     //Functions
     const submit = (e) => {
@@ -99,8 +85,82 @@ export const NewDemoForm = ({ setOpenModal, demos, setDemos }) => {
 
     }
     return (
-        <form onSubmit={submit}>
-            <Form {...props} />
+        <form onSubmit={submit} className='new__emby__demo__form'>
+
+            <div className="form__group">
+                <label htmlFor="name">Nombre:</label>
+                <input type="text" onChange={onChange} required name="name" id="" />
+            </div>
+
+            <div className="form__group">
+                <label htmlFor="email">Email:</label>
+                <input type="email" onChange={onChange} required name="email" id="" />
+            </div>
+
+            {!isSharing &&
+                <div className="form__group">
+                    <label htmlFor="duration">Duración (HORAS):</label>
+                    <input type="number" onChange={onChange} min={1} required name="duration" id="" />
+                </div>}
+
+
+            <div className="form__group">
+                <label htmlFor="server">Servers:</label>
+                <select name='account' onChange={onChangeSelect} defaultValue={""}>
+                    <option value={""} disabled>Seleccione un server</option>
+                    {
+                        accounts.map(acc => {
+                            return (
+                                <option value={acc._id} key={acc._id}>
+                                    {acc.data.name}
+                                </option>
+                            )
+                        })
+                    }
+
+                    {
+                        sharedServers.map(server => {
+                            return (
+                                <option data-shared={true} value={server.server._id} key={server.server._id}>
+                                    {server.server.data.name}-(Compartido)
+                                </option>
+                            )
+                        })
+                    }
+                </select>
+            </div>
+            <div className="form__group">
+                <div className="packages">
+                    {
+                        packages.map(pack => {
+                            const isSelected = formData.packages.find(pk => pk._id === pack._id);
+                            return (
+                                <div onClick={() => onChangePackages(pack)} key={pack._id} className={`pack ${isSelected && "selected"}`}>
+                                    {isSelected ? "✔" : "⛔"} {pack.name}
+                                </div>
+                            )
+                        })
+                    }
+
+                    {
+                        sharedPackages.map(pack => {
+                            const isSelected = formData.packages.find(pk => pk._id === pack._id);
+                            return (
+                                <div onClick={() => onChangePackages(pack)} key={pack._id} className={`pack ${isSelected && "selected"}`}>
+                                    {isSelected ? "✔" : "⛔"}  {pack.name}
+                                </div>
+                            )
+                        })
+                    }
+
+                </div>
+            </div>
+
+
+            <div className="d-flex gap-3">
+                <button className='btn btn-primary'>Agregar</button>
+                <button type="button" className='btn btn-secondary'>Cancelar</button>
+            </div>
 
         </form>
     )

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import "./DemosList.scss";
 import utils from "../../../../../utils/date/index"
 import { TrashIcon } from '../../../../../components/icons/TrashIcon';
@@ -8,9 +8,11 @@ import { useState } from 'react';
 import Modal from '../../../../../components/modal/Modal';
 import { DeleteDemo } from '../DeleteDemo/DeleteDemo';
 import { AddCreditToDemo } from '../AddCreditToDemo/AddCreditToDemo';
+import { Context } from '../../DemosContext';
 
-export const DemosList = (props) => {
-    const { demos, setDemos } = props;
+export const DemosList = () => {
+
+    const { demos, loading } = useContext(Context);
     const [openModalToDelete, setOpenModalToDelete] = useState(false);
     const [openModalToAddCredits, setOpenModalToAddCredits] = useState(false);
     const [demo, setDemo] = useState(null);
@@ -48,7 +50,7 @@ export const DemosList = (props) => {
             {
                 openModalToDelete &&
                 <Modal title="Eliminar demo" setOpenModal={setOpenModalToDelete}>
-                    <DeleteDemo {...props} demo={demo} setOpenModal={setOpenModalToDelete} />
+                    <DeleteDemo demo={demo} setOpenModal={setOpenModalToDelete} />
 
                 </Modal>
             }
@@ -56,7 +58,7 @@ export const DemosList = (props) => {
             {
                 openModalToAddCredits &&
                 <Modal title="Agregar creditos" setOpenModal={setOpenModalToAddCredits}>
-                    <AddCreditToDemo {...props} demo={demo} setOpenModal={setOpenModalToAddCredits} />
+                    <AddCreditToDemo demo={demo} setOpenModal={setOpenModalToAddCredits} />
                 </Modal>
             }
         </div>

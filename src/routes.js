@@ -25,6 +25,7 @@ import { Layout } from './components/Layout';
 import { Telegram } from './pages/Telegram/Telegram';
 import { EmbyPackages } from './pages/emby/EmbyPackages/EmbyPackages';
 import { EmbyDemos } from './pages/emby/Demos/EmbyDemos';
+import { ResellersEmby } from './pages/emby/Resellers/ResellersEmby';
 
 const Protected = ({ children }) => {
     return <ProtectedPage>  <UserContextProvider><Layout >{children}</Layout></UserContextProvider></ProtectedPage>
@@ -141,6 +142,10 @@ const routes = {
         {
             path: "/demos/emby",
             element: <Protected><EmbyDemos /></Protected>
+        },
+        {
+            path: "/resellers/emby",
+            element: <Protected><ResellersEmby /></Protected>
         }
     ]
 }
