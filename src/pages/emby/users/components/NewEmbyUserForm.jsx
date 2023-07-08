@@ -2,14 +2,15 @@ import React, { useEffect, useState } from 'react'
 import { BtnPrimary } from '../../../../components/Buttons/BtnSucess/BtnPrimary';
 import SWAlert from '../../../../components/SwAlert/SWAlert';
 import useFetchApi from '../../../../hook/useFetchApi';
-import { useGetEmbyLibraries } from '../../../../hook/emby/useGetEmbyLibraries';
-import { useGetAllPackages } from '../../../../hook/emby/useGetAllPackages';
+
 import "./styles.scss";
 import { useGetPackagesByAccount } from '../../../../hook/emby/useGetPackagesByAccount';
 import { useGetEmbySharedServers } from '../../../../hook/emby/useGetEmbySharedServers';
+import { useContext } from 'react';
+import { Context } from '../EmbyUsersContext';
 
-export const NewEmbyUserForm = ({ setOpenModal, setUpdateUserState }) => {
-
+export const NewEmbyUserForm = ({ setOpenModal }) => {
+    const { users, setUsers } = useContext(Context);
 
 
     // State
@@ -91,7 +92,7 @@ export const NewEmbyUserForm = ({ setOpenModal, setUpdateUserState }) => {
                 })
 
                 setOpenModal(false);
-                setUpdateUserState(s => !s);
+                setUsers([...users, data])
             })
             .catch(error => {
                 SWAlert.error({
