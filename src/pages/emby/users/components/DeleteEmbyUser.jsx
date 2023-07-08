@@ -6,9 +6,12 @@ import { TrashIcon } from '../../../../components/icons/TrashIcon'
 import Modal from '../../../../components/modal/Modal';
 import SWAlert from '../../../../components/SwAlert/SWAlert';
 import useFetchApi from '../../../../hook/useFetchApi';
+import { useContext } from 'react';
+import { Context } from '../EmbyUsersContext';
 
-export const DeleteEmbyUser = ({ user, setUpdateUserState }) => {
+export const DeleteEmbyUser = ({ user }) => {
   const [openModal, setOpenModal] = useState(false)
+  const { setUsers, users } = useContext(Context)
   // const userID = user.data.data.Id;
   const userID = user._id;
   const [deleteUser, loading] = useFetchApi({
@@ -24,7 +27,7 @@ export const DeleteEmbyUser = ({ user, setUpdateUserState }) => {
         SWAlert.alert({
           title: data.message || "Eliminado"
         })
-        setUpdateUserState(s => !s);
+        setUsers(users.filter(u => u._id !== user._id));
       })
       .catch(error => {
         // console.log(error);

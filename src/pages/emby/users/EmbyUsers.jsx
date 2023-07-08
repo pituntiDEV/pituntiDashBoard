@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import useFetchApi from '../../../hook/useFetchApi'
 import { EmbyUsersList } from './components/EmbyUsersList/EmbyUsersList'
 import { Header } from './components/Header/Header'
+import { EmbyUsersContext } from './EmbyUsersContext'
 
 export default function EmbyUsers() {
   //State
@@ -24,9 +25,9 @@ export default function EmbyUsers() {
 
 
   return (
-    <div>
+    <EmbyUsersContext>
       <Header setUpdateUserState={setUpdateUserState} users={users} />
-      <EmbyUsersList setUsers={setUsers} setUpdateUserState={setUpdateUserState} users={users} />
-    </div>
+      <EmbyUsersList />
+    </EmbyUsersContext>
   )
 }

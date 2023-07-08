@@ -6,8 +6,11 @@ import { CoinPlusIcon } from '../../../../components/icons/InputWithIcon/CoinPlu
 import Modal from '../../../../components/modal/Modal'
 import SWAlert from '../../../../components/SwAlert/SWAlert'
 import useFetchApi from '../../../../hook/useFetchApi'
+import { useContext } from 'react'
+import { Context } from '../EmbyUsersContext'
 
-export const AddCreditsEmbyUser = ({ user, setUpdateUserState }) => {
+export const AddCreditsEmbyUser = ({ user }) => {
+  const { users, setUsers } = useContext(Context);
   const [openModal, setOpenModal] = useState(false);
   const [formData, setFormData] = useState({
     credits: "",
@@ -23,11 +26,13 @@ export const AddCreditsEmbyUser = ({ user, setUpdateUserState }) => {
     e.preventDefault();
     addCredits({ body: JSON.stringify(formData) })
       .then(data => {
-        console.log(data);
         SWAlert.alert({
           title: data.message || "Success",
         });
-        setUpdateUserState(s => !s);
+        const usersUpdated = [...users];
+        const userIndex = usersUpdated.findIndex(u => u._id == user._id);
+        usersUpdated[userIndex] = data;
+        setUsers(usersUpdated);
         setOpenModal(false)
       })
       .catch(error => {

@@ -5,7 +5,10 @@ import { EditEmbyUser } from '../EditEmbyUser';
 import { DeleteEmbyUser } from '../DeleteEmbyUser';
 import { AddCreditsEmbyUser } from '../AddCreditsEmbyUser';
 import { ChangeServer } from '../ChangeServer';
-export const EmbyUsersList = ({ users, setUsers, setUpdateUserState }) => {
+import { useContext } from 'react';
+import { Context } from '../../EmbyUsersContext';
+export const EmbyUsersList = () => {
+    const { users, setUsers } = useContext(Context)
 
     return (
         <div className='emby__users__container container'>
@@ -36,9 +39,9 @@ export const EmbyUsersList = ({ users, setUsers, setUpdateUserState }) => {
                                 {/* {expiration.current.connections} */}
                                 <ul>
                                     <EditEmbyUser {...props} />
-                                    <ChangeServer user={user} setUsers={setUsers} users={users} />
-                                    <AddCreditsEmbyUser setUpdateUserState={setUpdateUserState} user={user} />
-                                    <DeleteEmbyUser setUpdateUserState={setUpdateUserState} user={user} />
+                                    <ChangeServer  {...props} />
+                                    <AddCreditsEmbyUser {...props} />
+                                    <DeleteEmbyUser {...props} />
                                 </ul>
                             </div>
                         </div>
