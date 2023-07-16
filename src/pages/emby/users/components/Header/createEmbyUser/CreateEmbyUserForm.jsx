@@ -6,9 +6,12 @@ import form from "./formInputs"
 import { ServersAndPackagesSelector } from '../../../../components/ServersAndPackagesSelector/ServersAndPackagesSelector';
 import SWAlert from '../../../../../../components/SwAlert/SWAlert';
 import useFetchApi from '../../../../../../hook/useFetchApi';
+import { CreditsAndConnections } from '../../../../components/CreditsAndConnections/CreditsAndConnections';
+import { appContext } from '../../../../../../context/AppContext';
 export const CreateEmbyUserForm = ({ setOpenModal }) => {
     //Context
     const { users, setUsers } = useContext(Context);
+    const { emby } = useContext(appContext)
 
     //State
     const [formData, setFormData] = useState({
@@ -38,6 +41,18 @@ export const CreateEmbyUserForm = ({ setOpenModal }) => {
             SWAlert.alert({
                 title: "Success"
             })
+
+            let deleted = 0;
+            const embyCredits = emby.embyCredits;
+            for (let i = 0; i < embyCredits.length; i++) {
+                if (deleted > formData.credits) return;
+                if (embyCredits[i].connections == formData.connections) {
+                    embyCredits.splice(i, 1);
+                    deleted++;
+                }
+
+            }
+            emby.setEmbyCredits(embyCredits)
             setOpenModal(false);
         } catch (error) {
             SWAlert.error({
@@ -59,13 +74,15 @@ export const CreateEmbyUserForm = ({ setOpenModal }) => {
                 })
             }
 
+            <ServersAndPackagesSelector setFormData={setFormData} formData={formData} />
+
             <div className="form__group">
                 <label htmlFor="tv"><input type="checkbox" onChange={(e) => {
                     setFormData({ ...formData, tv: e.target.checked })
                 }} name="tv" id="tv" /> TV?</label>
             </div>
             {
-                form.inputsAdmins.map(form => {
+                formData.admin && form.inputsAdmins.map(form => {
                     return (
                         <div key={form.name} className='form__group'>
                             <label htmlFor={form.name}>{form.label} ({form.name}):</label>
@@ -77,7 +94,9 @@ export const CreateEmbyUserForm = ({ setOpenModal }) => {
                 })
             }
 
-            <ServersAndPackagesSelector setFormData={setFormData} formData={formData} />
+            <CreditsAndConnections setFormData={setFormData} formData={formData} />
+
+
             <div className="d-flex gap-3">
                 <button>Agregar</button>
             </div>

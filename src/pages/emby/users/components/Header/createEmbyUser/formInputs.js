@@ -19,27 +19,11 @@ const form = {
 
         },
 
-        {
-            name: "credits",
-            label: "Credits",
-            type: "number",
-            required: true,
-            min: 1
 
-        },
-        {
-            name: "connections",
-            label: "Conexiones",
-            type: "number",
-            required: true,
-            min: 1
-
-        },
 
 
     ],
     inputsAdmins: [
-
         {
             name: "daysToDeleteAfterExpired",
             label: "Dias a eliminar",

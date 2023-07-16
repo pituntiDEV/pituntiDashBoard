@@ -6,6 +6,7 @@ import "./styles.scss";
 import { useContext } from 'react';
 import { Context } from '../EmbyUsersContext';
 import { ServersAndPackagesSelector } from '../../components/ServersAndPackagesSelector/ServersAndPackagesSelector';
+import { CreditsAndConnections } from '../../components/CreditsAndConnections/CreditsAndConnections';
 
 export const NewEmbyUserForm = ({ setOpenModal }) => {
     const { users, setUsers } = useContext(Context);
@@ -34,7 +35,11 @@ export const NewEmbyUserForm = ({ setOpenModal }) => {
     };
 
     const submit = (e) => {
+
         e.preventDefault();
+
+
+
         if (formData.packages.length == 0) {
             SWAlert.error({
                 title: "Selecciona minimo un paquete"
@@ -68,11 +73,11 @@ export const NewEmbyUserForm = ({ setOpenModal }) => {
                 <label htmlFor="email">email:</label>
                 <input type="email" onChange={onChange} required name="userName" id="email" />
             </div>
+            <ServersAndPackagesSelector setFormData={setFormData} formData={formData} />
 
-            <div className="form__group">
-                <label htmlFor="credits">Credits:</label>
-                <input type="number" onChange={onChange} min={1} value={formData.credits} required name="credits" id="credits" />
-            </div>
+            <CreditsAndConnections formData={formData} setFormData={setFormData} />
+
+
 
             <div className="form__group">
                 <div className="option">
@@ -91,22 +96,23 @@ export const NewEmbyUserForm = ({ setOpenModal }) => {
 
 
 
-            <div className="form__group">
-                <label htmlFor="conexiones">Conexiones:</label>
-                <input type="number" onChange={onChange} min={1} value={formData.connections} required name="connections" id="conexiones" />
-            </div>
 
-            <div className="form__group">
-                <label htmlFor="daysToDeleteAfterExpired">Eliminar despues de vencido(DIAS):</label>
-                <input type="number" placeholder='Dejar en blanco para no activar' onChange={onChange} min={1} value={formData.daysToDeleteAfterExpired} name="daysToDeleteAfterExpired" id="daysToDeleteAfterExpired" />
-            </div>
+            {formData.admin &&
+                <>
+                    <div className="form__group">
+                        <label htmlFor="daysToDeleteAfterExpired">Eliminar despues de vencido(DIAS):</label>
+                        <input type="number" placeholder='Dejar en blanco para no activar' onChange={onChange} min={1} value={formData.daysToDeleteAfterExpired} name="daysToDeleteAfterExpired" id="daysToDeleteAfterExpired" />
+                    </div>
 
-            <div className="form__group">
-                <label htmlFor="daysToRemoveLibsAfterToExpired">Quitar LIBS despues de vencido(DIAS):</label>
-                <input type="number" placeholder='Dejar en blanco para no activar' onChange={onChange} min={1} value={formData.daysToRemoveLibsAfterToExpired} name="daysToRemoveLibsAfterToExpired" id="daysToRemoveLibsAfterToExpired" />
-            </div>
+                    <div className="form__group">
+                        <label htmlFor="daysToRemoveLibsAfterToExpired">Quitar LIBS despues de vencido(DIAS):</label>
+                        <input type="number" placeholder='Dejar en blanco para no activar' onChange={onChange} min={1} value={formData.daysToRemoveLibsAfterToExpired} name="daysToRemoveLibsAfterToExpired" id="daysToRemoveLibsAfterToExpired" />
+                    </div>
 
-            <ServersAndPackagesSelector setFormData={setFormData} formData={formData} />
+                </>
+            }
+
+
             <div className="buttonss">
                 <BtnPrimary title="Agregar" />
             </div>

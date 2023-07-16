@@ -9,6 +9,7 @@ export const appContext = React.createContext();
 export const AppContext = ({ children }) => {
 
   //State
+  const [embyCredits, setEmbyCredits] = useState([]);
   const [state, setState] = useState({
     openModal: false,
     openEditModal: false,
@@ -24,6 +25,11 @@ export const AppContext = ({ children }) => {
     method: "GET",
   })
 
+  const [getEmbyCredits, loadingGetEmbyCredits] = useFetchApi({
+    url: "/api/emby/resellers/creditsAvailables",
+    method: "GET",
+  })
+
   //Effects
   useEffect(() => {
     getMyInfo().then(data => {
@@ -31,6 +37,15 @@ export const AppContext = ({ children }) => {
       setState({ ...state, account_data: data })
     });
   }, [])
+
+
+  useEffect(() => {
+    getEmbyCredits().then(data => {
+      console.log(data);
+      setEmbyCredits(data);
+    });
+  }, [])
+
 
   const value = {
     state,
@@ -42,6 +57,10 @@ export const AppContext = ({ children }) => {
     setOpenEditModal: () => {
       setState(state => ({ ...state, openEditModal: !state.openEditModal }));
     },
+    emby: {
+      embyCredits,
+      setEmbyCredits
+    }
   }
 
 

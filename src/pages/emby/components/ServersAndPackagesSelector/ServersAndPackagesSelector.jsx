@@ -43,13 +43,16 @@ export const ServersAndPackagesSelector = ({ formData, setFormData }) => {
 
         const opcionSeleccionada = e.target.options[e.target.selectedIndex];
         const isShared = opcionSeleccionada.getAttribute("data-shared");
+        const adminID = opcionSeleccionada.getAttribute("data-admin");
+        const admin = adminID == localStorage.getItem("_id");
+
         if (isShared) {
             const selectedServer = sharedServers.find(s => s.server._id == e.target.value);
             if (!selectedServer) return;
             setSharedPackages(selectedServer.packages);
 
         }
-        setFormData({ ...formData, account: e.target.value, packages: [] })
+        setFormData({ ...formData, account: e.target.value, packages: [], admin, adminID })
     };
 
     return (
@@ -61,7 +64,7 @@ export const ServersAndPackagesSelector = ({ formData, setFormData }) => {
                     {
                         servers.map(account => {
                             return (
-                                <option value={account._id} key={account._id}>
+                                <option data-admin={account.admin} value={account._id} key={account._id}>
                                     {account.data.name}
                                 </option>
                             )
@@ -71,7 +74,7 @@ export const ServersAndPackagesSelector = ({ formData, setFormData }) => {
                     {
                         sharedServers.map(server => {
                             return (
-                                <option data-shared={true} value={server.server._id} key={server.server._id}>
+                                <option data-admin={server.server.admin} data-shared={true} value={server.server._id} key={server.server._id}>
                                     {server.server.data.name}-(Compartido)
                                 </option>
                             )
