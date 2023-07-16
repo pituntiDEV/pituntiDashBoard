@@ -15,7 +15,8 @@ export const CreateEmbyUserForm = ({ setOpenModal }) => {
         name: "",
         credits: null,
         account: null,
-        packages: []
+        packages: [],
+        tv: false
     })
 
     //Custom hooks
@@ -58,6 +59,11 @@ export const CreateEmbyUserForm = ({ setOpenModal }) => {
                 })
             }
 
+            <div className="form__group">
+                <label htmlFor="tv"><input type="checkbox" onChange={(e) => {
+                    setFormData({ ...formData, tv: e.target.checked })
+                }} name="tv" id="tv" /> TV?</label>
+            </div>
             {
                 form.inputsAdmins.map(form => {
                     return (
