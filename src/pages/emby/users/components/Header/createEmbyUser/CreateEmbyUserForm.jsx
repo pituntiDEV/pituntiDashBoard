@@ -8,6 +8,7 @@ import SWAlert from '../../../../../../components/SwAlert/SWAlert';
 import useFetchApi from '../../../../../../hook/useFetchApi';
 import { CreditsAndConnections } from '../../../../components/CreditsAndConnections/CreditsAndConnections';
 import { appContext } from '../../../../../../context/AppContext';
+import { useTakeOffEmbyCredits } from '../../../../../../hook/emby/useTakeOffEmbyCredits';
 export const CreateEmbyUserForm = ({ setOpenModal }) => {
     //Context
     const { users, setUsers } = useContext(Context);
@@ -27,6 +28,8 @@ export const CreateEmbyUserForm = ({ setOpenModal }) => {
         url: `/api/emby/users/local`,
         method: "POST"
     })
+
+    const [takeOffCredits] = useTakeOffEmbyCredits();
     //Functions
     const onChangeInputsHandler = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -42,17 +45,7 @@ export const CreateEmbyUserForm = ({ setOpenModal }) => {
                 title: "Success"
             })
 
-            let deleted = 0;
-            const embyCredits = emby.embyCredits;
-            for (let i = 0; i < embyCredits.length; i++) {
-                if (deleted > formData.credits) return;
-                if (embyCredits[i].connections == formData.connections) {
-                    embyCredits.splice(i, 1);
-                    deleted++;
-                }
-
-            }
-            emby.setEmbyCredits(embyCredits)
+            takeOffCredits({ connections: formData.connections, admin: formData.adminID, credits: formData.credits }); //take off credit
             setOpenModal(false);
         } catch (error) {
             SWAlert.error({

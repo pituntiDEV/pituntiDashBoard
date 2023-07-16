@@ -7,6 +7,7 @@ import { useContext } from 'react';
 import { Context } from '../EmbyUsersContext';
 import { ServersAndPackagesSelector } from '../../components/ServersAndPackagesSelector/ServersAndPackagesSelector';
 import { CreditsAndConnections } from '../../components/CreditsAndConnections/CreditsAndConnections';
+import { useTakeOffEmbyCredits } from '../../../../hook/emby/useTakeOffEmbyCredits';
 
 export const NewEmbyUserForm = ({ setOpenModal }) => {
     const { users, setUsers } = useContext(Context);
@@ -29,6 +30,8 @@ export const NewEmbyUserForm = ({ setOpenModal }) => {
         url: `/api/emby/users`,
         method: "POST"
     })
+
+    const [takeOffCredits] = useTakeOffEmbyCredits()
 
     const onChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -55,7 +58,8 @@ export const NewEmbyUserForm = ({ setOpenModal }) => {
                 })
 
                 setOpenModal(false);
-                setUsers([...users, data])
+                setUsers([...users, data]);
+                takeOffCredits({ connections: formData.connections, admin: formData.adminID, credits: formData.credits }); //take off credit
             })
             .catch(error => {
                 SWAlert.error({
