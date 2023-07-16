@@ -7,6 +7,7 @@ import SWAlert from '../../../../components/SwAlert/SWAlert';
 import useFetchApi from '../../../../hook/useFetchApi';
 import { Context } from '../DemosContext';
 import { useGetEmbySharedServers } from '../../../../hook/emby/useGetEmbySharedServers';
+import { ServersAndPackagesSelector } from '../../components/ServersAndPackagesSelector/ServersAndPackagesSelector';
 
 
 
@@ -104,57 +105,7 @@ export const NewDemoForm = ({ setOpenModal }) => {
                 </div>}
 
 
-            <div className="form__group">
-                <label htmlFor="server">Servers:</label>
-                <select name='account' onChange={onChangeSelect} defaultValue={""}>
-                    <option value={""} disabled>Seleccione un server</option>
-                    {
-                        accounts.map(acc => {
-                            return (
-                                <option value={acc._id} key={acc._id}>
-                                    {acc.data.name}
-                                </option>
-                            )
-                        })
-                    }
-
-                    {
-                        sharedServers.map(server => {
-                            return (
-                                <option data-shared={true} value={server.server._id} key={server.server._id}>
-                                    {server.server.data.name}-(Compartido)
-                                </option>
-                            )
-                        })
-                    }
-                </select>
-            </div>
-            <div className="form__group">
-                <div className="packages">
-                    {
-                        packages.map(pack => {
-                            const isSelected = formData.packages.find(pk => pk._id === pack._id);
-                            return (
-                                <div onClick={() => onChangePackages(pack)} key={pack._id} className={`pack ${isSelected && "selected"}`}>
-                                    {isSelected ? "✔" : "⛔"} {pack.name}
-                                </div>
-                            )
-                        })
-                    }
-
-                    {
-                        sharedPackages.map(pack => {
-                            const isSelected = formData.packages.find(pk => pk._id === pack._id);
-                            return (
-                                <div onClick={() => onChangePackages(pack)} key={pack._id} className={`pack ${isSelected && "selected"}`}>
-                                    {isSelected ? "✔" : "⛔"}  {pack.name}
-                                </div>
-                            )
-                        })
-                    }
-
-                </div>
-            </div>
+            <ServersAndPackagesSelector setFormData={setFormData} formData={formData} />
 
 
             <div className="d-flex gap-3">

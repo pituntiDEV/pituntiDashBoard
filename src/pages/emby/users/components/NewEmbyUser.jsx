@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 import Modal from '../../../../components/modal/Modal';
 import { NewEmbyUserForm } from './NewEmbyUserForm';
+import { CreateEmbyUser } from './Header/createEmbyUser/CreateEmbyUser';
 
 export const NewEmbyUser = () => {
   const [openModal, setOpenModal] = useState(false);
   return (
     <>
       <div className="buttons__new__user d-flex gap-3">
-        <button onClick={() => setOpenModal(true)} className='btn btn-info'>Crear usuario</button>
+        <CreateEmbyUser />
         <button onClick={() => setOpenModal(true)} className='btn btn-info'>Agregar usuario EmbyConnect</button>
       </div>
       {openModal &&

@@ -4,7 +4,7 @@ import "./Header.scss";
 import { useContext } from 'react';
 import { Context } from '../../EmbyUsersContext';
 export const Header = () => {
-  const { users, setUsers } = useContext(Context);
+  const { users } = useContext(Context);
   return (
     <div className='emby__users__header'>
       <div className="num__users">
