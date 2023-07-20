@@ -6,14 +6,17 @@ import { UsersFilter } from './UsersFilter/UsersFilter';
 import { useUserFilter } from '../../hook/useUserFilter';
 
 import "./UsersList.scss";
+import { Context } from '../../pages/users/PlexUsersContext';
 
 
-export const UsersList = ({ users, setNewUserState, setUsers }) => {
+
+export const UsersList = ({ setNewUserState }) => {
   //Context
   const { socket, state: { openEditModal }, setOpenEditModal } = useContext(appContext);
+  const { users, setUsers } = useContext(Context);
 
   //States
-  const [usersFilter, setUsersFilter] = useState(users);
+  const [usersFilter, setUsersFilter] = useState([...users]);
   const [filterValue, setFilterValue] = useState({
     nameOrEmail: "",
     seller: "",

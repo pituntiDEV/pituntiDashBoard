@@ -1,0 +1,28 @@
+.EmailGenerator {
+    display: flex;
+    height: 3.5rem;
+    align-items: center;
+    overflow: hidden;
+    border-radius: .3rem;
+    box-shadow: -2px 2px 3px rgb(55, 55, 55);
+    margin: 1rem 0;
+
+    r input,
+    button {
+        height: 100%;
+        box-shadow: none;
+    }
+
+    button {
+        background-color: rgb(214, 56, 56);
+        color: white;
+
+
+    }
+
+    input {
+        flex: 1 70%;
+        border: none;
+    }
+
+}

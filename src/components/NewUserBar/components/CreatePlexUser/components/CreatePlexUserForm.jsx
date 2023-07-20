@@ -4,17 +4,25 @@ import { BtnPrimary } from '../../../../Buttons/BtnSucess/BtnPrimary'
 import { BtnSecondary } from '../../../../Buttons/BtnSucess/BtnSecondary'
 import { WhatsappIcon } from '../../../../icons/WhatsappIcon'
 import SWAlert from '../../../../SwAlert/SWAlert'
-import { ShowLibs } from './ShowLibs';
 import "./createNewUserForm.scss";
 import { appContext } from '../../../../../context/AppContext'
+import { PlexServersAndPackages } from '../../../../../pages/users/PlexServersAndPackages/PlexServersAndPackages'
+import { EmailGenerator } from '../../../../EmailGenerator/EmailGenerator'
+import { PasswordGenerator } from '../../../../PasswordGenerator/PasswordGenerator'
+import { PlexOptions } from '../../../../../pages/users/PlexOptions/PlexOptions'
+import { DropDown } from '../../../../DropDown/DropDown'
+import { useTakeOffPlexCredits } from '../../../../../hook/plex/useTakeOffPlexCredits'
+import { Context } from '../../../../../pages/users/PlexUsersContext'
 
-const lettersMin = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-const lettersMay = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-const numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-export const CreatePlexUserForm = ({ setOpenModal, setNewUserState }) => {
+
+export const CreatePlexUserForm = ({ setOpenModal }) => {
 
     //Context
     const appContextValue = useContext(appContext);
+    const { users, setUsers } = useContext(Context);
+    // Hooks
+    const [takeOffCredits] = useTakeOffPlexCredits();
+
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -26,11 +34,11 @@ export const CreatePlexUserForm = ({ setOpenModal, setNewUserState }) => {
         comments: ""
     })
 
-    const [myServers, setMyServers] = useState([])
+
 
     // request to add user
     const [createUser, loading] = useFetchApi({
-        url: `/api/plex/user/create`,
+        url: `/api/plex/v2/users/create`,
         method: 'POST',
     })
 
@@ -64,7 +72,8 @@ export const CreatePlexUserForm = ({ setOpenModal, setNewUserState }) => {
                     title: data.message || "Agregado"
                 })
                 setOpenModal(false);
-                setNewUserState(s => !s);
+                takeOffCredits(data.totalCredits);
+                setUsers([data, ...users])
                 appContextValue.setState({ ...appContextValue.state, onChangeCredits: !appContextValue.state.onChangeCredits });
             })
             .catch((error) => {
@@ -75,100 +84,27 @@ export const CreatePlexUserForm = ({ setOpenModal, setNewUserState }) => {
 
     }
 
-    const generarEmail = () => {
-
-
-        let email = ''
-        for (let i = 0; i < 2; i++) {
-
-            email += lettersMin[Math.floor(Math.random() * 26)];
-            email += lettersMin[Math.floor(Math.random() * 26)];
-            email += lettersMay[Math.floor(Math.random() * 26)];
-            email += lettersMay[Math.floor(Math.random() * 26)];
-            email += numbers[Math.floor(Math.random() * 10)];
-        }
-        email += "@"
-        setFormData({ ...formData, email: email })
-    }
-
-    const generarPassword = () => {
-
-
-        let password = ''
-        for (let i = 0; i < 2; i++) {
-
-            password += lettersMin[Math.floor(Math.random() * 26)];
-            password += lettersMin[Math.floor(Math.random() * 26)];
-            password += lettersMay[Math.floor(Math.random() * 26)];
-            password += lettersMay[Math.floor(Math.random() * 26)];
-            password += numbers[Math.floor(Math.random() * 10)];
-            password += numbers[Math.floor(Math.random() * 10)];
-        }
-        setFormData({ ...formData, password: password + "@" })
-    }
     return (
         <form onSubmit={submit} className="create__user__form">
+
             <div className="form__group">
                 <label htmlFor="name">Nombre:</label>
                 <input type="text" onChange={onCHangeInputHandler} value={formData.name} required name="name" id="name" />
             </div>
-            <div className="form__group">
-                <label htmlFor="email">Email:</label>
-                <input type="email" onChange={onCHangeInputHandler} value={formData.email} required name="email" id="email" />
-                <button className='btn btn-warning' type='button' onClick={generarEmail}>Generar email</button>
-            </div>
 
             <div className="form__group">
-                <label htmlFor="email">Comentarios:</label>
-                <input type="text" placeholder='Opcional' onChange={onCHangeInputHandler} value={formData.comments} name="comments" id="comments" />
-
+                <EmailGenerator setFormData={setFormData} formData={formData} />
             </div>
 
             <div className="form__group">
-                <label htmlFor="whatsapp"><WhatsappIcon /> Whatsapp:</label>
-                <input type="tel" onChange={onCHangeInputHandler} value={formData.whatsapp} name="whatsapp" id="whatsapp" />
+                <PasswordGenerator setFormData={setFormData} formData={formData} />
             </div>
 
-            <div className="form__group">
-                <label htmlFor="password">Password:{formData.password}</label>
-                <input type="password" onChange={onCHangeInputHandler} minLength={10} value={formData.password} required name="password" id="password" />
+            <PlexServersAndPackages formData={formData} setFormData={setFormData} />
 
-                <button className='btn btn-warning' type='button' onClick={generarPassword}>Generar Password</button>
-            </div>
-
-            <div className="deleteForm">
-                <h2>Opciones</h2>
-                <div className="options">
-                    <div className="delete option">
-                        <label htmlFor="">Eliminar usuarios despues de vencido en (dias)</label>
-                        <input type="number" onChange={onCHangeInputHandler} name="deleteDays" placeholder='Dejar en blaco para no eliminar' />
-                    </div>
-                    <div className="deleteLibs option">
-                        <label htmlFor="">Quitar librerias despues de vencido (dias)</label>
-                        <input type="number" onChange={onCHangeInputHandler} name="removeLibsDays" placeholder='Dejar en blaco para no quitar librerias' />
-                    </div>
-                </div>
-            </div>
-
-            <div className="deleteForm">
-                <div className="options">
-                    <div className="option">
-                        <label htmlFor="connections">Conexiones:</label>
-                        <input type="number" min={1} onChange={onCHangeInputHandler} value={formData.connections} required name="connections" id="connections" />
-                    </div>
-                    <div className="option">
-                        <label htmlFor="credits">Mes:</label>
-                        <input type="number" min={1} onChange={onCHangeInputHandler} value={formData.credits} required name="credits" id="credits" />
-                    </div>
-                </div>
-            </div>
+            <PlexOptions setFormData={setFormData} formData={formData} onChange={onCHangeInputHandler} />
 
 
-
-
-
-
-            <ShowLibs myServers={myServers} setMyServers={setMyServers} onChange={onCHangeInputHandler} setFormData={setFormData} formData={formData} />
 
             <div className='d-flex gap-4'>
                 <BtnPrimary title="Crear usuario" />

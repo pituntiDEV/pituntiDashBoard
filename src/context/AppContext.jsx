@@ -10,6 +10,7 @@ export const AppContext = ({ children }) => {
 
   //State
   const [embyCredits, setEmbyCredits] = useState([]);
+  const [plexCredits, setPlexCredits] = useState([]);
   const [state, setState] = useState({
     openModal: false,
     openEditModal: false,
@@ -30,6 +31,11 @@ export const AppContext = ({ children }) => {
     method: "GET",
   })
 
+  const [getPlexCredits] = useFetchApi({
+    url: `/api/credits/shared-available`,
+    method: 'GET',
+  })
+
   //Effects
   useEffect(() => {
     getMyInfo().then(data => {
@@ -40,10 +46,15 @@ export const AppContext = ({ children }) => {
 
 
   useEffect(() => {
+    //Obtains Emby Credits by email activation
     getEmbyCredits().then(data => {
-      console.log(data);
       setEmbyCredits(data);
     });
+
+    //Obtains plex Credits by email activation
+    getPlexCredits().then(data => {
+      setPlexCredits(data);
+    })
   }, [])
 
 
@@ -60,6 +71,10 @@ export const AppContext = ({ children }) => {
     emby: {
       embyCredits,
       setEmbyCredits
+    },
+    plex: {
+      plexCredits,
+      setPlexCredits
     }
   }
 

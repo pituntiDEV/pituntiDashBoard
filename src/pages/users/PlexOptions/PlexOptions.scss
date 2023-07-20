@@ -1,0 +1,29 @@
+.plexOptions {
+
+    h2 {
+        text-align: center;
+        color: rgb(203, 65, 65);
+        font-weight: bold;
+        font-size: 2.5rem;
+    }
+
+    .plex-options {
+        display: flex;
+        gap: 1rem;
+
+        .plex-option {
+            flex: 1;
+
+            label {
+                font-weight: bold;
+                color: rgb(82, 81, 81);
+            }
+
+            input {
+                border-radius: .5rem;
+                width: 100%;
+                border: none;
+            }
+        }
+    }
+}

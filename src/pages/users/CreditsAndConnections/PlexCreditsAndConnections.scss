@@ -1,0 +1,22 @@
+.PlexCreditsAndConnections {
+    display: flex;
+
+    gap: 1rem;
+
+    .options {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+
+        label {
+            font-weight: bold;
+            color: rgb(79, 77, 77);
+        }
+
+        select {
+            padding: .5rem;
+            border-radius: .5rem;
+        }
+
+    }
+}

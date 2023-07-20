@@ -16,49 +16,41 @@ const Logout = () => {
 }
 export const Notification = () => {
     //Context
-    const appContextValue = useContext(appContext);
+    const { plex } = useContext(appContext);
+
     //State
-    const [totalCredits, setAllCredits] = useState({});
-    const [openModalWebHook,setOpenModalWebHook] =useState(false);
-    const [notifications,setNotifications] = useState([]);
+
+    const [openModalWebHook, setOpenModalWebHook] = useState(false);
+    const [notifications, setNotifications] = useState([]);
     //Context
     const { state: { account_data } } = useContext(appContext);
-    
+
 
     //Custom hooks
-    const [getMyTotalCredits] = useFetchApi({
-        url: `/api/credits/shared-available`,
+    const [getNotifications, loadingGetNotifications] = useFetchApi({
+        url: "/api/notifications",
         method: 'GET',
     })
-
-    const [getNotifications,loadingGetNotifications] = useFetchApi({
-        url:"/api/notifications",
-        method: 'GET',
-    })
-
-    useEffect(()=>{
-        getNotifications().then(data=>{
-            setNotifications(data);
-        })
-    },[])
-    
 
     useEffect(() => {
-        getMyTotalCredits().then(data => {
-            setAllCredits(data);
+        getNotifications().then(data => {
+            setNotifications(data);
         })
-    }, [appContextValue.state.onChangeCredits])
+    }, [])
+
+
+
 
     return (
         <div className="notification-container">
 
             <div>
-               <CreditsByCode/>
+                <CreditsByCode />
             </div>
 
-            {totalCredits.length > 0 && <span className='credits'>
+            {plex.plexCredits.length > 0 && <span className='credits'>
                 <div className="total_credits">
-                    {totalCredits.length}
+                    {plex.plexCredits.length}
                 </div>
                 <CoinsIcon />
             </span>}
@@ -73,10 +65,10 @@ export const Notification = () => {
 
             {/* WebHooks LINK */}
             <div className="web_hooks">
-                <i onClick={async()=>{
+                <i onClick={async () => {
                     setOpenModalWebHook(true); //
                 }} className="fa-solid fa-blog"></i>
-                
+
             </div>
 
             {/* Notifications */}
@@ -86,10 +78,10 @@ export const Notification = () => {
                     <i className="fa-solid fa-bell"></i>
 
                 </div>
-                
+
 
                 <div className="notifications-list">
-                    {notifications.map(notification=>{
+                    {notifications.map(notification => {
                         return (<div key={notification._id} className='notification'>
                             <i className="fa-solid fa-bell"></i> {notification.action}
                         </div>)
@@ -100,14 +92,14 @@ export const Notification = () => {
             {/* Messages */}
             <i className="fa-solid fa-message"></i>
             <div className="profile">
-               {!account_data?.config?.thumb ?<button className="initial-letter">
+                {!account_data?.config?.thumb ? <button className="initial-letter">
                     {account_data?.name && account_data?.name[0] || ""}
-                    
+
                 </button>
-                :
-                <div className="photo_profile">
-                    <img src={`${process.env.REACT_APP_API_URL}/api/img/profiles/${account_data.config.thumb}`}/>
-                </div>
+                    :
+                    <div className="photo_profile">
+                        <img src={`${process.env.REACT_APP_API_URL}/api/img/profiles/${account_data.config.thumb}`} />
+                    </div>
                 }
                 <div className="options">
                     <div className="square"></div>
@@ -122,22 +114,22 @@ export const Notification = () => {
                         {/* <li>Profile</li> */}
                         <li><a href="/setting">Setting</a></li>
                         <li>
-                            {account_data.plan !="free"?`⭐Plan ${account_data.plan} usuarios`:`🆓Plan Free`}</li>
-                       <li>
-                       {
-                            account_data.plan !="free" && <div>⏳Exp: <small className='text-danger'>{account_data.expireAt}</small></div>
-                        }
-                       </li>
-                        
+                            {account_data.plan != "free" ? `⭐Plan ${account_data.plan} usuarios` : `🆓Plan Free`}</li>
+                        <li>
+                            {
+                                account_data.plan != "free" && <div>⏳Exp: <small className='text-danger'>{account_data.expireAt}</small></div>
+                            }
+                        </li>
+
                         <li onClick={Logout}>Logout</li>
                     </ul>
                 </div>
             </div>
 
-        {openModalWebHook &&   
-        <Modal title="WEB-HOOK" setOpenModal={setOpenModalWebHook}>
-           <h3 className='fw-bold'> {`${process.env.REACT_APP_API_URL}/api/webhooks/${localStorage.getItem("_id")}`}</h3>
-            </Modal>}
+            {openModalWebHook &&
+                <Modal title="WEB-HOOK" setOpenModal={setOpenModalWebHook}>
+                    <h3 className='fw-bold'> {`${process.env.REACT_APP_API_URL}/api/webhooks/${localStorage.getItem("_id")}`}</h3>
+                </Modal>}
         </div>
     )
 }

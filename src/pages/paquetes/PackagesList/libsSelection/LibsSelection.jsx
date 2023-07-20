@@ -40,6 +40,9 @@ export const LibsSelection = ({ pack, setPaqueteState, setOpenModal }) => {
     getServerByID().then(data => {
       getPlexLibs(data).then((data) => {
         setLibs(data);
+        const plexLibsIDS = data.map(l => l.id);
+        const filter = state.libs.filter(l => plexLibsIDS.includes(l.id));
+        setState({ ...state, libs: filter })
       })
 
     })
@@ -48,20 +51,21 @@ export const LibsSelection = ({ pack, setPaqueteState, setOpenModal }) => {
   const libsPackIDS = state.libs.map(l => l.id);
 
   const hanledToggleLibs = (lib) => {
-    let libs = state.libs;
-    const existe = libs.find(l => l.id == lib.id);
+    let libsLocal = state.libs;
+    const existe = libsLocal.find(l => l.id == lib.id);
     if (!existe) {
-      libs.push(lib);
-      setState({ ...state, libs });
+      libsLocal.push(lib);
+      setState({ ...state, libs: libsLocal });
     } else {
-      libs = libs.filter(l => l.id != lib.id);
-      setState({ ...state, libs });
+      libsLocal = libsLocal.filter(l => l.id != lib.id);
+      setState({ ...state, libs: libsLocal });
     }
 
   }
 
   const submit = (e) => {
     e.preventDefault();
+
     updatePackage({
       body: JSON.stringify(state),
     }).then(data => {

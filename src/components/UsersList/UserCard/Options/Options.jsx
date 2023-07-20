@@ -24,8 +24,6 @@ import utils from "../../../../utils/date/index"
 
 
 export const Options = ({ user, setNewUserState, setUsers, users }) => {
-
-    console.log(user.credits);
     const [openModalToEdit, setOpenModalToEdit] = useState(false);
     const [openModalToAddCredits, setOpenModalToAddCredits] = useState(false);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
