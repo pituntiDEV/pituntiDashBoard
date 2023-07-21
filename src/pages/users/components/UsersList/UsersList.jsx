@@ -6,6 +6,7 @@ import { useFilter } from '../../UsersList/hooks/useFilter';
 import { Card } from './Card';
 import { FilterBar } from './FilterBar';
 import "./UsersList.scss";
+import { Spinner } from '../../../../components/Spinner/Spinner';
 
 export const UsersList = () => {
 
@@ -17,20 +18,24 @@ export const UsersList = () => {
         server: ""
     });
     const [users] = useFilter(filterValue);
-    const { setUsers } = useContext(Context);
+    const { setUsers, loading } = useContext(Context);
     return (
         <div className='users-list'>
             <div className="filter-bar">
                 <FilterBar users={users} setFilterValue={setFilterValue} />
             </div>
-            <div className="users-list-container">
-                {
-                    users.map(user => {
-                        const props = { user, users, setUsers }
-                        return <Card key={user._id} {...props} />
-                    })
-                }
-            </div>
+            {
+                loading ? <Spinner />
+                    :
+                    <div className="users-list-container">
+                        {
+                            users.map(user => {
+                                const props = { user, users, setUsers }
+                                return <Card key={user._id} {...props} />
+                            })
+                        }
+                    </div>
+            }
         </div>
     )
 }
