@@ -9,7 +9,8 @@ export const Filters = ({ accounts, sellers, filterDevices, myDevices, setFilter
     const [dataToFilter, setDataToFilter] = useState({
         state: "",
         account: "",
-        seller: ""
+        seller: "",
+        byDay: ""
     })
 
     const onChange = (e) => {
@@ -42,7 +43,21 @@ export const Filters = ({ accounts, sellers, filterDevices, myDevices, setFilter
 
             return device
         }
-        const filters = myDevices.filter(filterByState).filter(filterByAccounts).filter(filterBySellers);
+        const filterByExpireDay = (device) => {
+            if (dataToFilter.byDay) {
+                const diasFaltantes = utils.remainingTime(device.expireAt);
+                console.log(diasFaltantes);
+                if (diasFaltantes < dataToFilter.byDay) {
+                    return device;
+                }
+
+            } else {
+                return device
+
+            }
+
+        }
+        const filters = myDevices.filter(filterByExpireDay).filter(filterByState).filter(filterByAccounts).filter(filterBySellers);
         setFilterDevices(filters)
     }, [dataToFilter])
     return (
@@ -58,6 +73,13 @@ export const Filters = ({ accounts, sellers, filterDevices, myDevices, setFilter
                             <option value="active">Activos</option>
                             <option value="expired">Vencido</option>
                         </select>
+                    </div>
+                </div>
+
+                <div className="filter">
+                    Proxiomo a vencer
+                    <div className="input">
+                        <input onChange={onChange} type="number" name="byDay" placeholder='By Expire Day' id="" />
                     </div>
                 </div>
 

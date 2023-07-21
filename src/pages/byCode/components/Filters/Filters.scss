@@ -11,5 +11,9 @@
         display: flex;
         gap: 1rem;
         flex-wrap: wrap;
+
+        input {
+            height: 2.5rem;
+        }
     }
 }

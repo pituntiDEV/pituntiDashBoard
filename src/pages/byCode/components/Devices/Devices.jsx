@@ -40,15 +40,14 @@ export const Devices = ({ devicesState, setDevicesState }) => {
     const [accounts, setAccounts] = useState([]);
     const [sellers, setSellers] = useState([]);
 
-    const filterState = {
-        name: ""
-    }
 
     //Custom Hooks
     const [getDevices, loading] = useFetchApi({
         url: `/api/byCode/`,
         method: 'GET',
     })
+
+
 
 
     // Effects
@@ -100,6 +99,8 @@ export const Devices = ({ devicesState, setDevicesState }) => {
 
         })
         setFilterDevices(filter)
+
+
     }
     return (
         <div className='Devices container'>
