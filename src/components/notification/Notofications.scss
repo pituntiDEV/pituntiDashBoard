@@ -1,18 +1,27 @@
 .notification-container {
     display: flex;
     gap: 2rem;
+
+    @media(max-width:600px) {
+        gap: .8rem;
+    }
+
     align-items: center;
     word-wrap: break-word;
-    a{
+
+    a {
         color: black;
         text-decoration: none;
     }
-    .web_hooks{
+
+    .web_hooks {
         position: relative;
-        &:hover > p{
+
+        &:hover>p {
             display: block;
         }
-        p{
+
+        p {
             display: none;
             word-wrap: break-word;
             position: absolute;
@@ -20,18 +29,21 @@
             left: 50%;
             translate: -50%;
             background-color: rgb(136, 102, 102);
-           
+
         }
     }
 
-    .notifications{
+    .notifications {
         position: relative;
-        &:hover > .notifications-list{
+
+        &:hover>.notifications-list {
             display: flex;
         }
-        .icon{
+
+        .icon {
             position: relative;
-            .punto{
+
+            .punto {
                 position: absolute;
                 top: 0;
                 left: 0;
@@ -41,10 +53,11 @@
                 background-color: rgb(0, 55, 255);
             }
         }
-        .notifications-list{
-            
+
+        .notifications-list {
+
             position: absolute;
-           
+
             display: none;
             flex-direction: column;
             gap: 1rem;
@@ -54,72 +67,89 @@
             background-color: #595a59;
             font-size: 1rem;
             padding: 0 .5rem;
-            
+
             box-shadow: -2px 2px 2px rgb(35, 117, 121);
-            .notification{
+
+            .notification {
                 padding: 1rem 2rem;
                 overflow-wrap: break-word;
                 width: 200px;
                 background-color: rgb(32, 67, 77);
-                i{
+
+                i {
                     color: rgb(242, 213, 65);
                 }
-               
-                
+
+
             }
-           
+
         }
     }
 
-    .credits{
+    .credits {
         position: relative;
-        .total_credits{
-            position: absolute;
-            left: -1.8rem;
-            top:-1.5rem;
-            width: 2.2rem;
-            height: 2.2rem;
-            border-radius: 50%;
-           
-            z-index: -1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 1.2rem;
-            box-shadow: 0 0 10px rgb(233, 200, 17);
+        color: rgb(218, 218, 55);
 
+        &:hover>ul {
+            display: flex;
+            position: absolute;
+
+            background-color: red;
         }
-        i{
-            z-index: 4;
-            color: rgb(220, 217, 94);
+
+        ul {
+            display: none;
+            position: absolute;
+            color: white;
+            top: 3.9rem;
+            background: linear-gradient(to right, rgb(224, 56, 40), rgb(233, 109, 20));
+            width: 300px;
+            left: -150px;
+            border-bottom-left-radius: 1rem;
+            border-bottom-right-radius: 1rem;
+            justify-content: center;
+            gap: 1rem;
+            font-weight: bold;
+            box-shadow: -2px 2px 2px rgb(235, 235, 235), -4px 4px 4px rgb(35, 35, 35);
         }
+
+
+
+
+
+
+
+
+
     }
 
     .user_not_allow {
-       display: flex;
-       flex-direction: column;
-       align-items: center;
-       position: relative;
-       cursor: pointer;
-       color: white;
-       &:hover > span{
-        display: block;
-       }
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        cursor: pointer;
+        color: white;
 
-       span{
-        position: absolute;
-        bottom: -5rem;
-        word-wrap: break-word;
-        background-color: rgba(0, 0, 0, 0.532);
-        width: 10rem;
-        text-align: center;
-        display: none;
-       }
+        &:hover>span {
+            display: block;
+        }
+
+        span {
+            position: absolute;
+            bottom: -5rem;
+            word-wrap: break-word;
+            background-color: rgba(0, 0, 0, 0.532);
+            width: 10rem;
+            text-align: center;
+            display: none;
+        }
     }
 
     .profile {
         position: relative;
         z-index: 588;
+
         .initial-letter {
             color: white;
             background-color: red;
@@ -134,17 +164,20 @@
             border: none;
         }
 
-        .photo_profile{
+        .photo_profile {
             height: 5rem;
             width: 5rem;
             border-radius: 50%;
             overflow: hidden;
-            img{
+
+            img {
                 object-fit: cover;
                 width: 100%;
                 display: block;
             }
-            box-shadow: 0px 0px 6px white;;
+
+            box-shadow: 0px 0px 6px white;
+            ;
         }
 
         &:hover>.options {

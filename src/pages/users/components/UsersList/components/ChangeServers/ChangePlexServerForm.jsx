@@ -10,42 +10,37 @@ import SWAlert from '../../../../../../components/SwAlert/SWAlert';
 import { Spinner } from '../../../../../../components/Spinner/Spinner';
 import { BtnPrimary } from '../../../../../../components/Buttons/BtnSucess/BtnPrimary';
 import { BtnSecondary } from '../../../../../../components/Buttons/BtnSucess/BtnSecondary';
+import { appContext } from '../../../../../../context/AppContext';
 
 export const ChangePlexServerForm = ({ user, setOpenModal }) => {
-    const { users, setUsers } = useContext(Context);
-    const [servers, setServers] = useState([]);
-    const [getServers, , loading] = useGetAccountServers();
+
+
     const [formData, setFormData] = useState([]);
     //Hooks
     const [updateServers, loadingUpdating] = useFetchApi({
         url: `/api/plex/user/servers/${user._id}`,
         method: "PUT"
     })
+    //Constext
+    const { users, setUsers } = useContext(Context);
+    const { plex } = useContext(appContext);
+    const servers = plex.servers;
 
+    //Iniciar formData con los paquetes que ya tengo agregados
     useEffect(() => {
-        getServers()
-            .then(data => {
-                setServers(data)
+        const initialData = [];
+        for (const server of user.servers) {
+            initialData.push({
+                server: server,
+                packages: user.packages.filter(p => p.server == server._id)
             })
-    }, []);
-    useEffect(() => {
-        const userServers = user.servers.map(s => {
-            return {
-                server: s,
-                packages: [],
-            }
-        })
-
-        //LLenar packages
-        user.packages.forEach(pk => {
-            const server = userServers.find(s => s.server._id == pk.server);
-            server?.packages?.push(pk)
-
-        })
-
-        setFormData([...formData, ...userServers]);
-
+        }
+        setFormData([...formData, ...initialData]);
     }, [])
+
+
+
+
     const onChangePack = (pk) => {
         const serversFormData = [...formData];
         const serverFormDataFind = serversFormData.find(f => f.server._id == pk.server);
@@ -120,7 +115,9 @@ export const ChangePlexServerForm = ({ user, setOpenModal }) => {
                             <div className="packs">
                                 {
                                     server.packages.map(pk => {
-                                        const existe = user.packages.find(p => p._id == pk._id)
+                                        const serverFormData = formData.find(f => f.server._id == server._id);
+                                        const existe = serverFormData?.packages?.find(p => p._id == pk._id);
+
                                         return (
                                             <div onClick={() => onChangePack(pk)} key={pk._id} className={`pack ${existe && "active"}`}>
                                                 {pk.name}

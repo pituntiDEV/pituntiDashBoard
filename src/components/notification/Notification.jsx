@@ -16,7 +16,7 @@ const Logout = () => {
 }
 export const Notification = () => {
     //Context
-    const { plex } = useContext(appContext);
+    const { plex, emby } = useContext(appContext);
 
     //State
 
@@ -48,12 +48,18 @@ export const Notification = () => {
                 <CreditsByCode />
             </div>
 
-            {plex.plexCredits.length > 0 && <span className='credits'>
-                <div className="total_credits">
-                    {plex.plexCredits.length}
-                </div>
-                <CoinsIcon />
-            </span>}
+            {plex.plexCredits.length > 0 &&
+                <span className='credits'>
+
+                    <ul>
+                        <li><CoinsIcon /> Plex:{plex.plexCredits.length}</li>
+                        <li><CoinsIcon /> Emby:{emby.embyCredits.length}</li>
+                    </ul>
+
+
+                    <CoinsIcon />
+                </span>
+            }
 
             <Link to="/no-register-users">
                 <span className='user_not_allow'>
@@ -90,7 +96,7 @@ export const Notification = () => {
             </div>
 
             {/* Messages */}
-            <i className="fa-solid fa-message"></i>
+            {/* <i className="fa-solid fa-message"></i> */}
             <div className="profile">
                 {!account_data?.config?.thumb ? <button className="initial-letter">
                     {account_data?.name && account_data?.name[0] || ""}

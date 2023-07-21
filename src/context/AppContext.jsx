@@ -4,15 +4,39 @@ import { useState, useEffect } from 'react';
 import useFetchApi from '../hook/useFetchApi';
 import { useGetPlexSharedServers } from '../hook/plex/useGetPlexSharedServers';
 import { useGetMyPlexServers } from '../hook/plex/useGetMyPlexServers';
+import socketIOClient from 'socket.io-client';
 
 export const appContext = React.createContext();
+const socketIO = socketIOClient(process.env.REACT_APP_IO_URL, { query: { token: localStorage.getItem("access-token") } });
+
 
 
 export const AppContext = ({ children }) => {
+  const [wsData, setWsData] = useState("");
+
+  useEffect(() => {
+    socketIO.on("message", (message) => {
+      const data = message.NotificationContainer;
+      setWsData(data)
+    })
+  }, [])
+  const [socketConnected, setSocketConnected] = useState(false)
+  useEffect(() => {
+    socketIO.on('connect', () => {
+      setSocketConnected(true);
+    });
+    socketIO.on("disconnect", () => {
+      setSocketConnected(false)
+    })
+  }, [])
+
 
   //State
   const [embyCredits, setEmbyCredits] = useState([]);
   const [plexCredits, setPlexCredits] = useState([]);
+
+
+
   const [state, setState] = useState({
     openModal: false,
     openEditModal: false,
@@ -22,6 +46,7 @@ export const AppContext = ({ children }) => {
     onChangeCredits: null,
 
   });
+
   //Custom Hooks
   const [getMyInfo, loadingGetMyInfo] = useFetchApi({
     url: "/api/auth/my-info",
@@ -82,7 +107,10 @@ export const AppContext = ({ children }) => {
       setPlexCredits,
       sharedServers: plexSharedServers,
       servers: plexServers
-    }
+    },
+    socket: socketIO,
+    socketConnected,
+    wsData
   }
 
   return (
