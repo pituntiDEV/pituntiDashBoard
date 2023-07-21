@@ -10,7 +10,7 @@ export const Edit = ({ user }) => {
             <i onClick={() => setOpenModal(true)} className="fa-solid fa-pen-to-square"></i>
             {openModal &&
                 <Modal title="Editar usuario" setOpenModal={setOpenModal}>
-                    <EditForm user={user} />
+                    <EditForm user={user} setOpenModal={setOpenModal} />
                 </Modal>}
 
         </>

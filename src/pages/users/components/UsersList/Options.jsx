@@ -6,6 +6,8 @@ import { CoinPlusIcon } from '../../../../components/icons/InputWithIcon/CoinPlu
 import { ServerIcon } from '../../../../components/icons/ServerIcon';
 import { Ellipsis } from '../../../../components/icons/Ellipsis';
 import { Edit } from './components/Edit/Edit';
+import { Delete } from './components/Delete/Delete';
+import { AddCredits } from './components/AddCredits/AddCredits';
 export const Options = ({ user }) => {
     const numLibs = user.data.reduce((acc, d) => {
         acc += d.numLibraries
@@ -17,7 +19,7 @@ export const Options = ({ user }) => {
                 <Edit user={user} />
             </div>
             <div className="option coin">
-                <CoinPlusIcon />
+                <AddCredits user={user} />
             </div>
 
             {/* <div className="option">
@@ -38,7 +40,7 @@ export const Options = ({ user }) => {
             </div>
 
             <div className="option remove">
-                <i className="fa-solid fa-trash-can"></i>
+                <Delete user={user} />
             </div>
 
             <div className="option">

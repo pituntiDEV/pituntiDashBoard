@@ -27,7 +27,7 @@ export const CreditsAndConnections = ({ formData, setFormData }) => {
     return (
         <div className='PlexCreditsAndConnections'>
 
-            <div className="options">
+            <div className="optionsCredits">
 
                 <label htmlFor="">Conexiones:</label>
                 <select required defaultValue={""} name="connections" onChange={(e) => setFormData({ ...formData, connections: e.target.value })}>
@@ -40,7 +40,7 @@ export const CreditsAndConnections = ({ formData, setFormData }) => {
 
             </div>
 
-            <div className="options">
+            <div className="optionsCredits">
                 <label htmlFor="">Creditos:</label>
                 <select required name="credits" defaultValue={""} onChange={(e) => setFormData({ ...formData, credits: e.target.value })}>
                     <option value="" disabled>--Seleccione creditos--</option>

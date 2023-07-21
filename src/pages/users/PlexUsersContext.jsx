@@ -9,7 +9,7 @@ export const Context = createContext();
 export const PlexUsersContext = ({ children }) => {
     const [users, setUsers] = useState([]);
     //Custom Hooks
-    const [getAllUsers, loading] = useFetchApi({ url: config.apiUrls.plex.getAllUsers, method: "GET" });
+    const [getAllUsers, loading] = useFetchApi({ url: "/api/plex/v2/users/", method: "GET" });
     //Effect
     useEffect(() => {
         //Get all users 

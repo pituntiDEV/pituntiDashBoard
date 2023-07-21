@@ -1,0 +1,22 @@
+.AddPlexCreditsForm {
+    .options {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+
+        .option {
+            display: flex;
+            flex-direction: column;
+
+            label {
+                font-weight: bold;
+                color: rgb(69, 69, 69);
+            }
+
+            input {
+                border-radius: 1rem;
+            }
+
+        }
+    }
+}
