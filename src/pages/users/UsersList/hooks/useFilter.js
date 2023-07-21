@@ -85,17 +85,18 @@ const filterByExpireDate = (user, byExpireDay) => {
 const filterByState = (user, state) => {
     if (state == "active") {
         const expireAt = user.expireAt || null;
+        const isActive = utils.isExpired(expireAt);
+        if (!isActive) {
+            return user
+        }
 
 
-        const isActive = dayjs().isBefore(expireAt)
-
-        return isActive && expireAt && user
     } else if (state == "expired") {
-        const expireAt = user.credits[user.credits.length - 1]?.expireAt || null;
-        const isExpired = dayjs().isAfter(expireAt);
-
-
-        return isExpired && expireAt && user
+        const expireAt = user.credits[user.credits.length - 1]?.expireAt || user.expireAt;
+        const isExpired = utils.isExpired(expireAt);
+        if (isExpired) {
+            return user
+        }
     } else {
         return user;
     }
