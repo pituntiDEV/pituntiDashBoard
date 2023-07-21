@@ -31,7 +31,8 @@ export const ActivateForm = ({ setOpenModal, setDevicesState }) => {
         credits: 0,
         account_id: "",
         demoTime: 0,
-        whatsapp: ""
+        whatsapp: "",
+        deleteAt: 0
     })
     const [activate, loading] = useFetchApi({
         url: `/api/byCode/`,
@@ -173,6 +174,13 @@ export const ActivateForm = ({ setOpenModal, setDevicesState }) => {
                 <div className="form_group">
                     <label htmlFor="credits">Tiempo del demo HR</label>
                     <input onChange={onChange} type="number" name="demoTime" required placeholder='Horas de demo' min={1} id="demoTime" />
+                </div >
+            }
+
+            {isOwner &&
+                <div className="form_group">
+                    <label htmlFor="deleteAt">Eliminar despues de vencido(DIAS)</label>
+                    <input onChange={onChange} type="number" name="deleteAt" required placeholder='Dejar en blanco para no eliminar' min={0} />
                 </div >
             }
 
