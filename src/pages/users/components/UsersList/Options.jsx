@@ -8,6 +8,7 @@ import { Ellipsis } from '../../../../components/icons/Ellipsis';
 import { Edit } from './components/Edit/Edit';
 import { Delete } from './components/Delete/Delete';
 import { AddCredits } from './components/AddCredits/AddCredits';
+import { ChangePlexServer } from './components/ChangeServers/ChangePlexServer';
 export const Options = ({ user }) => {
     const numLibs = user.data.reduce((acc, d) => {
         acc += d.numLibraries
@@ -36,7 +37,7 @@ export const Options = ({ user }) => {
             </div> */}
 
             <div className="option">
-                <ServerIcon />
+                <ChangePlexServer user={user} />
             </div>
 
             <div className="option remove">
