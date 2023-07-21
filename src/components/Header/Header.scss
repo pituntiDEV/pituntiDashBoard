@@ -12,26 +12,30 @@
         display: flex;
         gap: 1rem;
         align-items: center;
-       
-        border-radius: 1rem 1rem 0 0 ;
-        .name{
+
+        border-radius: 1rem 1rem 0 0;
+
+        .name {
             display: flex;
             align-items: center;
+
             @include phone-only {
                 flex-direction: column;
                 margin-top: 2rem;
                 position: absolute;
                 z-index: -3;
             }
-           
-            img{
-                 border-radius: 1rem;
+
+            img {
+                border-radius: 1rem;
                 max-width: 60px;
                 display: block;
             }
-           font-size: 2rem;
-           font-weight: bold;
+
+            font-size: 2rem;
+            font-weight: bold;
         }
+
         .btn-menu {
             display: none;
 
@@ -60,7 +64,7 @@
         display: flex;
         justify-content: flex-end;
         align-items: center;
-        margin: 0 2rem;
+        margin: 0 0rem;
     }
 
 }

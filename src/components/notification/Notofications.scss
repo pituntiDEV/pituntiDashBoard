@@ -36,6 +36,7 @@
     .notifications {
         position: relative;
 
+
         &:hover>.notifications-list {
             display: flex;
         }
@@ -93,8 +94,6 @@
         &:hover>ul {
             display: flex;
             position: absolute;
-
-            background-color: red;
         }
 
         ul {
@@ -104,7 +103,7 @@
             top: 3.9rem;
             background: linear-gradient(to right, rgb(224, 56, 40), rgb(233, 109, 20));
             width: 300px;
-            left: -150px;
+            left: -200px;
             border-bottom-left-radius: 1rem;
             border-bottom-right-radius: 1rem;
             justify-content: center;

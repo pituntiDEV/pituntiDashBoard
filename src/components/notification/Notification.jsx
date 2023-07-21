@@ -78,7 +78,7 @@ export const Notification = () => {
             </div>
 
             {/* Notifications */}
-            <div className="notifications">
+            {/* <div className="notifications">
                 <div className="icon">
                     <div className="punto"></div>
                     <i className="fa-solid fa-bell"></i>
@@ -93,7 +93,7 @@ export const Notification = () => {
                         </div>)
                     })}
                 </div>
-            </div>
+            </div> */}
 
             {/* Messages */}
             {/* <i className="fa-solid fa-message"></i> */}
