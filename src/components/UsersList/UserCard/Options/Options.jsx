@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useState } from 'react';
 import { useUserFilter } from '../../../../hook/useUserFilter';
 import { BookIcon } from '../../../icons/BookIcon';
@@ -21,9 +21,11 @@ import { useRef } from 'react';
 import { useEffect } from 'react';
 import { Ellipsis } from '../../../icons/Ellipsis';
 import utils from "../../../../utils/date/index"
+import { Context } from '../../../../pages/users/PlexUsersContext';
 
 
-export const Options = ({ user, setNewUserState, setUsers, users }) => {
+export const Options = ({ user }) => {
+    const { users, setUsers } = useContext(Context);
     const [openModalToEdit, setOpenModalToEdit] = useState(false);
     const [openModalToAddCredits, setOpenModalToAddCredits] = useState(false);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
@@ -140,13 +142,13 @@ export const Options = ({ user, setNewUserState, setUsers, users }) => {
 
             {openModalToAddCredits &&
                 <Modal title="Edit User" setOpenModal={setOpenModalToAddCredits}>
-                    <AddCreditToUser setNewUserState={setNewUserState} user={user} setOpenModal={setOpenModalToAddCredits} />
+                    <AddCreditToUser users={users} setUsers={setUsers} user={user} setOpenModal={setOpenModalToAddCredits} />
                 </Modal>
             }
 
             {openDeleteModal &&
                 <Modal title="Delete User" setOpenModal={setOpenDeleteModal}>
-                    <DeleteUserForm users={users} setUsers={setUsers} setNewUserState={setNewUserState} user={user} setOpenModal={setOpenDeleteModal} />
+                    <DeleteUserForm users={users} setUsers={setUsers} user={user} setOpenModal={setOpenDeleteModal} />
                 </Modal>
             }
 

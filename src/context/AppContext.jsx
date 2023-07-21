@@ -2,6 +2,8 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 
 import useFetchApi from '../hook/useFetchApi';
+import { useGetPlexSharedServers } from '../hook/plex/useGetPlexSharedServers';
+import { useGetMyPlexServers } from '../hook/plex/useGetMyPlexServers';
 
 export const appContext = React.createContext();
 
@@ -34,7 +36,10 @@ export const AppContext = ({ children }) => {
   const [getPlexCredits] = useFetchApi({
     url: `/api/credits/shared-available`,
     method: 'GET',
-  })
+  });
+
+  const [plexSharedServers] = useGetPlexSharedServers();
+  const [plexServers] = useGetMyPlexServers();
 
   //Effects
   useEffect(() => {
@@ -74,10 +79,11 @@ export const AppContext = ({ children }) => {
     },
     plex: {
       plexCredits,
-      setPlexCredits
+      setPlexCredits,
+      sharedServers: plexSharedServers,
+      servers: plexServers
     }
   }
-
 
   return (
     <appContext.Provider value={value}>

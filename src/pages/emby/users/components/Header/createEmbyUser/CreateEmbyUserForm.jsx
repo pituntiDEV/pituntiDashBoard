@@ -78,7 +78,7 @@ export const CreateEmbyUserForm = ({ setOpenModal }) => {
                 formData.admin && form.inputsAdmins.map(form => {
                     return (
                         <div key={form.name} className='form__group'>
-                            <label htmlFor={form.name}>{form.label} ({form.name}):</label>
+                            <label htmlFor={form.name}>{form.label}:</label>
                             <input min={form.min} onChange={onChangeInputsHandler} required={form.required} name={form.name} id={form.name} type={form.type || "text"} />
                             {form.small &&
                                 <small className='text-mute'>{form.small}</small>}

@@ -119,14 +119,14 @@ export const NewResellerForm = ({ setOpenModal }) => {
                     </div>
 
                     <div className="form__group">
-                        <label htmlFor="disconnect">Desactivar despues de (DIAS) vencido:</label>
+                        <label htmlFor="disconnect">Desactivar usuarios despues de vencido (DIAS):</label>
                         <small className='text-muted'>Dejar en blanco para no desactivar usuario</small>
                         <input type="number" onChange={onChangeInputs} name="disconnect" id="disconnect" />
                     </div>
 
 
                     <div className="form__group">
-                        <label htmlFor="delete">Eliminar despues de (DIAS) vencincido:</label>
+                        <label htmlFor="delete">Eliminar usuarios despues de vencido (DIAS):</label>
                         <small className='text-muted'>Dejar en blanco para no eliminar usuario</small>
                         <input type="number" onChange={onChangeInputs} name="delete" id="delete" />
                     </div>

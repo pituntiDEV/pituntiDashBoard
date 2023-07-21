@@ -48,7 +48,7 @@ export const NewEmbyAccountForm = ({ setOpenModal, setNewAccountState }) => {
             <div className="form__group">
                 <label htmlFor="ip">Direccion ip</label>
                 {/* pattern="^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$" */}
-                <input onChange={onChange} type="text" name="ip" value={formData.ip} required placeholder='Ejem:http:53.123.34.54' id="ip" />
+                <input onChange={onChange} type="text" name="ip" value={formData.ip} required placeholder='Ejem:http://53.123.34.54' id="ip" />
             </div>
 
             <div className="form__group">

@@ -1,5 +1,7 @@
 :root {
-  --color-primary: #262626 !important;
+  --color-primary: rgb(58, 58, 58) !important;
+  --color-gray-dark: rgb(58, 58, 58);
+
   --color-primario: rgba(0, 0, 0, 0.582) !important;
   --color-negro: #030311;
   --color-amarillo: #F2AF5C;

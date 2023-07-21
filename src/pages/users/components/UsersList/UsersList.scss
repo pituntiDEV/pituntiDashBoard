@@ -1,0 +1,9 @@
+.users-list {
+
+    .users-list-container {
+        margin: 1rem 0;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1rem;
+    }
+}

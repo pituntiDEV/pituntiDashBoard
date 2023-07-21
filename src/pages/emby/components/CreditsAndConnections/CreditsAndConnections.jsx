@@ -43,7 +43,7 @@ export const CreditsAndConnections = ({ formData, setFormData }) => {
                     <div className="form__group">
                         <label htmlFor="connetions">Conexiones:</label>
                         <input type="number" min="1" required name="connections" onChange={(e) => {
-                            setFormData({ ...formData, credits: e.target.value });
+                            setFormData({ ...formData, connections: e.target.value });
                         }} />
                     </div>
                 </>)

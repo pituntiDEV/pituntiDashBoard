@@ -1,8 +1,16 @@
 import dayjs from "dayjs"
-import utils from "../utils/date/index";
-export const useUserFilter = (users) => {
-    const filter = ({ nameOrEmail, seller, state, byExpireDay, server }) => {
-        return users
+import utils from "../../../../utils/date/index";
+import { useContext } from "react";
+import { Context } from "../../PlexUsersContext";
+import { useState } from "react";
+import { useEffect } from "react";
+export const useFilter = (filterValues) => {
+    const { users, loading } = useContext(Context);
+    const [usersFiltered, setUsersFiltered] = useState(users);
+    const { nameOrEmail, seller, state, byExpireDay, server } = filterValues;
+
+    useEffect(() => {
+        const usersFilteredData = users
             .filter(user => {
                 return filterByNameAndEmail(user, nameOrEmail)
             })
@@ -18,14 +26,13 @@ export const useUserFilter = (users) => {
             .filter(user => {
                 return filterByServer(user, server)
             })
-    }
+        setUsersFiltered(usersFilteredData);
 
-    return [filter]
+    }, [filterValues, users])
+    return [usersFiltered, loading];
 
 }
 
-
-//Filters
 
 //Filter by name or email
 const filterByNameAndEmail = (user, input) => {

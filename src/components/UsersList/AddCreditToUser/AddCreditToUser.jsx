@@ -8,7 +8,7 @@ import SWAlert from '../../SwAlert/SWAlert';
 import { AddCreditsByAdmin } from './AddCreditsByAdmin';
 import { AddCreditsByReseller } from './AddCreditsByReseller';
 import "./AddCreditToUser.scss"
-export const AddCreditToUser = ({ user, setOpenModal, setNewUserState }) => {
+export const AddCreditToUser = ({ user, users, setUsers, setOpenModal }) => {
     //Context
     const appContextValue = useContext(appContext);
 
@@ -48,7 +48,7 @@ export const AddCreditToUser = ({ user, setOpenModal, setNewUserState }) => {
                 icon: "success"
             })
             appContextValue.setState({ ...appContextValue.state, onChangeCredits: !appContextValue.state.onChangeCredits })
-            setNewUserState(s => !s);
+
             setOpenModal(false);
 
         }).catch(error => {
