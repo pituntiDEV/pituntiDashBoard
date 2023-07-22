@@ -62,18 +62,18 @@ export const SessionsV2 = () => {
                                         }
                                         return (
                                             <div key={session?.Session?.id || new Date()} >
-                                                {!userInDb && !sessionsData.server.isAdmin && "NO Admin"}
+
                                                 <div className="user-card">
 
                                                     <div className="header">
                                                         <img src={`https://magicdashboard.net/api/my-account-info/plex-img/byServer?path=${session.thumb}&server=${sessionsData.server._id}`} alt={allTitle} />
-                                                        <p className='title'>
+                                                        <div className='title'>
                                                             <span>{convertKBtoMB(session.Session.bandwidth)}MB {Player.state}  </span>
                                                             <div className="title_and_year">
                                                                 {allTitle}
                                                             </div>
 
-                                                        </p>
+                                                        </div>
                                                     </div>
                                                     <div className="ip">
                                                         {Player.address}
