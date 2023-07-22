@@ -10,6 +10,7 @@ import { Delete } from './components/Delete/Delete';
 import { AddCredits } from './components/AddCredits/AddCredits';
 import { ChangePlexServer } from './components/ChangeServers/ChangePlexServer';
 import Modal from '../../../../components/modal/Modal';
+import { MoreInfo } from './components/MoreInfo';
 export const Options = ({ user }) => {
     const [openAuthModal, setOpenAuthModal] = useState(false);
     return (
@@ -50,7 +51,7 @@ export const Options = ({ user }) => {
                 </div>
 
                 <div className="option">
-                    <Ellipsis />
+                    <MoreInfo user={user} />
                 </div>
 
 
