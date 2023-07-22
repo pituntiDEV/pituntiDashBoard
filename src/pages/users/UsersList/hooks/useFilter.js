@@ -60,7 +60,7 @@ const filterByServer = (user, server) => {
 
         const buscar = user.servers.find(s => s._id == server);
         if (buscar) {
-            return user
+            return user;
         }
     } else {
         return user;
