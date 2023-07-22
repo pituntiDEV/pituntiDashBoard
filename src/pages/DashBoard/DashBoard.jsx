@@ -80,11 +80,11 @@ export const DashBoard = () => {
   return (
     <div className='container' >
 
-      <SessionsV2 />
       {/* <GeneralCard/> */}
       <div className='playing'>
-        {/* <Statistics />
-        <Sessions sessions={sessions} newSessions={newSessions} /> */}
+        <Statistics />
+        <SessionsV2 />
+        {/* <Sessions sessions={sessions} newSessions={newSessions} /> */}
       </div>
 
     </div>

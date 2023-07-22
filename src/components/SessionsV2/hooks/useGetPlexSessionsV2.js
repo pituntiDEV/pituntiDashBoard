@@ -16,7 +16,7 @@ export const useGetPlexSessionsV2 = () => {
         const interval = setInterval(() => {
             getSessions()
                 .then(sessions => setPlexSessions(sessions))
-        }, 150000);
+        }, 50000);
 
         return () => {
             clearInterval(interval)
