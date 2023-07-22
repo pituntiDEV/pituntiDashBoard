@@ -29,7 +29,7 @@ export const SessionsV2 = () => {
         }, 0)
 
         setNoAdminTotalUsers(total)
-    }, [users])
+    }, [users, plexSessions])
 
     return (
         <div className='session-v2'>
