@@ -5,15 +5,18 @@ import { useGetPlexUsers } from './hooks/useGetPlexUsers';
 import "./SessionsV2.scss";
 import { ServerIcon } from '../icons/ServerIcon';
 import utils from "../../utils/date/index";
+import { Spinner } from '../Spinner/Spinner';
 export const SessionsV2 = () => {
     function convertKBtoMB(kilobytes) {
         const megabytes = kilobytes / 1024;
         return megabytes.toFixed(1);
     }
-    const [plexSessions, users, loadingPlexSessions] = useGetPlexSessionsV2();
+    const [plexSessions, users, loadingPlexSessions, loading] = useGetPlexSessionsV2();
 
     return (
         <div className='session-v2'>
+
+            {loading && <Spinner />}
             {users.length > 0 &&
                 plexSessions.map(sessionsData => {
                     return (

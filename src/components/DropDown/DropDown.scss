@@ -1,6 +1,7 @@
 .dropdown__element {
     position: relative;
     margin: 1rem 0;
+    color: white;
 
     .dropdown__button {
 
@@ -20,7 +21,7 @@
 
         &:hover {
             transform: scale(1.01);
-            box-shadow: -1px 1px 3px rgb(186, 28, 28);
+
         }
 
         i {

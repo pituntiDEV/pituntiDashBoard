@@ -5,14 +5,19 @@ import { useGetPlexUsers } from "./useGetPlexUsers";
 export const useGetPlexSessionsV2 = () => {
     const [plexSessions, setPlexSessions] = useState([]);
     const [users] = useGetPlexUsers();
+    const [loadingFirstTime, setLoadingFirtsTime] = useState(false)
     const [getSessions, loadingGetSessions] = useFetchApi({
         url: "/api/plex/sessions/all/v2",
         method: "GET",
     });
 
     useEffect(() => {
+        setLoadingFirtsTime(true)
         getSessions()
-            .then(sessions => setPlexSessions(sessions))
+            .then(sessions => {
+                setLoadingFirtsTime(false)
+                setPlexSessions(sessions)
+            })
         const interval = setInterval(() => {
             getSessions()
                 .then(sessions => setPlexSessions(sessions))
@@ -22,5 +27,5 @@ export const useGetPlexSessionsV2 = () => {
             clearInterval(interval)
         }
     }, [])
-    return [plexSessions, users, loadingGetSessions]
+    return [plexSessions, users, loadingGetSessions, loadingFirstTime]
 }
