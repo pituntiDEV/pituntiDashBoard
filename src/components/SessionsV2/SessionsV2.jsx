@@ -7,6 +7,8 @@ import { ServerIcon } from '../icons/ServerIcon';
 import utils from "../../utils/date/index";
 import { Spinner } from '../Spinner/Spinner';
 import { useState } from 'react';
+import { CloseIcon } from '../icons/CloseIcon';
+import { StopSession } from './StopSession';
 export const SessionsV2 = () => {
 
     function convertKBtoMB(kilobytes) {
@@ -64,7 +66,7 @@ export const SessionsV2 = () => {
                                             <div key={session?.Session?.id || new Date()} >
 
                                                 <div className="user-card">
-
+                                                    <StopSession server={sessionsData.server} session={session} />
                                                     <div className="header">
                                                         <img src={`https://magicdashboard.net/api/my-account-info/plex-img/byServer?path=${session.thumb}&server=${sessionsData.server._id}`} alt={allTitle} />
                                                         <div className='title'>

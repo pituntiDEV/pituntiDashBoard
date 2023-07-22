@@ -5,6 +5,7 @@
         .server_title {
             font-size: 3rem;
             font-weight: bold;
+            margin: 1rem 0;
 
         }
 
@@ -14,11 +15,34 @@
             gap: 1.3rem;
 
             .user-card {
+                position: relative;
+
+                .btn-close-session {
+                    background-color: rgb(216, 47, 47);
+                    position: absolute;
+                    border-radius: .5rem;
+                    left: 0;
+
+                    top: -1rem;
+                    height: 2rem;
+                    width: 3rem;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    box-shadow: -2px 2px 3px rgb(255, 255, 255), -4px 4px 4px rgb(229, 56, 56);
+                    cursor: pointer;
+
+                    &:hover {
+                        transform: scale(1.1);
+                    }
+                }
+
                 background-color: rgb(43, 42, 42);
                 padding: 1rem;
                 color: white;
                 border-radius: 1rem;
-                box-shadow: -3px 3px 4px rgb(226, 226, 226), -5px 5px 7px rgb(48, 47, 47);
+                box-shadow: -3px 3px 4px rgb(226, 226, 226),
+                -5px 5px 7px rgb(48, 47, 47);
 
                 .header {
                     display: flex;
