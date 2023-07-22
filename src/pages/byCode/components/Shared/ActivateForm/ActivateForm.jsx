@@ -7,7 +7,6 @@ import SWAlert from '../../../../../components/SwAlert/SWAlert';
 import { ToggleSwhich } from '../../../../../components/ToggleSwhich/ToggleSwhich';
 import { appContext } from '../../../../../context/AppContext';
 import useFetchApi from '../../../../../hook/useFetchApi';
-import { useForm } from '../../../../../hook/useForm';
 import { useGetPlexAccounts } from '../../../../../hook/useGetPlexAccounts';
 
 import "./ActivateForm.scss";
@@ -25,7 +24,7 @@ export const ActivateForm = ({ setOpenModal, setDevicesState }) => {
 
 
     //Customs Hooks
-    const [formData, onChange] = useForm({
+    const [formData, setFormData] = useState({
         name: "",
         code: "",
         credits: 0,
@@ -85,7 +84,9 @@ export const ActivateForm = ({ setOpenModal, setDevicesState }) => {
         })
     }, [formData.account_id, isOwner, provider])
 
-
+    const onChange = (e) => {
+        setFormData({ ...formData, [e.target.id]: e.target.value });
+    }
     //Functions
     const submit = (e) => {
         e.preventDefault();
@@ -145,7 +146,7 @@ export const ActivateForm = ({ setOpenModal, setDevicesState }) => {
             </div>
             <div className="form_group">
                 <label htmlFor="code">Codigo:</label>
-                <input required onChange={onChange} type="text" minLength={4} placeholder='Codígo de activacíon' id="code" />
+                <input required onChange={onChange} type="text" minLength={4} placeholder='Codígo de activacíon' name="code" id="code" />
             </div>
             {isOwner && !isDemo ?
                 <div className="form_group">
@@ -180,7 +181,7 @@ export const ActivateForm = ({ setOpenModal, setDevicesState }) => {
             {isOwner &&
                 <div className="form_group">
                     <label htmlFor="deleteAt">Eliminar despues de vencido(DIAS)</label>
-                    <input onChange={onChange} type="number" name="deleteAt" required placeholder='Dejar en blanco para no eliminar' min={0} />
+                    <input onChange={onChange} type="number" name="deleteAt" id="deleteAt" placeholder='Dejar en blanco para no eliminar' min={0} />
                 </div >
             }
 
