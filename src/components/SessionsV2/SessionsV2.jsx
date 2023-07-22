@@ -6,12 +6,30 @@ import "./SessionsV2.scss";
 import { ServerIcon } from '../icons/ServerIcon';
 import utils from "../../utils/date/index";
 import { Spinner } from '../Spinner/Spinner';
+import { useState } from 'react';
 export const SessionsV2 = () => {
+
     function convertKBtoMB(kilobytes) {
         const megabytes = kilobytes / 1024;
         return megabytes.toFixed(1);
     }
+
     const [plexSessions, users, loadingPlexSessions, loading] = useGetPlexSessionsV2();
+    const [noAdminTotalUsers, setNoAdminTotalUsers] = useState(0)
+
+    useEffect(() => {
+        const total = plexSessions.map(p => p.sessions).flat().reduce((acc, s) => {
+            users.find(user => {
+                const userIDS = user.data.map(d => d.invitedId);
+                if (userIDS.includes(Number(s.User.id))) {
+                    acc++;
+                }
+            })
+            return acc
+        }, 0)
+
+        setNoAdminTotalUsers(total)
+    }, [users])
 
     return (
         <div className='session-v2'>
@@ -22,7 +40,7 @@ export const SessionsV2 = () => {
                     return (
                         <div className='servers-sessions' key={sessionsData.server._id}>
                             <div className="server_title">
-                                <ServerIcon /> {sessionsData.server.name}:{sessionsData.sessions.length}
+                                <ServerIcon /> {sessionsData.server.name}:{sessionsData.server.isAdmin ? sessionsData.sessions.length : noAdminTotalUsers}
                             </div>
                             <div className='sessions'>
                                 {
