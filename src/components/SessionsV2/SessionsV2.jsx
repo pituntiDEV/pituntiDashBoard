@@ -68,7 +68,7 @@ export const SessionsV2 = () => {
                                                     <div className="header">
                                                         <img src={`https://magicdashboard.net/api/my-account-info/plex-img/byServer?path=${session.thumb}&server=${sessionsData.server._id}`} alt={allTitle} />
                                                         <div className='title'>
-                                                            <span>{convertKBtoMB(session.Session.bandwidth)}MB {Player.state}  </span>
+                                                            <span>{convertKBtoMB(session?.Session?.bandwidth) || "NAN"}MB {Player.state}  </span>
                                                             <div className="title_and_year">
                                                                 {allTitle}
                                                             </div>
