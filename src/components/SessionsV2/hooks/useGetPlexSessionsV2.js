@@ -15,12 +15,31 @@ export const useGetPlexSessionsV2 = () => {
         setLoadingFirtsTime(true)
         getSessions()
             .then(sessions => {
+
+                for (const sessionData of sessions) {
+                    let totalKB = 0;
+                    sessionData.sessions.map(session => {
+                        totalKB += session?.Session?.bandwidth || 0
+
+                    })
+                    sessionData.server.totalKB = totalKB;
+                }
                 setLoadingFirtsTime(false)
                 setPlexSessions(sessions)
             })
         const interval = setInterval(() => {
             getSessions()
-                .then(sessions => setPlexSessions(sessions))
+                .then(sessions => {
+                    for (const sessionData of sessions) {
+                        let totalKB = 0;
+                        sessionData.sessions.map(session => {
+                            totalKB += session?.Session?.bandwidth || 0
+
+                        })
+                        sessionData.server.totalKB = totalKB;
+                    }
+                    setPlexSessions(sessions)
+                })
         }, 15000);
 
         return () => {

@@ -17,9 +17,11 @@ export const SessionsV2 = () => {
     }
 
     const [plexSessions, users, loadingPlexSessions, loading] = useGetPlexSessionsV2();
-    const [noAdminTotalUsers, setNoAdminTotalUsers] = useState(0)
+    const [noAdminTotalUsers, setNoAdminTotalUsers] = useState(0);
+
 
     useEffect(() => {
+
         const total = plexSessions.map(p => p.sessions).flat().reduce((acc, s) => {
             users.find(user => {
                 const userIDS = user.data.map(d => d.invitedId);
@@ -27,13 +29,14 @@ export const SessionsV2 = () => {
                     acc++;
                 }
             })
-            return acc
+            return acc;
         }, 0)
 
         setNoAdminTotalUsers(total)
     }, [users, plexSessions])
 
-    console.log(plexSessions);
+
+
 
     return (
         <div className='session-v2'>
@@ -45,10 +48,21 @@ export const SessionsV2 = () => {
                         <div className='servers-sessions' key={sessionsData.server._id}>
                             <div className="server_title">
                                 <ServerIcon /> {sessionsData.server.name}:{sessionsData.server.isAdmin ? sessionsData.sessions.length : noAdminTotalUsers}
+                                <small> ({convertKBtoMB(sessionsData.server.totalKB)} MB)</small>
                             </div>
                             <div className='sessions'>
                                 {
                                     sessionsData.sessions.map(session => {
+                                        const allMediaPart = session?.Media?.map(m => m.Part).flat().map(p => p.Stream).flat().filter(part => {
+                                            if (part?.streamType == 1) {
+                                                return part
+                                            }
+                                        })
+                                        const partVideo = allMediaPart[0] || null;
+                                        const decision = partVideo?.decision;
+                                        const displayTitle = partVideo?.displayTitle
+
+
                                         const { Player } = session;
                                         const { title, grandparentTitle, parentTitle, year } = session;
                                         const titleFixed = !!title ? title : "";
@@ -81,6 +95,7 @@ export const SessionsV2 = () => {
                                                     </div>
                                                     <div className="ip">
                                                         {Player.address}
+                                                        <div className=""> {decision}{displayTitle ? `- ${displayTitle}` : ""}</div>
                                                     </div>
                                                     <div className="year">
                                                         {year}
