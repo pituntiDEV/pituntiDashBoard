@@ -33,6 +33,8 @@ export const SessionsV2 = () => {
         setNoAdminTotalUsers(total)
     }, [users, plexSessions])
 
+    console.log(plexSessions);
+
     return (
         <div className='session-v2'>
 
