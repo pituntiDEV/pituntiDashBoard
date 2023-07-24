@@ -45,7 +45,8 @@ export const AddCreditsForm = ({ user, setOpenModal }) => {
             })
             .catch(error => {
                 SWAlert.error({
-                    title: error.title || "Algo salio mal"
+                    title: error.message || "Algo salio mal",
+                    text: error.info
                 })
             })
 

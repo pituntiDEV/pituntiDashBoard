@@ -48,18 +48,18 @@ export const Notification = () => {
                 <CreditsByCode />
             </div>
 
-            {plex.plexCredits.length > 0 &&
-                <span className='credits'>
 
-                    <ul>
-                        <li><CoinsIcon /> Plex:{plex.plexCredits.length}</li>
-                        <li><CoinsIcon /> Emby:{emby.embyCredits.length}</li>
-                    </ul>
+            <span className='credits'>
+
+                <ul>
+                    <li><CoinsIcon /> Plex:{plex.plexCredits.length}</li>
+                    <li><CoinsIcon /> Emby:{emby.embyCredits.length}</li>
+                </ul>
 
 
-                    <CoinsIcon />
-                </span>
-            }
+                <CoinsIcon />
+            </span>
+
 
             <Link to="/no-register-users">
                 <span className='user_not_allow'>
