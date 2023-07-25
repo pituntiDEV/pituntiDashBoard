@@ -107,6 +107,9 @@ export const SessionsV2 = () => {
                                                                 <img src={session.User.thumb} alt="" />
                                                                 {userInDb?.email || "NO EMAIL"}
                                                             </div>
+                                                            <div className="">
+                                                                {userInDb.name}
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div className="footer">

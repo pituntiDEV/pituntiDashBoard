@@ -20,6 +20,8 @@ export const Circle = ({ title = "title", porcentage = "50", max = 100 }) => {
           <small>{title}</small>
           {/* <small className='tiny'>{`${porcentage}/${max}`}</small> */}
         </span>
+
+
       </div>
 
 
