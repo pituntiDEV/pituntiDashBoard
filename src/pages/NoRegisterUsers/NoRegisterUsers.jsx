@@ -45,8 +45,8 @@ export const NoRegisterUsers = () => {
             const allUsersFromPlex = await getUsersFromPlex(token);
 
             const emails = allUsersDB.map(u => u.email.toLowerCase());
-            console.log(allUsersFromPlex);
-            const usersNoRegsiters = allUsersFromPlex.filter(u => !emails.includes(u.email && u.email.toLowerCase()));
+
+            const usersNoRegsiters = allUsersFromPlex.filter(u => !emails.includes(u.invited.email && u.invited.email.toLowerCase()));
             setUsers(usersNoRegsiters);
 
         } catch (error) {
@@ -82,7 +82,7 @@ export const NoRegisterUsers = () => {
                                     setUserToRegister(user);
                                     setOpenRegisterModal(true)
                                 }} key={user.id} className='user'>
-                                    <span className='email'>{user.invited.email}</span>
+                                    <span className='email'>{user.invited.email || user.invited.username}</span>
                                     <span className={`${user.invited.status && "active"}`}>{user.invited.status}</span>
                                     <p>{user.invited.id}</p>
                                 </div>)
