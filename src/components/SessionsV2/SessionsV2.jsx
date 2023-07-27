@@ -108,7 +108,7 @@ export const SessionsV2 = () => {
                                                                 {userInDb?.email || "NO EMAIL"}
                                                             </div>
                                                             <div className="">
-                                                                {userInDb.name}
+                                                                {userInDb?.name}
                                                             </div>
                                                         </div>
                                                     </div>
