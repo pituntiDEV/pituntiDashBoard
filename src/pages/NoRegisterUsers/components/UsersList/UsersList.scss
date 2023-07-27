@@ -1,0 +1,40 @@
+.no_registered_users_list {
+    margin: 2rem 0;
+
+    .users_list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 2rem;
+
+        .user {
+            background-color: rgb(38, 80, 81);
+            text-align: center;
+
+            font-weight: bold;
+            color: white;
+            border-radius: 1rem;
+            display: flex;
+
+            overflow: hidden;
+            flex-direction: column;
+
+            .email {
+                padding: 1rem 0;
+            }
+
+            button {
+                height: 100%;
+                border: none;
+                padding: 0;
+
+                background: linear-gradient(to right, rgb(193, 110, 110), rgb(223, 99, 65));
+                color: white;
+                box-shadow: -2px 2px 3px rgb(255, 255, 255);
+                border-radius: 1rem;
+                font-weight: bold;
+
+            }
+
+        }
+    }
+}

@@ -2,11 +2,11 @@ import { useState } from "react";
 
 export const useGetSellersByUsers = (users) => {
     const [sellers, setSellers] = useState([]);
-    const getSellers = async() => {
+    const getSellers = async () => {
         try {
             const sellersEmails = users.reduce((acc, user) => {
-                if (!acc.includes(user.seller.email)) {
-                    acc.push(user.seller.email);
+                if (!acc.includes(user?.seller?.email)) {
+                    acc.push(user?.seller?.email);
                 }
                 return acc;
             }, [])
@@ -17,6 +17,6 @@ export const useGetSellersByUsers = (users) => {
             return []
         }
     }
-    return [getSellers,sellers];
+    return [getSellers, sellers];
 
 }
