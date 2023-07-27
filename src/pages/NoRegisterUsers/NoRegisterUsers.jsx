@@ -53,7 +53,7 @@ export const NoRegisterUsers = () => {
             console.log(error)
         }
 
-
+        console.log(users);
 
     }
     return (
@@ -82,9 +82,9 @@ export const NoRegisterUsers = () => {
                                     setUserToRegister(user);
                                     setOpenRegisterModal(true)
                                 }} key={user.id} className='user'>
-                                    <span className='email'>{user.email}</span>
-                                    <span className={`${user.status && "active"}`}>{user.status}</span>
-                                    <p>{user.id}</p>
+                                    <span className='email'>{user.invited.email}</span>
+                                    <span className={`${user.invited.status && "active"}`}>{user.invited.status}</span>
+                                    <p>{user.invited.id}</p>
                                 </div>)
                         })
                     }
