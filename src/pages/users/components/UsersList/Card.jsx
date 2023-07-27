@@ -24,7 +24,7 @@ export const Card = ({ user, setUsers, users }) => {
 
                         <div className="servers info">
                             <i className="fa-solid fa-share-nodes"></i>
-                            <span>{user?.data[0] && user?.data.map(d => d?.name).join(",") || user?.data?.name}</span>
+                            <span>{user.servers.length > 0 && user?.servers.map(s => s.data.name).join(",") || user?.data?.name}</span>
                         </div>
 
                         <div className="date info">
