@@ -18,11 +18,11 @@ export const OnlyAdminOptions = ({ user, onChange, formData }) => {
             </div>
             <div className="form__group">
                 <label htmlFor="removeLibsDays">Quitar librerias despues de vencido (DIAS)</label>
-                <input type="number" min={0} onChange={onChange} value={formData.removeLibsDays || ""} name="removeLibsDays" id="" />
+                <input type="number" min={0} onChange={onChange} value={formData.removeLibsDays} name="removeLibsDays" id="" />
             </div>
             <div className="form__group">
                 <label htmlFor="deleteDays">Eliminar despues de vencido (DIAS)</label>
-                <input type="number" min={0} onChange={onChange} value={formData.deleteDays || ""} name="deleteDays" id="" />
+                <input type="number" min={0} onChange={onChange} value={formData.deleteDays} name="deleteDays" id="" />
             </div>
 
 

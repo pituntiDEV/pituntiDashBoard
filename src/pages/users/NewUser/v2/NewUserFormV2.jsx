@@ -20,7 +20,9 @@ export const NewUserFormV2 = ({ setOpenModal }) => {
         servers: [],
         connections: 1,
         whatsapp: null,
-        comments: ""
+        comments: "",
+        deleteDays: "",
+        removeLibsDays: ""
     });
 
     const [inviteUser, loading] = useFetchApi({
