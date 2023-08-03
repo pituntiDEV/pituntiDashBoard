@@ -1,13 +1,26 @@
-.graf{
-    max-width: 300px;
+.graf {
+
     display: flex;
     flex-direction: column;
     margin: 2rem 0;
-    h2{
+
+    h2 {
         text-align: center;
     }
-    
-    background:linear-gradient(rgb(248, 245, 245),rgb(99, 99, 99));
+
+    background:linear-gradient(rgb(229, 166, 166), rgb(156, 202, 91));
     box-shadow: -3px 2px 5px rgb(43, 43, 44);
     border-radius: 1rem;
+
+    .info-users {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+
+        .users-count {
+            max-width: 350px;
+        }
+    }
 }

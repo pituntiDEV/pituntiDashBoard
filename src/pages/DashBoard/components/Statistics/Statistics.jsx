@@ -19,6 +19,7 @@ export const Statistics = () => {
     }, [])
     return (
         <div className='statistics'>
+            <ActiveUsers />
             {servers.length > 0 && <h2>Servers Statistics:</h2>}
             <div className="circle__container">
                 {
@@ -34,7 +35,7 @@ export const Statistics = () => {
                 }
 
             </div>
-            <ActiveUsers />
+
 
             {/* <PlexChart/> */}
 

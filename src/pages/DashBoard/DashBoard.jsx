@@ -12,13 +12,9 @@ import GraficaBarras from '../../components/Chart/GraficaBarras';
 import { Statistics } from './components/Statistics/Statistics';
 import { appContext } from '../../context/AppContext';
 import { SessionsV2 } from '../../components/SessionsV2/SessionsV2';
+import { Pie3DChart } from '../../components/Chart/Pie3DChart';
 
 export const DashBoard = () => {
-  const { wsData } = useContext(appContext);
-
-
-
-
   //State
   const [servers, setServers] = useState([]);
   const [sessions, setSessions] = useState([]);
@@ -82,6 +78,7 @@ export const DashBoard = () => {
 
       {/* <GeneralCard/> */}
       <div className='playing'>
+
         <Statistics />
         <SessionsV2 />
         {/* <Sessions sessions={sessions} newSessions={newSessions} /> */}

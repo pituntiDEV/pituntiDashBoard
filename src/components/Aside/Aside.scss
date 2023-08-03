@@ -1,24 +1,29 @@
 @import "../../mixins.scss";
 
-aside{
-   
+aside {
+
+
     @include phone-only {
-        
+
         background-color: rgba(0, 0, 0, 0.596) !important;
         width: 100%;
         min-height: 100vh;
         position: fixed;
-        &.active{
+
+        &.active {
             display: block;
         }
-        .menu{
+
+        .menu {
             background-color: #282525;
             max-width: 250px;
             min-height: 100vh;
             position: relative;
-            .btn-menu{
+
+
+            .btn-menu {
                 color: var(--color-primary);
-              
+
                 position: absolute;
                 top: .5rem;
                 height: 3rem;
@@ -34,73 +39,90 @@ aside{
                 background-color: rgb(204, 96, 96);
             }
         }
+
         z-index: 4;
     }
 
-    .menu{
+    .menu {
         position: sticky;
         top: 1rem;
-        .menu-list{
+
+
+        .menu-list {
             display: flex;
             flex-direction: column;
             padding: 0;
             margin: 0 1rem;
+
+
             @include phone-only {
                 padding-top: 4.5rem;
             }
+
             list-style: none;
             gap: 1rem;
-            .menu-drop{
+
+            .menu-drop {
                 color: white;
-                border-radius: .5rem; 
+                border-radius: .5rem;
                 background-color: var(--color-secondary);
-                .menu-item{
+
+                .menu-item {
                     background-color: rgb(46, 44, 44);
                     margin: .2rem;
                     padding-right: .2rem;
-                   
+
                 }
-                .title{
-                    .icon{
+
+                .title {
+                    .icon {
                         max-width: 2rem;
-                        img{
+
+                        img {
                             width: 100%;
                         }
                     }
-                    &::before{
+
+                    &::before {
                         font-family: 'Font Awesome 6 Free';
                         font-weight: 900;
                         content: "\f0d7";
                         transform: rotate(-90deg);
                     }
+
                     display: flex;
                     gap: 1rem;
-                    padding: 1rem ;
+                    padding: 1rem;
                     align-items: center;
                     cursor: pointer;
                 }
-                ul{
+
+                ul {
                     display: none;
-                    
+
                 }
-                &.show-dropdown > ul{
+
+                &.show-dropdown>ul {
                     display: block;
                 }
             }
-            .menu-item{
+
+            .menu-item {
                 background-color: var(--color-secondary);
-                padding: 1rem ;
+                padding: 1rem;
                 color: white;
                 display: flex;
                 gap: 1rem;
                 align-items: center;
                 transition: all .5s;
                 border-radius: .5rem;
-                &:hover{
+
+                &:hover {
                     background-color: rgb(53, 71, 95);
                     transform: scale(1.04);
                 }
-                a{
+
+                a {
                     color: white;
                     text-decoration: none;
                 }
@@ -108,6 +130,6 @@ aside{
 
         }
     }
-    
+
 
 }
