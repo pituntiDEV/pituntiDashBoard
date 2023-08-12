@@ -21,7 +21,7 @@ export const TrendingTrailers = () => {
                 {
                     trendingTrailers.map(tt => {
                         return (
-                            <div className='card' key={tt.ratingKey}>
+                            <div className='card_container' key={tt.ratingKey}>
                                 <img src={tt.thumb} alt="" />
                                 <div className="footer">
                                     {tt.parentTitle ? tt.parentTitle : ""}{tt.title}
