@@ -26,6 +26,8 @@ import { Telegram } from './pages/Telegram/Telegram';
 import { EmbyPackages } from './pages/emby/EmbyPackages/EmbyPackages';
 import { EmbyDemos } from './pages/emby/Demos/EmbyDemos';
 import { ResellersEmby } from './pages/emby/Resellers/ResellersEmby';
+import { PublicDemos } from './pages/plex/PublicDemos/PublicDemos';
+import { Activations } from './pages/plex/PublicDemos/components/Activations';
 
 const Protected = ({ children }) => {
     return <ProtectedPage>  <UserContextProvider><Layout >{children}</Layout></UserContextProvider></ProtectedPage>
@@ -97,6 +99,14 @@ const routes = {
         {
             path: "/demos",
             element: <Protected><Demos /></Protected>
+        },
+        {
+            path: "/public/demos",
+            element: <Protected><PublicDemos /></Protected>
+        },
+        {
+            path: "/public/demos/:id",
+            element: <Activations />
         },
         {
             path: "/no-register-users",

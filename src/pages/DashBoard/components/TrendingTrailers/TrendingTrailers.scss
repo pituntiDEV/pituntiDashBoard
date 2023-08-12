@@ -1,0 +1,46 @@
+.TrendingTrailers {
+    h3 {
+        text-align: center;
+        font-weight: bold;
+        position: relative;
+        margin-bottom: 2rem;
+        text-transform: uppercase;
+
+        &::before {
+            position: absolute;
+            content: "";
+            width: 85px;
+            height: 2px;
+            background-color: red;
+            bottom: 0;
+        }
+    }
+
+    .trending_trailers_container {
+        display: flex;
+
+        gap: 2rem;
+        overflow-y: scroll;
+
+
+        .card {
+            border-radius: 1rem;
+            overflow: hidden;
+            min-width: 15rem;
+            box-shadow:
+                -2px 2px 3px rgb(54, 54, 54),
+                -4px 4px 6px rgb(184, 38, 38);
+
+            img {
+                width: 100%;
+            }
+
+            .footer {
+                text-align: center;
+                font-weight: bold;
+
+            }
+        }
+
+    }
+}

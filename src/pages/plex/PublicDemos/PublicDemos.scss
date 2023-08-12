@@ -1,0 +1,21 @@
+.PublicDemos {
+    .header {
+        display: flex;
+        justify-content: space-between;
+
+    }
+
+    .public_demos_list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+
+        .demo {
+            padding: 0.5rem 1rem;
+            background-color: rgb(64, 116, 93);
+            border-radius: .5rem;
+            color: white;
+        }
+    }
+
+}

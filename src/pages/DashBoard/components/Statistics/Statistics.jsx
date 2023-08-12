@@ -4,6 +4,7 @@ import { PlexChart } from '../../../../components/Chart/PlexChart/PlexChart';
 import useFetchApi from '../../../../hook/useFetchApi'
 import { ActiveUsers } from './ActiveUsers'
 import "./Style.scss";
+import { TrendingTrailers } from '../TrendingTrailers/TrendingTrailers';
 export const Statistics = () => {
     const [servers, setServers] = useState([]);
     const [getServersWithUsers, loading] = useFetchApi({
@@ -19,6 +20,8 @@ export const Statistics = () => {
     }, [])
     return (
         <div className='statistics'>
+            <TrendingTrailers />
+
             <ActiveUsers />
             {servers.length > 0 && <h2>Servers Statistics:</h2>}
             <div className="circle__container">

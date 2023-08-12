@@ -1,0 +1,32 @@
+.public_demos_activation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+
+
+    .activation_form {
+        display: flex;
+        align-items: center;
+        height: 4rem;
+        width: 80%;
+        max-width: 500px;
+        border: 2px solid rgb(80, 79, 79);
+
+        input {
+            flex: 1;
+            height: 100%;
+            border: none;
+        }
+
+        .btn-add {
+            height: 100%;
+            border: none;
+            background-color: white;
+            border-left: 1px solid #000000;
+            padding: 0 2rem;
+            background-color: rgb(117, 176, 99);
+            color: white;
+        }
+    }
+}

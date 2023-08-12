@@ -1,0 +1,24 @@
+.NewPublicDesmosForm {
+    .packages_container {
+        margin: 1rem 0;
+
+        .packages {
+            display: flex;
+            gap: 1rem;
+
+            .pack {
+                background-color: red;
+                padding: .5rem 1rem;
+                text-align: center;
+                color: white;
+                border-radius: 1rem;
+                cursor: pointer;
+
+                &.selected {
+                    background-color: green;
+                }
+            }
+        }
+    }
+
+}
