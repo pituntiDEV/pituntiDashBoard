@@ -8,6 +8,7 @@ import { Spinner } from '../../../../components/Spinner/Spinner';
 import SWAlert from '../../../../components/SwAlert/SWAlert';
 export const Activations = () => {
     const [email, setEmail] = useState("");
+    const [ip, setIp] = useState('');
     const [adminMessage, setAdminMessage] = useState("");
     const [validUrl, setValidUrl] = useState(false);
     const { id } = useParams();
@@ -20,6 +21,16 @@ export const Activations = () => {
         url: `/api/public/demos/activate/${id}`,
         method: "POST"
     })
+
+
+
+    useEffect(() => {
+        // Get the IP address from the server
+        fetch('https://api.ipify.org')
+            .then((response) => response.json())
+            .then((data) => setIp(data.ip));
+    }, []);
+
     useEffect(() => {
         validateUrl()
             .then((data) => {
@@ -37,7 +48,7 @@ export const Activations = () => {
 
     const submit = (e) => {
         e.preventDefault();
-        addDemo({ body: JSON.stringify({ email }) })
+        addDemo({ body: JSON.stringify({ email, ip }) })
             .then(data => {
                 SWAlert.success({
                     title: "Demo enviado",

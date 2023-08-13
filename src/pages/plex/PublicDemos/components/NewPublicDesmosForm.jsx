@@ -53,6 +53,10 @@ export const NewPublicDesmosForm = ({ setOpenModal }) => {
     }
     const submit = (e) => {
         e.preventDefault();
+        if (formData.packages.length == 0) {
+            SWAlert.error({ title: "Selecciona mínimo un paquete" });
+            return;
+        };
         createPublicDemos({ body: JSON.stringify(formData) })
             .then(data => {
                 setPublicDemos([...publicDemos, data]);
@@ -79,31 +83,31 @@ export const NewPublicDesmosForm = ({ setOpenModal }) => {
         <form className='NewPublicDesmosForm' onSubmit={submit}>
             <div className="form__group">
                 <label htmlFor="name">Nombre</label>
-                <input type="text" required name="name" onChange={onChange} id="" />
+                <input type="text" required minLength={3} name="name" onChange={onChange} id="" />
             </div>
 
             <div className="form__group">
                 <label htmlFor="name">Mensaje</label>
-                <input type="text" required name="message" onChange={onChange} id="" />
+                <input type="text" required minLength={5} name="message" onChange={onChange} id="" />
                 <small className='text-muted'>Mensaje que vera el usuario al usar tu demo publico</small>
             </div>
             <div className="form__group">
                 <label htmlFor="name">Máximo demos</label>
-                <input type="number" required name="maxDemos" onChange={onChange} id="" />
+                <input type="number" min={1} required name="maxDemos" onChange={onChange} id="" />
                 <small className='text-muted'>Total de demos a ofrecer </small>
             </div>
             <hr />
 
             <div className="form__group">
                 <label htmlFor="maxDemosByUser">Máximo demos por usuario</label>
-                <input type="number" required name="maxDemosByUser" onChange={onChange} id="" />
+                <input type="number" min={1} required name="maxDemosByUser" onChange={onChange} id="" />
                 <small className='text-muted'>Total de demos que puede solicitar un usuario se verificara por IP </small>
             </div>
             <hr />
 
             <div className="form__group">
                 <label htmlFor="name">Duración de este Demo Publico</label>
-                <input type="number" onChange={onChange} required name="publicDemoDuration" id="" />
+                <input type="number" min={1} onChange={onChange} required name="publicDemoDuration" id="" />
                 <select onChange={onChange} name="publicDemoDurationFormat" id="" defaultValue={"minutes"}>
                     <option value="minutes">Minuto</option>
                     <option value="hours">Hora</option>
@@ -113,7 +117,7 @@ export const NewPublicDesmosForm = ({ setOpenModal }) => {
             <hr />
             <div className="form__group">
                 <label htmlFor="name">Duración del demo</label>
-                <input type="number" onChange={onChange} required name="demoDuration" id="" />
+                <input type="number" min={1} onChange={onChange} required name="demoDuration" id="" />
                 <select onChange={onChange} name="demoDurationFormat" id="" defaultValue={"minutes"}>
                     <option value="minutes">Minuto</option>
                     <option value="hours">Hora</option>
@@ -123,7 +127,7 @@ export const NewPublicDesmosForm = ({ setOpenModal }) => {
 
             <div className="form__group">
                 <label htmlFor="server">Servidor</label>
-                <select defaultValue={""} name='server' onChange={onChange}>
+                <select required defaultValue={""} name='server' onChange={onChange}>
                     <option value="" disabled>Seleccione un server</option>
                     {
                         servers.map(server => {
