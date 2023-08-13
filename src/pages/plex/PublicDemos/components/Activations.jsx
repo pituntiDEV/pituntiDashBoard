@@ -27,8 +27,8 @@ export const Activations = () => {
     useEffect(() => {
         // Get the IP address from the server
         fetch('https://api.ipify.org')
-            .then((response) => response.json())
-            .then((data) => setIp(data.ip));
+            .then((response) => response.text())
+            .then((data) => setIp(data));
     }, []);
 
     useEffect(() => {
@@ -64,6 +64,7 @@ export const Activations = () => {
 
     if (!loading && validUrl) return (
         <>
+            {/* {ip} */}
             <h2>{adminMessage}</h2>
             <div className='public_demos_activation'>
                 <form onSubmit={submit} className="activation_form">

@@ -78,6 +78,7 @@ export const Aside = () => {
                         <li className="menu-item">
                             <i className="fa-solid fa-earth-americas"></i>
                             <a href="/public/demos">Public Demos</a>
+                            <span className='new-info'>new</span>
                         </li>
                     </ul>
                 </li>
