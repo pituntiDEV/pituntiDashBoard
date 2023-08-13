@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import useFetchApi from '../../../../hook/useFetchApi';
 import { useState } from 'react';
 import { Spinner } from '../../../../components/Spinner/Spinner';
+import SWAlert from '../../../../components/SwAlert/SWAlert';
 export const Activations = () => {
     const [email, setEmail] = useState("");
     const [adminMessage, setAdminMessage] = useState("");
@@ -13,6 +14,11 @@ export const Activations = () => {
     const [validateUrl, loading] = useFetchApi({
         url: `/api/public/demos/validateURL/${id}`,
         method: "GET"
+    })
+
+    const [addDemo, loadingAddDemo] = useFetchApi({
+        url: `/api/public/demos/activate/${id}`,
+        method: "POST"
     })
     useEffect(() => {
         validateUrl()
@@ -31,6 +37,18 @@ export const Activations = () => {
 
     const submit = (e) => {
         e.preventDefault();
+        addDemo({ body: JSON.stringify({ email }) })
+            .then(data => {
+                SWAlert.success({
+                    title: "Demo enviado",
+                    text: "Ve a https://app.plex.tv/desktop/#!/settings/manage-library-access y acepta la invitación."
+                })
+            })
+            .catch(error => {
+                SWAlert.error({
+                    title: error.message
+                })
+            })
     }
 
     if (!loading && validUrl) return (

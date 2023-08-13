@@ -75,10 +75,10 @@ export const Aside = () => {
                             <i className="fa-solid fa-ticket"></i>
                             <a href="/demos">Demos</a>
                         </li>
-                        {/* <li className="menu-item">
+                        <li className="menu-item">
                             <i className="fa-solid fa-earth-americas"></i>
                             <a href="/public/demos">Public Demos</a>
-                        </li> */}
+                        </li>
                     </ul>
                 </li>
                 {/* Emby */}
