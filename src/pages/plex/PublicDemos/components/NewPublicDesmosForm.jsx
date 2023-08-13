@@ -19,7 +19,7 @@ export const NewPublicDesmosForm = ({ setOpenModal }) => {
         maxDemos: 1,
         maxDemosByUser: 1,
         publicDemoDuration: 1,
-        publicDemoDurationFormat: "hours",
+        publicDemoDurationFormat: "minutes",
         demoDuration: 1,
         demoDurationFormat: "minutes",
         server: null,
