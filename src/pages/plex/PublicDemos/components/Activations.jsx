@@ -8,6 +8,7 @@ import { Spinner } from '../../../../components/Spinner/Spinner';
 import SWAlert from '../../../../components/SwAlert/SWAlert';
 export const Activations = () => {
     const [email, setEmail] = useState("");
+    const [adminData, setAdminData] = useState();
     const [ip, setIp] = useState('');
     const [adminMessage, setAdminMessage] = useState("");
     const [validUrl, setValidUrl] = useState(false);
@@ -36,11 +37,12 @@ export const Activations = () => {
             .then((data) => {
                 setValidUrl(true);
                 setAdminMessage(data.message)
+                setAdminData(data)
             })
             .catch(() => setValidUrl(false))
     }, [])
 
-    if (loading) return <Spinner />
+    if (loading) return <div className='public-demos'><Spinner /></div>
     if (!loading && !validUrl) return (
         <h2>404 Not Found</h2>
     )
@@ -63,9 +65,18 @@ export const Activations = () => {
     }
 
     if (!loading && validUrl) return (
-        <>
+        <div className='public-demos'>
             {/* {ip} */}
-            <h2>{adminMessage}</h2>
+            <div className="admin-info">
+                <div className="logo">
+
+                    <img src={adminData?.data?.server?.account?.data?.user?.thumb} alt="" />
+                    <div className="server-name">
+                        {adminData.data.server.data.name}
+                    </div>
+                </div>
+                <h2 className='message'>{adminMessage}</h2>
+            </div>
             <div className='public_demos_activation'>
                 <form onSubmit={submit} className="activation_form">
                     <input onChange={(e) => setEmail(e.target.value)} value={email} required type="email" placeholder='Email' name="email" id="" />
@@ -75,6 +86,6 @@ export const Activations = () => {
 
             </div>
 
-        </>
+        </div>
     )
 }
