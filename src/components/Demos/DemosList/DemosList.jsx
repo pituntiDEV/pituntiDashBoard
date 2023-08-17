@@ -16,6 +16,7 @@ dayjs.extend(calendar)
 export const DemosList = ({ demos, setDemoState }) => {
     const [openEditModal, setOpenEditModal] = useState(false)
     const [openModalToAddCredits, setOpenModalToAddCredits] = useState(false);
+    const [openModalToShowErrors, setOpenModalToShowErrors] = useState(false);
     const [openModalToShowAuth, setOpenModalToShowAuth] = useState(false);
     const [user, setUser] = useState({});
     const [deleteDemo, loadingDeleteDemo] = useFetchApi({
@@ -59,6 +60,8 @@ export const DemosList = ({ demos, setDemoState }) => {
                                         setUser(demo);
                                         setOpenModalToAddCredits(true)
                                     }} />
+
+
                                     {demo.auth &&
                                         <div className="option" onClick={() => {
                                             setOpenModalToShowAuth(true)
@@ -70,6 +73,13 @@ export const DemosList = ({ demos, setDemoState }) => {
                                         setUser(demo);
                                         setOpenEditModal(true)
                                     }} />
+                                    {demo.error &&
+                                        <div className="option" onClick={() => {
+                                            setOpenModalToShowErrors(true)
+                                            setUser(demo);
+                                        }}>
+                                            <i className="fa-solid fa-triangle-exclamation text-danger"></i>
+                                        </div>}
                                 </div>
                             </div>
                         </div>
@@ -89,6 +99,15 @@ export const DemosList = ({ demos, setDemoState }) => {
                 openModalToAddCredits &&
                 <Modal title='Pasar a usuarios' setOpenModal={setOpenModalToAddCredits}>
                     <AddCreditToDemo setDemoState={setDemoState} setOpenModal={setOpenModalToAddCredits} user={user} />
+                </Modal>
+            }
+
+            {
+                openModalToShowErrors &&
+                <Modal title='Pasar a usuarios' setOpenModal={setOpenModalToShowErrors}>
+                    <div className="alert alert-danger">
+                        {user.type}{user.error.message}
+                    </div>
                 </Modal>
             }
 
