@@ -89,10 +89,12 @@ export const DemosList = ({ demos, setDemoState }) => {
 
             {openEditModal &&
                 <Modal title="Delete demo" setOpenModal={setOpenEditModal}>
-                    <DeleteConfirm state={setDemoState} exec={deleteDemo} setOpenModal={setOpenEditModal}>
+                    <DeleteConfirm id={user._id} state={setDemoState} exec={deleteDemo} setOpenModal={setOpenEditModal}>
                         <span>Estas Seguro que quires eliminar a </span>
                         <span className='text-danger fw-bold'>{user.email}?</span>
                     </DeleteConfirm>
+
+
                 </Modal>}
 
             {

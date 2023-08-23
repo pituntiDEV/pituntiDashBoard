@@ -30,7 +30,7 @@ export const PlexOptions = ({ formData, setFormData, onChange }) => {
                 <div className="plex-options">
                     <div className="plex-option">
                         <label htmlFor="deleteDays">Eliminar usuarios despues de vencido en (dias)</label>
-                        <input min={0} type="text" value={formData.deleteDays} onChange={onChange} name="deleteDays" placeholder='Dejar en blaco para no eliminar' />
+                        <input min={0} type="number" value={formData.deleteDays} onChange={onChange} name="deleteDays" placeholder='Dejar en blaco para no eliminar' />
                     </div>
                     <div className="deleteLibs plex-option">
                         <label htmlFor="">Quitar librerias despues de vencido (dias)</label>
