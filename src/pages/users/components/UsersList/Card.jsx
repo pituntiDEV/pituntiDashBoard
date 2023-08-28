@@ -4,14 +4,15 @@ import utils from "../../../../utils/date/index"
 import { DropDown } from '../../../../components/DropDown/DropDown';
 import { Options } from './Options';
 import { ShowErrors } from './components/ShowErrors/ShowErrors';
-export const Card = ({ user, setUsers, users }) => {
+export const Card = ({ user, setUsers, users, lang }) => {
+    const langPage = lang.pages.users.card;
     const expireAt = utils.formatDate(user.expireAt)
     const isExpired = utils.isExpired(user.expireAt);
     return (
         <div className='plex-user-card'>
             <div className={`card-header ${isExpired && "expired"}`}>
                 <span className='email'>{user.email}</span>
-                {user.error && <ShowErrors user={user} />}
+                {user.error && <ShowErrors isExpired={isExpired} user={user} />}
                 <div className="img">
                     <img loading='lazy' src={user.data[0]?.invited?.thumb || user.data?.invited?.thumb || user.thumb} alt="" />
                 </div>
@@ -19,7 +20,7 @@ export const Card = ({ user, setUsers, users }) => {
             {/* Body */}
 
             <div className="card-body">
-                <DropDown icon={<i className="fa-solid fa-circle-info"></i>} className='btn btn-secondary drop' title='Mas Info'>
+                <DropDown icon={<i className="fa-solid fa-circle-info"></i>} className='btn btn-secondary drop' title={langPage.moreInfo}>
                     <div className="card-body-container">
 
                         <div className="name info"><i className="fa-solid fa-id-card"></i><span>{user.name}</span></div>
@@ -38,7 +39,7 @@ export const Card = ({ user, setUsers, users }) => {
                 </DropDown>
             </div>
             <div className="card-footer">
-                <Options user={user} />
+                <Options lang={lang} user={user} />
             </div>
         </div>
     )

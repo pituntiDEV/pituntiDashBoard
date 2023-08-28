@@ -4,7 +4,9 @@ import { useGetPlexUsersSellersEmail } from '../../../../hook/plex/useGetPlexUse
 import { useContext } from 'react'
 import { Context } from '../../PlexUsersContext'
 import { useGetAllServers } from '../../../../hook/plex/useGetAllServers'
-export const FilterBar = ({ users, setFilterValue }) => {
+export const FilterBar = ({ users, lang, setFilterValue }) => {
+    const langPage = lang.pages.users.filters;
+
     const { users: allUsers } = useContext(Context);
     const [sellerEmail] = useGetPlexUsersSellersEmail(allUsers);
     const [servers] = useGetAllServers();
@@ -19,11 +21,11 @@ export const FilterBar = ({ users, setFilterValue }) => {
             </div>
             <div className="plex-filters">
                 <div className="plex-filter">
-                    <input type="text" name="nameOrEmail" placeholder="Name or Email" onChange={onChange} />
+                    <input type="text" name="nameOrEmail" placeholder={langPage.nameOrEmail} onChange={onChange} />
                 </div>
                 <div className="plex-filter">
                     <select onChange={onChange} name="seller" id="" defaultValue={''}>
-                        <option value="" >Todos los vendedores</option>
+                        <option value="" >{langPage.allSellers}</option>
                         {sellerEmail.map(seller => {
                             return (
                                 <option key={seller} value={seller}>{seller}</option>
@@ -34,9 +36,9 @@ export const FilterBar = ({ users, setFilterValue }) => {
                 </div>
                 <div className="plex-filter">
                     <select name="state" defaultValue={""} placeholder="State" onChange={onChange}>
-                        <option value="">Todos los estados</option>
-                        <option value="active">Activos</option>
-                        <option value="expired">Vencidos</option>
+                        <option value="">{langPage.allStates}</option>
+                        <option value="active">{langPage.active}</option>
+                        <option value="expired">{langPage.expired}</option>
                     </select>
                 </div>
                 <div className="plex-filter">
@@ -45,7 +47,7 @@ export const FilterBar = ({ users, setFilterValue }) => {
 
                 <div className="plex-filter">
                     <select onChange={onChange} defaultValue={""} name="server" id="server">
-                        <option value="">Todos los servers</option>
+                        <option value="">{langPage.allServers}</option>
                         {
                             servers.map(server => {
                                 return (

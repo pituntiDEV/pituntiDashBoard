@@ -4,15 +4,15 @@ import Modal from '../../../../../../components/modal/Modal'
 import { AddCreditsForm } from './AddCreditsForm'
 import { CoinPlusIcon } from '../../../../../../components/icons/InputWithIcon/CoinPlusIcon'
 
-export const AddCredits = ({ user }) => {
+export const AddCredits = ({ user, langPage }) => {
     const [openModal, setOpenModal] = useState(false);
 
     return (
         <>
             <CoinPlusIcon onClick={() => setOpenModal(true)} />
             {openModal &&
-                <Modal title="Agregar creditos" setOpenModal={setOpenModal}>
-                    <AddCreditsForm setOpenModal={setOpenModal} user={user} />
+                <Modal title={langPage.addCredits} setOpenModal={setOpenModal}>
+                    <AddCreditsForm langPage={langPage} setOpenModal={setOpenModal} user={user} />
                 </Modal>}
         </>
     )

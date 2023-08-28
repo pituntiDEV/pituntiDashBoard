@@ -1,0 +1,115 @@
+{
+    "eng": {
+        "form": {
+            "addCredits": "Add Credits",
+            "changeServer": "Change Server",
+            "deleteUser": "Delete user",
+            "packages": "Packages",
+            "name": "Name",
+            "email": "Email",
+            "comments": "Comments",
+            "expireAt": "ExpireAt",
+            "connections": "Connections",
+            "credits": "Credits",
+            "month": "Month",
+            "removeLibs": "Remove libraries after expiration (DAYS)",
+            "deleteAt": "Delete after expired (DAYS)",
+            "buttons": {
+                "cancel": "Cancel"
+            },
+            "info": {
+                "seller": "Seller",
+                "libraies": "Libraries",
+                "totalServers": "Total servers"
+            },
+            "messages": {
+                "deleteConfirm": "Are you sure you want to remove"
+            },
+            "btnSubmit": {
+                "add": "Add",
+                "send": "Send",
+                "edit": "Edit",
+                "change": "Change",
+                "confirm": "Yes, Delete"
+            }
+        },
+        "pages": {
+            "users": {
+                "title": "Users",
+                "buttons": {
+                    "btnAddUser": "Add User",
+                    "btnCreateUser": "Create User"
+                },
+                "filters": {
+                    "nameOrEmail": "Name or Email",
+                    "allSellers": "All Sellers",
+                    "allStates": "All States",
+                    "active": "Active",
+                    "expired": "Expired",
+                    "allServers": "All Servers"
+                },
+                "card": {
+                    "moreInfo": "More info",
+                    "options": {
+                        "edit": "Edit"
+                    }
+                }
+            }
+        }
+    },
+    "esp": {
+        "form": {
+            "addCredits": "Agregar créditos",
+            "changeServer": "Cambiar server",
+            "deleteUser": "Eliminar usuario",
+            "packages": "Paquetes",
+            "name": "Nombre",
+            "email": "Email",
+            "comments": "Comentarios",
+            "expireAt": "Expira en",
+            "connections": "Conexiones",
+            "credits": "Créditos",
+            "month": "Mes",
+            "removeLibs": "Quitar librerías después de vencido (DIAS)",
+            "deleteAt": "Eliminar después de vencido (DIAS)",
+            "buttons": {
+                "cancel": "Cancelar"
+            },
+            "info": {
+                "seller": "Vendedor",
+                "libraies": "Librarías",
+                "totalServers": "Total servers"
+            },
+            "messages": {
+                "deleteConfirm": "Seguro que quieres eliminar a"
+            },
+            "btnSubmit": {
+                "add": "Agregar",
+                "send": "Enviar",
+                "edit": "Editar",
+                "change": "Cambiar",
+                "confirm": "Si, Eliminar"
+            }
+        },
+        "pages": {
+            "users": {
+                "title": "Usuarios",
+                "buttons": {
+                    "btnAddUser": "Agregar usuarios",
+                    "btnCreateUser": "Crear usuario"
+                },
+                "filters": {
+                    "nameOrEmail": "Nombre o email",
+                    "allSellers": "Todos los vendedores",
+                    "allStates": "Todos los estados",
+                    "active": "Activo",
+                    "expired": "Vencidos",
+                    "allServers": "Todos los servers"
+                },
+                "card": {
+                    "moreInfo": "Mas info"
+                }
+            }
+        }
+    }
+}

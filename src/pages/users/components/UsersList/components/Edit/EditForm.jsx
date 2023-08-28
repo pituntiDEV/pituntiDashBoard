@@ -5,7 +5,8 @@ import { Context } from '../../../../PlexUsersContext';
 import { OnlyAdminOptions } from './OnlyAdminOptions';
 import SWAlert from '../../../../../../components/SwAlert/SWAlert';
 
-export const EditForm = ({ user, setOpenModal }) => {
+export const EditForm = ({ user, setOpenModal, langPage }) => {
+    console.log(langPage);
     const [formData, setFormData] = useState({ ...user });
     const { users, setUsers } = useContext(Context);
 
@@ -37,7 +38,7 @@ export const EditForm = ({ user, setOpenModal }) => {
     return (
         <form onSubmit={submit}>
             <div className="form__group">
-                <label htmlFor="name">Name:</label>
+                <label htmlFor="name">{langPage.name}:</label>
                 <input type="text" onChange={onChange} name="name" value={formData.name || ""} />
             </div>
 
@@ -47,14 +48,14 @@ export const EditForm = ({ user, setOpenModal }) => {
             </div>
 
             <div className="form__group">
-                <label htmlFor="comments">Comentarios:</label>
+                <label htmlFor="comments">{langPage.comments}:</label>
                 <input type="text" onChange={onChange} name="comments" value={formData.comments || ""} />
             </div>
 
-            <OnlyAdminOptions onChange={onChange} formData={formData} user={user} />
+            <OnlyAdminOptions langPage={langPage} onChange={onChange} formData={formData} user={user} />
 
             <div className="d-flex gap-3">
-                <button className='btn btn-primary'>Enviar</button>
+                <button className='btn btn-primary'>{langPage.btnSubmit.edit}</button>
             </div>
 
 

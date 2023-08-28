@@ -7,8 +7,10 @@ import { Card } from './Card';
 import { FilterBar } from './FilterBar';
 import "./UsersList.scss";
 import { Spinner } from '../../../../components/Spinner/Spinner';
+import { appContext } from '../../../../context/AppContext';
 
 export const UsersList = () => {
+    const { lang } = useContext(appContext)
 
     const [filterValue, setFilterValue] = useState({
         nameOrEmail: "",
@@ -22,7 +24,7 @@ export const UsersList = () => {
     return (
         <div className='users-list'>
             <div className="filter-bar">
-                <FilterBar users={users} setFilterValue={setFilterValue} />
+                <FilterBar lang={lang} users={users} setFilterValue={setFilterValue} />
             </div>
             {
                 loading ? <Spinner />
@@ -31,7 +33,7 @@ export const UsersList = () => {
                         {
                             users.map(user => {
                                 const props = { user, users, setUsers }
-                                return <Card key={user._id} {...props} />
+                                return <Card lang={lang} key={user._id} {...props} />
                             })
                         }
                     </div>

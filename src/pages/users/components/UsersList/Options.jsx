@@ -11,16 +11,18 @@ import { AddCredits } from './components/AddCredits/AddCredits';
 import { ChangePlexServer } from './components/ChangeServers/ChangePlexServer';
 import Modal from '../../../../components/modal/Modal';
 import { MoreInfo } from './components/MoreInfo';
-export const Options = ({ user }) => {
+export const Options = ({ user, lang }) => {
+    const langPage = lang.form;
+
     const [openAuthModal, setOpenAuthModal] = useState(false);
     return (
         <>
             <div className='card-options'>
                 <div className="option">
-                    <Edit user={user} />
+                    <Edit langPage={langPage} user={user} />
                 </div>
                 <div className="option coin">
-                    <AddCredits user={user} />
+                    <AddCredits langPage={langPage} user={user} />
                 </div>
 
                 {user.auth &&
@@ -43,11 +45,11 @@ export const Options = ({ user }) => {
             </div> */}
 
                 <div className="option">
-                    <ChangePlexServer user={user} />
+                    <ChangePlexServer langPage={langPage} user={user} />
                 </div>
 
                 <div className="option remove">
-                    <Delete user={user} />
+                    <Delete langPage={langPage} user={user} />
                 </div>
 
                 <div className="option">

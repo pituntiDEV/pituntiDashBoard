@@ -5,13 +5,19 @@ import useFetchApi from '../hook/useFetchApi';
 import { useGetPlexSharedServers } from '../hook/plex/useGetPlexSharedServers';
 import { useGetMyPlexServers } from '../hook/plex/useGetMyPlexServers';
 import socketIOClient from 'socket.io-client';
+import languages from "../lang/lang.json";
 
 export const appContext = React.createContext();
+
 const socketIO = socketIOClient(process.env.REACT_APP_IO_URL, { query: { token: localStorage.getItem("access-token") } });
 
 
 
 export const AppContext = ({ children }) => {
+
+
+  const [lang, setLang] = useState(languages[localStorage.getItem("lang")] || languages["esp"]);
+
   const [wsData, setWsData] = useState("");
 
   useEffect(() => {
@@ -110,7 +116,9 @@ export const AppContext = ({ children }) => {
     },
     socket: socketIO,
     socketConnected,
-    wsData
+    wsData,
+    lang,
+    setLang
   }
 
   return (

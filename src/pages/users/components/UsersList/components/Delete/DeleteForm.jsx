@@ -5,7 +5,7 @@ import { Context } from '../../../../PlexUsersContext'
 import SWAlert from '../../../../../../components/SwAlert/SWAlert'
 import { ForzeDelete } from '../../../../../plex/components/ForzeDelete/ForzeDelete'
 
-export const DeleteForm = ({ user, setOpenModal }) => {
+export const DeleteForm = ({ user, setOpenModal, langPage }) => {
     const { users, setUsers } = useContext(Context);
     const [deleteUser] = useFetchApi({
         url: `/api/plex/v2/users/${user._id}`,
@@ -31,13 +31,13 @@ export const DeleteForm = ({ user, setOpenModal }) => {
     return (
         <form onSubmit={submit}>
             <div className="alert alert-danger">
-                Seguro que quieres eliminar a {user.email}?
+                {langPage.messages.deleteConfirm} {user.email}?
             </div>
 
             <div className="d-flex gap-3">
 
                 <button className='btn btn-danger'>
-                    Si, Eliminar
+                    {langPage.btnSubmit.confirm}
                 </button>
 
                 <ForzeDelete id={user._id} users={users} setUsers={setUsers} setOpenModal={setOpenModal} />

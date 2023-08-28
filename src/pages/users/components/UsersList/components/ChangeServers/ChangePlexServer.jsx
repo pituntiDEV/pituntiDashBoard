@@ -4,14 +4,14 @@ import Modal from '../../../../../../components/modal/Modal'
 import { ChangePlexServerForm } from './ChangePlexServerForm'
 import { useState } from 'react'
 
-export const ChangePlexServer = ({ user }) => {
+export const ChangePlexServer = ({ user, langPage }) => {
     const [openModal, setOpenModal] = useState(false)
     return (
         <>
             <ServerIcon onClick={() => setOpenModal(true)} />
             {openModal &&
-                <Modal title='Cambiar Server' setOpenModal={setOpenModal}>
-                    <ChangePlexServerForm setOpenModal={setOpenModal} user={user} />
+                <Modal title={langPage.changeServer} setOpenModal={setOpenModal}>
+                    <ChangePlexServerForm langPage={langPage} setOpenModal={setOpenModal} user={user} />
                 </Modal>
             }
 

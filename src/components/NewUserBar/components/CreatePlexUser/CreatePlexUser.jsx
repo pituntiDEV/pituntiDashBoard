@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Modal from '../../../modal/Modal';
 import { CreatePlexUserForm } from './components/CreatePlexUserForm';
 
-export const CreatePlexUser = () => {
+export const CreatePlexUser = ({ lang }) => {
   const [openModal, setOpenModal] = useState(false)
   return (
     <>
@@ -11,7 +11,7 @@ export const CreatePlexUser = () => {
           setOpenModal(true);
         }}>
           <i className="fa-solid fa-file-circle-plus"></i>
-          Crear nuevo usuario
+          {lang.pages.users.buttons.btnCreateUser}
         </button>
       </div>
       {openModal &&

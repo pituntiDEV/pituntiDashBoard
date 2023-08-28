@@ -6,7 +6,8 @@ import useFetchApi from '../../../../../../hook/useFetchApi';
 import { Context } from '../../../../PlexUsersContext';
 import SWAlert from '../../../../../../components/SwAlert/SWAlert';
 import { useTakeOffPlexCredits } from '../../../../../../hook/plex/useTakeOffPlexCredits';
-export const AddCreditsForm = ({ user, setOpenModal }) => {
+export const AddCreditsForm = ({ user, setOpenModal, langPage }) => {
+
 
     const isAdmin = localStorage.getItem("_id") == user.admin._id;
     //Contex
@@ -57,11 +58,11 @@ export const AddCreditsForm = ({ user, setOpenModal }) => {
             {isAdmin ? <>
                 <div className="options">
                     <div className="option">
-                        <label htmlFor="connections">Conexiones:</label>
+                        <label htmlFor="connections">{langPage.connections}:</label>
                         <input type="number" min={1} onChange={onChange} value={formData.connections} required name="connections" id="connections" />
                     </div>
                     <div className="option">
-                        <label htmlFor="credits">Mes:</label>
+                        <label htmlFor="credits">{langPage.credits}:</label>
                         <input type="number" min={1} onChange={onChange} value={formData.credits} required name="credits" id="credits" />
                     </div>
                 </div>
@@ -70,7 +71,7 @@ export const AddCreditsForm = ({ user, setOpenModal }) => {
             }
 
             <div className="d-flex gap-3">
-                <button className='btn btn-primary'>Agregar</button>
+                <button className='btn btn-primary'>{langPage.btnSubmit.add}</button>
             </div>
         </form>
     )

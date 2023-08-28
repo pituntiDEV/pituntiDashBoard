@@ -8,8 +8,12 @@ import "./NewUserBar.scss";
 import { NewUserFormV2 } from '../../pages/users/NewUser/v2/NewUserFormV2';
 import { useContext } from 'react';
 import { Context } from '../../pages/users/PlexUsersContext';
+import { appContext } from '../../context/AppContext';
 export const NewUserBar = ({ }) => {
-  const { users } = useContext(Context)
+  const { users } = useContext(Context);
+  const { lang } = useContext(appContext);
+
+
   //State
   const [openModal, setOpenModal] = useState(false);
   return (
@@ -17,20 +21,20 @@ export const NewUserBar = ({ }) => {
       <div className="num-users">
         <p> <i className="fa-solid fa-users"></i> Total</p>
         <span>{users.length}</span>
-        <p>Usuarios</p>
+        <p>{lang.pages.users.title}</p>
       </div>
 
 
       <div className='newUserBtn'>
 
 
-        <CreatePlexUser />
+        <CreatePlexUser lang={lang} />
         <div>
           <button className='btn-add' onClick={() => {
             setOpenModal(true);
           }}>
             <i className="fa-solid fa-user-plus"></i>
-            Agregar nuevo usuario
+            {lang.pages.users.buttons.btnAddUser}
           </button>
         </div>
       </div>

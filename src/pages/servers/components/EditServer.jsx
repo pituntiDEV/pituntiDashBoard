@@ -7,8 +7,9 @@ import useFetchApi from '../../../hook/useFetchApi';
 export const EditServer = ({ server, setOpenModal }) => {
     const [formData, setFormData] = useState({
         limit: server.limit ? server.limit : null,
-        noTrascodeQuality: { ...server.noTrascodeQuality } || {}
+        noTranscodeQuality: [...server.noTranscodeQuality] || []
     })
+
 
     const [editServer, loading] = useFetchApi({
         url: `/api/server/${server._id}`,
@@ -16,12 +17,17 @@ export const EditServer = ({ server, setOpenModal }) => {
     })
 
     const onChangeCheckbox = (e) => {
-        if (e.target.checked) {
-            setFormData({ ...formData, noTrascodeQuality: { ...formData.noTrascodeQuality, [e.target.name]: true } })
-        } else {
-            setFormData({ ...formData, noTrascodeQuality: { ...formData.noTrascodeQuality, [e.target.name]: false } })
-        }
+        const title = e.target.name;
+        const index = formData.noTranscodeQuality.findIndex(t => t == title);
 
+
+        if (e.target.checked && !!index) {
+            const updated = [...formData.noTranscodeQuality, title]
+            setFormData({ ...formData, noTranscodeQuality: updated });
+        } else {
+            const updated = formData.noTranscodeQuality.filter(t => t != title);
+            setFormData({ ...formData, noTranscodeQuality: updated });
+        }
     }
     const submit = (e) => {
         e.preventDefault();
@@ -56,8 +62,13 @@ export const EditServer = ({ server, setOpenModal }) => {
             <div className="form__group">
                 <div className="">
 
-                    <input type="checkbox" name="4k" checked={formData.noTrascodeQuality["4k"]} onChange={onChangeCheckbox} />
-                    <label htmlFor="limit">Negar Transcoding 4k (WEBHOOKS):</label>
+                    <input type="checkbox" name="4K" checked={formData.noTranscodeQuality.includes("4K")} onChange={onChangeCheckbox} />
+                    <label htmlFor="limit">Negar Transcoding 4K (WEBHOOKS):</label>
+                </div>
+                <div className="">
+
+                    <input type="checkbox" name="1080" checked={formData.noTranscodeQuality.includes("1080")} onChange={onChangeCheckbox} />
+                    <label htmlFor="limit">Negar Transcoding 1080p (WEBHOOKS):</label>
                 </div>
             </div>
             <div className="d-flex gap-3">

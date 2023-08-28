@@ -12,7 +12,7 @@ import { BtnPrimary } from '../../../../../../components/Buttons/BtnSucess/BtnPr
 import { BtnSecondary } from '../../../../../../components/Buttons/BtnSucess/BtnSecondary';
 import { appContext } from '../../../../../../context/AppContext';
 
-export const ChangePlexServerForm = ({ user, setOpenModal }) => {
+export const ChangePlexServerForm = ({ user, setOpenModal, langPage }) => {
 
 
     const [formData, setFormData] = useState([]);
@@ -110,7 +110,7 @@ export const ChangePlexServerForm = ({ user, setOpenModal }) => {
                         <div className='server' key={server._id}>
 
                             <div className="name">
-                                {server.data.name} - Paquetes:
+                                {server.data.name} - {langPage.packages}:
                             </div>
                             <div className="packs">
                                 {
@@ -136,8 +136,8 @@ export const ChangePlexServerForm = ({ user, setOpenModal }) => {
                     <Spinner />
                 </div> :
                 <div className="d-flex gap-3">
-                    <BtnPrimary title="Editar" />
-                    <BtnSecondary title="Cancelar" type="button" onClick={() => { }} />
+                    <BtnPrimary title={langPage.btnSubmit.change} />
+                    <BtnSecondary title={langPage.buttons.cancel} type="button" onClick={() => { }} />
                 </div>
             }
         </form>
