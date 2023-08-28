@@ -4,6 +4,7 @@ import utils from "../../../../utils/date/index"
 import { DropDown } from '../../../../components/DropDown/DropDown';
 import { Options } from './Options';
 import { ShowErrors } from './components/ShowErrors/ShowErrors';
+import { WhatsappIcon } from '../../../../components/icons/WhatsappIcon';
 export const Card = ({ user, setUsers, users, lang }) => {
     const langPage = lang.pages.users.card;
     const expireAt = utils.formatDate(user.expireAt)
@@ -12,6 +13,13 @@ export const Card = ({ user, setUsers, users, lang }) => {
         <div className='plex-user-card'>
             <div className={`card-header ${isExpired && "expired"}`}>
                 <span className='email'>{user.email}</span>
+                {user.whatsapp &&
+                    <div className="whatsApp">
+
+                        <a href={`https://api.whatsapp.com/send?phone=${user.whatsapp}&text=*`}> <WhatsappIcon /></a>
+                    </div>
+                }
+
                 {user.error && <ShowErrors isExpired={isExpired} user={user} />}
                 <div className="img">
                     <img loading='lazy' src={user.data[0]?.invited?.thumb || user.data?.invited?.thumb || user.thumb} alt="" />
