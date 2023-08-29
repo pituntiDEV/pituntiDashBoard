@@ -6,7 +6,6 @@ import { OnlyAdminOptions } from './OnlyAdminOptions';
 import SWAlert from '../../../../../../components/SwAlert/SWAlert';
 
 export const EditForm = ({ user, setOpenModal, langPage }) => {
-    console.log(langPage);
     const [formData, setFormData] = useState({ ...user });
     const { users, setUsers } = useContext(Context);
 
@@ -52,7 +51,7 @@ export const EditForm = ({ user, setOpenModal, langPage }) => {
                 <input type="text" onChange={onChange} name="comments" value={formData.comments || ""} />
             </div>
 
-            <OnlyAdminOptions langPage={langPage} onChange={onChange} formData={formData} user={user} />
+            <OnlyAdminOptions setFormData={setFormData} langPage={langPage} onChange={onChange} formData={formData} user={user} />
 
             <div className="d-flex gap-3">
                 <button className='btn btn-primary'>{langPage.btnSubmit.edit}</button>
