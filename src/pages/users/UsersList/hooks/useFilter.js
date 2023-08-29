@@ -47,7 +47,7 @@ const filterByNameAndEmail = (user, input) => {
 //Filter By Seller
 const filterBySeller = (user, seller) => {
     if (seller) {
-        return user.seller.email.toLowerCase().includes(seller.toLowerCase());
+        return user?.seller?.email.toLowerCase().includes(seller.toLowerCase());
     } else {
         return user;
     }
