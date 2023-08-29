@@ -24,7 +24,7 @@ export const useFilter = (filterValues) => {
                 return filterByExpireDate(user, byExpireDay)
             })
             .filter(user => {
-                return filterByServer(user, server)
+                return filterByServer(user, server);
             })
         setUsersFiltered(usersFilteredData);
 
