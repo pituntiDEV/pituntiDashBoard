@@ -24,7 +24,7 @@ export const useFilter = (filterValues) => {
                 return filterByExpireDate(user, byExpireDay)
             })
             .filter(user => {
-                return filterByServer(user, server);
+                return filterByServer(user, server)
             })
         setUsersFiltered(usersFilteredData);
 
@@ -47,7 +47,7 @@ const filterByNameAndEmail = (user, input) => {
 //Filter By Seller
 const filterBySeller = (user, seller) => {
     if (seller) {
-        return user?.seller?.email.toLowerCase().includes(seller.toLowerCase());
+        return user.seller.email.toLowerCase().includes(seller.toLowerCase());
     } else {
         return user;
     }

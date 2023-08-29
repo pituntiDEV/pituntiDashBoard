@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import utils from "../../../../../../utils/date/index"
 import { useGetSellersByUsers } from '../../../../../../hook/useGetSellersByUsers';
 import { Context } from '../../../../PlexUsersContext';
@@ -6,7 +6,10 @@ import { Context } from '../../../../PlexUsersContext';
 export const OnlyAdminOptions = ({ user, onChange, formData, setFormData, langPage }) => {
     const isAdmin = user.admin._id == localStorage.getItem("_id");
     const { users } = useContext(Context);
-    const [, sellers] = useGetSellersByUsers(users);
+    const [getSelllers, sellers] = useGetSellersByUsers(users);
+    useEffect(() => {
+        getSelllers();
+    }, [users])
 
     const onChangeSeller = (e) => {
         const sellerToJson = JSON.parse(e.target.value)
@@ -24,7 +27,7 @@ export const OnlyAdminOptions = ({ user, onChange, formData, setFormData, langPa
 
             <div className="form__group">
                 <label htmlFor="expireAt">{langPage.info.seller || "Vendedord"}</label>
-                <select name="seller" onChange={onChangeSeller}>
+                <select defaultValue={user.seller._id} name="seller" onChange={onChangeSeller}>
                     {
                         sellers.map(seller => {
                             return <option key={seller._id} value={JSON.stringify(seller)} selected={user.seller._id == seller._id}>{seller.email}</option>
