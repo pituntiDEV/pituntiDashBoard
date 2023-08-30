@@ -79,10 +79,11 @@
                     display: flex;
                     justify-content: center;
                     align-items: center;
+                    border: 1px solid rgb(36, 92, 117);
 
                     &:hover {
                         transform: scale(1.2);
-                        border: 2px solid rgb(36, 92, 117);
+                        border: 2px solid rgb(46, 47, 48);
                         cursor: pointer;
                     }
                 }
