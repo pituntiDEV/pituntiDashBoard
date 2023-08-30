@@ -14,6 +14,10 @@ import { EditResellerForm } from './EditResellerForm/EditResellerForm';
 import { ServersAndPackageEdit } from './EditResellerForm/ServersAndPackageEdit/ServersAndPackageEdit';
 import "./ResellerList.scss";
 import { OptionsNotAdmin } from './components/OptionsNotAdmin';
+import { EditReseller } from '../../../pages/resellers/components/EditReseller';
+import { ChangeServers } from '../../../pages/resellers/components/ChangeServers';
+import { AddCredits } from '../../../pages/resellers/components/AddCredits';
+import { DeletePlexReseller } from '../../../pages/resellers/components/DeletePlexReseller';
 export const ResellersList = ({ setResellers, setResellersState, resellers }) => {
     //State
     const [openModal, setOpenModal] = useState(false);
@@ -55,32 +59,21 @@ export const ResellersList = ({ setResellers, setResellersState, resellers }) =>
                                 <div className="controls">
 
                                     {
-                                        !creator && <span className='credits' onClick={() => {
-                                            setOpenModalCredits(true)
-                                            setResellerToEdit(resell)
-                                        }}>
-                                            <span className='total_credits'>{creditAvailable?.length}</span>
-                                            <CoinPlusIcon />
-                                        </span>
+                                        !creator &&
+                                        <AddCredits creditAvailable={creditAvailable} setResellersState={setResellersState} reseller={resell} />
                                     }
 
-                                    {!creator && <span onClick={() => {
-                                        setOpenModalServers(true)
-                                        setResellerToEdit(resell)
-                                    }}><ServerIcon />
-                                    </span>
+                                    {!creator &&
+                                        <ChangeServers setResellersState={setResellersState} reseller={resell} />
                                     }
 
-                                    {!creator && <span onClick={() => {
-                                        setResellerToEdit(resell)
-                                        setOpenModal(true)
-                                    }}><i className="fa-solid fa-user-gear"></i>
-                                    </span>}
+                                    {!creator &&
+                                        < EditReseller setResellersState={setResellersState} reseller={resell} />
+                                    }
 
-                                    {!creator && <span className='text-danger' onClick={() => {
-                                        setResellerToEdit(resell)
-                                        setOpenModalDelete(true)
-                                    }}><TrashIcon></TrashIcon></span>
+
+                                    {!creator &&
+                                        <DeletePlexReseller setResellersState={setResellersState} reseller={resell} />
                                     }
 
                                     {/* Optiones para resellers de los resellers */}
@@ -89,23 +82,7 @@ export const ResellersList = ({ setResellers, setResellersState, resellers }) =>
                                 </div>
 
 
-                                {openModal &&
-                                    <Modal title={`Reseller Config: ${resellerToEdit.reseller.name}`} setOpenModal={setOpenModal}>
-                                        <EditResellerForm setResellersState={setResellersState} setOpenModal={setOpenModal} reseller={resellerToEdit} />
-                                    </Modal>
-                                }
 
-                                {openModalServers &&
-                                    <Modal title={`Reseller Servers: ${resellerToEdit.reseller.name}`} setOpenModal={setOpenModalServers}>
-                                        <ServersAndPackageEdit setResellersState={setResellersState} setOpenModal={setOpenModalServers} reseller={resellerToEdit} />
-                                    </Modal>
-                                }
-
-                                {openModalCredits &&
-                                    <Modal title={`Reseller Credits: ${resellerToEdit.reseller.name}`} setOpenModal={setOpenModalCredits}>
-                                        <CreditsEdit setResellersState={setResellersState} setOpenModal={setOpenModalCredits} reseller={resellerToEdit} />
-                                    </Modal>
-                                }
 
                                 {
                                     openModalDelete &&

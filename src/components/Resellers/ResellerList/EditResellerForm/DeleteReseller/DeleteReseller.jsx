@@ -33,7 +33,7 @@ export const DeleteReseller = ({ setOpenModal, reseller, setResellersState }) =>
         Estas seguro que quires eliminar a
         <span className='text-danger'> {reseller.reseller.email}</span> ?
       </h2>
-      <div className="btns">
+      <div className="btns d-flex gap-3">
         <BtnPrimary onClick={deleteResell} className="bg-danger" title="Si,Eliminar" />
         <BtnSecondary type="button" onClick={() => setOpenModal(false)} title="Cancelar" />
       </div>

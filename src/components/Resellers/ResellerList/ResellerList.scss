@@ -43,8 +43,10 @@
                         display: flex;
                         justify-content: center;
                         align-items: center;
-                        background-color: rgb(73, 71, 71);
-                        border: .5rem solid rgb(52, 203, 52);
+                        background: linear-gradient(to right, rgb(216, 66, 66), rgb(38, 84, 94));
+                        text-transform: capitalize;
+                        border: .5rem solid rgb(204, 209, 204);
+                        font-weight: bold;
 
                     }
 
@@ -69,7 +71,7 @@
                 align-items: center;
                 font-size: 1.5rem;
                 color: rgb(43, 41, 41);
-                background-color: rgb(235, 61, 61);
+                background-color: rgb(235, 139, 61);
 
                 i {
                     background-color: white;

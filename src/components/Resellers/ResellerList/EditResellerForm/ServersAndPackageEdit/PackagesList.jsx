@@ -59,7 +59,7 @@ export const PackagesList = ({ server, resellerToEdit, setResellerToEdit }) => {
                     {packages.map(pack => {
                         const findServer = resellerToEdit.servers.find(s => s.server?._id == server._id);
                         return (
-                            <li className={`package ${findServer.packages.includes(pack._id) && "active"} `} onClick={() => selectPackage(pack)}>--
+                            <li key={pack._id} className={`package ${findServer.packages.includes(pack._id) && "active"} `} onClick={() => selectPackage(pack)}>--
                                 &nbsp;
                                 {findServer.packages.includes(pack._id) ? <CheckIcon className=" pr-1" /> : <CancelIcon className="text-danger pr-1" />}
                                 {pack.name}

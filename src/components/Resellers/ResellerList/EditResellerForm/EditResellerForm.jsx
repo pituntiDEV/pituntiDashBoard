@@ -139,7 +139,7 @@ export const EditResellerForm = ({ reseller, setResellersState, setOpenModal }) 
                 </div>
             </div>
 
-            <div className="buttons_edit">
+            <div className="buttons_edit  d-flex gap-3">
                 <button className="btn btn-primary">Editar</button>
                 <button className="btn btn-secondary">Cancelar</button>
             </div>

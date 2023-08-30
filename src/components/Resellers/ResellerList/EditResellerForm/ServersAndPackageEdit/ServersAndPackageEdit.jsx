@@ -10,9 +10,8 @@ import "./ServersAndPackageEdit.scss";
 export const ServersAndPackageEdit = ({ reseller, setOpenModal, setResellersState }) => {
 
   //State
-  const [resellerToEdit, setResellerToEdit] = useState({ ...reseller, servers: [] });
+  const [resellerToEdit, setResellerToEdit] = useState({ ...reseller });
   const [servers, setServers] = useState([]);
-
 
   //Customs Hooks
   const [getServers, loading] = useFetchApi({
@@ -44,13 +43,11 @@ export const ServersAndPackageEdit = ({ reseller, setOpenModal, setResellersStat
       const newServer = resellerToEdit.servers.filter(s => s.server?._id && s.server._id != server._id);
       setResellerToEdit({ ...resellerToEdit, servers: newServer });
     } else {
-
-      setResellerToEdit({
-        ...resellerToEdit, servers: [...resellerToEdit.servers, {
-          server,
-          packages: []
-        }]
-      });
+      const serversUpdated = [...resellerToEdit.servers, {
+        server,
+        packages: []
+      }]
+      setResellerToEdit({ ...resellerToEdit, servers: serversUpdated });
     }
 
   }
@@ -89,7 +86,7 @@ export const ServersAndPackageEdit = ({ reseller, setOpenModal, setResellersStat
               const { name } = data
               const existe = resellerToEdit.servers.find(s => s.server?._id == server?._id);
               return (
-                <div onClick={() => changeServer(server)} className={`server ${existe && "selected"} `}>
+                <div key={server._id} onClick={() => changeServer(server)} className={`server ${existe && "selected"} `}>
                   {existe && <CheckIcon className="d-inlineblock pr-1" />}
 
                   <ServerIcon />
@@ -102,10 +99,10 @@ export const ServersAndPackageEdit = ({ reseller, setOpenModal, setResellersStat
 
       {
         resellerToEdit.servers.map((server) => {
-          return <PackagesList setResellerToEdit={setResellerToEdit} resellerToEdit={resellerToEdit} server={server.server} />
+          return <PackagesList key={server} setResellerToEdit={setResellerToEdit} resellerToEdit={resellerToEdit} server={server.server} />
         })
       }
-      {!loadingEditReseller ? <div className="btns">
+      {!loadingEditReseller ? <div className="btns d-flex gap-3">
         <button type="submit" className="btn btn-primary">Editar</button>
         <button type="button" onClick={() => setOpenModal(false)} className="btn btn-secondary">Cancelar</button>
       </div>
