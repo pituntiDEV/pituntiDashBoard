@@ -15,7 +15,7 @@ export const OptionsNotAdmin = ({ user, setNewResellerState, creditAvailable }) 
     return (
         <div className='OptionsNotAdmin'>
 
-            <span className='sub_credits' onClick={() => setOpenModalToAddCoins(true)}>
+            <span className='sub_credits credits' onClick={() => setOpenModalToAddCoins(true)}>
                 <span className='total_credits'>{creditAvailable}</span>
 
                 <CoinPlusIcon />

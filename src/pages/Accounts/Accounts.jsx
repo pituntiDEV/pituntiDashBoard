@@ -79,7 +79,7 @@ export const Accounts = () => {
 
             {openModalToEmby &&
                 <Modal title="Nueva cuenta emby" setOpenModal={setOpenModalToEmby}>
-                   <NewEmbyAccountForm setNewAccountState={setNewAccountState} setOpenModal={setOpenModalToEmby}/>
+                    <NewEmbyAccountForm setNewAccountState={setNewAccountState} setOpenModal={setOpenModalToEmby} />
                 </Modal>
             }
         </div>

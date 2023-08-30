@@ -16,9 +16,6 @@ export const Resellers = () => {
     <div className='resellers container'>
       <NewResellerBar setResellersState={setResellersState} setResellers={setResellers} resellers={resellers} onClick={() => setOpenModal(true)} />
 
-      <div className='resellers-new__btn m-2'>
-
-      </div>
 
       <ResellersList setResellersState={setResellersState} setResellers={setResellers} resellers={resellers} />
 

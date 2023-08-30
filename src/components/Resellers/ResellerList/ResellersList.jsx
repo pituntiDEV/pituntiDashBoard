@@ -54,19 +54,22 @@ export const ResellersList = ({ setResellers, setResellersState, resellers }) =>
 
                                 <div className="controls">
 
-                                    {!creator && <span className='credits' onClick={() => {
-                                        setOpenModalCredits(true)
-                                        setResellerToEdit(resell)
-                                    }}>
-                                        <span className='total_credits'>{creditAvailable?.length}</span>
-                                        <CoinPlusIcon />
-                                    </span>}
+                                    {
+                                        !creator && <span className='credits' onClick={() => {
+                                            setOpenModalCredits(true)
+                                            setResellerToEdit(resell)
+                                        }}>
+                                            <span className='total_credits'>{creditAvailable?.length}</span>
+                                            <CoinPlusIcon />
+                                        </span>
+                                    }
 
                                     {!creator && <span onClick={() => {
                                         setOpenModalServers(true)
                                         setResellerToEdit(resell)
                                     }}><ServerIcon />
-                                    </span>}
+                                    </span>
+                                    }
 
                                     {!creator && <span onClick={() => {
                                         setResellerToEdit(resell)
@@ -77,7 +80,8 @@ export const ResellersList = ({ setResellers, setResellersState, resellers }) =>
                                     {!creator && <span className='text-danger' onClick={() => {
                                         setResellerToEdit(resell)
                                         setOpenModalDelete(true)
-                                    }}><TrashIcon></TrashIcon></span>}
+                                    }}><TrashIcon></TrashIcon></span>
+                                    }
 
                                     {/* Optiones para resellers de los resellers */}
                                     {creator &&
