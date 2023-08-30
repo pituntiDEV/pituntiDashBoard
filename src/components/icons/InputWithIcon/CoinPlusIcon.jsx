@@ -12,10 +12,11 @@ const styles = {
   }
 }
 export const CoinPlusIcon = (props) => {
+  const simbol = props.simbol || "+"
   return (
     <div {...props} style={styles.coin__plus__icon}>
-      <CoinsIcon />
-      <span style={styles.plus}>+</span>
+      <CoinsIcon simbol={simbol} />
+      <span style={styles.plus}>{simbol}</span>
     </div>
   )
 }

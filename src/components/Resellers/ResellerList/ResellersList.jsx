@@ -18,6 +18,7 @@ import { EditReseller } from '../../../pages/resellers/components/EditReseller';
 import { ChangeServers } from '../../../pages/resellers/components/ChangeServers';
 import { AddCredits } from '../../../pages/resellers/components/AddCredits';
 import { DeletePlexReseller } from '../../../pages/resellers/components/DeletePlexReseller';
+import { ReduceCredits } from '../../../pages/resellers/components/ReduceCredits';
 export const ResellersList = ({ setResellers, setResellersState, resellers }) => {
     //State
     const [openModal, setOpenModal] = useState(false);
@@ -61,6 +62,11 @@ export const ResellersList = ({ setResellers, setResellersState, resellers }) =>
                                     {
                                         !creator &&
                                         <AddCredits creditAvailable={creditAvailable} setResellersState={setResellersState} reseller={resell} />
+                                    }
+
+                                    {
+                                        !creator &&
+                                        <ReduceCredits creditAvailable={creditAvailable} setResellersState={setResellersState} reseller={resell} />
                                     }
 
                                     {!creator &&
