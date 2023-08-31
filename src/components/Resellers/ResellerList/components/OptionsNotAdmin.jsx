@@ -5,6 +5,7 @@ import { RemoveReseller } from './RemoveReseller';
 import { CoinPlusIcon } from '../../../icons/InputWithIcon/CoinPlusIcon';
 import { AddCoins } from './AddCoins';
 import "./OptionsNotAdmin.scss";
+import { ReduceCredits } from '../../../../pages/resellers/components/ReduceCredits';
 
 
 export const OptionsNotAdmin = ({ user, setNewResellerState, creditAvailable }) => {
@@ -20,6 +21,8 @@ export const OptionsNotAdmin = ({ user, setNewResellerState, creditAvailable }) 
 
                 <CoinPlusIcon />
             </span>
+
+            <span> <ReduceCredits creditAvailable={creditAvailable} setResellersState={setNewResellerState} reseller={user} /></span>
 
             <span className='text-danger' onClick={() => setOpenModalToRemove(true)}>
                 <TrashIcon />
