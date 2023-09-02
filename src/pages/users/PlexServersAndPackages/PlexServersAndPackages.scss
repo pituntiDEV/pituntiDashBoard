@@ -16,12 +16,14 @@
                 grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
 
                 gap: 1rem;
+                margin: 1rem 0;
 
                 .pk {
                     text-align: center;
                     display: flex;
                     align-items: center;
                     font-weight: bold;
+                    color: black;
 
                     .separator {
                         width: auto;
