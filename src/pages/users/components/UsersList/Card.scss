@@ -2,7 +2,7 @@
     background-color: var(--color-gray-dark);
     margin: 1rem;
     border-radius: 1rem;
-    overflow: hidden;
+
     position: relative;
 
     .card-header {
@@ -16,6 +16,8 @@
         border-bottom-right-radius: 10rem;
         border-bottom: 5px solid #ffffff;
         position: relative;
+        border-top-left-radius: 1rem;
+        border-top-right-radius: 1rem;
 
 
         &.expired {
@@ -25,12 +27,13 @@
         .email {
             color: white;
             font-weight: bold;
+            word-break: break-all;
+            font-size: 1.5rem;
 
         }
 
         .whatsApp {
-            background: rgb(23, 22, 22);
-            margin-left: 1rem;
+            background: rgb(245, 242, 242);
             height: 2.5rem;
             width: 2.5rem;
             border-radius: 50%;
@@ -39,8 +42,9 @@
             align-items: center;
             position: absolute;
             right: 0;
-            top: 0;
+            top: -1rem;
             border: solid 3px white;
+            font-size: 2rem;
 
         }
 
