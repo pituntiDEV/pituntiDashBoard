@@ -77,7 +77,7 @@ export const ImgToVideoForm = () => {
             </small>
             <div className="form__group">
                 <label htmlFor="duration">Duración de cada imagen</label>
-                <input onChange={(e) => setDuration(e.target.value)} required min={1} value={duration} type="number" name="duration" id="" />
+                <input onChange={(e) => setDuration(e.target.value)} required min={1} max={5} value={duration} type="number" name="duration" id="" />
             </div>
 
 
