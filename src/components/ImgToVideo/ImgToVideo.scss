@@ -1,4 +1,18 @@
 .img-to-video {
+    .icon {
+        position: relative;
+
+        span {
+            position: absolute;
+            top: -1.3rem;
+            left: -.2rem;
+            color: orange;
+            font-size: 1.3rem;
+            text-shadow: -1px 1px .1rem rgb(194, 0, 0);
+        }
+
+    }
+
     i {
         cursor: pointer;
     }

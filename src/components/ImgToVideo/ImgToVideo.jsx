@@ -7,7 +7,11 @@ export const ImgToVideo = () => {
     const [openModal, setOpenModal] = useState(false)
     return (
         <div className='img-to-video'>
-            <i className="fa-solid fa-clapperboard" onClick={() => setOpenModal(true)}></i>
+            <div className="icon">
+                <span>new</span>
+                <i className="fa-solid fa-clapperboard" onClick={() => setOpenModal(true)}></i>
+
+            </div>
             {openModal &&
                 <Modal setOpenModal={setOpenModal} title='Video Creator'>
                     <ImgToVideoForm />

@@ -7,6 +7,7 @@ const plusIcon = <i className="fa-regular fa-square-plus"></i>
 const chartPieIcon = <i className="fa-solid fa-chart-pie"></i>
 const filterIcon = <i className="fa-solid fa-filter"></i>
 const whatsAppIcon = <i className="fa-brands fa-whatsapp"></i>
+const movieIcon = <i className="fa-solid fa-clapperboard"></i>
 export const Novedades = () => {
     return (
         <div className='novedades'>
@@ -17,6 +18,7 @@ export const Novedades = () => {
             <div className="novedades_list">
 
                 <ol>
+                    <NovedadItem icon={movieIcon} message={"Se agrego la opción para crear tus propios pre-anuncio de video"} />
                     <NovedadItem icon={<TrashIcon />} message={" Se pueden eliminar créditos a los resellers."} />
                     <NovedadItem icon={OnChangeIcon} message={"Se agrego para poder cambiar de vendedor en los usuarios de Plex."} />
                     <NovedadItem icon={whatsAppIcon} message={"Se agrego el icono de WhatsApp en los usuarios de plex."} />
@@ -29,6 +31,7 @@ export const Novedades = () => {
                     <NovedadItem icon={plusIcon} message={"Se agrego la sección de resellers para Emby."} />
                     <NovedadItem icon={whatsAppIcon} message={"Se agrego para poder agregar un campo de WhatsApp en los dispositivos activados por código."} />
                     <NovedadItem icon={plusIcon} message={" Se agrego para permitir si los reseller puedan crear resellers."} />
+
                 </ol>
 
             </div>
