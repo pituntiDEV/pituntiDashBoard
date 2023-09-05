@@ -65,10 +65,22 @@ export const ImgToVideoForm = () => {
         <form onSubmit={submit} className='ImgToVideoForm'>
             <span>URL de tu video:</span>
             <h3 className='fw-bold'>{process.env.REACT_APP_API_URL}/api/imgToVideo/video/{localStorage.getItem("_id")}.mp4</h3>
+
+            <small className='text-muted'>
+                Crea fácilmente tus anuncios y promociones para que tus clientes lo visualicen directamente en plex antes de cada reproducción.
+                <div className="text-dark fw-bold">Instrucciones:</div>
+                <div>1-Ve a plex y abre la configuraciones.</div>
+                <div className=""> 2-Abre la sección extras</div>
+                <div className="">2-Pega la url en Película pre-anuncio de vídeo</div>
+
+
+            </small>
             <div className="form__group">
                 <label htmlFor="duration">Duración de cada imagen</label>
                 <input onChange={(e) => setDuration(e.target.value)} required min={1} value={duration} type="number" name="duration" id="" />
             </div>
+
+
 
             <button type='button' className='btn btn-success' onClick={newImage}>Nueva imagen</button>
 
