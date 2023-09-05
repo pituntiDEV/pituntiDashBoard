@@ -63,8 +63,8 @@ export const ImgToVideoForm = () => {
     }
     return (
         <form onSubmit={submit} className='ImgToVideoForm'>
-            <span>URL:</span>
-            <h3 className='fw-bold'>{process.env.REACT_APP_API_URL}/api/imgToVideo/video/{localStorage.getItem("_id")}</h3>
+            <span>URL de tu video:</span>
+            <h3 className='fw-bold'>{process.env.REACT_APP_API_URL}/api/imgToVideo/video/{localStorage.getItem("_id")}.mp4</h3>
             <div className="form__group">
                 <label htmlFor="duration">Duración de cada imagen</label>
                 <input onChange={(e) => setDuration(e.target.value)} required min={1} value={duration} type="number" name="duration" id="" />
