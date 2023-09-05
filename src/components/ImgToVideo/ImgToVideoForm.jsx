@@ -64,7 +64,7 @@ export const ImgToVideoForm = () => {
     return (
         <form onSubmit={submit} className='ImgToVideoForm'>
             <span>URL:</span>
-            <h3>{process.env.REACT_APP_API_URL}/api/imgToVideo/video/{localStorage.getItem("_id")}</h3>
+            <h3 className='fw-bold'>{process.env.REACT_APP_API_URL}/api/imgToVideo/video/{localStorage.getItem("_id")}</h3>
             <div className="form__group">
                 <label htmlFor="duration">Duración de cada imagen</label>
                 <input onChange={(e) => setDuration(e.target.value)} required min={1} value={duration} type="number" name="duration" id="" />
@@ -75,10 +75,10 @@ export const ImgToVideoForm = () => {
             {
                 images.map((img, index) => {
                     return (
-                        <div className='form__group'>
+                        <div key={index} className='form__group'>
                             <label htmlFor="">Link {index + 1}</label>
                             <div className="input">
-                                <input pattern="https?://.+\.(jpg|jpeg|gif|png)" onChange={onChangeUrl} type="text" name={index} value={img} required minLength={20} />
+                                <input placeholder='img URL HTTPS || HTTP [jpg,png,gif]' pattern="https?://.+\.(jpg|jpeg|gif|png)" onChange={onChangeUrl} type="text" name={index} value={img} required minLength={20} />
                                 <TrashIcon onClick={() => deleteImg(index)} />
                             </div>
                         </div>
