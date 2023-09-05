@@ -1,0 +1,15 @@
+.ImgToVideoForm {
+    .input {
+
+        display: grid;
+        grid-template-columns: 95% 5%;
+        align-items: center;
+        justify-content: center;
+
+        gap: 1rem;
+
+        i {
+            color: rgb(173, 80, 80);
+        }
+    }
+}

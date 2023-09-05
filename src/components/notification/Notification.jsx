@@ -11,6 +11,7 @@ import SWAlert from '../SwAlert/SWAlert';
 import Modal from '../modal/Modal';
 import { CreditsByCode } from '../Header/components/CreditsByCode';
 import { Novedades } from '../Novedades/Novedades';
+import { ImgToVideo } from '../ImgToVideo/ImgToVideo';
 const Logout = () => {
     localStorage.removeItem("access-token");
     window.location.href = "/login"
@@ -45,9 +46,14 @@ export const Notification = () => {
     return (
         <div className="notification-container">
 
+
+
             <div>
                 <CreditsByCode />
             </div>
+            <span>
+                <ImgToVideo />
+            </span>
 
 
             <span className='credits'>
