@@ -71,7 +71,7 @@ export const SessionsV2 = () => {
                                         const allTitle = `${titleFixed}${grandparentTitleFixed} ${parentTitleFixed}`
 
                                         //Find User in DB
-                                        const userInDb = users.find(user => user.plexUserID == session.User.id || user?.data[0]?.invitedId == session.User.id);
+                                        const userInDb = users.find(user => user.plexUserID == session.User.id || user?.data.map(d => d.invitedId || d.invited.id)?.includes(session.User.id));
 
                                         //plexUserID
                                         if (!userInDb && !sessionsData.server.isAdmin) {
