@@ -104,8 +104,8 @@ export const SessionsV2 = () => {
                                                             <div className="email">
                                                                 <img src={session.User.thumb} alt="" />
                                                                 {!!userInDb?.email || session.User.title}
-                                                                {!userInDb?.email && session.User.id == 1 && "User Master"}
-                                                                {!userInDb?.email && !session.User.id == 1 && "No register"}
+                                                                {!userInDb?.email && session.User.id == 1 && " User Master"}
+                                                                {!userInDb?.email && !session.User.id == 1 && " No register"}
                                                             </div>
                                                             <div className="">
                                                                 {userInDb?.name}
