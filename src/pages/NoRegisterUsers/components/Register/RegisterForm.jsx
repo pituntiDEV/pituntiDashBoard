@@ -11,10 +11,11 @@ export const RegisterForm = ({ user, setOpenModal }) => {
     //Constex
     const { accountID, setPlexUsers, plexUsers } = useContext(Context);
 
+
     //State
     const [formData, setFormData] = useState({
         name: "",
-        email: user.invited.email || user.invited.username,
+        email: user.invited.email || user.invited.username || user.invited.title,
         data: user,
         expireAt: new Date(),
         plexUserID: user.invited.id,

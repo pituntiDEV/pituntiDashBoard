@@ -7,10 +7,11 @@ export const Register = ({ user }) => {
     const [openModal, setOpenModal] = useState(false);
 
 
+
     return (
         <div>
             <div className='user'>
-                <div className="email">{user.invited.email || user.invited.username}
+                <div className="email">{user.invited.email || user.invited.username || user.invited.title}
                 </div>
 
                 <button onClick={() => setOpenModal(true)}>Regiter</button>

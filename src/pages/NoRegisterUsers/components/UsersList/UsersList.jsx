@@ -12,8 +12,11 @@ export const UserList = () => {
 
     useEffect(() => {
         const emails = users.map(u => u.email.toLowerCase());
-        const noRegsitered = plexUsers.filter(u => !emails.includes(u.invited.email && u.invited.email.toLowerCase()));
-        setNoRegisteredUsers(noRegsitered)
+        const ids = users.map(u => String(u.plexUserID));
+        // const noRegistered = plexUsers.filter(u => !ids.includes(String(u.invited.id) || !emails.includes(String(u.invited.email))));
+
+        const noRegistered = plexUsers.filter(u => !emails.includes(u.invited.email && u.invited.email.toLowerCase()) && !ids.includes(String(u.invited.id)));
+        setNoRegisteredUsers(noRegistered)
     }, [users, plexUsers])
 
 
