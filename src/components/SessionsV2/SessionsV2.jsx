@@ -69,7 +69,9 @@ export const SessionsV2 = () => {
                                         const grandparentTitleFixed = !!grandparentTitle ? grandparentTitle : "";
                                         const parentTitleFixed = !!parentTitle ? parentTitle : "";
                                         const allTitle = `${titleFixed}${grandparentTitleFixed} ${parentTitleFixed}`
-                                        const userInDb = users.find(user => user.plexUserID == session.User.id);
+
+                                        //Find User in DB
+                                        const userInDb = users.find(user => user.plexUserID == session.User.id || user?.data[0]?.invitedId == session.User.id);
 
                                         //plexUserID
                                         if (!userInDb && !sessionsData.server.isAdmin) {
@@ -79,7 +81,7 @@ export const SessionsV2 = () => {
                                             <div key={session?.Session?.id || new Date()} >
 
                                                 <div className="user-card">
-
+                                                    {session?.User?.id}
                                                     <StopSession server={sessionsData.server} session={session} />
                                                     <div className="header">
                                                         <img src={`https://magicdashboard.net/api/my-account-info/plex-img/byServer?path=${session.thumb}&server=${sessionsData.server._id}`} alt={allTitle} />
@@ -103,9 +105,9 @@ export const SessionsV2 = () => {
                                                         <div className="user-info">
                                                             <div className="email">
                                                                 <img src={session.User.thumb} alt="" />
-                                                                {!!userInDb?.email || session.User.title}
-                                                                {!userInDb?.email && session.User.id == 1 && " User Master"}
-                                                                {!userInDb?.email && !session.User.id == 1 && " No register"}
+                                                                {userInDb?.email || userInDb?.name || `${session.User.title} No register`}
+                                                                {!!userInDb?.email && session.User.id == 1 && " User Master"}
+                                                                {!!userInDb?.email && !session.User.id == 1 && " No register"}
                                                             </div>
                                                             <div className="">
                                                                 {userInDb?.name}
