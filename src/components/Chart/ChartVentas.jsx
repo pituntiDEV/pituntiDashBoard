@@ -11,8 +11,7 @@ export const defaultData = [
     ["Platinum", 21.45, "color: #e5e4e2"], // CSS-style declaration
 ];
 
-export function ChartVentas({ data }) {
-    const months = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"]
+export function ChartVentas({ data, title = "Graf" }) {
     const colors = (value) => {
         if (value < 50) return "red"
         if (value > 50 && value < 100) return "orange";
@@ -21,11 +20,11 @@ export function ChartVentas({ data }) {
 
     }
     const dataFormat = [
-        ["Element", "Ventas", { role: "style" }],
+        ["Element", title, { role: "style" }],
     ]
     data.map((data) => {
         dataFormat.push([
-            `${months[data._id.month - 1]} ${data._id.year} ($${data.totalAmount})`,
+            `${data._id.month}-${data._id.year}`,
             data.totalAmount,
             colors(data.totalAmount)
         ])
@@ -33,6 +32,12 @@ export function ChartVentas({ data }) {
 
 
     return (
-        <Chart chartType="ColumnChart" width="100%" height="400px" data={dataFormat} />
+        <Chart options={{
+            backgroundColor: 'white',
+            fontName: 'red',
+            legend: { position: 'bottom' },
+            titleTextStyle: { color: 'white' }
+            // ... otras opciones
+        }} chartType="ColumnChart" width="100%" height="100%" data={defaultData} />
     );
 }
