@@ -18,6 +18,7 @@ export const Novedades = () => {
             <div className="novedades_list">
 
                 <ol>
+                    <NovedadItem icon={<i >📺</i>} message={"Se agrego para poder activar por código en los usuarios creados"} />
                     <NovedadItem icon={movieIcon} message={"Se agrego la opción para crear tus propios pre-anuncio de video"} />
                     <NovedadItem icon={<TrashIcon />} message={" Se pueden eliminar créditos a los resellers."} />
                     <NovedadItem icon={OnChangeIcon} message={"Se agrego para poder cambiar de vendedor en los usuarios de Plex."} />
