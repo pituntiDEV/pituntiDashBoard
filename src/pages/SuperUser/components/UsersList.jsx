@@ -17,7 +17,7 @@ export const UsersList = () => {
     getSales()
       .then(data => {
         setSales(data.sales);
-        setSalesByMonth(data.salesByMonth)
+        setSalesByMonth(data.salesByMonth);
         const allSalesTotal = data.sales.reduce((acc, sale) => {
           acc += sale.payment;
           return acc;
