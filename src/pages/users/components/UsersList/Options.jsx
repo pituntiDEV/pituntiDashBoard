@@ -11,6 +11,7 @@ import { AddCredits } from './components/AddCredits/AddCredits';
 import { ChangePlexServer } from './components/ChangeServers/ChangePlexServer';
 import Modal from '../../../../components/modal/Modal';
 import { MoreInfo } from './components/MoreInfo';
+import { ActivateCode } from '../ActivateCode/ActivateCode';
 export const Options = ({ user, lang }) => {
     const langPage = lang.form;
 
@@ -26,8 +27,9 @@ export const Options = ({ user, lang }) => {
                 </div>
 
                 {user.auth &&
-                    <div className="option" onClick={() => setOpenAuthModal(true)}>
-                        <i className="fa-solid fa-user-lock"></i>
+                    <div className="option auth" >
+                        <ActivateCode user={user} />
+                        <i className="fa-solid fa-user-lock" onClick={() => setOpenAuthModal(true)}></i>
                     </div>
                 }
 

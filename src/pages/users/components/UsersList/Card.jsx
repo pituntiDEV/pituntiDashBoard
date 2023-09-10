@@ -47,6 +47,7 @@ export const Card = ({ user, setUsers, users, lang }) => {
                 </DropDown>
             </div>
             <div className="card-footer">
+
                 <Options lang={lang} user={user} />
             </div>
         </div>
