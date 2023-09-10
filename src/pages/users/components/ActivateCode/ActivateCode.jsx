@@ -3,7 +3,7 @@ import { useState } from 'react'
 import Modal from '../../../../components/modal/Modal'
 import { ActivateCodeForm } from './ActivateCodeForm';
 
-export const ActivateCode = ({ user }) => {
+export const ActivateCode = ({ user, demo }) => {
 
     const [openModal, setOpenModal] = useState(false)
     return (
@@ -11,7 +11,7 @@ export const ActivateCode = ({ user }) => {
             <span onClick={() => setOpenModal(true)}>📺</span>
             {openModal &&
                 <Modal setOpenModal={setOpenModal} title="Active by CODE">
-                    <ActivateCodeForm setOpenModal={setOpenModal} user={user} />
+                    <ActivateCodeForm demo={demo} setOpenModal={setOpenModal} user={user} />
                 </Modal>}
         </>
     )

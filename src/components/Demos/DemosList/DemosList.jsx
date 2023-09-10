@@ -8,6 +8,7 @@ import { useState } from 'react';
 import { DeleteConfirm } from '../../DeleteConfirm/DeleteConfirm';
 import useFetchApi from '../../../hook/useFetchApi';
 import { AddCreditToDemo } from '../AddCreditToDemo/AddCreditToDemo';
+import { ActivateCode } from '../../../pages/users/components/ActivateCode/ActivateCode';
 var relativeTime = require('dayjs/plugin/relativeTime')
 dayjs.extend(relativeTime)
 var calendar = require('dayjs/plugin/calendar')
@@ -69,6 +70,10 @@ export const DemosList = ({ demos, setDemoState }) => {
                                         }}>
                                             <i className="fa-solid fa-user-lock"></i>
                                         </div>}
+
+                                    {demo.auth &&
+                                        <ActivateCode user={demo} demo={true} />
+                                    }
                                     <TrashIcon onClick={() => {
                                         setUser(demo);
                                         setOpenEditModal(true)

@@ -3,9 +3,10 @@ import { useState } from 'react'
 import "./ActivateCodeForm.scss"
 import useFetchApi from '../../../../hook/useFetchApi'
 import SWAlert from '../../../../components/SwAlert/SWAlert'
-export const ActivateCodeForm = ({ user, setOpenModal }) => {
+export const ActivateCodeForm = ({ user, demo = false, setOpenModal } = {}) => {
     const [formData, setFormData] = useState({
         code: "",
+        demo,
         user: user._id
     })
     const [activate, loading] = useFetchApi({
