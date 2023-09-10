@@ -2,9 +2,11 @@ import React, { useState } from 'react'
 import { useEffect } from 'react'
 import useFetchApi from '../../../hook/useFetchApi'
 import "./UsersList.scss"
+import { ChartVentas } from './ChartVentas'
 const utils = require("../../../utils/date/index")
 export const UsersList = () => {
   const [sales, setSales] = useState([]);
+  const [salesByMonth, setSalesByMonth] = useState([]);
   const [total, setTotal] = useState(0);
   const [getSales, loading] = useFetchApi({
     url: `/api/sales`,
@@ -14,8 +16,9 @@ export const UsersList = () => {
   useEffect(() => {
     getSales()
       .then(data => {
-        setSales(data);
-        const allSalesTotal = data.reduce((acc, sale) => {
+        setSales(data.sales);
+        setSalesByMonth(data.salesByMonth)
+        const allSalesTotal = data.sales.reduce((acc, sale) => {
           acc += sale.payment;
           return acc;
         }, 0)
@@ -26,6 +29,7 @@ export const UsersList = () => {
   }, [])
   return (
     <>
+      <ChartVentas data={salesByMonth} />
       <h3 className='text-center'>Total:{total}</h3>
       <div className='sales__users__list'>
         {
