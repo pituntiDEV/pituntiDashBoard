@@ -8,10 +8,13 @@ import SWAlert from '../../../../components/SwAlert/SWAlert';
 import { useTakeOffPlexCredits } from '../../../../hook/plex/useTakeOffPlexCredits';
 import { useContext } from 'react';
 import { Context } from '../../PlexUsersContext';
+import useSocketIO from '../../../../hook/useSocketIO';
+import { useEffect } from 'react';
 
 export const NewUserFormV2 = ({ setOpenModal }) => {
     //Constex
     const { users, setUsers } = useContext(Context);
+
     //State
     const [formData, setFormData] = useState({
         name: "",
@@ -31,6 +34,15 @@ export const NewUserFormV2 = ({ setOpenModal }) => {
     })
     //Hooks
     const [takeOffCredits] = useTakeOffPlexCredits();
+    const [io, isConnected] = useSocketIO();
+
+    useEffect(() => {
+        io.on("notify", (message) => {
+            console.log(message);
+        })
+
+    }, [])
+    console.log(isConnected);
 
     //Functions
     const onChange = (e) => {
