@@ -10,10 +10,15 @@ import { useContext } from 'react';
 import { Context } from '../../PlexUsersContext';
 import useSocketIO from '../../../../hook/useSocketIO';
 import { useEffect } from 'react';
+import Modal from '../../../../components/modal/Modal';
+import { BtnLoading } from '../../../../components/Buttons/BtnLoading/BtnLoading';
 
 export const NewUserFormV2 = ({ setOpenModal }) => {
+
+    const [modalInFo, setModalInfo] = useState(false)
     //Constex
     const { users, setUsers } = useContext(Context);
+    const [notifyMessage, setNotifyMessage] = useState([]);
 
     //State
     const [formData, setFormData] = useState({
@@ -37,12 +42,16 @@ export const NewUserFormV2 = ({ setOpenModal }) => {
     const [io, isConnected] = useSocketIO();
 
     useEffect(() => {
-        io.on("notify", (message) => {
-            console.log(message);
-        })
+        if (io) {
+            io.on("notify", (message) => {
 
-    }, [])
-    console.log(isConnected);
+                SWAlert.alert({ title: message.message })
+
+            })
+        }
+    }, [io])
+
+
 
     //Functions
     const onChange = (e) => {
@@ -54,6 +63,8 @@ export const NewUserFormV2 = ({ setOpenModal }) => {
     }
     const handleSubmit = (e) => {
         e.preventDefault();
+        setNotifyMessage([]);
+        setModalInfo(true)
         inviteUser({ body: JSON.stringify(formData) })
             .then(data => {
                 SWAlert.alert({
@@ -64,9 +75,9 @@ export const NewUserFormV2 = ({ setOpenModal }) => {
                 setOpenModal(false)
             })
             .catch(error => {
-                SWAlert.error({
-                    title: error.message
-                })
+                // SWAlert.error({
+                //     title: error.message
+                // })
             })
 
 
@@ -75,6 +86,7 @@ export const NewUserFormV2 = ({ setOpenModal }) => {
     return (
         <form onSubmit={handleSubmit}>
             <div className="form__group">
+
                 <label htmlFor="name">Nombre:</label>
                 <input required minLength={5} onChange={onChange} type="text" name="name" id="" />
             </div>
@@ -86,10 +98,20 @@ export const NewUserFormV2 = ({ setOpenModal }) => {
 
             <PlexServersAndPackages formData={formData} setFormData={setFormData} />
             <PlexOptions setFormData={setFormData} formData={formData} onChange={onChange} />
+
+
             <div className="d-flex gap-3">
-                <button className='btn btn-primary'>Invitar</button>
+                {loading ? <BtnLoading /> : <button className='btn btn-primary'>Invitar</button>}
                 <button onClick={() => setOpenModal(false)} type='buttton' className='btn btn-secondary'>Cancel</button>
             </div>
+
+            {notifyMessage.map(alert => {
+                return <div key={alert.message} className={`alert alert-${alert.type}`}>{alert.message}</div>
+            })}
+
+
+
+
 
         </form>
     )

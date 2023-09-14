@@ -4,37 +4,15 @@ import { useState, useEffect } from 'react';
 import useFetchApi from '../hook/useFetchApi';
 import { useGetPlexSharedServers } from '../hook/plex/useGetPlexSharedServers';
 import { useGetMyPlexServers } from '../hook/plex/useGetMyPlexServers';
-import socketIOClient from 'socket.io-client';
+
 import languages from "../lang/lang.json";
 
 export const appContext = React.createContext();
-
-const socketIO = socketIOClient(process.env.REACT_APP_IO_URL, { query: { token: localStorage.getItem("access-token") } });
-
-
 
 export const AppContext = ({ children }) => {
 
 
   const [lang, setLang] = useState(languages[localStorage.getItem("lang")] || languages["esp"]);
-
-  const [wsData, setWsData] = useState("");
-
-  useEffect(() => {
-    socketIO.on("message", (message) => {
-      const data = message.NotificationContainer;
-      setWsData(data)
-    })
-  }, [])
-  const [socketConnected, setSocketConnected] = useState(false)
-  useEffect(() => {
-    socketIO.on('connect', () => {
-      setSocketConnected(true);
-    });
-    socketIO.on("disconnect", () => {
-      setSocketConnected(false)
-    })
-  }, [])
 
 
   //State
@@ -114,9 +92,6 @@ export const AppContext = ({ children }) => {
       sharedServers: plexSharedServers,
       servers: plexServers
     },
-    socket: socketIO,
-    socketConnected,
-    wsData,
     lang,
     setLang
   }
