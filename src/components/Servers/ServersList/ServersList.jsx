@@ -58,7 +58,7 @@ export const ServersList = ({ setTotalServers, newServerState }) => {
                   <VerifyServer server={server} />
 
                   <div className="online">
-                    {server?.authenticated ?
+                    {server?.authenticated && server.online ?
                       <MundoIcon className="text-success" /> : <MundoIcon className="text-danger" />}
                   </div>
                 </div>
