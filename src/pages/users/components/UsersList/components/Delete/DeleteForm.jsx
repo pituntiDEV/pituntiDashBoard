@@ -21,7 +21,6 @@ export const DeleteForm = ({ user, setOpenModal, langPage }) => {
         if (io) {
             io.on("notify", (message) => {
 
-                setNotify((prev) => [...prev, message]);
                 SWAlert.alert({ title: message.message, icon: "info" })
 
             })

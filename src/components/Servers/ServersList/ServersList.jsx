@@ -9,6 +9,8 @@ import { UserTieIcon } from '../../icons/UserTieIcon';
 import Modal from '../../modal/Modal';
 import { DeleteServer } from './DeleteServer/DeleteServer';
 import "./ServersList.scss";
+import { VerifyServer } from '../../../pages/servers/components/VerifyServer';
+
 export const ServersList = ({ setTotalServers, newServerState }) => {
   //States
   const [servers, setServers] = useState([]);
@@ -16,7 +18,7 @@ export const ServersList = ({ setTotalServers, newServerState }) => {
   const [openModalToEditServer, setOpenModalToEditServer] = useState(false)
   const [serverToDelete, setServerToDelete] = useState(null);
   const [serverToEdit, setServerToEdit] = useState(null);
-  const [serverState,setServerState] = useState(false);
+  const [serverState, setServerState] = useState(false);
 
 
   //Custom hooks
@@ -30,33 +32,35 @@ export const ServersList = ({ setTotalServers, newServerState }) => {
       setServers(servers);
       setTotalServers(servers?.length);
     })
-  }, [newServerState,serverState])
+  }, [newServerState, serverState])
   return (
     <div className='server-list'>
       <h2> Servers:</h2>
       <div className="servers">
         {servers.map(server => {
           return (
-            <div  key={server._id} className="server">
+            <div key={server._id} className="server">
 
               <div className="body">
                 <div className="options">
                   <TrashIcon onClick={() => {
-              setOpenModalToDeleteServer(true);
-              setServerToDelete(server);
+                    setOpenModalToDeleteServer(true);
+                    setServerToDelete(server);
 
-            }} />
-                  <EditSquareIcon  onClick={() => {
-              setOpenModalToEditServer(true);
-              setServerToEdit(server);
+                  }} />
+                  <EditSquareIcon onClick={() => {
+                    setOpenModalToEditServer(true);
+                    setServerToEdit(server);
 
-            }}/>
+                  }} />
+
+                  <VerifyServer server={server} />
                 </div>
-            
+
                 <div className="info">
                   <span className="circle">{server.data.name[0]}</span>
                   <span> <ServerIcon /> {server.data.name}</span>
-                  <span> <UserTieIcon/> {server.users.length} {server.limit ? `/ ${server.limit}`:""}</span>
+                  <span> <UserTieIcon /> {server.users.length} {server.limit ? `/ ${server.limit}` : ""}</span>
                 </div>
               </div>
             </div>)
@@ -68,7 +72,7 @@ export const ServersList = ({ setTotalServers, newServerState }) => {
           <DeleteServer setServerState={setServerState} setOpenModal={setOpenModalToDeleteServer} server={serverToDelete} />
         </Modal>}
 
-        {openModalToEditServer &&
+      {openModalToEditServer &&
         <Modal title="Editar Server" setOpenModal={setOpenModalToEditServer}>
           <EditServer setServerState={setServerState} setOpenModal={setOpenModalToEditServer} server={serverToEdit} />
         </Modal>}

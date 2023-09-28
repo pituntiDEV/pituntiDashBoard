@@ -75,9 +75,9 @@ export const NewUserFormV2 = ({ setOpenModal }) => {
                 setOpenModal(false)
             })
             .catch(error => {
-                // SWAlert.error({
-                //     title: error.message
-                // })
+                SWAlert.error({
+                    title: error.message
+                })
             })
 
 
