@@ -10,6 +10,7 @@ import Modal from '../../modal/Modal';
 import { DeleteServer } from './DeleteServer/DeleteServer';
 import "./ServersList.scss";
 import { VerifyServer } from '../../../pages/servers/components/VerifyServer';
+import { MundoIcon } from '../../icons/MundoIcon';
 
 export const ServersList = ({ setTotalServers, newServerState }) => {
   //States
@@ -55,6 +56,11 @@ export const ServersList = ({ setTotalServers, newServerState }) => {
                   }} />
 
                   <VerifyServer server={server} />
+
+                  <div className="online">
+                    {server?.authenticated ?
+                      <MundoIcon className="text-success" /> : <MundoIcon className="text-danger" />}
+                  </div>
                 </div>
 
                 <div className="info">
