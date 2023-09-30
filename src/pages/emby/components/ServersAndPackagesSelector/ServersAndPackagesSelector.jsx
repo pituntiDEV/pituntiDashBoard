@@ -10,7 +10,7 @@ export const ServersAndPackagesSelector = ({ formData, setFormData }) => {
     const [sharedPackages, setSharedPackages] = useState([]);
 
     // Custom Hooks
-    const [packages, , loadingPackagesByAccount] = useGetPackagesByAccount(formData.account || formData.server);
+    const [packages, , loadingPackagesByAccount] = useGetPackagesByAccount(formData?.account || formData?.server);
 
 
     const [getServers, loadingGetAccounts] = useFetchApi({
