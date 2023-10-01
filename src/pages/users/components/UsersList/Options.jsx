@@ -12,7 +12,8 @@ import { ChangePlexServer } from './components/ChangeServers/ChangePlexServer';
 import Modal from '../../../../components/modal/Modal';
 import { MoreInfo } from './components/MoreInfo';
 import { ActivateCode } from '../ActivateCode/ActivateCode';
-export const Options = ({ user, lang }) => {
+export const Options = (props) => {
+    const { user, lang } = props;
     const langPage = lang.form;
 
     const [openAuthModal, setOpenAuthModal] = useState(false);
@@ -47,7 +48,7 @@ export const Options = ({ user, lang }) => {
             </div> */}
 
                 <div className="option">
-                    <ChangePlexServer langPage={langPage} user={user} />
+                    <ChangePlexServer langPage={langPage} {...props} />
                 </div>
 
                 <div className="option remove">

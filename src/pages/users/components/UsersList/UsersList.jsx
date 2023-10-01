@@ -31,8 +31,8 @@ export const UsersList = () => {
                     :
                     <div className="users-list-container">
                         {
-                            users.map(user => {
-                                const props = { user, users, setUsers }
+                            users.map((user, index) => {
+                                const props = { index, user, users, setUsers }
                                 return <Card lang={lang} key={user._id} {...props} />
                             })
                         }

@@ -5,7 +5,13 @@ import { DropDown } from '../../../../components/DropDown/DropDown';
 import { Options } from './Options';
 import { ShowErrors } from './components/ShowErrors/ShowErrors';
 import { WhatsappIcon } from '../../../../components/icons/WhatsappIcon';
-export const Card = ({ user, setUsers, users, lang }) => {
+export const Card = ({ user, setUsers, index, users, lang }) => {
+    const userHandlerProps = {
+        user,
+        index,
+        setUsers,
+        users
+    }
     const langPage = lang.pages.users.card;
     const expireAt = utils.formatDate(user.expireAt)
     const isExpired = utils.isExpired(user.expireAt);
@@ -48,7 +54,7 @@ export const Card = ({ user, setUsers, users, lang }) => {
             </div>
             <div className="card-footer">
 
-                <Options lang={lang} user={user} />
+                <Options lang={lang} {...userHandlerProps} />
             </div>
         </div>
     )
