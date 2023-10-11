@@ -1,0 +1,24 @@
+.EmbyServersAndPackagesSelector {
+    .packages {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin: 1rem 0;
+
+        .pack {
+            padding: .5rem;
+            color: white;
+            border-radius: 1rem;
+            background-color: rgb(212, 81, 81);
+            box-shadow: -2px 2px rgb(82, 80, 80);
+
+            &.active {
+                background-color: rgb(77, 147, 92);
+            }
+
+            &.selected {
+                background-color: rgb(77, 147, 92);
+            }
+        }
+    }
+}

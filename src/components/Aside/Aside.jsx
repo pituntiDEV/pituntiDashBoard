@@ -88,7 +88,7 @@ export const Aside = () => {
                         <div className="icon">
                             <img src="/assets/img/embyLogo.png" alt="" />
                         </div>
-                        <span>Emby</span>
+                        <span>Emby (BETA)</span>
                     </div>
                     <ul>
                         <li className="menu-item">
@@ -109,6 +109,37 @@ export const Aside = () => {
                         <li className="menu-item">
                             <i className="fa-solid fa-cash-register"></i>
                             <a href="/resellers/emby">Resellers (BETA)</a>
+                        </li>
+                    </ul>
+                </li>
+
+                {/* Jellyfin */}
+                <li className="menu-drop" onClick={dropdownToggle}>
+                    <div className="title">
+                        <div className="icon">
+                            <img src="/assets/img/jellyfinLogo.png" alt="" />
+                        </div>
+                        <span>Jellyfin (BETA)</span>
+                    </div>
+                    <ul>
+                        <li className="menu-item">
+                            <i className="fa-solid fa-users"></i>
+                            <a href="/users/jellyfin">Jellyfin Users</a>
+                        </li>
+
+                        <li className="menu-item">
+                            <i className="fa-solid fa-cube"></i>
+                            <a href="/packages/jellyfin">Paquetes Jellyfin</a>
+                        </li>
+
+                        <li className="menu-item">
+                            <i className="fa-solid fa-ticket"></i>
+                            <a href="/demos/jellyfin">Demos</a>
+                        </li>
+
+                        <li className="menu-item">
+                            <i className="fa-solid fa-cash-register"></i>
+                            <a href="/resellers/jellyfin">Resellers (BETA)</a>
                         </li>
                     </ul>
                 </li>

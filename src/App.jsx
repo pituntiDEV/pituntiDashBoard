@@ -33,6 +33,10 @@ function App() {
             {routes.emby.map(route => {
               return <Route key={route.path} path={route.path} element={route.element} />
             })}
+            {/* jellyfin Routes */}
+            {routes.jellyfin.map(route => {
+              return <Route key={route.path} path={route.path} element={route.element} />
+            })}
             {/* Google,Gdrive,telegram,sms Routes */}
             {routes.services.map(route => {
               return <Route key={route.path} path={route.path} element={route.element} />
