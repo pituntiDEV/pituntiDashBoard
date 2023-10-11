@@ -73,6 +73,9 @@ export const ServersAndPackagesSelector = ({ formData, setFormData }) => {
 
                     {
                         sharedServers.map(server => {
+                            if (!server.server) {
+                                return null
+                            }
                             return (
                                 <option data-admin={server.server.admin} data-shared={true} value={server.server._id} key={server.server._id}>
                                     {server.server.data.name}-(Compartido)
