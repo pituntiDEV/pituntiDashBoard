@@ -5,19 +5,36 @@ import { DropDown } from '../../../../components/DropDown/DropDown';
 import { Options } from './Options';
 import { ShowErrors } from './components/ShowErrors/ShowErrors';
 import { WhatsappIcon } from '../../../../components/icons/WhatsappIcon';
-export const Card = ({ user, setUsers, index, users, lang }) => {
+import { useState } from 'react';
+export const Card = ({ user, selectedUsers, setSelectedUsers, index, setUsers, users, lang }) => {
     const userHandlerProps = {
         user,
         index,
         setUsers,
         users
     }
+
     const langPage = lang.pages.users.card;
     const expireAt = utils.formatDate(user.expireAt)
     const isExpired = utils.isExpired(user.expireAt);
+    const [isSelected, setIsSelected] = useState(false)
+
+    const selectedUser = (user) => {
+        if (selectedUsers.includes(user._id)) {
+            const updatedSelectedUsers = selectedUsers.filter(u => u != user._id);
+            setSelectedUsers(updatedSelectedUsers);
+            setIsSelected(false);
+        } else {
+            setIsSelected(true);
+            setSelectedUsers([...selectedUsers, user._id])
+
+        }
+
+
+    }
     return (
         <div className='plex-user-card'>
-            <div className={`card-header ${isExpired && "expired"}`}>
+            <div onClick={() => selectedUser(user)} className={`card-header ${isSelected && "selected"} ${isExpired && "expired"}`}>
                 <span className='email'>{user.email}</span>
                 {user.whatsapp &&
                     <div className="whatsApp">

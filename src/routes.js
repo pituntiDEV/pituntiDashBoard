@@ -28,6 +28,10 @@ import { EmbyDemos } from './pages/emby/Demos/EmbyDemos';
 import { ResellersEmby } from './pages/emby/Resellers/ResellersEmby';
 import { PublicDemos } from './pages/plex/PublicDemos/PublicDemos';
 import { Activations } from './pages/plex/PublicDemos/components/Activations';
+import JellyfinUsers from './pages/Jellyfin/users/JellyfinUsers';
+import { JellyfinPackages } from './pages/Jellyfin/JellyfinPackages/JellyfinPackages';
+import { JellyfinDemos } from './pages/Jellyfin/Demos/JellyfinDemos';
+import { ResellersJellyfin } from './pages/Jellyfin/Resellers/ResellersJellyfin';
 
 const Protected = ({ children }) => {
     return <ProtectedPage>  <UserContextProvider><Layout >{children}</Layout></UserContextProvider></ProtectedPage>
@@ -139,6 +143,7 @@ const routes = {
             element: < ChatContextProvider><Chat /></ChatContextProvider>
         }
     ],
+
     emby: [
         {
             path: "/users/emby",
@@ -156,6 +161,25 @@ const routes = {
         {
             path: "/resellers/emby",
             element: <Protected><ResellersEmby /></Protected>
+        }
+    ],
+    jellyfin: [
+        {
+            path: "/users/jellyfin",
+            element: <Protected><JellyfinUsers /></Protected>
+        },
+
+        {
+            path: "/packages/jellyfin",
+            element: <Protected><JellyfinPackages /></Protected>
+        },
+        {
+            path: "/demos/jellyfin",
+            element: <Protected><JellyfinDemos /></Protected>
+        },
+        {
+            path: "/resellers/jellyfin",
+            element: <Protected><ResellersJellyfin /></Protected>
         }
     ]
 }

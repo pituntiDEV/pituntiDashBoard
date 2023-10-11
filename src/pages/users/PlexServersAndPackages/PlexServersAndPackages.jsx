@@ -8,7 +8,7 @@ import { ServerIcon } from '../../../components/icons/ServerIcon';
 import { useRef } from 'react';
 import { DropDown } from '../../../components/DropDown/DropDown';
 
-export const PlexServersAndPackages = ({ formData, setFormData }) => {
+export const PlexServersAndPackages = ({ formData, setFormData, onlyAdmin = false }) => {
 
     //State
     const [servers, setServers] = useState([]);
@@ -25,8 +25,6 @@ export const PlexServersAndPackages = ({ formData, setFormData }) => {
         const firstServer = formData.servers.length > 0 ? formData.servers[0]?.server : null;
         if (firstServer) {
             const isTheSameAdmin = formData.servers.every(server => server.server.admin._id || server.server.admin == firstServer.admin);
-
-
 
 
             isTheSameAdmin == true ? setFormData({ ...formData, isTheSameAdmin: true, admin: firstServer.admin._id || firstServer.admin }) : setFormData({ ...formData, isTheSameAdmin: false, admin: null });
@@ -48,7 +46,10 @@ export const PlexServersAndPackages = ({ formData, setFormData }) => {
         // get Shared servers
         getSharedServers()
             .then(data => {
-                setSharedServers(data);
+                if (!onlyAdmin) {
+                    setSharedServers(data);
+
+                }
             })
     }, []);
 

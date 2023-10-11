@@ -3,7 +3,7 @@ import { useState } from 'react';
 import SWAlert from '../../../../components/SwAlert/SWAlert';
 import useFetchApi from '../../../../hook/useFetchApi';
 import "./NewEmbyAccountForm.scss";
-export const NewEmbyAccountForm = ({ setOpenModal, setNewAccountState }) => {
+export const NewEmbyAccountForm = ({ setOpenModal, type, setNewAccountState }) => {
 
     //State
     const [formData, setFormData] = useState({
@@ -15,7 +15,7 @@ export const NewEmbyAccountForm = ({ setOpenModal, setNewAccountState }) => {
 
     //Custom Hooks
     const [addAccount, loading] = useFetchApi({
-        url: `/api/emby/accounts`,
+        url: `/api/${type ? "jellyfin" : "emby"}/accounts`,
         method: "POST",
     })
 
@@ -52,7 +52,7 @@ export const NewEmbyAccountForm = ({ setOpenModal, setNewAccountState }) => {
             </div>
 
             <div className="form__group">
-                <label htmlFor="port">Puerto emby</label>
+                <label htmlFor="port">Puerto </label>
                 <input onChange={onChange} type="number" name="port" placeholder='Ingresa puerto del servidor de emby' value={formData.port} id="port" />
             </div>
 
@@ -60,6 +60,7 @@ export const NewEmbyAccountForm = ({ setOpenModal, setNewAccountState }) => {
                 <label htmlFor="claveAPI">Clave API</label>
                 <input onChange={onChange} type="text" value={formData.claveAPI} required name="apiKey" placeholder='Ingresa Clave API' id="claveAPI" />
             </div>
+
 
             <button className="btn btn-primary">Agregar</button>
         </form>

@@ -8,9 +8,12 @@ import { FilterBar } from './FilterBar';
 import "./UsersList.scss";
 import { Spinner } from '../../../../components/Spinner/Spinner';
 import { appContext } from '../../../../context/AppContext';
+import { Migrate } from '../Migrate/Migrate';
 
 export const UsersList = () => {
-    const { lang } = useContext(appContext)
+    const { lang } = useContext(appContext);
+
+    const [selectedUsers, setSelectedUsers] = useState([]);
 
     const [filterValue, setFilterValue] = useState({
         nameOrEmail: "",
@@ -26,14 +29,18 @@ export const UsersList = () => {
             <div className="filter-bar">
                 <FilterBar lang={lang} users={users} setFilterValue={setFilterValue} />
             </div>
+
+            {selectedUsers.length > 0 &&
+                <Migrate setSelectedUsers={setSelectedUsers} users={selectedUsers} />
+            }
             {
                 loading ? <Spinner />
                     :
                     <div className="users-list-container">
                         {
-                            users.map((user, index) => {
-                                const props = { index, user, users, setUsers }
-                                return <Card lang={lang} key={user._id} {...props} />
+                            users.map(user => {
+                                const props = { user, users, setUsers }
+                                return <Card selectedUsers={selectedUsers} setSelectedUsers={setSelectedUsers} lang={lang} key={user._id} {...props} />
                             })
                         }
                     </div>

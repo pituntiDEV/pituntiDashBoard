@@ -1,0 +1,62 @@
+.embyResellersList {
+    .emby-resellers {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+        margin: 0 1rem;
+
+        .reseller {
+            border-radius: 1rem;
+            overflow: hidden;
+            text-align: center;
+            color: white;
+
+
+            .header {
+                background-color: rgb(183, 70, 70);
+                padding: 1rem;
+                word-wrap: break-word;
+            }
+
+            .body {
+                background-color: blue;
+            }
+
+            .footer {
+                background-color: #3b3a3a;
+                padding: 2rem 0;
+
+                ul {
+                    display: flex;
+                    justify-content: space-around;
+
+                    li {
+                        width: 2.9rem;
+                        height: 2.9rem;
+                        position: relative;
+                        border: solid 2px rgb(254, 254, 254);
+                        border-radius: 50%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        box-shadow: -2px 1px 3px rgb(231, 63, 63);
+                        cursor: pointer;
+
+                        .creditsNum {
+                            position: absolute;
+                            min-height: 1.8rem;
+                            min-width: 1.8rem;
+                            top: -1.5rem;
+                            border-radius: 50%;
+
+                            left: 2rem;
+                            border: solid 2px rgb(227, 186, 37);
+                            font-size: 1.1rem;
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+}

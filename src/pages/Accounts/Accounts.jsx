@@ -11,6 +11,7 @@ export const Accounts = () => {
     //State
     const [openModal, setOpenModal] = useState(false);
     const [openModalToEmby, setOpenModalToEmby] = useState(false);
+    const [openModalToJellyfin, setOpenModalToJellyfin] = useState(false);
     const [wating, setWating] = useState(false);
     const [newAccountState, setNewAccountState] = useState(false);
     const [totalAccounts, setTotalAccounts] = useState(0);
@@ -54,6 +55,7 @@ export const Accounts = () => {
                 <div className="btn-group">
                     <button onClick={() => setOpenModal(true)}>New Plex Account</button>
                     <button onClick={() => setOpenModalToEmby(true)}>New Emby Account</button>
+                    <button onClick={() => setOpenModalToJellyfin(true)}>New Jellyfin Account</button>
                 </div>
             </div>
             <AccountList setTotalAccounts={setTotalAccounts} newAccountState={newAccountState} />
@@ -78,8 +80,14 @@ export const Accounts = () => {
                 </Modal>}
 
             {openModalToEmby &&
-                <Modal title="Nueva cuenta emby" setOpenModal={setOpenModalToEmby}>
+                <Modal title="Nueva cuenta Emby" setOpenModal={setOpenModalToEmby}>
                     <NewEmbyAccountForm setNewAccountState={setNewAccountState} setOpenModal={setOpenModalToEmby} />
+                </Modal>
+            }
+
+            {openModalToJellyfin &&
+                <Modal title="Nueva cuenta Jellyfin" setOpenModal={setOpenModalToJellyfin}>
+                    <NewEmbyAccountForm type="Jellyfin" setNewAccountState={setNewAccountState} setOpenModal={setOpenModalToEmby} />
                 </Modal>
             }
         </div>

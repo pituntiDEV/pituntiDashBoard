@@ -1,0 +1,45 @@
+.Add_Emby_User {
+    .packages {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+
+        .pack {
+            background-color: rgb(244, 83, 83);
+            text-align: center;
+            padding: 0 .5rem;
+            color: white;
+            font-weight: bold;
+            border-radius: .4rem;
+            cursor: pointer;
+
+            &.selected {
+                background-color: rgb(60, 129, 63);
+            }
+        }
+    }
+}
+
+.emby_change_server {
+
+
+    .embyLibs {
+        display: grid;
+
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+
+        .libs {
+            background-color: rgb(224, 71, 71);
+            padding: .5rem;
+            font-weight: bold;
+            text-align: center;
+            color: white;
+            border-radius: .5rem;
+            cursor: pointer;
+
+            &.active {
+                background-color: rgb(76, 170, 73);
+            }
+        }
+    }
+}

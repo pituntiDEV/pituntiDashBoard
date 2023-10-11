@@ -18,10 +18,15 @@
         position: relative;
         border-top-left-radius: 1rem;
         border-top-right-radius: 1rem;
+        cursor: pointer;
 
 
         &.expired {
             background-color: rgb(211, 62, 62);
+        }
+
+        &.selected {
+            background-color: rgb(218, 106, 41);
         }
 
         .email {
