@@ -52,7 +52,7 @@ export const ServersAndPackagesSelector = ({ formData, setFormData }) => {
             setSharedPackages(selectedServer.packages);
 
         }
-        setFormData({ ...formData, account: e.target.value, packages: [], admin, adminID })
+        setFormData({ ...formData, account: e.target.value, packages: [], admin, adminID, connections: "", credits: "" })
     };
 
     return (

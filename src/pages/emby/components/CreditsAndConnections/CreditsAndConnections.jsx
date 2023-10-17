@@ -7,7 +7,9 @@ export const CreditsAndConnections = ({ formData, setFormData }) => {
     const { emby } = useContext(appContext);
 
 
+
     const creditsFiltered = emby.embyCredits.filter(credit => credit.admin == formData.adminID);
+
 
     const allconnections = creditsFiltered.reduce((acc, credit) => {
         if (!acc.includes(credit.connections)) {
@@ -20,9 +22,9 @@ export const CreditsAndConnections = ({ formData, setFormData }) => {
     const [creditsByConnections, setCreditsByConnections] = useState([]);
 
     useEffect(() => {
-        const allCredits = emby.embyCredits.filter(credit => credit.connections == formData.connections);
+        const allCredits = emby.embyCredits.filter(credit => credit.connections == formData.connections && credit.admin == formData.adminID);
         setCreditsByConnections(allCredits);
-    }, [formData.connections])
+    }, [formData.connections, formData.adminID, formData])
 
 
 
@@ -51,9 +53,9 @@ export const CreditsAndConnections = ({ formData, setFormData }) => {
                 <>
                     <div className="form__group">
                         <label htmlFor="connections">Conexiones:</label>
-                        <select onChange={(e) => {
+                        <select value={formData.connections} onChange={(e) => {
                             setFormData({ ...formData, connections: e.target.value });
-                        }} defaultValue={""} name="connections" required>
+                        }} name="connections" required>
                             <option value="" disabled> -- Seleccione -- </option>
                             {
                                 allconnections.map(connection => {
@@ -67,9 +69,9 @@ export const CreditsAndConnections = ({ formData, setFormData }) => {
 
                     <div className="form__group">
                         <label htmlFor="credits">Creditos:</label>
-                        <select required onChange={(e) => {
+                        <select value={formData.credits} required onChange={(e) => {
                             setFormData({ ...formData, credits: e.target.value });
-                        }} defaultValue={""} name="credits">
+                        }} name="credits">
                             <option value="" disabled> -- Seleccione -- </option>
                             {
                                 creditsByConnections.map((credit, i) => {

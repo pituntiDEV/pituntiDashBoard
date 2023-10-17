@@ -17,10 +17,11 @@ export const CreateEmbyUserForm = ({ setOpenModal }) => {
     //State
     const [formData, setFormData] = useState({
         name: "",
-        credits: null,
+        credits: "",
         account: null,
         packages: [],
-        tv: false
+        tv: false,
+        connections: "",
     })
 
     //Custom hooks

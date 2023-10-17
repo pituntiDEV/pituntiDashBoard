@@ -4,10 +4,15 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 
 export const CreditsAndConnections = ({ formData, setFormData }) => {
-    const { emby } = useContext(appContext);
+    const { jellyfin } = useContext(appContext);
+    const [creditsFiltered, setCreditsFiltered] = useState([])
+    useEffect(() => {
+        const filtered = jellyfin.jellyfinCredits.filter(credit => credit.admin == formData.adminID);
+        setCreditsFiltered(filtered)
 
 
-    const creditsFiltered = emby.embyCredits.filter(credit => credit.admin == formData.adminID);
+    }, [formData.adminID, formData.connections])
+
 
     const allconnections = creditsFiltered.reduce((acc, credit) => {
         if (!acc.includes(credit.connections)) {
@@ -20,9 +25,9 @@ export const CreditsAndConnections = ({ formData, setFormData }) => {
     const [creditsByConnections, setCreditsByConnections] = useState([]);
 
     useEffect(() => {
-        const allCredits = emby.embyCredits.filter(credit => credit.connections == formData.connections);
+        const allCredits = jellyfin.jellyfinCredits.filter(credit => credit.connections == formData.connections && String(credit.admin) == formData.adminID);
         setCreditsByConnections(allCredits);
-    }, [formData.connections])
+    }, [formData.connections, formData.adminID])
 
 
 
@@ -51,9 +56,9 @@ export const CreditsAndConnections = ({ formData, setFormData }) => {
                 <>
                     <div className="form__group">
                         <label htmlFor="connections">Conexiones:</label>
-                        <select onChange={(e) => {
+                        <select value={formData.connections} onChange={(e) => {
                             setFormData({ ...formData, connections: e.target.value });
-                        }} defaultValue={""} name="connections" required>
+                        }} name="connections" required>
                             <option value="" disabled> -- Seleccione -- </option>
                             {
                                 allconnections.map(connection => {
@@ -67,9 +72,9 @@ export const CreditsAndConnections = ({ formData, setFormData }) => {
 
                     <div className="form__group">
                         <label htmlFor="credits">Creditos:</label>
-                        <select required onChange={(e) => {
+                        <select value={formData.credits} required onChange={(e) => {
                             setFormData({ ...formData, credits: e.target.value });
-                        }} defaultValue={""} name="credits">
+                        }} name="credits">
                             <option value="" disabled> -- Seleccione -- </option>
                             {
                                 creditsByConnections.map((credit, i) => {

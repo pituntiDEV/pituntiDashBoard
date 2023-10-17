@@ -39,7 +39,7 @@ export const ServersAndPackagesSelector = ({ formData, setFormData }) => {
         }
     }
 
-    const onChangeSelect = (e) => {
+    const onChangeSelectServer = (e) => {
 
         const opcionSeleccionada = e.target.options[e.target.selectedIndex];
         const isShared = opcionSeleccionada.getAttribute("data-shared");
@@ -52,14 +52,14 @@ export const ServersAndPackagesSelector = ({ formData, setFormData }) => {
             setSharedPackages(selectedServer.packages);
 
         }
-        setFormData({ ...formData, account: e.target.value, packages: [], admin, adminID })
+        setFormData({ ...formData, account: e.target.value, packages: [], admin, adminID, connections: "", credits: "" })
     };
 
     return (
         <div className='EmbyServersAndPackagesSelector'>
             <div className="form__group ">
                 <label htmlFor="credits">Server:</label>
-                <select onChange={onChangeSelect} required name="account" defaultValue={""} id="account">
+                <select onChange={onChangeSelectServer} required name="account" defaultValue={""} id="account">
                     <option value="" disabled>Selecciona un Server</option>
                     {
                         servers.map(account => {
