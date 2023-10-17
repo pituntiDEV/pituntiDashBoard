@@ -6,7 +6,7 @@ import { Context } from '../../EmbyUsersContext';
 export const Header = () => {
   const { users } = useContext(Context);
   return (
-    <div className='emby__users__header'>
+    <div className='emby__users__header2'>
       <div className="num__users">
         {users.length}-{users.length == 1 ? "Usuario" : "Usuarios"}
       </div>

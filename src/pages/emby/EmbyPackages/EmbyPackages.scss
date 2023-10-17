@@ -1,10 +1,11 @@
 .emby__packages {
     .bar {
-        background-color: rgb(88, 187, 100);
+        background: var(--color-emby);
         display: flex;
         align-items: center;
         justify-content: space-between;
         padding: 0 1rem;
+        font-weight: bold;
     }
 
     .packages__list {

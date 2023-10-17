@@ -42,7 +42,7 @@ export const EmbyUsersList = () => {
                                 <ul>
                                     <EditEmbyUser {...props} />
                                     <ChangeServer  {...props} />
-                                    <ShowPassword {...props} />
+                                    <li><ShowPassword {...props} /></li>
                                     <AddCreditsEmbyUser {...props} />
                                     <DeleteEmbyUser {...props} />
                                 </ul>

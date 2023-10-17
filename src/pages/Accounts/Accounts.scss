@@ -59,18 +59,18 @@
             }
 
             .plex {
-                background: linear-gradient(to bottom, rgb(251, 122, 31), rgb(29, 29, 29));
+                background: var(--color-plex);
                 color: white;
 
             }
 
             .emby {
-                background: linear-gradient(to right, rgb(60, 207, 60), rgb(59, 131, 20));
+                background: var(--color-emby);
                 color: white
             }
 
             .jellyfin {
-                background: linear-gradient(to right, rgb(61, 80, 153), rgb(54, 187, 232));
+                background: var(--color-jellyfin);
                 color: white;
             }
         }

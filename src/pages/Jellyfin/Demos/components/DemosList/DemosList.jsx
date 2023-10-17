@@ -9,6 +9,7 @@ import Modal from '../../../../../components/modal/Modal';
 import { DeleteDemo } from '../DeleteDemo/DeleteDemo';
 import { AddCreditToDemo } from '../AddCreditToDemo/AddCreditToDemo';
 import { Context } from '../../DemosContext';
+import { ShowPassword } from '../../../../emby/users/components/ShowPassword';
 
 export const DemosList = () => {
 
@@ -32,6 +33,7 @@ export const DemosList = () => {
                                 </div>
                                 <hr />
                                 <div className="options">
+                                    <ShowPassword user={demo} />
                                     <TrashIcon onClick={() => {
                                         setOpenModalToDelete(true);
                                         setDemo(demo);

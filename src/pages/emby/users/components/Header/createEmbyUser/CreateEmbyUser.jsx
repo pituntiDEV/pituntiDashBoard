@@ -7,7 +7,7 @@ export const CreateEmbyUser = () => {
     const [openModal, setOpenModal] = useState(false);
     return (
         <>
-            <button onClick={() => setOpenModal(true)} className='btn btn-info'>Crear Usuario</button>
+            <button onClick={() => setOpenModal(true)} className='btn btn-secondary'>Crear Usuario</button>
             {
                 openModal &&
 

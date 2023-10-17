@@ -1,9 +1,9 @@
-.emby__demos {
+.emby__demos2 {
     .header {
         display: flex;
         justify-content: space-between;
         padding: 1rem 2rem;
-        background: linear-gradient(to right, #be8f55, #2e8813);
+        background: var(--color-emby);
 
         .count {
             font-weight: bold;

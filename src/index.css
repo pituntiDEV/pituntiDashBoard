@@ -10,7 +10,10 @@
   --color-blue-light: #36659e;
   --color-green-ligth: #2BD999;
   --color-white: white;
-  --color-blue-serenity: linear-gradient(to right, rgb(109, 130, 169), rgb(69, 116, 181))
+  --color-blue-serenity: linear-gradient(to right, rgb(109, 130, 169), rgb(69, 116, 181));
+  --color-emby: linear-gradient(to right, rgb(60, 207, 60), rgb(59, 131, 20));
+  --color-jellyfin: linear-gradient(to right, rgb(61, 80, 153), rgb(54, 187, 232));
+  --color-plex: linear-gradient(to bottom, rgb(251, 122, 31), rgb(29, 29, 29));
 }
 
 body {

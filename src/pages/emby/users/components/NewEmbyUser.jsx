@@ -9,7 +9,7 @@ export const NewEmbyUser = () => {
     <>
       <div className="buttons__new__user d-flex gap-3">
         <CreateEmbyUser />
-        <button onClick={() => setOpenModal(true)} className='btn btn-info'>Agregar usuario EmbyConnect</button>
+        <button onClick={() => setOpenModal(true)} className='btn btn-secondary'>Agregar usuario EmbyConnect</button>
       </div>
       {openModal &&
         <Modal title="New user" setOpenModal={setOpenModal}>

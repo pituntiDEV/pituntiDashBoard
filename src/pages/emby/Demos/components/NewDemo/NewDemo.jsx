@@ -11,7 +11,7 @@ export const NewDemo = () => {
 
     return (
         <>
-            <button onClick={() => setOpenModal(true)}>New Demo EmbyConnect</button>
+            <button className='btn btn-info' onClick={() => setOpenModal(true)}>New Demo EmbyConnect</button>
             {openModal &&
                 <Modal title="New Demo EmbyConnect" setOpenModal={setOpenModal}>
                     <NewDemoForm setOpenModal={setOpenModal} />

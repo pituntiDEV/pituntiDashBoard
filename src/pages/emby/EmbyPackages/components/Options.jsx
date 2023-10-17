@@ -6,7 +6,7 @@ export const Options = ({ setPackages, packages }) => {
     const [openModal, setOpenModal] = useState(false)
     return (
         <>
-            <div onClick={() => setOpenModal(true)} className="btn btn-primary">
+            <div onClick={() => setOpenModal(true)} className="btn btn-secondary">
                 Agregar nuevo paquete
             </div>
             {openModal &&
