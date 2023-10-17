@@ -52,10 +52,10 @@ export const Accounts = () => {
         <div className="accounts__container container">
             <div className="accounts__bar ">
                 <span>Total {totalAccounts} Account</span>
-                <div className="btn-group">
-                    <button onClick={() => setOpenModal(true)}>New Plex Account</button>
-                    <button onClick={() => setOpenModalToEmby(true)}>New Emby Account</button>
-                    <button onClick={() => setOpenModalToJellyfin(true)}>New Jellyfin Account</button>
+                <div className="btn-group btn-services">
+                    <button className='plex service' onClick={() => setOpenModal(true)}>New Plex Account</button>
+                    <button className='emby service' onClick={() => setOpenModalToEmby(true)}>New Emby Account</button>
+                    <button className='jellyfin service' onClick={() => setOpenModalToJellyfin(true)}>New Jellyfin Account</button>
                 </div>
             </div>
             <AccountList setTotalAccounts={setTotalAccounts} newAccountState={newAccountState} />
