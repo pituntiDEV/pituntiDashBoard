@@ -11,7 +11,7 @@ export const CreateEmbyUser = () => {
             {
                 openModal &&
 
-                <Modal setOpenModal={setOpenModal} title="Crear usuario emby">
+                <Modal setOpenModal={setOpenModal} title="Crear usuario Jellyfin">
                     <CreateEmbyUserForm setOpenModal={setOpenModal} />
                 </Modal>
             }

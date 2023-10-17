@@ -7,6 +7,7 @@ import { AddCreditsEmbyUser } from '../AddCreditsEmbyUser';
 import { ChangeServer } from '../ChangeServer';
 import { useContext } from 'react';
 import { Context } from '../../JellyfinUsersContext';
+import { ShowPassword } from '../ShowPassword';
 export const JellyfinUsersList = () => {
     const { users, setUsers } = useContext(Context)
 
@@ -40,6 +41,7 @@ export const JellyfinUsersList = () => {
                                 <ul>
                                     <EditEmbyUser {...props} />
                                     <ChangeServer  {...props} />
+                                    <ShowPassword {...props} />
                                     <AddCreditsEmbyUser {...props} />
                                     <DeleteEmbyUser {...props} />
                                 </ul>
