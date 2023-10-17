@@ -6,6 +6,8 @@ import { EditReseller } from './components/EditReseller/EditReseller';
 import { DeleteReseller } from './components/DeleteReseller/DeleteReseller';
 import { AddCredits } from './components/AddCredits/AddCredits';
 import { Context } from '../../ResellersContext';
+import { ChangeServersAndPackages } from './components/EditReseller/ChangeServersAndPackages';
+
 export const ResellersList = () => {
 
     const { resellers, setResellers } = useContext(Context);
@@ -31,8 +33,10 @@ export const ResellersList = () => {
                                 <div className="footer">
                                     <ul>
                                         <li><AddCredits {...data} /></li>
+                                        <li><ChangeServersAndPackages {...data} /></li>
                                         <li><EditReseller resellers={resellers} setResellers={setResellers} reseller={reseller} /></li>
                                         <li><DeleteReseller {...data} /></li>
+
                                     </ul>
                                 </div>
                             </div>

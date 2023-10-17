@@ -64,7 +64,7 @@ export const AccountList = ({ newAccountState, setTotalAccounts }) => {
                     {account.email[0]}
                   </div>
                   ({account.platform})
-                  <span>{account.email}</span>
+                  <span>{account.data.name}</span>
                 </div>
 
                 <div className="controls">
@@ -89,7 +89,7 @@ export const AccountList = ({ newAccountState, setTotalAccounts }) => {
                     {account.email[0]}
                   </div>
                   ({account.platform})
-                  <span>{account.email}</span>
+                  <span>{account.data.name}</span>
                 </div>
 
                 <div className="controls">

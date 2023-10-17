@@ -1,0 +1,24 @@
+.ChangeServersAndPackages {
+    &.servers {
+        .packages {
+            display: flex;
+            gap: 1rem;
+            margin: 1rem 0;
+
+            .pack {
+                background-color: rgb(231, 66, 66);
+                text-align: center;
+                padding: .5rem 2rem;
+                border-radius: 1rem;
+                color: white;
+                font-weight: bold;
+                box-shadow: -2px 2px 3px rgb(60, 59, 59);
+                cursor: pointer;
+
+                &.active {
+                    background-color: rgb(54, 155, 66);
+                }
+            }
+        }
+    }
+}
