@@ -7,6 +7,8 @@ import { AddCreditsEmbyUser } from '../AddCreditsEmbyUser';
 import { ChangeServer } from '../ChangeServer';
 import { useContext } from 'react';
 import { Context } from '../../EmbyUsersContext';
+import { ShowPassword } from '../ShowPassword';
+
 export const EmbyUsersList = () => {
     const { users, setUsers } = useContext(Context)
 
@@ -40,6 +42,7 @@ export const EmbyUsersList = () => {
                                 <ul>
                                     <EditEmbyUser {...props} />
                                     <ChangeServer  {...props} />
+                                    <ShowPassword {...props} />
                                     <AddCreditsEmbyUser {...props} />
                                     <DeleteEmbyUser {...props} />
                                 </ul>
