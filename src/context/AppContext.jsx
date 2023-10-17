@@ -18,6 +18,7 @@ export const AppContext = ({ children }) => {
   //State
   const [embyCredits, setEmbyCredits] = useState([]);
   const [plexCredits, setPlexCredits] = useState([]);
+  const [jellyfinCredits, setJellyfinCredits] = useState([]);
 
 
 
@@ -39,6 +40,10 @@ export const AppContext = ({ children }) => {
 
   const [getEmbyCredits, loadingGetEmbyCredits] = useFetchApi({
     url: "/api/emby/resellers/creditsAvailables",
+    method: "GET",
+  })
+  const [getJellyfinCredits, loadingGetJellyfinCredits] = useFetchApi({
+    url: "/api/jellyfin/resellers/creditsAvailables",
     method: "GET",
   })
 
@@ -65,6 +70,11 @@ export const AppContext = ({ children }) => {
       setEmbyCredits(data);
     });
 
+    //Obtains Emby Credits by email activation
+    getJellyfinCredits().then(data => {
+      setJellyfinCredits(data)
+    });
+
     //Obtains plex Credits by email activation
     getPlexCredits().then(data => {
       setPlexCredits(data);
@@ -85,6 +95,10 @@ export const AppContext = ({ children }) => {
     emby: {
       embyCredits,
       setEmbyCredits
+    },
+    jellyfin: {
+      jellyfinCredits,
+      setJellyfinCredits,
     },
     plex: {
       plexCredits,

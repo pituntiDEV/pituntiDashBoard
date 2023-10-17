@@ -18,7 +18,7 @@ const Logout = () => {
 }
 export const Notification = () => {
     //Context
-    const { plex, emby } = useContext(appContext);
+    const { plex, emby, jellyfin } = useContext(appContext);
 
     //State
 
@@ -61,6 +61,7 @@ export const Notification = () => {
                 <ul>
                     <li><CoinsIcon /> Plex:{plex.plexCredits.length}</li>
                     <li><CoinsIcon /> Emby:{emby.embyCredits.length}</li>
+                    <li><CoinsIcon /> Jellyfin:{jellyfin?.jellyfinCredits?.length}</li>
                 </ul>
 
 
