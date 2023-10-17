@@ -122,6 +122,7 @@ export const PlexServersAndPackages = ({ formData, setFormData, onlyAdmin = fals
                                                     return (
                                                         <li className='pk' key={pk._id}>
                                                             <input onChange={() => selectPackages(pk, server)} type="checkbox" name={pk._id} /> {pk.name}
+
                                                         </li>
                                                     )
                                                 })

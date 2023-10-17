@@ -19,11 +19,13 @@ export const ServersAndPackagesSelector = ({ formData, setFormData }) => {
     });
 
     const [sharedServers, loadingSharedServers] = useGetEmbySharedServers();
+
     // Effects
     useEffect(() => {
         getServers()
             .then(accounts => {
-                setServers(accounts)
+                setServers(accounts);
+                console.log(accounts);
             })
     }, []);
 
@@ -65,7 +67,7 @@ export const ServersAndPackagesSelector = ({ formData, setFormData }) => {
                         servers.map(account => {
                             return (
                                 <option data-admin={account.admin} value={account._id} key={account._id}>
-                                    {account.data.name}
+                                    {account.data.name}-({account.data.ip})
                                 </option>
                             )
                         })
@@ -78,7 +80,8 @@ export const ServersAndPackagesSelector = ({ formData, setFormData }) => {
                             }
                             return (
                                 <option data-admin={server.server.admin} data-shared={true} value={server.server._id} key={server.server._id}>
-                                    {server.server.data.name}-(Compartido)
+                                    {server.server.data.name}-(Compartido)-
+                                    ({server.server?.data?.ip})
                                 </option>
                             )
                         })
