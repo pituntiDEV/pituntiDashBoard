@@ -50,11 +50,12 @@
 
             .service {
                 font-weight: bold;
-                border-radius: 1rem;
+                border-radius: .5rem;
                 border: none;
                 box-shadow: -1px 1px 2px rgb(239, 239, 239),
                     -2px 2px 3px rgb(67, 106, 173);
                 ;
+                padding: .3rem .8rem;
             }
 
             .plex {

@@ -57,9 +57,9 @@ export const AccountList = ({ newAccountState, setTotalAccounts }) => {
         {
           embyAccounts.map(account => {
             return (
-              <div className='account' key={account._id}>
+              <div className='account ' key={account._id}>
                 <div className="account__container">
-                  <div className="profile">
+                  <div className="profile emby">
                     {/* <img src={account.data.user.thumb} alt="" /> */}
                     {account.email[0]}
                   </div>
@@ -82,9 +82,9 @@ export const AccountList = ({ newAccountState, setTotalAccounts }) => {
         {
           jellyfinAccounts.map(account => {
             return (
-              <div className='account' key={account._id}>
+              <div className='account ' key={account._id}>
                 <div className="account__container">
-                  <div className="profile">
+                  <div className="profile jellyfin">
                     {/* <img src={account.data.user.thumb} alt="" /> */}
                     {account.email[0]}
                   </div>
@@ -109,7 +109,7 @@ export const AccountList = ({ newAccountState, setTotalAccounts }) => {
           accounts.map((account) => {
             return <div className='account' key={account.email}>
               <div className="account__container">
-                <div className="profile">
+                <div className="profile plex">
                   <img src={account.data.user.thumb} alt="" />
                 </div>
                 ({account.platform})

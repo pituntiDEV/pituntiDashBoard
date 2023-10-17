@@ -30,21 +30,38 @@
                 align-items: center;
                 font-size: 2rem;
                 text-transform: uppercase;
-                background:linear-gradient(to right,rgb(59, 88, 165),rgb(55, 255, 0));
+
                 font-weight: bold;
                 text-shadow: -2px 2px 3px black;
+
+                &.plex {
+                    background: linear-gradient(to bottom, rgb(251, 122, 31), rgb(29, 29, 29));
+                    color: white;
+
+                }
+
+                &.emby {
+                    background: linear-gradient(to right, rgb(60, 207, 60), rgb(59, 131, 20));
+                    color: white
+                }
+
+                &.jellyfin {
+                    background: linear-gradient(to right, rgb(61, 80, 153), rgb(54, 187, 232));
+                    color: white;
+                }
+
                 img {
                     height: 100%;
                 }
             }
         }
 
-        .controls{
+        .controls {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            gap:1rem
+            gap: 1rem
         }
     }
 }
