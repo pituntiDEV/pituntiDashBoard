@@ -35,6 +35,11 @@ export const EmbyUsersList = () => {
                                 <div className="expireDate">
                                     {utils.formatDate(user.expireAt)}
                                 </div>
+
+                                <hr />
+                                <div className="expireDate">
+                                    {`${user.account?.data.ip}:${user.account?.data.port}`}
+                                </div>
                             </div>
                             <hr />
                             <div className="footer">

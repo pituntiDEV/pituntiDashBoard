@@ -34,6 +34,9 @@ export const JellyfinUsersList = () => {
                                 <div className="expireDate">
                                     {utils.formatDate(user.expireAt)}
                                 </div>
+                                <div className="expireDate">
+                                    {`${user.account?.data.ip}:${user.account?.data.port}`}
+                                </div>
                             </div>
                             <hr />
                             <div className="footer">
